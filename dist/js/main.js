@@ -59,8 +59,9 @@
 	React.render(React.createElement(
 	    Router,
 	    null,
-	    React.createElement(Route, { path: 'list/:openId', component: reports }),
-	    React.createElement(Route, { path: 'item/:reportId/:openId', component: report })
+	    React.createElement(Route, { path: '/', component: reports }),
+	    React.createElement(Route, { path: '/:openId', component: reports }),
+	    React.createElement(Route, { path: '/:openId/:reportId', component: report })
 	), document.body);
 
 /***/ },
@@ -239,7 +240,7 @@
 	            return React.createElement(
 	                "div",
 	                { id: "report", className: "top-tab-wrapper" },
-	                React.createElement(Banner, { title: this.state.title, backUrl: "/report.html/#/list/" + this.props.params.openId }),
+	                React.createElement(Banner, { title: this.state.title, backUrl: "/reports#/" + this.props.params.openId }),
 	                React.createElement(
 	                    Tabs,
 	                    { size: "mini" },
@@ -1514,7 +1515,7 @@
 	        };
 
 	        this.clickItem = function (reportId) {
-	            location.href = '/report.html/#/item/' + reportId + '/' + _this.props.openId;
+	            location.href = '/reports#/' + _this.props.openId + '/' + reportId;
 	        };
 	    }
 
@@ -1584,19 +1585,23 @@
 	                    null,
 	                    this.state.data.map(function (item) {
 	                        return React.createElement(
-	                            Timeline.Item,
-	                            { color: 'green', key: item.timestamp },
+	                            'div',
+	                            { onClick: _this3.clickItem.bind(_this3, item.id) },
 	                            React.createElement(
-	                                'p',
-	                                { onClick: _this3.clickItem.bind(_this3, item.id) },
-	                                item.place,
-	                                React.createElement('div', { className: 'arrow1' })
-	                            ),
-	                            React.createElement(
-	                                'p',
-	                                { className: 'timestamp' },
-	                                _this3.formatTime(item.timestamp * 1000),
-	                                React.createElement('div', { className: 'arrow2' })
+	                                Timeline.Item,
+	                                { color: 'green', key: item.timestamp },
+	                                React.createElement(
+	                                    'p',
+	                                    null,
+	                                    item.place,
+	                                    React.createElement('div', { className: 'arrow1' })
+	                                ),
+	                                React.createElement(
+	                                    'p',
+	                                    { className: 'timestamp' },
+	                                    _this3.formatTime(item.timestamp * 1000),
+	                                    React.createElement('div', { className: 'arrow2' })
+	                                )
 	                            )
 	                        );
 	                    })

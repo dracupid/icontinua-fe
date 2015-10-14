@@ -46,7 +46,7 @@ class ReportList extends React.Component {
     }
 
     clickItem = (reportId) => {
-        location.href = `/report.html/#/item/${reportId}/${this.props.openId}`
+        location.href = `/reports#/${this.props.openId}/${reportId}`
     };
 
     formatTime(t) {
@@ -69,8 +69,9 @@ class ReportList extends React.Component {
                 <Timeline>
                     {this.state.data.map((item) => {
                         return (
+                            <div onClick={this.clickItem.bind(this, item.id)}>
                             <Timeline.Item color="green" key={item.timestamp} >
-                                <p onClick={this.clickItem.bind(this, item.id)}>
+                                <p>
                                     {item.place}
                                     <div className="arrow1" />
                                 </p>
@@ -79,6 +80,7 @@ class ReportList extends React.Component {
                                     <div className="arrow2" />
                                 </p>
                             </Timeline.Item>
+                            </div>
                         );
                     })}
                 </Timeline>

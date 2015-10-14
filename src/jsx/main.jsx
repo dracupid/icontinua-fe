@@ -6,9 +6,9 @@ window._reportData = {};
 window._chineseReportData = {};
 
 React.render((
-    <Router>
-        <Route path="list/:openId" component={reports}/>
-        <Route path="item/:reportId/:openId" component={report}/>
-
+    <Router >
+        <Route path="/" component={reports} />
+        <Route path="/:openId" component={reports}/>
+        <Route path="/:openId/:reportId" component={report}/>
     </Router>
 ), document.body);

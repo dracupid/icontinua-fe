@@ -125,7 +125,7 @@ class Report extends React.Component {
     render() {
         return (
             <div id="report" className="top-tab-wrapper">
-                <Banner title={this.state.title} backUrl={"/report.html/#/list/" + this.props.params.openId}/>
+                <Banner title={this.state.title} backUrl={"/reports#/" + this.props.params.openId}/>
                 <Tabs size="mini">
                     <TabPane tab="身体" key="1">{this.getHeightWeight()}</TabPane>
                     <TabPane tab="血压" key="2">{this.getBlood()}</TabPane>
