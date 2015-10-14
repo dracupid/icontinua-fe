@@ -1,0 +1,327 @@
+@import "nib/size"
+@import "nib/positions"
+$green = #80cbc4
+$green_dark = #2dacb9
+$pad_both = 10px
+body
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent; /* For some Androids */
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    background-color #f2f2f2
+
+middle(h){
+    height h
+    line-height h
+}
+
+$bannerHeight = 45px
+.banner
+    background-color $green
+    height $bannerHeight
+    color #eee
+    .left-icon
+        font-size 20px
+        absolute: top 8px left 11px
+    h1, h2
+        text-align center
+        line-height $bannerHeight
+
+// antd tab
+.ant-tabs-mini, .ant-tabs-tab
+    margin-right 0 !important
+
+.ant-tabs-tab
+    a
+        padding-left 12px !important
+        padding-right 12px !important
+        text-align center
+    flex 1
+
+.ant-tabs-nav
+    width 100%
+    border-top 1px solid #ddd
+    display flex !important
+    flex-direction row
+
+.ant-tabs-nav-scroll
+    width 100% !important
+
+.ant-tabs-ink-bar
+    display none !important
+
+.ant-tabs-content
+    padding 0 $pad_both
+
+.loading
+    display block
+    text-align center
+
+// 底部tab覆盖样式
+.bottom-tab-wrapper > .ant-tabs > .ant-tabs-nav-container
+    margin-bottom 0
+    .ant-tabs-nav-scroll
+        position fixed
+        bottom 0
+        z-index 9
+
+    .ant-tabs-tab
+        background-color #fff
+        .tab-icon
+            top 0
+            margin auto !important
+        a
+            height 50px
+            font-weight bold
+            font-size 11px
+            padding 0
+            padding-top 5px
+        p
+            margin-top -3px
+    .ant-tabs-tab-active
+        a
+            color $green !important
+
+// 顶部tab样式
+.top-tab-wrapper
+    .ant-tabs-nav
+        border none
+    .ant-tabs-nav-container
+        border none
+    .ant-tabs-nav-scroll
+        padding 6px 10px 0 10px
+    .ant-tabs-tab
+        font-weight bold
+        font-size 15px
+        border 1px solid $green
+        border-right none
+        &:nth-child(2)
+            border-top-left-radius 4px
+            border-bottom-left-radius 4px
+        &:last-child
+            border-right 1px solid $green
+            border-top-right-radius 4px
+            border-bottom-right-radius 4px
+        a
+            color $green !important
+            padding 0
+            middle(30px)
+        &.ant-tabs-tab-active
+            a
+                color #fff !important
+                background-color $green
+
+#report-list
+    #list-timeline
+        padding 25px 20px 40px
+        ul
+            padding-left 22%
+            list-style-type none
+            counter-reset sectioncounter
+            li:before
+                content: counter(sectioncounter);
+                counter-increment: sectioncounter;
+                z-index: 9;
+                color: white;
+                absolute top -2px left 3.5px
+        .ant-timeline-item-head
+            size: 14px
+            border-radius 7px
+        .ant-timeline-item
+            height 80px
+        .ant-timeline-item-tail
+            border-left-color #bebebe
+            display block !important
+        .ant-timeline-item-content
+            font-size 12px
+            font-weight bold
+            top 13px
+            width 85%
+            middle(25px)
+            padding 0 0 0 10px
+            margin-left 25px
+            border-radius 3px
+            background-color $green_dark
+            color #fff
+            .timestamp
+                absolute top -22px left -120px
+                border-radius 3px
+                background-color $green_dark
+                size: 97px 32px
+                text-align: center;
+                padding: 3px;
+                line-height: 13px;
+                transform scale(0.7)
+            .arrow2
+                size 0
+                border-top 5px solid transparent
+                border-left 10px solid $green_dark
+                border-bottom 5px solid transparent
+                absolute top -11px left -40px
+        .ant-timeline-item-head-green
+            background-color $green_dark
+            border none
+        .arrow1
+            size 0
+            border-top 5px solid transparent
+            border-right 10px solid $green_dark
+            border-bottom 5px solid transparent
+            absolute top 6px left -10px
+
+    .item-num
+        absolute top 10px right 0
+
+.report-tip-block
+    margin 0 20px
+    &.fix
+        margin-top -70px
+    .tip-text
+        font-size 1.1em
+        margin-top 10px
+        padding-left 8px
+
+#report
+    .tab-icon
+        top 2px
+    .height-wrapper
+        text-align center
+        height 150px
+        display flex
+        justify-content flex-start
+        align-items center
+        margin-top 38px
+        img
+            height 100%
+        .line
+            size(15px, 100%)
+            border 2px #80cbc4 solid
+            border-left none
+        .text
+            padding-left 10px
+            font-size 1.2em
+            font-weight bold
+
+    .kv-map
+        flex 1
+        .kv-item
+            margin-bottom 15px
+            display flex
+            flex-direction column
+        .key
+            font-size 1.4em
+            color: $green
+            font-weight bold
+        .value
+            font-size 1.2em
+
+    .chinese-report-block
+        margin-bottom 15px
+        color #a3a3a3
+        .report-header
+            background-color #fff
+            color $green
+            font-weight bold
+            padding-bottom 5px
+            .title
+                background-color $green
+                padding-left 10px
+                width 100%
+                middle(27px)
+                color #fff
+                font-size 16px
+            .status
+                middle(27px)
+                margin 0 10px
+                border-bottom $green solid 1px
+            .stars
+                display flex
+                align-items center
+                margin-top 4px
+                .star
+                    display inline-block
+                    size: 20px
+                    background-size 15px 15px
+                    background-repeat no-repeat
+                    padding-right 3px
+                    background-position 2.5px 2.5px
+                    &.on
+                        background-image url("/img/star-on.png")
+                    &.off
+                        background-image url("/img/star-off.png")
+            h4
+                padding 0 10px
+                middle(20px)
+                display inline-block
+        .report-body
+            padding 0 5px
+            .name
+                color $green
+                width 100%
+                border-bottom 1px solid $green
+                margin 5px 5px
+                margin-top 10px
+                font-size 16px
+            .title
+                font-weight bold
+                margin-left -5px
+                padding 8px 0 4px 0
+
+.spo2h-report
+    padding 0 10px
+    .flex-box
+        align-items center
+        justify-content center
+        margin 50px 0
+    p
+        flex 1
+        color $green
+        font-weight bold
+        font-size 28px
+        text-align center
+        .sub
+            font-size 18px
+            vertical-align sub
+    img
+        width 100%
+
+.flex-box
+    display flex
+
+.echarts
+    margin auto
+
+.blood-tab
+    .flex-box
+        justify-content center
+    .echart-mini-wrapper
+        flex 1
+        height 120px
+        overflow hidden
+        .echarts
+            transform scale(0.63)
+            display block
+            absolute top -60px left -50%
+
+.bg-record
+    background url("/img/record.png") no-repeat
+    background-size 24px
+    display block
+    size(24px)
+    margin auto
+    margin-bottom 5px
+
+.bg-trade
+    @extends .bg-record
+    background-image url("/img/trade.png")
+
+.ant-tabs-tab-active
+    .bg-record
+        background-image url("/img/record-a.png")
+    .bg-trade
+        background-image url("/img/trade-a.png")
+
+.ant-message-notice
+    width 60%
+    text-align center
