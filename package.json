@@ -10,22 +10,21 @@
   "license": "MIT",
   "devDependencies": {
     "antd": "^0.9.1",
+    "babel-loader": "^5.3.2",
+    "coffee-loader": "^0.7.2",
     "coffee-script": "^1.10.0",
+    "got": "^4.2.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",
     "gulp-coffee": "^2.3.1",
     "gulp-coffeelint": "^0.5.0",
+    "gulp-jade": "^1.1.0",
     "gulp-minify-css": "^1.2.1",
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.1.0",
     "gulp-uglify": "^1.4.2",
+    "nib": "^1.1.0",
     "react": "^0.13.3",
-    "gulp-jade": "^1.1.0",
-    "webpack": "^1.12.2",
-    "babel-loader": "^5.3.2",
-    "coffee-loader": "^0.7.2"
-  },
-  "dependencies": {
-    "nib": "^1.1.0"
+    "webpack": "^1.12.2"
   }
 }
