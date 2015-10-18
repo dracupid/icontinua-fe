@@ -96,8 +96,6 @@
 
 	var baseGaugeOpt = _require.baseGaugeOpt;
 
-	//message.config({top: 80});
-
 	var Report = (function (_React$Component) {
 	    _inherits(Report, _React$Component);
 
@@ -116,7 +114,6 @@
 	    _createClass(Report, [{
 	        key: "fetchFailedHandler",
 	        value: function fetchFailedHandler() {
-	            //message.error("获取体检数据失败");
 	            this.setState({
 	                title: "体检报告",
 	                loaded: true
@@ -140,7 +137,6 @@
 	            $.getJSON(url).then(function (res) {
 	                console.log(res);
 	                if (res.statusCode === 200) {
-	                    //message.success('获取体检数据成功', 0.5);
 	                    var time = new Date(res.data.timestamp * 1000),
 	                        title = time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日";
 	                    window._reportData[reportId] = {
@@ -1497,9 +1493,6 @@
 	var Alert = _ANTD.Alert;
 	var message = _ANTD.message;
 	var Loading = __webpack_require__(11);
-
-	//message.config({top: 46});
-
 	var ReportList = (function (_React$Component) {
 	    _inherits(ReportList, _React$Component);
 
@@ -1522,15 +1515,9 @@
 	    _createClass(ReportList, [{
 	        key: 'fetchFailHandler',
 	        value: function fetchFailHandler() {
-	            //message.error('加载失败');
 	            this.setState({
 	                data: []
 	            });
-	        }
-	    }, {
-	        key: 'sortList',
-	        value: function sortList(reportList) {
-	            return _(reportList).sortBy('timestamp').reverse().run();
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -1547,9 +1534,8 @@
 	            $.getJSON(url).then(function (res) {
 	                console.log(res);
 	                if (res.statusCode === 200) {
-	                    var data = _this2.sortList(res.data.reportList);
+	                    var data = ReportList.sortList(res.data.reportList);
 	                    window._reportListData = data;
-	                    //message.success('获取体检记录成功', 0.5);
 	                    _this2.setState({
 	                        data: data
 	                    });
@@ -1560,12 +1546,6 @@
 	                console.error(e);
 	                _this2.fetchFailHandler();
 	            });
-	        }
-	    }, {
-	        key: 'formatTime',
-	        value: function formatTime(t) {
-	            var date = new Date(parseInt(t, 10));
-	            return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 \n ' + _.padLeft(date.getHours(), 2, 0) + ':' + _.padLeft(date.getMinutes(), 2, 0);
 	        }
 	    }, {
 	        key: 'render',
@@ -1599,7 +1579,7 @@
 	                                React.createElement(
 	                                    'p',
 	                                    { className: 'timestamp' },
-	                                    _this3.formatTime(item.timestamp * 1000),
+	                                    ReportList.formatTime(item.timestamp * 1000),
 	                                    React.createElement('div', { className: 'arrow2' })
 	                                )
 	                            )
@@ -1612,6 +1592,17 @@
 	                { id: 'list-timeline' },
 	                timeline
 	            );
+	        }
+	    }], [{
+	        key: 'sortList',
+	        value: function sortList(reportList) {
+	            return _(reportList).sortBy('timestamp').reverse().run();
+	        }
+	    }, {
+	        key: 'formatTime',
+	        value: function formatTime(t) {
+	            var date = new Date(parseInt(t, 10));
+	            return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 \n ' + _.padLeft(date.getHours(), 2, 0) + ':' + _.padLeft(date.getMinutes(), 2, 0);
 	        }
 	    }]);
 
@@ -1647,8 +1638,6 @@
 	var Icon = __webpack_require__(13);
 	var TabPane = Tabs.TabPane;
 
-	//message.config({top: 46});
-
 	var ReportTrade = (function (_React$Component) {
 	    _inherits(ReportTrade, _React$Component);
 
@@ -1666,7 +1655,6 @@
 	    _createClass(ReportTrade, [{
 	        key: 'fetchFailedHandler',
 	        value: function fetchFailedHandler() {
-	            //message.error("获取体检数据失败");
 	            this.setState({
 	                loaded: true
 	            });
@@ -1700,7 +1688,6 @@
 	                if (res.statusCode === 200) {
 	                    var data = _this.formatData(res.data);
 	                    window._reportTradeData = data;
-	                    //message.success('获取体检历史数据成功', 0.5);
 	                    _this.setState({
 	                        reportHistory: data,
 	                        loaded: true

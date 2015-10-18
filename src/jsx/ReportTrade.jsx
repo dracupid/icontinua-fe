@@ -8,8 +8,6 @@ let {Tabs, message, Alert} = ANTD,
     Icon = require('./Components/Icon.jsx');
 let TabPane = Tabs.TabPane;
 
-//message.config({top: 46});
-
 class ReportTrade extends React.Component {
     state = {
         reportHistory: {},
@@ -17,7 +15,6 @@ class ReportTrade extends React.Component {
     };
 
     fetchFailedHandler() {
-        //message.error("获取体检数据失败");
         this.setState({
             loaded: true
         });
@@ -48,7 +45,6 @@ class ReportTrade extends React.Component {
             if (res.statusCode === 200) {
                 let data = this.formatData(res.data);
                 window._reportTradeData = data;
-                //message.success('获取体检历史数据成功', 0.5);
                 this.setState({
                     reportHistory: data,
                     loaded: true

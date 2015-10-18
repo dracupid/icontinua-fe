@@ -1,21 +1,18 @@
 let {Timeline, Alert, message} = ANTD,
     Loading = require('./Components/Loading.jsx');
 
-//message.config({top: 46});
-
 class ReportList extends React.Component {
     state = {
         data: null
     };
 
     fetchFailHandler() {
-        //message.error('加载失败');
         this.setState({
             data: []
         });
     }
 
-    sortList(reportList) {
+    static sortList(reportList) {
         return _(reportList).sortBy('timestamp').reverse().run();
     }
 
@@ -30,9 +27,8 @@ class ReportList extends React.Component {
         $.getJSON(url).then((res) => {
             console.log(res);
             if (res.statusCode === 200) {
-                let data = this.sortList(res.data.reportList);
+                let data = ReportList.sortList(res.data.reportList);
                 window._reportListData = data;
-                //message.success('获取体检记录成功', 0.5);
                 this.setState({
                     data: data
                 });
@@ -49,7 +45,7 @@ class ReportList extends React.Component {
         location.href = `/reports#/${this.props.openId}/${reportId}`
     };
 
-    formatTime(t) {
+    static formatTime(t) {
         let date = new Date(parseInt(t, 10));
         return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 \n ${_.padLeft(date.getHours(), 2, 0)}:${_.padLeft(date.getMinutes(), 2, 0)}`
     }
@@ -76,7 +72,7 @@ class ReportList extends React.Component {
                                     <div className="arrow1" />
                                 </p>
                                 <p className="timestamp">
-                                    {this.formatTime(item.timestamp * 1000)}
+                                    {ReportList.formatTime(item.timestamp * 1000)}
                                     <div className="arrow2" />
                                 </p>
                             </Timeline.Item>

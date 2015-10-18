@@ -10,8 +10,6 @@ let {Tabs, message, Alert} = ANTD,
 let TabPane = Tabs.TabPane;
 let {baseGaugeOpt} = require("./option.coffee");
 
-//message.config({top: 80});
-
 class Report extends React.Component {
     state = {
         title: "体检记录",
@@ -20,7 +18,6 @@ class Report extends React.Component {
     };
 
     fetchFailedHandler() {
-        //message.error("获取体检数据失败");
         this.setState({
             title: "体检报告",
             loaded: true
@@ -41,7 +38,6 @@ class Report extends React.Component {
         $.getJSON(url).then((res) => {
             console.log(res);
             if (res.statusCode === 200) {
-                //message.success('获取体检数据成功', 0.5);
                 let time = new Date(res.data.timestamp * 1000),
                     title = `${time.getFullYear()}年${time.getMonth() + 1}月${time.getDate()}日`;
                 window._reportData[reportId] = {
