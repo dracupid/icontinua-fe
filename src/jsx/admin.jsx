@@ -1,4 +1,4 @@
-let {Menu, SubMenu} = ANTD
+let {Menu, SubMenu} = ANTD;
 
 class Admin extends React.Component {
     state = {

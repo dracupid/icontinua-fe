@@ -16,9 +16,9 @@ class Blood extends React.Component {
             v = data[k];
             if (v.systolicPressure) {
                 res.xs.push(util.formatTime(k));
-                res.high.push(~~v.systolicPressure);
-                res.low.push(~~v.diastolicPressure);
-                res.beat.push(~~v.beatsPerMinute);
+                res.high.push(~~v.sbp);
+                res.low.push(~~v.dbp);
+                res.beat.push(~~v.heartRate);
             }
         }
         return res

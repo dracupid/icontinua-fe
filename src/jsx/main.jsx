@@ -3,6 +3,7 @@ let { Router, Route, Link } = ReactRouter,
     reports = require('./reports.jsx');
 
 window._reportData = {};
+window._reportListData = null;
 window._chineseReportData = {};
 
 React.render((

@@ -9,63 +9,13 @@ let {Tabs, message, Alert} = ANTD,
 let TabPane = Tabs.TabPane;
 
 class ReportTrade extends React.Component {
-    state = {
-        reportHistory: {},
-        loaded: false
-    };
-
-    fetchFailedHandler() {
-        this.setState({
-            loaded: true
-        });
-    }
-
-    formatData(list) {
-        let res = {};
-
-        _(list).sortBy("timestamp").forEach((item) => {
-            res[item.timestamp] = item
-        }).run();
-
-        return res
-
-    }
-
-    componentDidMount() {
-        if (!_.isEmpty(window._reportTradeData)) {
-            this.setState({
-                reportHistory: window._reportTradeData,
-                loaded: true
-            });
-            return;
-        }
-        let url = "/api/reportHistory?openId=" + this.props.openId;
-        $.getJSON(url).then((res) => {
-            console.log(res);
-            if (res.statusCode === 200) {
-                let data = this.formatData(res.data);
-                window._reportTradeData = data;
-                this.setState({
-                    reportHistory: data,
-                    loaded: true
-                });
-            } else {
-                this.fetchFailedHandler();
-            }
-        }).fail((e) => {
-            console.error(e);
-            this.fetchFailedHandler();
-        });
-    }
-
     getHeightWeight() {
-        if (this.state.loaded) {
-            if (_(this.state.reportHistory).pluck("height").compact().run().length > 0) {
-                return <HeightWeight data={this.state.reportHistory}/>
+        let {data} = this.props.data;
+        if (data !== null) {
+            if (_(data).pluck("height").compact().run().length > 0) {
+                return <HeightWeight data={data}/>
             } else {
-                return <Alert
-                    message="没有您的身体数据"
-                    type="info"/>
+                return <Alert message="没有您的身体数据" type="info"/>
             }
         } else {
             return <Loading />
@@ -73,13 +23,12 @@ class ReportTrade extends React.Component {
     }
 
     getBlood() {
-        if (this.state.loaded) {
-            if (_(this.state.reportHistory).pluck("systolicPressure").compact().run().length > 0) {
-                return <Blood data={this.state.reportHistory}/>
+        let {data} = this.props.data;
+        if (data !== null) {
+            if (_(data).pluck("systolicPressure").compact().run().length > 0) {
+                return <Blood data={data}/>
             } else {
-                return <Alert
-                    message="没有您的血压数据"
-                    type="info"/>
+                return <Alert message="没有您的血压数据" type="info"/>
             }
         } else {
             return <Loading />
@@ -87,13 +36,12 @@ class ReportTrade extends React.Component {
     }
 
     getO2() {
-        if (this.state.loaded) {
-            if (_(this.state.reportHistory).pluck("spo2h").compact().run().length > 0) {
-                return <O2 data={this.state.reportHistory}/>
+        let {data} = this.props.data;
+        if (data !== null) {
+            if (_(data).pluck("spo2h").compact().run().length > 0) {
+                return <O2 data={data}/>
             } else {
-                return <Alert
-                    message="没有您的血氧数据"
-                    type="info"/>
+                return <Alert message="没有您的血氧数据" type="info"/>
             }
         } else {
             return <Loading />
@@ -101,13 +49,12 @@ class ReportTrade extends React.Component {
     }
 
     getChinese() {
-        if (this.state.loaded) {
-            if (_(this.state.reportHistory).pluck("cacheScore").compact().run().length > 0) {
-                return <Chinese data={this.state.reportHistory}/>
+        let {data} = this.props.data;
+        if (data !== null) {
+            if (_(data).pluck("cacheScore").compact().run().length > 0) {
+                return <Chinese data={data}/>
             } else {
-                return <Alert
-                    message="没有您的生物电数据"
-                    type="info"/>
+                return <Alert message="没有您的生物电数据" type="info"/>
             }
         } else {
             return <Loading />

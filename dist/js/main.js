@@ -54,6 +54,7 @@
 	var reports = __webpack_require__(14);
 
 	window._reportData = {};
+	window._reportListData = null;
 	window._chineseReportData = {};
 
 	React.render(React.createElement(
@@ -1414,7 +1415,8 @@
 
 	        this.state = {
 	            tabTitles: ["体检记录", "变化趋势"],
-	            currentTab: 0
+	            currentTab: 0,
+	            data: null
 	        };
 
 	        this.changeHandler = function (e) {
@@ -1423,6 +1425,50 @@
 	    }
 
 	    _createClass(Reports, [{
+	        key: 'fetchFailedHandler',
+	        value: function fetchFailedHandler() {
+	            this.setState({
+	                data: []
+	            });
+	        }
+	    }, {
+	        key: 'formatData',
+	        value: function formatData(list) {
+	            var res = {};
+	            _(list).sortBy("timestamp").reverse().forEach(function (item) {
+	                res[item.id] = item;
+	            }).run();
+	            return res;
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            if (window._reportListData === null) {
+	                this.setState({
+	                    data: window._reportListData
+	                });
+	                return;
+	            }
+	            var url = "/api/history?openId=" + this.props.openId;
+	            $.getJSON(url).then(function (res) {
+	                console.log(res);
+	                if (res.statusCode === 200) {
+	                    var data = _this2.formatData(res.data);
+	                    window._reportListData = data;
+	                    _this2.setState({
+	                        data: data
+	                    });
+	                } else {
+	                    _this2.fetchFailedHandler();
+	                }
+	            }).fail(function (e) {
+	                console.error(e);
+	                _this2.fetchFailedHandler();
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return React.createElement(
@@ -1447,7 +1493,7 @@
 	                                        this.state.tabTitles[0]
 	                                    )
 	                                ), key: '0' },
-	                            React.createElement(ReportList, { openId: this.props.params.openId })
+	                            React.createElement(ReportList, { openId: this.props.params.openId, data: this.state.data })
 	                        ),
 	                        React.createElement(
 	                            TabPane,
@@ -1461,7 +1507,7 @@
 	                                        this.state.tabTitles[1]
 	                                    )
 	                                ), key: '1' },
-	                            React.createElement(ReportTrade, { openId: this.props.params.openId })
+	                            React.createElement(ReportTrade, { openId: this.props.params.openId, data: this.state.data })
 	                        )
 	                    )
 	                )
@@ -1478,15 +1524,15 @@
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var _ANTD = ANTD;
 	var Timeline = _ANTD.Timeline;
@@ -1501,86 +1547,49 @@
 
 	        _classCallCheck(this, ReportList);
 
-	        _get(Object.getPrototypeOf(ReportList.prototype), 'constructor', this).apply(this, arguments);
-
-	        this.state = {
-	            data: null
-	        };
+	        _get(Object.getPrototypeOf(ReportList.prototype), "constructor", this).apply(this, arguments);
 
 	        this.clickItem = function (reportId) {
-	            location.href = '/reports#/' + _this.props.openId + '/' + reportId;
+	            location.href = "/reports#/" + _this.props.openId + "/" + reportId;
 	        };
 	    }
 
 	    _createClass(ReportList, [{
-	        key: 'fetchFailHandler',
-	        value: function fetchFailHandler() {
-	            this.setState({
-	                data: []
-	            });
-	        }
-	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
+	        key: "render",
+	        value: function render() {
 	            var _this2 = this;
 
-	            if (!_.isEmpty(window._reportListData)) {
-	                this.setState({
-	                    data: window._reportListData
-	                });
-	                return;
-	            }
-	            var url = "/api/reportList?openId=" + this.props.openId;
-	            $.getJSON(url).then(function (res) {
-	                console.log(res);
-	                if (res.statusCode === 200) {
-	                    var data = ReportList.sortList(res.data.reportList);
-	                    window._reportListData = data;
-	                    _this2.setState({
-	                        data: data
-	                    });
-	                } else {
-	                    _this2.fetchFailHandler();
-	                }
-	            }).fail(function (e) {
-	                console.error(e);
-	                _this2.fetchFailHandler();
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var _this3 = this;
-
 	            var timeline = [];
-	            if (this.state.data == null) {
-	                timeline = React.createElement(Loading, { text: '正在加载体检记录...' });
-	            } else if (this.state.data.length == 0) {
+	            var data = this.props.data;
+
+	            if (data == null) {
+	                timeline = React.createElement(Loading, { text: "正在加载体检记录..." });
+	            } else if (data.length == 0) {
 	                timeline = React.createElement(Alert, {
-	                    message: '没有找到您的体检记录',
-	                    type: 'info' });
+	                    message: "没有找到您的体检记录",
+	                    type: "info" });
 	            } else {
 	                timeline = React.createElement(
 	                    Timeline,
 	                    null,
-	                    this.state.data.map(function (item) {
+	                    _.map(data, function (item) {
 	                        return React.createElement(
-	                            'div',
-	                            { onClick: _this3.clickItem.bind(_this3, item.id) },
+	                            "div",
+	                            { onClick: _this2.clickItem.bind(_this2, item.id) },
 	                            React.createElement(
 	                                Timeline.Item,
-	                                { color: 'green', key: item.timestamp },
+	                                { color: "green", key: item.timestamp },
 	                                React.createElement(
-	                                    'p',
+	                                    "p",
 	                                    null,
-	                                    item.place,
-	                                    React.createElement('div', { className: 'arrow1' })
+	                                    item.location,
+	                                    React.createElement("div", { className: "arrow1" })
 	                                ),
 	                                React.createElement(
-	                                    'p',
-	                                    { className: 'timestamp' },
+	                                    "p",
+	                                    { className: "timestamp" },
 	                                    ReportList.formatTime(item.timestamp * 1000),
-	                                    React.createElement('div', { className: 'arrow2' })
+	                                    React.createElement("div", { className: "arrow2" })
 	                                )
 	                            )
 	                        );
@@ -1588,21 +1597,16 @@
 	                );
 	            }
 	            return React.createElement(
-	                'div',
-	                { id: 'list-timeline' },
+	                "div",
+	                { id: "list-timeline" },
 	                timeline
 	            );
 	        }
 	    }], [{
-	        key: 'sortList',
-	        value: function sortList(reportList) {
-	            return _(reportList).sortBy('timestamp').reverse().run();
-	        }
-	    }, {
-	        key: 'formatTime',
+	        key: "formatTime",
 	        value: function formatTime(t) {
 	            var date = new Date(parseInt(t, 10));
-	            return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 \n ' + _.padLeft(date.getHours(), 2, 0) + ':' + _.padLeft(date.getMinutes(), 2, 0);
+	            return date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日 \n" + (_.padLeft(date.getHours(), 2, 0) + ":" + _.padLeft(date.getMinutes(), 2, 0));
 	        }
 	    }]);
 
@@ -1645,71 +1649,18 @@
 	        _classCallCheck(this, ReportTrade);
 
 	        _get(Object.getPrototypeOf(ReportTrade.prototype), 'constructor', this).apply(this, arguments);
-
-	        this.state = {
-	            reportHistory: {},
-	            loaded: false
-	        };
 	    }
 
 	    _createClass(ReportTrade, [{
-	        key: 'fetchFailedHandler',
-	        value: function fetchFailedHandler() {
-	            this.setState({
-	                loaded: true
-	            });
-	        }
-	    }, {
-	        key: 'formatData',
-	        value: function formatData(list) {
-	            var res = {};
-
-	            _(list).sortBy("timestamp").forEach(function (item) {
-	                res[item.timestamp] = item;
-	            }).run();
-
-	            return res;
-	        }
-	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var _this = this;
-
-	            if (!_.isEmpty(window._reportTradeData)) {
-	                this.setState({
-	                    reportHistory: window._reportTradeData,
-	                    loaded: true
-	                });
-	                return;
-	            }
-	            var url = "/api/reportHistory?openId=" + this.props.openId;
-	            $.getJSON(url).then(function (res) {
-	                console.log(res);
-	                if (res.statusCode === 200) {
-	                    var data = _this.formatData(res.data);
-	                    window._reportTradeData = data;
-	                    _this.setState({
-	                        reportHistory: data,
-	                        loaded: true
-	                    });
-	                } else {
-	                    _this.fetchFailedHandler();
-	                }
-	            }).fail(function (e) {
-	                console.error(e);
-	                _this.fetchFailedHandler();
-	            });
-	        }
-	    }, {
 	        key: 'getHeightWeight',
 	        value: function getHeightWeight() {
-	            if (this.state.loaded) {
-	                if (_(this.state.reportHistory).pluck("height").compact().run().length > 0) {
-	                    return React.createElement(HeightWeight, { data: this.state.reportHistory });
+	            var data = this.props.data.data;
+
+	            if (data !== null) {
+	                if (_(data).pluck("height").compact().run().length > 0) {
+	                    return React.createElement(HeightWeight, { data: data });
 	                } else {
-	                    return React.createElement(Alert, {
-	                        message: '没有您的身体数据',
-	                        type: 'info' });
+	                    return React.createElement(Alert, { message: '没有您的身体数据', type: 'info' });
 	                }
 	            } else {
 	                return React.createElement(Loading, null);
@@ -1718,13 +1669,13 @@
 	    }, {
 	        key: 'getBlood',
 	        value: function getBlood() {
-	            if (this.state.loaded) {
-	                if (_(this.state.reportHistory).pluck("systolicPressure").compact().run().length > 0) {
-	                    return React.createElement(Blood, { data: this.state.reportHistory });
+	            var data = this.props.data.data;
+
+	            if (data !== null) {
+	                if (_(data).pluck("systolicPressure").compact().run().length > 0) {
+	                    return React.createElement(Blood, { data: data });
 	                } else {
-	                    return React.createElement(Alert, {
-	                        message: '没有您的血压数据',
-	                        type: 'info' });
+	                    return React.createElement(Alert, { message: '没有您的血压数据', type: 'info' });
 	                }
 	            } else {
 	                return React.createElement(Loading, null);
@@ -1733,13 +1684,13 @@
 	    }, {
 	        key: 'getO2',
 	        value: function getO2() {
-	            if (this.state.loaded) {
-	                if (_(this.state.reportHistory).pluck("spo2h").compact().run().length > 0) {
-	                    return React.createElement(O2, { data: this.state.reportHistory });
+	            var data = this.props.data.data;
+
+	            if (data !== null) {
+	                if (_(data).pluck("spo2h").compact().run().length > 0) {
+	                    return React.createElement(O2, { data: data });
 	                } else {
-	                    return React.createElement(Alert, {
-	                        message: '没有您的血氧数据',
-	                        type: 'info' });
+	                    return React.createElement(Alert, { message: '没有您的血氧数据', type: 'info' });
 	                }
 	            } else {
 	                return React.createElement(Loading, null);
@@ -1748,13 +1699,13 @@
 	    }, {
 	        key: 'getChinese',
 	        value: function getChinese() {
-	            if (this.state.loaded) {
-	                if (_(this.state.reportHistory).pluck("cacheScore").compact().run().length > 0) {
-	                    return React.createElement(Chinese, { data: this.state.reportHistory });
+	            var data = this.props.data.data;
+
+	            if (data !== null) {
+	                if (_(data).pluck("cacheScore").compact().run().length > 0) {
+	                    return React.createElement(Chinese, { data: data });
 	                } else {
-	                    return React.createElement(Alert, {
-	                        message: '没有您的生物电数据',
-	                        type: 'info' });
+	                    return React.createElement(Alert, { message: '没有您的生物电数据', type: 'info' });
 	                }
 	            } else {
 	                return React.createElement(Loading, null);
@@ -1954,9 +1905,9 @@
 	                v = data[k];
 	                if (v.systolicPressure) {
 	                    res.xs.push(util.formatTime(k));
-	                    res.high.push(~ ~v.systolicPressure);
-	                    res.low.push(~ ~v.diastolicPressure);
-	                    res.beat.push(~ ~v.beatsPerMinute);
+	                    res.high.push(~ ~v.sbp);
+	                    res.low.push(~ ~v.dbp);
+	                    res.beat.push(~ ~v.heartRate);
 	                }
 	            }
 	            return res;
