@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 cd /var/www
 if [ ! -d bak/static ]
 then

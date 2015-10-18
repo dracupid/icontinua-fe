@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 root='/var/www/'
 host='wcm@172.18.9.7'
 if [ ! -d upload ]
