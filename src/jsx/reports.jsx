@@ -27,18 +27,21 @@ class Reports extends React.Component {
     }
 
     componentDidMount() {
-        if (window._reportListData === null) {
+        if (window._reportListData !== null) {
             this.setState({
                 data: window._reportListData
             });
             return;
         }
-        let url = "/api/history?openId=" + this.props.openId;
+        let url = "/api/history?openId=" + this.props.params.openId;
         $.getJSON(url).then((res) => {
             console.log(res);
-            if (res.statusCode === 200) {
+            if (res.status === 200) {
                 let data = this.formatData(res.data);
                 window._reportListData = data;
+                _.forEach(data, (e) => {
+                    window._reportData[e.id] = e;
+                });
                 this.setState({
                     data: data
                 });

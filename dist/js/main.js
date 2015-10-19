@@ -137,8 +137,8 @@
 	            var url = "/api/report?reportId=" + reportId;
 	            $.getJSON(url).then(function (res) {
 	                console.log(res);
-	                if (res.statusCode === 200) {
-	                    var time = new Date(res.data.timestamp * 1000),
+	                if (res.status === 200) {
+	                    var time = new Date(res.data.timestamp),
 	                        title = time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日";
 	                    window._reportData[reportId] = {
 	                        title: title,
@@ -1090,7 +1090,6 @@
 	    _createClass(Chinese, [{
 	        key: "fetchFailedHandler",
 	        value: function fetchFailedHandler() {
-	            //message.error("获取生物电数据失败");
 	            this.setState({
 	                data: null,
 	                loaded: true
@@ -1112,7 +1111,6 @@
 	            var url = "/api/falthReport?id=" + id;
 	            $.getJSON(url).then(function (res) {
 	                console.log(res);
-	                //message.success('获取生物电数据成功', 0.5);
 	                window._chineseReportData[id] = res;
 	                _this.setState({
 	                    data: res,
@@ -1133,6 +1131,8 @@
 	                        type: "info" });
 	                } else {
 	                    var data = filter(this.state.data);
+	                    console.log("----------");
+	                    console.log(data);
 	                    return React.createElement(
 	                        "div",
 	                        null,
@@ -1445,18 +1445,21 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 
-	            if (window._reportListData === null) {
+	            if (window._reportListData !== null) {
 	                this.setState({
 	                    data: window._reportListData
 	                });
 	                return;
 	            }
-	            var url = "/api/history?openId=" + this.props.openId;
+	            var url = "/api/history?openId=" + this.props.params.openId;
 	            $.getJSON(url).then(function (res) {
 	                console.log(res);
-	                if (res.statusCode === 200) {
+	                if (res.status === 200) {
 	                    var data = _this2.formatData(res.data);
 	                    window._reportListData = data;
+	                    _.forEach(data, function (e) {
+	                        window._reportData[e.id] = e;
+	                    });
 	                    _this2.setState({
 	                        data: data
 	                    });
@@ -1588,7 +1591,7 @@
 	                                React.createElement(
 	                                    "p",
 	                                    { className: "timestamp" },
-	                                    ReportList.formatTime(item.timestamp * 1000),
+	                                    ReportList.formatTime(item.timestamp),
 	                                    React.createElement("div", { className: "arrow2" })
 	                                )
 	                            )

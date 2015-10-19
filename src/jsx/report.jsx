@@ -37,8 +37,8 @@ class Report extends React.Component {
         let url = "/api/report?reportId=" + reportId;
         $.getJSON(url).then((res) => {
             console.log(res);
-            if (res.statusCode === 200) {
-                let time = new Date(res.data.timestamp * 1000),
+            if (res.status === 200) {
+                let time = new Date(res.data.timestamp),
                     title = `${time.getFullYear()}年${time.getMonth() + 1}月${time.getDate()}日`;
                 window._reportData[reportId] = {
                     title: title,

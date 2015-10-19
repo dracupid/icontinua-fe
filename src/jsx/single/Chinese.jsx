@@ -82,7 +82,6 @@ class Chinese extends React.Component {
     };
 
     fetchFailedHandler() {
-        //message.error("获取生物电数据失败");
         this.setState({
             data: null,
             loaded: true
@@ -101,7 +100,6 @@ class Chinese extends React.Component {
         let url = "/api/falthReport?id=" + id;
         $.getJSON(url).then((res) => {
             console.log(res);
-            //message.success('获取生物电数据成功', 0.5);
             window._chineseReportData[id] = res;
             this.setState({
                 data: res,
@@ -121,6 +119,8 @@ class Chinese extends React.Component {
                     type="info"/>
             } else {
                 let data = filter(this.state.data);
+                console.log("----------")
+                console.log(data);
                 return (
                     <div>
                         <ReportBlock title="脏腑" {...data.zangfu}/>

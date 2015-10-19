@@ -35,7 +35,7 @@ class ReportList extends React.Component {
                                         <div className="arrow1"/>
                                     </p>
                                     <p className="timestamp">
-                                        {ReportList.formatTime(item.timestamp * 1000)}
+                                        {ReportList.formatTime(item.timestamp)}
                                         <div className="arrow2"/>
                                     </p>
                                 </Timeline.Item>

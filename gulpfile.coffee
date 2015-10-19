@@ -102,6 +102,6 @@ gulp.task 'html', ->
 gulp.task 'default', ['jsx', 'css', 'lib', 'html']
 
 gulp.task 'watch', ['jsx', 'css', 'html'], ->
-    gulp.watch "./jsx/**", ["jsx"]
-    gulp.watch "./styl/**", ["css"]
-    gulp.watch "./html/**", ["html"]
+    gulp.watch "./src/jsx/**", ["jsx"]
+    gulp.watch "./src/styl/**", ["css"]
+    gulp.watch "./src/html/**", ["html"]
