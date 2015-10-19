@@ -23,7 +23,7 @@ menuStr =
             sub_button: [{
                 type: 'view',
                 name: '我的体检报告',
-                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent 'http://192.168.3.140:8888/wechat_auth'}&response_type=code&scope=snsapi_base" # 702ea5a.nat123.net
+                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent 'http://112.80.52.187/wechat/auth'}&response_type=code&scope=snsapi_base" # 702ea5a.nat123.net
         }, {
                 type: 'view',
                 name: '我的二维码',

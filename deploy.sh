@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+gulp jsx html css
+
 root='/var/www/'
 host='wcm@172.18.9.7'
 if [ ! -d upload ]

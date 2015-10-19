@@ -20,7 +20,7 @@ class ReportPanel extends React.Component {
             title: '测量时间',
             dataIndex: 'timestamp',
             render(text) {
-                let date = new Date(text * 1000);
+                let date = new Date(text);
                 return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ` +
                     `${_.padLeft(date.getHours(), 2, 0)}:${_.padLeft(date.getMinutes(), 2, 0)}`
             }
@@ -32,19 +32,19 @@ class ReportPanel extends React.Component {
             dataIndex: 'weight'
         }, {
             title: '体脂率',
-            dataIndex: 'bodyFatRate'
+            dataIndex: 'bodyFat'
         }, {
             title: '血氧',
             dataIndex: 'spo2h'
         }, {
             title: '收缩压',
-            dataIndex: 'systolicPressure'
+            dataIndex: 'sbp'
         }, {
             title: '舒张压',
-            dataIndex: 'diastolicPressure'
+            dataIndex: 'dbp'
         }, {
             title: '心率',
-            dataIndex: 'beatsPerMinute'
+            dataIndex: 'heartBeat'
         }, {
             title: '生物电',
             dataIndex: 'cacheId',

@@ -15,9 +15,9 @@ class ReportList extends React.Component {
     render() {
         let timeline = [],
             {data} = this.props;
-        if (data == null) {
+        if (data === null) {
             timeline = <Loading text="正在加载体检记录..."/>
-        } else if (data.length == 0) {
+        } else if (Object.keys(data).length == 0) {
             timeline = (
                 <Alert
                     message="没有找到您的体检记录"
@@ -30,14 +30,12 @@ class ReportList extends React.Component {
                         return (
                             <div onClick={this.clickItem.bind(this, item.id)}>
                                 <Timeline.Item color="green" key={item.timestamp}>
-                                    <p>
-                                        {item.location}
-                                        <div className="arrow1"/>
-                                    </p>
+                                    {item.location}
+                                    <div className="arrow1"/>
                                     <p className="timestamp">
                                         {ReportList.formatTime(item.timestamp)}
-                                        <div className="arrow2"/>
                                     </p>
+                                    <div className="arrow2"/>
                                 </Timeline.Item>
                             </div>
                         );

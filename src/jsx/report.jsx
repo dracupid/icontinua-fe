@@ -24,12 +24,17 @@ class Report extends React.Component {
         });
     }
 
+    static formatTime(t) {
+        let time = new Date(t);
+        return `${time.getFullYear()}年${time.getMonth() + 1}月${time.getDate()}日`
+    }
+
     componentDidMount() {
         let reportId = this.props.params.reportId;
         if (!_.isEmpty(window._reportData[reportId])) {
             this.setState({
-                title: window._reportData[reportId].title,
-                report: window._reportData[reportId].report,
+                title: Report.formatTime(window._reportData[reportId].timestamp),
+                report: window._reportData[reportId],
                 loaded: true
             });
             return;
@@ -38,14 +43,12 @@ class Report extends React.Component {
         $.getJSON(url).then((res) => {
             console.log(res);
             if (res.status === 200) {
-                let time = new Date(res.data.timestamp),
-                    title = `${time.getFullYear()}年${time.getMonth() + 1}月${time.getDate()}日`;
                 window._reportData[reportId] = {
-                    title: title,
+                    title: Report.formatTime(res.data.timestamp),
                     report: res.data
                 };
                 this.setState({
-                    title: title,
+                    title: Report.formatTime(res.data.timestamp),
                     report: res.data,
                     loaded: true
                 });
@@ -74,10 +77,10 @@ class Report extends React.Component {
     }
 
     getBlood() {
-        let {systolicPressure, diastolicPressure, beatsPerMinute} = this.state.report;
+        let {sbp, dbp, heartRate} = this.state.report;
         if (this.state.loaded) {
-            if (systolicPressure && diastolicPressure) {
-                return <Blood high={~~systolicPressure} low={~~diastolicPressure} beat={~~beatsPerMinute}/>
+            if (sbp && dbp) {
+                return <Blood high={~~sbp} low={~~dbp} beat={~~heartRate}/>
             } else {
                 return <Alert
                     message="没有您的血压数据"

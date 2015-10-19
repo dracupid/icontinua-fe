@@ -12,6 +12,6 @@ module.exports =
         _.round (_.max(_arr)), -1
 
     formatTime: (t) ->
-        t = new Date t * 1000
+        t = new Date t
         "#{t.getFullYear()}/#{t.getMonth() + 1}/#{t.getDate()}"
 

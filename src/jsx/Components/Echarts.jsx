@@ -27,7 +27,7 @@ class Echarts extends React.Component {
 
     render() {
         return (
-            <div ref="echarts" className={"echarts " + this.props.className}
+            <div ref="echarts" className={"echarts " + (this.props.className || '')}
                  style={{height: this.props.height + 'px', width: this.props.width}}/>
         )
     }

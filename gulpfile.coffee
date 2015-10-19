@@ -32,9 +32,9 @@ gulp.task 'jsx', (cb) ->
                     test: /\.coffee$/, loader: 'coffee-loader'
                 }
             ]
-#        plugins: [
-#            new webpack.optimize.UglifyJsPlugin()
-#        ]
+        plugins: [
+            new webpack.optimize.UglifyJsPlugin()
+        ]
         externals:
             jquery: 'window.$'
             react: 'window.React'

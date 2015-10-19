@@ -13,7 +13,7 @@ class O2 extends React.Component {
         for (let k in data) {
             v = data[k];
             if (v.spo2h) {
-                res.xs.push(util.formatTime(k));
+                res.xs.push(util.formatTime(v.timestamp));
                 res.O2.push(~~v.spo2h);
             }
         }

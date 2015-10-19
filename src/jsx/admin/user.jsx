@@ -54,7 +54,7 @@ class UserPanel extends React.Component {
             title: '关注时间',
             dataIndex: 'subscribeTime',
             render(text) {
-                let date = new Date(text * 1000);
+                let date = new Date(text);
                 return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ` +
                     `${_.padLeft(date.getHours(), 2, 0)}:${_.padLeft(date.getMinutes(), 2, 0)}`
             }

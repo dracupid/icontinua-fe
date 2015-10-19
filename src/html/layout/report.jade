@@ -13,11 +13,10 @@ html(lang="zh-cmn-Hans")
         script(src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js")
         script(src="http://cdn.bootcss.com/lodash.js/3.10.1/lodash.min.js")
         script(src="/js/lib/echarts.source.min.js")
-
-        mixin js("/js/lib/fastclick.min")
-        script.
-            FastClick.attach(document.body);
-        script(src="http://cdn.bootcss.com/react/0.13.3/react.js")
+        script(src="http://cdn.bootcss.com/react/0.13.3/react.min.js")
         script(src="http://cdn.bootcss.com/react-router/1.0.0-rc1/ReactRouter.min.js")
         mixin js("/js/lib/antd.min")
         block js
+        script(src="http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js")
+        script.
+            FastClick.attach(document.body);

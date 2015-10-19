@@ -10,7 +10,7 @@ let TabPane = Tabs.TabPane;
 
 class ReportTrade extends React.Component {
     getHeightWeight() {
-        let {data} = this.props.data;
+        let {data} = this.props;
         if (data !== null) {
             if (_(data).pluck("height").compact().run().length > 0) {
                 return <HeightWeight data={data}/>
@@ -23,9 +23,9 @@ class ReportTrade extends React.Component {
     }
 
     getBlood() {
-        let {data} = this.props.data;
+        let {data} = this.props;
         if (data !== null) {
-            if (_(data).pluck("systolicPressure").compact().run().length > 0) {
+            if (_(data).pluck("sbp").compact().run().length > 0) {
                 return <Blood data={data}/>
             } else {
                 return <Alert message="没有您的血压数据" type="info"/>
@@ -36,7 +36,7 @@ class ReportTrade extends React.Component {
     }
 
     getO2() {
-        let {data} = this.props.data;
+        let {data} = this.props;
         if (data !== null) {
             if (_(data).pluck("spo2h").compact().run().length > 0) {
                 return <O2 data={data}/>
@@ -49,7 +49,7 @@ class ReportTrade extends React.Component {
     }
 
     getChinese() {
-        let {data} = this.props.data;
+        let {data} = this.props;
         if (data !== null) {
             if (_(data).pluck("cacheScore").compact().run().length > 0) {
                 return <Chinese data={data}/>

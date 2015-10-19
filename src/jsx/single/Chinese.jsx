@@ -119,8 +119,6 @@ class Chinese extends React.Component {
                     type="info"/>
             } else {
                 let data = filter(this.state.data);
-                console.log("----------")
-                console.log(data);
                 return (
                     <div>
                         <ReportBlock title="脏腑" {...data.zangfu}/>

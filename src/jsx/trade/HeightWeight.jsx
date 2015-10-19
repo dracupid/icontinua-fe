@@ -14,7 +14,7 @@ class HeightWeight extends React.Component {
         for (let k in data) {
             v = data[k];
             if (v.height) {
-                res.xs.push(util.formatTime(k));
+                res.xs.push(util.formatTime(v.timestamp));
                 res.height.push(~~v.height);
                 res.weight.push(~~v.weight);
             }
