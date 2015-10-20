@@ -1,2 +1,2169 @@
-!function(e){function t(n){if(r[n])return r[n].exports;var a=r[n]={exports:{},id:n,loaded:!1};return e[n].call(a.exports,a,a.exports,t),a.loaded=!0,a.exports}var r={};return t.m=e,t.c=r,t.p="",t(0)}([function(e,t,r){"use strict";var n=ReactRouter,a=n.Router,o=n.Route,i=(n.Link,r(1)),c=r(14);window._reportData={},window._reportListData=null,window._chineseReportData={},React.render(React.createElement(a,null,React.createElement(o,{path:"/",component:c}),React.createElement(o,{path:"/:openId",component:c}),React.createElement(o,{path:"/:openId/:reportId",component:i})),document.body)},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=ANTD,u=c.Tabs,l=(c.message,c.Alert),s=r(2),p=r(6),f=r(8),v=r(9),d=r(11),m=r(12),y=(r(13),r(3),u.TabPane),h=r(5),b=(h.baseGaugeOpt,function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments),this.state={title:"体检记录",report:{},loaded:!1}}return a(t,e),o(t,[{key:"fetchFailedHandler",value:function(){this.setState({title:"体检报告",loaded:!0})}},{key:"componentDidMount",value:function(){var e=this,r=this.props.params.reportId;if(!_.isEmpty(window._reportData[r]))return void this.setState({title:t.formatTime(window._reportData[r].timestamp),report:window._reportData[r],loaded:!0});var n="/api/report?reportId="+r;$.getJSON(n).then(function(n){console.log(n),200===n.status?(window._reportData[r]={title:t.formatTime(n.data.timestamp),report:n.data},e.setState({title:t.formatTime(n.data.timestamp),report:n.data,loaded:!0})):e.fetchFailedHandler()}).fail(function(t){console.error(t),e.fetchFailedHandler()})}},{key:"getHeightWeight",value:function(){var e=this.state.report,t=e.height,r=e.weight,n=e.bodyFatRate;return this.state.loaded?t&&r?React.createElement(s,{height:~~t,weight:~~r,rate:~~n}):React.createElement(l,{message:"没有您的身体数据",type:"info"}):React.createElement(d,null)}},{key:"getBlood",value:function(){var e=this.state.report,t=e.sbp,r=e.dbp,n=e.heartRate;return this.state.loaded?t&&r?React.createElement(p,{high:~~t,low:~~r,beat:~~n}):React.createElement(l,{message:"没有您的血压数据",type:"info"}):React.createElement(d,null)}},{key:"getO2",value:function(){var e=this.state.report.spo2h;return this.state.loaded?e?React.createElement(f,{OO:~~e}):React.createElement(l,{message:"没有您的血氧数据",type:"info"}):React.createElement(d,null)}},{key:"getChinese",value:function(){var e=this.state.report.cacheId;return this.state.loaded?e?React.createElement(v,{id:e}):React.createElement(l,{message:"没有您的中医数据",type:"info"}):React.createElement(d,null)}},{key:"render",value:function(){return React.createElement("div",{id:"report",className:"top-tab-wrapper"},React.createElement(m,{title:this.state.title,backUrl:"/reports#/"+this.props.params.openId}),React.createElement(u,{size:"mini"},React.createElement(y,{tab:"身体",key:"1"},this.getHeightWeight()),React.createElement(y,{tab:"血压",key:"2"},this.getBlood()),React.createElement(y,{tab:"血氧",key:"3"},this.getO2()),React.createElement(y,{tab:"生物电",key:"4"},this.getChinese())))}}],[{key:"formatTime",value:function(e){var t=new Date(e);return t.getFullYear()+"年"+(t.getMonth()+1)+"月"+t.getDate()+"日"}}]),t}(React.Component));e.exports=b},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=r(3),u=r(4),l=r(5),s=l.baseGaugeOpt,p=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"render",value:function(){var e=[],t=this.props.obj;for(var r in t)t[r]&&e.push(React.createElement("div",{className:"kv-item",key:r+t[r]},React.createElement("div",{className:"key"}," ",r," "),React.createElement("div",{className:"value"}," ",t[r]," ")));return React.createElement("div",{className:"kv-map"},e)}}],[{key:"defaultProps",value:{obj:{}},enumerable:!0}]),t}(React.Component),f=[18.5,25,28],v=["偏瘦","正常","偏胖","肥胖"],d=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"getBMI",value:function(){var e=this.props,t=e.weight,r=e.height;return(t/(r*r/1e4)).toFixed(1)}},{key:"getBMIText",value:function(){var e=this.getBMI();if(e<f[0])return v[0];for(var t=f.length-1;t>=0;t--)if(e>=f[t])return v[t+1];return v[0]}},{key:"getWeightOpt",value:function(){var e=this.props,t=e.weight,r=e.height,n=f.map(function(e){return e*r*r/1e4}),a=_.round(Math.min(n[0]-10,t-10),-1),o=_.round(Math.max(n[2]+10,t+10),-1);0>a&&(a=0);var i=n.map(function(e){return((e-a)/(o-a)).toFixed(1)});return _.defaultsDeep({series:[{detail:{formatter:"{value}KG"},axisLine:{lineStyle:{color:[[i[0],"#DDDF0D"],[i[1],"#55BF3B"],[i[2],"#DDDF0D"],[1,"#DF5353"]]}},data:[{value:t}],min:a,max:o}]},s)}},{key:"getTips",value:function(){var e=["该增加体重了","请继续保持","该多运动减肥","快去减肥吧"],t=this.getBMIText(),r=v.indexOf(t);return"您的体重"+t+"， "+e[r]+"!"}},{key:"render",value:function(){var e=void 0;return this.props.rate&&(e=this.props.rate+"%"),React.createElement("div",null,React.createElement("div",{className:"height-wrapper"},React.createElement("img",{src:"/img/body.png"}),React.createElement("div",{className:"line"}),React.createElement("div",{className:"text"},this.props.height,"CM"),React.createElement(p,{obj:{BMI:this.getBMI(),"体脂":e}})),React.createElement(c,{option:this.getWeightOpt(),height:"300",width:"100%"}),React.createElement(u,{text:this.getTips(),fix:!0}))}}],[{key:"propTypes",value:{height:React.PropTypes.any.isRequired,weight:React.PropTypes.any.isRequired},enumerable:!0}]),t}(React.Component);e.exports=d},function(e,t){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var a=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),o=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},i=function(e){function t(){r(this,t),o(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return n(t,e),a(t,[{key:"renderChart",value:function(){var e=this.props.option,t=echarts.init(React.findDOMNode(this.refs.echarts),"macarons");t.setOption(e,!0)}},{key:"componentDidMount",value:function(){this.renderChart()}},{key:"shouldComponentUpdate",value:function(){return!1}},{key:"render",value:function(){return React.createElement("div",{ref:"echarts",className:"echarts "+(this.props.className||""),style:{height:this.props.height+"px",width:this.props.width}})}}],[{key:"propTypes",value:{option:React.PropTypes.object.isRequired,width:React.PropTypes.any.isRequired,height:React.PropTypes.string,mini:React.PropTypes.bool},enumerable:!0},{key:"defaultProps",value:{width:"100%",height:"500px"},enumerable:!0}]),t}(React.Component);e.exports=i},function(e,t){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var a=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),o=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},i=function(e){function t(){r(this,t),o(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return n(t,e),a(t,[{key:"render",value:function(){return React.createElement("div",{className:"report-tip-block"+(this.props.fix?" fix":"")},React.createElement("h2",null,"建议"),React.createElement("div",{className:"tip-text"},this.props.text))}}]),t}(React.Component);e.exports=i},function(e,t){e.exports.baseGaugeOpt={series:[{type:"gauge",clickable:!1,pointer:{width:4},detail:{textStyle:{fontSize:20,fontWeight:700,color:"#666"},offsetCenter:["0%","10%"]},splitLine:{length:20},axisLine:{lineStyle:{width:10}},startAngle:200,endAngle:-20}]},e.exports.baseLineOpt={tooltip:{trigger:"axis"},dataZoom:{show:!0,realtime:!0,start:0,end:100},toolbox:{show:!1},calculable:!0,grid:{x:40,x2:30}}},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=r(3),u=r(4),l=r(7),s=r(5),p=s.baseGaugeOpt,f=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"_getOpt",value:function(e,t,r,n,a,o){var i=l.getMin([e],10,a),c=l.getMax([e],10,o),u=n.map(function(e){return(e-i)/(c-i)});return _.defaultsDeep({series:[{detail:{formatter:"{value} "+r},axisLine:{lineStyle:{color:[[u[0],"#DDDF0D"],[u[1],"#55BF3B"],[u[2],"#DDDF0D"],[1,"#DF5353"]]}},data:[{value:e,name:t}],min:i,max:c}]},p)}},{key:"getTips",value:function(){var e=this.props,t=e.low,r=e.high,n="",a="",o=!1;return t>=60&&80>=t?n="正常":60>t?(o=!0,n="偏低"):(o=!0,n="偏高"),r>=90&&120>=r?a="正常":90>r?(o=!0,a="偏低"):(o=!0,a="偏高"),"您的舒张压"+n+"，收缩压"+a+"，"+(o?"请多加注意。":"请继续保持。")}},{key:"render",value:function(){var e="200%";return React.createElement("div",{className:"blood-tab"},React.createElement("div",{className:"flex-box"},React.createElement("div",{className:"echart-mini-wrapper"},React.createElement("div",{style:{position:"relative"}},React.createElement(c,{option:this._getOpt(this.props.high,"收缩压","mmHg",[90,120,140],60,160,!0),height:"300",width:e,className:"mini top-left"}))),React.createElement("div",{className:"echart-mini-wrapper"},React.createElement("div",{style:{position:"relative"}},React.createElement(c,{option:this._getOpt(this.props.low,"舒张压","mmHg",[60,80,90],40,120,!0),height:"300",width:e,className:"mini top-right"})))),React.createElement(c,{option:this._getOpt(this.props.beat,"心率","bpm",[60,100,120],40,140),height:"300",className:"bottom-echart"}),React.createElement(u,{text:this.getTips(),fix:!0}))}}]),t}(React.Component);e.exports=f},function(e,t){e.exports={getMin:function(e,t,r){var n,a;return null==t&&(t=15),null==r&&(r=1/0),n=_.map(e,function(e){return e-t}),n.push(r),a=_.round(_.min(n),-1),0>a&&(a=0),a},getMax:function(e,t,r){var n;return null==t&&(t=15),null==r&&(r=-1),n=_.map(e,function(e){return e+t}),n.push(r),_.round(_.max(n),-1)},formatTime:function(e){return e=new Date(e),e.getFullYear()+"/"+(e.getMonth()+1)+"/"+e.getDate()}}},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=r(4),u=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"isNormal",value:function(){return this.props.OO>=90}},{key:"getTips",value:function(){return this.isNormal()?"您的血氧值正常，请继续保持":"您的血氧值偏低，请注意"}},{key:"render",value:function(){var e="spo2h-report"+(this.isNormal()?"":" red");return React.createElement("div",null,React.createElement("div",{className:e},React.createElement("div",{className:"flex-box"},React.createElement("p",null,"SpO",React.createElement("span",{className:"sub"},"2"),"%"),React.createElement("p",null,this.props.OO,"%")),React.createElement("img",{src:"/img/wave.png"})),React.createElement(c,{text:this.getTips()}))}}]),t}(React.Component);e.exports=u},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e},i=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),c=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},u=r(10),l=u.filter,s=u.getStarLevel,p=u.getLevelText,f=r(11),v=ANTD,d=(v.message,v.Alert),m=function(e){function t(){n(this,t),c(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),i(t,[{key:"render",value:function(){var e=this.props,t=e.title,r=e.level,n=e.items,a=s(r),o=_.pluck(n,"name").join("，"),i=n.map(function(e,t){return React.createElement("div",{key:t},React.createElement("h3",{className:"name"},e.name),function(){return e.intro?React.createElement("div",{className:"block"},React.createElement("h3",{className:"title"},"【简介】"),React.createElement("div",{className:"content"},e.intro)):void 0}(),function(){return e.advice?React.createElement("div",{className:"block"},React.createElement("h3",{className:"title"},"【调理建议】"),React.createElement("ol",{className:"content"},e.advice.map(function(e,t){return React.createElement("li",{key:t}," ",e," ")}))):void 0}(),function(){return e.eating?React.createElement("div",{className:"block"},React.createElement("h3",{className:"title"},"【饮食建议】"),React.createElement("div",{className:"content"},e.eating)):void 0}())}),c=new Array(a),u=new Array(5-a),l=React.createElement("div",{className:"star on"}),f=React.createElement("div",{className:"star off"});return _.fill(c,l),_.fill(u,f),React.createElement("div",{className:"chinese-report-block"},React.createElement("div",{className:"report-header"},React.createElement("h1",{className:"title"},"您的"+t),React.createElement("div",{className:"status"},t+"状况: "+p(r)),React.createElement("div",{className:"stars"},React.createElement("h4",null,"您的"+t+"为: "),c.concat(u)),React.createElement("h4",null,"建议您注意:"),o),React.createElement("div",{className:"report-body"},i))}}]),t}(React.Component),y=function(e){function t(){n(this,t),c(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments),this.state={data:null,loaded:!1}}return a(t,e),i(t,[{key:"fetchFailedHandler",value:function(){this.setState({data:null,loaded:!0})}},{key:"componentDidMount",value:function(){var e=this,t=this.props.id;if(!_.isEmpty(window._chineseReportData[t]))return void this.setState({data:window._chineseReportData[t],loaded:!0});var r="/api/falthReport?id="+t;$.getJSON(r).then(function(r){console.log(r),window._chineseReportData[t]=r,e.setState({data:r,loaded:!0})}).fail(function(t){console.error(t),e.fetchFailedHandler()})}},{key:"render",value:function(){if(this.state.loaded){if(null===this.state.data)return React.createElement(d,{message:"没有您的生物电数据",type:"info"});var e=l(this.state.data);return React.createElement("div",null,React.createElement(m,o({title:"脏腑"},e.zangfu)),React.createElement(m,o({title:"脊椎"},e.jizhui)))}return React.createElement(f,null)}}]),t}(React.Component);e.exports=y},function(e,t){var r,n;e.exports.getStarLevel=function(e){return Math.ceil(e/2)},e.exports.getLevelText=function(e){return e>8&&10>=e?"优秀":e>6?"良好":e>2?"一般":"差"},n=function(e,t){var r,n,a,o,i,c,u;for(o=[],r=e.children,c=Math.min(r.length,5),a=i=0,u=c;u>=0?u>i:i>u;a=u>=0?++i:--i)n=r[a],n.value>t&&o.push({name:n.name,intro:n.rptStr_1?n.rptStr_1.split(/\n/):"",advice:n.rptStr_2?n.rptStr_2.split(/\n/):"",eating:n.rptStr_3?n.rptStr_3.split(/\n/):""});return{items:o,level:e.level}},r=function(e,t){var r,n,a,o,i,c,u;for(o=[],r=e.children,c=Math.min(r.length,5),a=i=0,u=c;u>=0?u>i:i>u;a=u>=0?++i:--i)n=r[a],n.value>t&&o.push({name:n.name,itemId:n.itemid.toUpperCase(),intro:n.rptStr_1?n.rptStr_1.split(/\n/):"",advice:n.rptStr_2?n.rptStr_2.split(/\n/):""});return{items:o,level:e.level}},e.exports.filter=function(e){var t;return e?t={id:e.recordid,score:e.score,balance:e.balance,zangfu:n(e.fiveElementItems,e.balance),jizhui:r(e.vertebraItems,e.balance)}:""}},function(e,t){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var a=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),o=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},i=function(e){function t(){r(this,t),o(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return n(t,e),a(t,[{key:"render",value:function(){return React.createElement("div",{className:"loading"},React.createElement("img",{src:"/img/loading.gif"}),React.createElement("p",null," ",this.props.text," "))}}],[{key:"defaultProps",value:{text:"正在加载数据..."},enumerable:!0}]),t}(React.Component);e.exports=i},function(e,t){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var a=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),o=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},i=function(e){function t(){r(this,t),o(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return n(t,e),a(t,[{key:"render",value:function(){var e=this;return React.createElement("div",{className:"banner"},function(){return e.props.backUrl?React.createElement("i",{className:"anticon anticon-left left-icon",onClick:function(){location.href=e.props.backUrl}}):void 0}(),React.createElement("h2",null,this.props.title))}}],[{key:"propTypes",value:{title:React.PropTypes.string.isRequired,backUrl:React.PropTypes.string},enumerable:!0}]),t}(React.Component);e.exports=i},function(e,t){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function n(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var a=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e},o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=function(e){function t(){r(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return n(t,e),o(t,[{key:"render",value:function(){return React.createElement("img",a({className:"anticon tab-icon",src:this.props.src},this.props))}}]),t}(React.Component);e.exports=c},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=ANTD,u=c.Tabs,l=r(12),s=r(15),p=r(16),f=(r(13),u.TabPane),v=function(e){function t(){var e=this;n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments),this.state={tabTitles:["体检记录","变化趋势"],currentTab:0,data:null},this.changeHandler=function(t){e.setState({currentTab:t})}}return a(t,e),o(t,[{key:"fetchFailedHandler",value:function(){this.setState({data:[]})}},{key:"formatData",value:function(e){var t={};return _(e).sortBy("timestamp").reverse().forEach(function(e){t[e.id]=e}).run(),t}},{key:"componentDidMount",value:function(){var e=this;if(null!==window._reportListData)return void this.setState({data:window._reportListData});var t="/api/history?openId="+this.props.params.openId;$.getJSON(t).then(function(t){if(console.log(t),200===t.status){var r=e.formatData(t.data);window._reportListData=r,_.forEach(r,function(e){window._reportData[e.id]=e}),e.setState({data:r})}else e.fetchFailedHandler()}).fail(function(t){console.error(t),e.fetchFailedHandler()})}},{key:"render",value:function(){return React.createElement("div",{id:"report-list"},React.createElement(l,{title:this.state.tabTitles[this.state.currentTab]}),React.createElement("div",{className:"bottom-tab-wrapper"},React.createElement(u,{onChange:this.changeHandler},React.createElement(f,{tab:React.createElement("div",null,React.createElement("i",{className:"bg-record"}),React.createElement("p",null,this.state.tabTitles[0])),key:"0"},React.createElement(s,{openId:this.props.params.openId,data:this.state.data})),React.createElement(f,{tab:React.createElement("div",null,React.createElement("i",{className:"bg-trade"}),React.createElement("p",null,this.state.tabTitles[1])),key:"1"},React.createElement(p,{openId:this.props.params.openId,data:this.state.data})))))}}]),t}(React.Component);e.exports=v},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=ANTD,u=c.Timeline,l=c.Alert,s=(c.message,r(11)),p=function(e){function t(){var e=this;n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments),this.clickItem=function(t){location.href="/reports#/"+e.props.openId+"/"+t}}return a(t,e),o(t,[{key:"render",value:function(){var e=this,r=[],n=this.props.data;return r=null===n?React.createElement(s,{text:"正在加载体检记录..."}):0==Object.keys(n).length?React.createElement(l,{message:"没有找到您的体检记录",type:"info"}):React.createElement(u,null,_.map(n,function(r){return React.createElement("div",{onClick:e.clickItem.bind(e,r.id)},React.createElement(u.Item,{color:"green",key:r.timestamp},r.location,React.createElement("div",{className:"arrow1"}),React.createElement("p",{className:"timestamp"},t.formatTime(r.timestamp)),React.createElement("div",{className:"arrow2"})))})),React.createElement("div",{id:"list-timeline"},r)}}],[{key:"formatTime",value:function(e){var t=new Date(parseInt(e,10));return t.getFullYear()+"年"+(t.getMonth()+1)+"月"+t.getDate()+"日 \n"+(_.padLeft(t.getHours(),2,0)+":"+_.padLeft(t.getMinutes(),2,0))}}]),t}(React.Component);e.exports=p},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=ANTD,u=c.Tabs,l=(c.message,c.Alert),s=r(11),p=(r(3),r(17)),f=r(18),v=r(19),d=r(20),m=(r(13),u.TabPane),y=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"getHeightWeight",value:function(){var e=this.props.data;return null!==e?_(e).pluck("height").compact().run().length>0?React.createElement(p,{data:e}):React.createElement(l,{message:"没有您的身体数据",type:"info"}):React.createElement(s,null)}},{key:"getBlood",value:function(){var e=this.props.data;return null!==e?_(e).pluck("sbp").compact().run().length>0?React.createElement(f,{data:e}):React.createElement(l,{message:"没有您的血压数据",type:"info"}):React.createElement(s,null)}},{key:"getO2",value:function(){var e=this.props.data;return null!==e?_(e).pluck("spo2h").compact().run().length>0?React.createElement(v,{
-data:e}):React.createElement(l,{message:"没有您的血氧数据",type:"info"}):React.createElement(s,null)}},{key:"getChinese",value:function(){var e=this.props.data;return null!==e?_(e).pluck("cacheScore").compact().run().length>0?React.createElement(d,{data:e}):React.createElement(l,{message:"没有您的生物电数据",type:"info"}):React.createElement(s,null)}},{key:"render",value:function(){return React.createElement("div",{id:"report-trade",className:"top-tab-wrapper"},React.createElement(u,{size:"mini"},React.createElement(m,{tab:"身体",key:"1"},this.getHeightWeight()),React.createElement(m,{tab:"血压",key:"2"},this.getBlood()),React.createElement(m,{tab:"血氧",key:"3"},this.getO2()),React.createElement(m,{tab:"生物电",key:"4"},this.getChinese())))}}]),t}(React.Component);e.exports=y},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=r(3),u=r(4),l=r(7),s=r(5),p=s.baseLineOpt,f=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"formattedData",value:function(){var e={xs:[],height:[],weight:[]},t=void 0,r=this.props.data;for(var n in r)t=r[n],t.height&&(e.xs.push(l.formatTime(t.timestamp)),e.height.push(~~t.height),e.weight.push(~~t.weight));return e}},{key:"getOption",value:function(){var e=this.formattedData(),t={legend:{data:["身高","体重"]},xAxis:[{type:"category",boundaryGap:!1,data:e.xs}],yAxis:[{name:"身高(cm)",type:"value",max:l.getMax(e.height),min:l.getMin(e.height)},{name:"体重(kg)",type:"value",max:l.getMax(e.weight),min:l.getMin(e.weight)}],series:[{name:"身高",type:"line",yAxisIndex:0,data:e.height},{name:"体重",type:"line",yAxisIndex:1,data:e.weight}]};return _.defaults(t,p)}},{key:"render",value:function(){return React.createElement("div",null,React.createElement(c,{option:this.getOption(),height:"300",width:"100%"}),React.createElement(u,{text:"您的体型正常，请继续保持!"}))}}]),t}(React.Component);e.exports=f},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=r(3),u=r(4),l=r(7),s=r(5),p=s.baseLineOpt,f=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"formattedData",value:function(){var e={xs:[],high:[],low:[],beat:[]},t=void 0,r=this.props.data;for(var n in r)t=r[n],t.sbp&&(e.xs.push(l.formatTime(t.timestamp)),e.high.push(~~t.sbp),e.low.push(~~t.dbp),e.beat.push(~~t.heartRate));return e}},{key:"getOption",value:function(){var e=this.formattedData(),t={legend:{data:["伸缩压","舒张压","心率"]},xAxis:[{type:"category",boundaryGap:!1,data:e.xs}],yAxis:[{name:"血压(mmHg)",type:"value",max:l.getMax(e.high),min:l.getMin(e.low)},{name:"心率(bpm)",type:"value",max:l.getMax(e.beat),min:l.getMin(e.beat)}],series:[{name:"伸缩压",type:"line",yAxisIndex:0,data:e.high},{name:"舒张压",type:"line",yAxisIndex:0,data:e.low},{name:"心率",type:"line",yAxisIndex:1,data:e.beat}]};return _.defaults(t,p)}},{key:"render",value:function(){return React.createElement("div",null,React.createElement(c,{option:this.getOption(),height:"300",width:"100%"}),React.createElement(u,{text:"您的血压正常，请继续保持!"}))}}]),t}(React.Component);e.exports=f},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=r(3),u=r(4),l=r(7),s=r(5),p=s.baseLineOpt,f=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"formattedData",value:function(){var e={xs:[],O2:[]},t=void 0,r=this.props.data;for(var n in r)t=r[n],t.spo2h&&(e.xs.push(l.formatTime(t.timestamp)),e.O2.push(~~t.spo2h));return e}},{key:"getOption",value:function(){var e=this.formattedData(),t={legend:{data:["血氧"]},xAxis:[{type:"category",boundaryGap:!1,data:e.xs}],yAxis:[{name:"血氧(%)",type:"value",max:l.getMax(e.O2),min:l.getMin(e.O2)}],series:[{name:"血氧",type:"line",data:e.O2}]};return _.defaults(t,p)}},{key:"render",value:function(){return React.createElement("div",null,React.createElement(c,{option:this.getOption(),height:"300",width:"100%"}),React.createElement(u,{text:"您的血氧正常，请继续保持!"}))}}]),t}(React.Component);e.exports=f},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),i=function(e,t,r){for(var n=!0;n;){var a=e,o=t,i=r;c=l=u=void 0,n=!1,null===a&&(a=Function.prototype);var c=Object.getOwnPropertyDescriptor(a,o);if(void 0!==c){if("value"in c)return c.value;var u=c.get;return void 0===u?void 0:u.call(i)}var l=Object.getPrototypeOf(a);if(null===l)return void 0;e=l,t=o,r=i,n=!0}},c=r(3),u=r(4),l=r(7),s=r(5),p=s.baseLineOpt,f=function(e){function t(){n(this,t),i(Object.getPrototypeOf(t.prototype),"constructor",this).apply(this,arguments)}return a(t,e),o(t,[{key:"formattedData",value:function(){var e={xs:[],score:[]},t=void 0,r=this.props.data;for(var n in r)t=r[n],t.cacheScore&&(e.xs.push(l.formatTime(t.timestamp)),e.score.push(~~t.cacheScore));return e}},{key:"getOption",value:function(){var e=this.formattedData(),t={legend:{data:["生物电"]},xAxis:[{type:"category",boundaryGap:!1,data:e.xs}],yAxis:[{name:"得分",type:"value",max:10,min:0}],series:[{name:"生物电",type:"line",data:e.score}]};return _.defaults(t,p)}},{key:"render",value:function(){return React.createElement("div",null,React.createElement(c,{option:this.getOption(),height:"300",width:"100%"}),React.createElement(u,{text:"您的生物电正常，请继续保持!"}))}}]),t}(React.Component);e.exports=f}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _ReactRouter = ReactRouter;
+	var Router = _ReactRouter.Router;
+	var Route = _ReactRouter.Route;
+	var Link = _ReactRouter.Link;
+	var report = __webpack_require__(3);
+	var reports = __webpack_require__(16);
+
+	window._reportData = {};
+	window._reportListData = null;
+	window._chineseReportData = {};
+
+	React.render(React.createElement(
+	    Router,
+	    null,
+	    React.createElement(Route, { path: '/', component: reports }),
+	    React.createElement(Route, { path: '/:openId', component: reports }),
+	    React.createElement(Route, { path: '/:openId/:reportId', component: report })
+	), document.body);
+
+/***/ },
+/* 1 */,
+/* 2 */,
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _ANTD = ANTD;
+	var Tabs = _ANTD.Tabs;
+	var message = _ANTD.message;
+	var Alert = _ANTD.Alert;
+	var HeightWeight = __webpack_require__(4);
+	var Blood = __webpack_require__(8);
+	var O2 = __webpack_require__(10);
+	var Chinese = __webpack_require__(11);
+	var Loading = __webpack_require__(13);
+	var Banner = __webpack_require__(14);
+	var Icon = __webpack_require__(15);
+	var Echarts = __webpack_require__(5);
+	var TabPane = Tabs.TabPane;
+
+	var _require = __webpack_require__(7);
+
+	var baseGaugeOpt = _require.baseGaugeOpt;
+
+	var Report = (function (_React$Component) {
+	    _inherits(Report, _React$Component);
+
+	    function Report() {
+	        _classCallCheck(this, Report);
+
+	        _get(Object.getPrototypeOf(Report.prototype), "constructor", this).apply(this, arguments);
+
+	        this.state = {
+	            title: "体检记录",
+	            report: {},
+	            loaded: false
+	        };
+	    }
+
+	    _createClass(Report, [{
+	        key: "fetchFailedHandler",
+	        value: function fetchFailedHandler() {
+	            this.setState({
+	                title: "体检报告",
+	                loaded: true
+	            });
+	        }
+	    }, {
+	        key: "componentDidMount",
+	        value: function componentDidMount() {
+	            var _this = this;
+
+	            var reportId = this.props.params.reportId;
+	            if (!_.isEmpty(window._reportData[reportId])) {
+	                this.setState({
+	                    title: Report.formatTime(window._reportData[reportId].timestamp),
+	                    report: window._reportData[reportId],
+	                    loaded: true
+	                });
+	                return;
+	            }
+	            var url = "/api/report?reportId=" + reportId;
+	            $.getJSON(url).then(function (res) {
+	                console.log(res);
+	                if (res.status === 200) {
+	                    window._reportData[reportId] = {
+	                        title: Report.formatTime(res.data.timestamp),
+	                        report: res.data
+	                    };
+	                    _this.setState({
+	                        title: Report.formatTime(res.data.timestamp),
+	                        report: res.data,
+	                        loaded: true
+	                    });
+	                } else {
+	                    _this.fetchFailedHandler();
+	                }
+	            }).fail(function (e) {
+	                console.error(e);
+	                _this.fetchFailedHandler();
+	            });
+	        }
+	    }, {
+	        key: "getHeightWeight",
+	        value: function getHeightWeight() {
+	            var _state$report = this.state.report;
+	            var height = _state$report.height;
+	            var weight = _state$report.weight;
+	            var bodyFatRate = _state$report.bodyFatRate;
+
+	            if (this.state.loaded) {
+	                if (height && weight) {
+	                    return React.createElement(HeightWeight, { height: ~ ~height, weight: ~ ~weight, rate: ~ ~bodyFatRate });
+	                } else {
+	                    return React.createElement(Alert, {
+	                        message: "没有您的身体数据",
+	                        type: "info" });
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }, {
+	        key: "getBlood",
+	        value: function getBlood() {
+	            var _state$report2 = this.state.report;
+	            var sbp = _state$report2.sbp;
+	            var dbp = _state$report2.dbp;
+	            var heartRate = _state$report2.heartRate;
+
+	            if (this.state.loaded) {
+	                if (sbp && dbp) {
+	                    return React.createElement(Blood, { high: ~ ~sbp, low: ~ ~dbp, beat: ~ ~heartRate });
+	                } else {
+	                    return React.createElement(Alert, {
+	                        message: "没有您的血压数据",
+	                        type: "info" });
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }, {
+	        key: "getO2",
+	        value: function getO2() {
+	            var spo2h = this.state.report.spo2h;
+
+	            if (this.state.loaded) {
+	                if (spo2h) {
+	                    return React.createElement(O2, { OO: ~ ~spo2h });
+	                } else {
+	                    return React.createElement(Alert, {
+	                        message: "没有您的血氧数据",
+	                        type: "info" });
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }, {
+	        key: "getChinese",
+	        value: function getChinese() {
+	            var cacheId = this.state.report.cacheId;
+
+	            if (this.state.loaded) {
+	                if (cacheId) {
+	                    return React.createElement(Chinese, { id: cacheId });
+	                } else {
+	                    return React.createElement(Alert, {
+	                        message: "没有您的中医数据",
+	                        type: "info" });
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return React.createElement(
+	                "div",
+	                { id: "report", className: "top-tab-wrapper" },
+	                React.createElement(Banner, { title: this.state.title, backUrl: "/reports#/" + this.props.params.openId }),
+	                React.createElement(
+	                    Tabs,
+	                    { size: "mini" },
+	                    React.createElement(
+	                        TabPane,
+	                        { tab: "身体", key: "1" },
+	                        this.getHeightWeight()
+	                    ),
+	                    React.createElement(
+	                        TabPane,
+	                        { tab: "血压", key: "2" },
+	                        this.getBlood()
+	                    ),
+	                    React.createElement(
+	                        TabPane,
+	                        { tab: "血氧", key: "3" },
+	                        this.getO2()
+	                    ),
+	                    React.createElement(
+	                        TabPane,
+	                        { tab: "生物电", key: "4" },
+	                        this.getChinese()
+	                    )
+	                )
+	            );
+	        }
+	    }], [{
+	        key: "formatTime",
+	        value: function formatTime(t) {
+	            var time = new Date(t);
+	            return time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日";
+	        }
+	    }]);
+
+	    return Report;
+	})(React.Component);
+
+	module.exports = Report;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Echarts = __webpack_require__(5);
+	var Tips = __webpack_require__(6);
+
+	var _require = __webpack_require__(7);
+
+	var baseGaugeOpt = _require.baseGaugeOpt;
+
+	var KVMap = (function (_React$Component) {
+	    _inherits(KVMap, _React$Component);
+
+	    function KVMap() {
+	        _classCallCheck(this, KVMap);
+
+	        _get(Object.getPrototypeOf(KVMap.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(KVMap, [{
+	        key: 'render',
+	        value: function render() {
+	            var items = [],
+	                obj = this.props.obj;
+	            for (var key in obj) {
+	                if (obj[key]) {
+	                    items.push(React.createElement(
+	                        'div',
+	                        { className: 'kv-item', key: key + obj[key] },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'key' },
+	                            ' ',
+	                            key,
+	                            ' '
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'value' },
+	                            ' ',
+	                            obj[key],
+	                            ' '
+	                        )
+	                    ));
+	                }
+	            }
+	            return React.createElement(
+	                'div',
+	                { className: 'kv-map' },
+	                items
+	            );
+	        }
+	    }], [{
+	        key: 'defaultProps',
+	        value: {
+	            obj: {}
+	        },
+	        enumerable: true
+	    }]);
+
+	    return KVMap;
+	})(React.Component);
+
+	var BMIPoints = [18.5, 25, 28],
+	    BMIText = ['偏瘦', '正常', '偏胖', '肥胖'];
+
+	var HeightWeight = (function (_React$Component2) {
+	    _inherits(HeightWeight, _React$Component2);
+
+	    function HeightWeight() {
+	        _classCallCheck(this, HeightWeight);
+
+	        _get(Object.getPrototypeOf(HeightWeight.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(HeightWeight, [{
+	        key: 'getBMI',
+	        value: function getBMI() {
+	            var _props = this.props;
+	            var weight = _props.weight;
+	            var height = _props.height;
+
+	            return (weight / (height * height / 10000)).toFixed(1);
+	        }
+	    }, {
+	        key: 'getBMIText',
+	        value: function getBMIText() {
+	            var BMI = this.getBMI();
+	            if (BMI < BMIPoints[0]) {
+	                return BMIText[0];
+	            }
+
+	            for (var i = BMIPoints.length - 1; i >= 0; i--) {
+	                if (BMI >= BMIPoints[i]) {
+	                    return BMIText[i + 1];
+	                }
+	            }
+	            return BMIText[0];
+	        }
+	    }, {
+	        key: 'getWeightOpt',
+	        value: function getWeightOpt() {
+	            var _props2 = this.props;
+	            var weight = _props2.weight;
+	            var height = _props2.height;
+	            var weightPoints = BMIPoints.map(function (point) {
+	                return point * height * height / 10000;
+	            });
+	            var min = _.round(Math.min(weightPoints[0] - 10, weight - 10), -1),
+	                max = _.round(Math.max(weightPoints[2] + 10, weight + 10), -1);
+
+	            min < 0 && (min = 0);
+
+	            var percents = weightPoints.map(function (weight) {
+	                return ((weight - min) / (max - min)).toFixed(1);
+	            });
+
+	            return _.defaultsDeep({
+	                series: [{
+	                    detail: {
+	                        formatter: '{value}KG'
+	                    },
+	                    axisLine: {
+	                        lineStyle: {
+	                            color: [[percents[0], '#DDDF0D'], // 过轻
+	                            [percents[1], '#55BF3B'], // 正常
+	                            [percents[2], '#DDDF0D'], // 过重
+	                            [1, '#DF5353'] // 非常肥胖
+	                            ]
+	                        }
+	                    },
+	                    data: [{
+	                        value: weight
+	                        //name: this.getBMIText()
+	                    }],
+	                    min: min,
+	                    max: max
+	                }]
+	            }, baseGaugeOpt);
+	        }
+	    }, {
+	        key: 'getTips',
+	        value: function getTips() {
+	            var tips = ["该增加体重了", "请继续保持", "该多运动减肥", "快去减肥吧"],
+	                text = this.getBMIText(),
+	                index = BMIText.indexOf(text);
+
+	            return '您的体重' + text + '， ' + tips[index] + '!';
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var fatRate = undefined;
+	            if (this.props.rate) {
+	                fatRate = this.props.rate + '%';
+	            }
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(
+	                    'div',
+	                    { className: 'height-wrapper' },
+	                    React.createElement('img', { src: '/img/body.png' }),
+	                    React.createElement('div', { className: 'line' }),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'text' },
+	                        this.props.height,
+	                        'CM'
+	                    ),
+	                    React.createElement(KVMap, { obj: { BMI: this.getBMI(), 体脂: fatRate } })
+	                ),
+	                React.createElement(Echarts, { option: this.getWeightOpt(), height: '300', width: '100%' }),
+	                React.createElement(Tips, { text: this.getTips(), fix: true })
+	            );
+	        }
+	    }], [{
+	        key: 'propTypes',
+	        value: {
+	            height: React.PropTypes.any.isRequired,
+	            weight: React.PropTypes.any.isRequired
+	        },
+	        enumerable: true
+	    }]);
+
+	    return HeightWeight;
+	})(React.Component);
+
+	module.exports = HeightWeight;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Echarts = (function (_React$Component) {
+	    _inherits(Echarts, _React$Component);
+
+	    function Echarts() {
+	        _classCallCheck(this, Echarts);
+
+	        _get(Object.getPrototypeOf(Echarts.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(Echarts, [{
+	        key: 'renderChart',
+	        value: function renderChart() {
+	            var option = this.props.option,
+	                myChart = echarts.init(React.findDOMNode(this.refs.echarts), 'macarons');
+	            myChart.setOption(option, true);
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.renderChart();
+	        }
+	    }, {
+	        key: 'shouldComponentUpdate',
+	        value: function shouldComponentUpdate() {
+	            return false;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement('div', { ref: 'echarts', className: "echarts " + (this.props.className || ''),
+	                style: { height: this.props.height + 'px', width: this.props.width } });
+	        }
+	    }], [{
+	        key: 'propTypes',
+	        value: {
+	            option: React.PropTypes.object.isRequired,
+	            width: React.PropTypes.any.isRequired,
+	            height: React.PropTypes.string,
+	            mini: React.PropTypes.bool
+	        },
+	        enumerable: true
+	    }, {
+	        key: 'defaultProps',
+	        value: {
+	            width: '100%',
+	            height: '500px'
+	        },
+	        enumerable: true
+	    }]);
+
+	    return Echarts;
+	})(React.Component);
+
+	module.exports = Echarts;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Tips = (function (_React$Component) {
+	    _inherits(Tips, _React$Component);
+
+	    function Tips() {
+	        _classCallCheck(this, Tips);
+
+	        _get(Object.getPrototypeOf(Tips.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(Tips, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { className: "report-tip-block" + (this.props.fix ? ' fix' : '') },
+	                React.createElement(
+	                    'h2',
+	                    null,
+	                    '建议'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'tip-text' },
+	                    this.props.text
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Tips;
+	})(React.Component);
+
+	module.exports = Tips;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	module.exports.baseGaugeOpt = {
+	  series: [
+	    {
+	      type: "gauge",
+	      clickable: false,
+	      pointer: {
+	        width: 4
+	      },
+	      detail: {
+	        textStyle: {
+	          fontSize: 20,
+	          fontWeight: 700,
+	          color: "#666"
+	        },
+	        offsetCenter: ["0%", "10%"]
+	      },
+	      splitLine: {
+	        length: 20
+	      },
+	      axisLine: {
+	        lineStyle: {
+	          width: 10
+	        }
+	      },
+	      startAngle: 200,
+	      endAngle: -20
+	    }
+	  ]
+	};
+
+	module.exports.baseLineOpt = {
+	  tooltip: {
+	    trigger: "axis"
+	  },
+	  dataZoom: {
+	    show: true,
+	    realtime: true,
+	    start: 0,
+	    end: 100
+	  },
+	  toolbox: {
+	    show: false
+	  },
+	  calculable: true,
+	  grid: {
+	    x: 40,
+	    x2: 30
+	  }
+	};
+
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Echarts = __webpack_require__(5);
+	var Tips = __webpack_require__(6);
+	var util = __webpack_require__(9);
+
+	var _require = __webpack_require__(7);
+
+	var baseGaugeOpt = _require.baseGaugeOpt;
+
+	var Blood = (function (_React$Component) {
+	    _inherits(Blood, _React$Component);
+
+	    function Blood() {
+	        _classCallCheck(this, Blood);
+
+	        _get(Object.getPrototypeOf(Blood.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(Blood, [{
+	        key: '_getOpt',
+	        value: function _getOpt(val, text, unit, lines, _min, _max) {
+	            var min = util.getMin([val], 10, _min),
+	                max = util.getMax([val], 10, _max);
+
+	            var percents = lines.map(function (item) {
+	                return (item - min) / (max - min);
+	            });
+	            return _.defaultsDeep({
+	                series: [{
+	                    detail: {
+	                        formatter: '{value} ' + unit
+	                    },
+
+	                    axisLine: {
+	                        lineStyle: {
+	                            color: [[percents[0], '#DDDF0D'], [percents[1], '#55BF3B'], [percents[2], '#DDDF0D'], [1, '#DF5353']]
+	                        }
+	                    },
+	                    data: [{
+	                        value: val,
+	                        name: text
+	                    }],
+	                    min: min,
+	                    max: max
+	                }]
+	            }, baseGaugeOpt);
+	        }
+	    }, {
+	        key: 'getTips',
+	        value: function getTips() {
+	            var _props = this.props;
+	            var low = _props.low;
+	            var high = _props.high;
+	            var lowText = "";
+	            var highText = "";
+	            var error = false;
+	            if (low >= 60 && low <= 80) {
+	                lowText = "正常";
+	            } else if (low < 60) {
+	                error = true;
+	                lowText = "偏低";
+	            } else {
+	                error = true;
+	                lowText = "偏高";
+	            }
+
+	            if (high >= 90 && high <= 120) {
+	                highText = "正常";
+	            } else if (high < 90) {
+	                error = true;
+	                highText = "偏低";
+	            } else {
+	                error = true;
+	                highText = "偏高";
+	            }
+
+	            return '您的舒张压' + lowText + '，收缩压' + highText + '，' + (error ? "请多加注意。" : "请继续保持。");
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var width = "200%";
+	            return React.createElement(
+	                'div',
+	                { className: 'blood-tab' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'flex-box' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'echart-mini-wrapper' },
+	                        React.createElement(
+	                            'div',
+	                            { style: { position: 'relative' } },
+	                            React.createElement(Echarts, { option: this._getOpt(this.props.high, "收缩压", 'mmHg', [90, 120, 140], 60, 160, true), height: '300',
+	                                width: width, className: 'mini top-left' })
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'echart-mini-wrapper' },
+	                        React.createElement(
+	                            'div',
+	                            { style: { position: 'relative' } },
+	                            React.createElement(Echarts, { option: this._getOpt(this.props.low, "舒张压", 'mmHg', [60, 80, 90], 40, 120, true), height: '300',
+	                                width: width, className: 'mini top-right' })
+	                        )
+	                    )
+	                ),
+	                React.createElement(Echarts, { option: this._getOpt(this.props.beat, "心率", 'bpm', [60, 100, 120], 40, 140), height: '300',
+	                    className: 'bottom-echart' }),
+	                React.createElement(Tips, { text: this.getTips(), fix: true })
+	            );
+	        }
+	    }]);
+
+	    return Blood;
+	})(React.Component);
+
+	module.exports = Blood;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  getMin: function(arr, offset, limit) {
+	    var _arr, minVal;
+	    if (offset == null) {
+	      offset = 15;
+	    }
+	    if (limit == null) {
+	      limit = Infinity;
+	    }
+	    _arr = _.map(arr, function(a) {
+	      return a - offset;
+	    });
+	    _arr.push(limit);
+	    minVal = _.round(_.min(_arr), -1);
+	    minVal < 0 && (minVal = 0);
+	    return minVal;
+	  },
+	  getMax: function(arr, offset, limit) {
+	    var _arr;
+	    if (offset == null) {
+	      offset = 15;
+	    }
+	    if (limit == null) {
+	      limit = -1;
+	    }
+	    _arr = _.map(arr, function(a) {
+	      return a + offset;
+	    });
+	    _arr.push(limit);
+	    return _.round(_.max(_arr), -1);
+	  },
+	  formatTime: function(t) {
+	    t = new Date(t);
+	    return (t.getFullYear()) + "/" + (t.getMonth() + 1) + "/" + (t.getDate());
+	  }
+	};
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Tips = __webpack_require__(6);
+
+	var O2 = (function (_React$Component) {
+	    _inherits(O2, _React$Component);
+
+	    function O2() {
+	        _classCallCheck(this, O2);
+
+	        _get(Object.getPrototypeOf(O2.prototype), "constructor", this).apply(this, arguments);
+	    }
+
+	    _createClass(O2, [{
+	        key: "isNormal",
+	        value: function isNormal() {
+	            return this.props.OO >= 90;
+	        }
+	    }, {
+	        key: "getTips",
+	        value: function getTips() {
+	            if (this.isNormal()) {
+	                return "您的血氧值正常，请继续保持";
+	            } else {
+	                return "您的血氧值偏低，请注意";
+	            }
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var className = "spo2h-report" + (this.isNormal() ? "" : " red");
+	            return React.createElement(
+	                "div",
+	                null,
+	                React.createElement(
+	                    "div",
+	                    { className: className },
+	                    React.createElement(
+	                        "div",
+	                        { className: "flex-box" },
+	                        React.createElement(
+	                            "p",
+	                            null,
+	                            "SpO",
+	                            React.createElement(
+	                                "span",
+	                                { className: "sub" },
+	                                "2"
+	                            ),
+	                            "%"
+	                        ),
+	                        React.createElement(
+	                            "p",
+	                            null,
+	                            this.props.OO,
+	                            "%"
+	                        )
+	                    ),
+	                    React.createElement("img", { src: "/img/wave.png" })
+	                ),
+	                React.createElement(Tips, { text: this.getTips() })
+	            );
+	        }
+	    }]);
+
+	    return O2;
+	})(React.Component);
+
+	module.exports = O2;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _require = __webpack_require__(12);
+
+	var filter = _require.filter;
+	var getStarLevel = _require.getStarLevel;
+	var getLevelText = _require.getLevelText;
+	var Loading = __webpack_require__(13);
+	var _ANTD = ANTD;
+	var message = _ANTD.message;
+	var Alert = _ANTD.Alert;
+
+	var ReportBlock = (function (_React$Component) {
+	    _inherits(ReportBlock, _React$Component);
+
+	    function ReportBlock() {
+	        _classCallCheck(this, ReportBlock);
+
+	        _get(Object.getPrototypeOf(ReportBlock.prototype), "constructor", this).apply(this, arguments);
+	    }
+
+	    _createClass(ReportBlock, [{
+	        key: "render",
+	        value: function render() {
+	            var _props = this.props;
+	            var title = _props.title;
+	            var level = _props.level;
+	            var items = _props.items;
+	            var starNum = getStarLevel(level);
+	            var notices = _.pluck(items, "name").join("，");
+	            var itemDOMs = items.map(function (item, i) {
+	                return React.createElement(
+	                    "div",
+	                    { key: i },
+	                    React.createElement(
+	                        "h3",
+	                        { className: "name" },
+	                        item.name
+	                    ),
+	                    (function () {
+	                        if (item.intro) {
+	                            return React.createElement(
+	                                "div",
+	                                { className: "block" },
+	                                React.createElement(
+	                                    "h3",
+	                                    { className: "title" },
+	                                    "【简介】"
+	                                ),
+	                                React.createElement(
+	                                    "div",
+	                                    { className: "content" },
+	                                    item.intro
+	                                )
+	                            );
+	                        }
+	                    })(),
+	                    (function () {
+	                        if (item.advice) {
+	                            return React.createElement(
+	                                "div",
+	                                { className: "block" },
+	                                React.createElement(
+	                                    "h3",
+	                                    { className: "title" },
+	                                    "【调理建议】"
+	                                ),
+	                                React.createElement(
+	                                    "ol",
+	                                    { className: "content" },
+	                                    item.advice.map(function (e, i) {
+	                                        return React.createElement(
+	                                            "li",
+	                                            { key: i },
+	                                            " ",
+	                                            e,
+	                                            " "
+	                                        );
+	                                    })
+	                                )
+	                            );
+	                        }
+	                    })(),
+	                    (function () {
+	                        if (item.eating) {
+	                            return React.createElement(
+	                                "div",
+	                                { className: "block" },
+	                                React.createElement(
+	                                    "h3",
+	                                    { className: "title" },
+	                                    "【饮食建议】"
+	                                ),
+	                                React.createElement(
+	                                    "div",
+	                                    { className: "content" },
+	                                    item.eating
+	                                )
+	                            );
+	                        }
+	                    })()
+	                );
+	            });
+
+	            var onStars = new Array(starNum),
+	                offStars = new Array(5 - starNum),
+	                onStar = React.createElement("div", { className: "star on" }),
+	                offStar = React.createElement("div", { className: "star off" });
+
+	            _.fill(onStars, onStar);
+	            _.fill(offStars, offStar);
+
+	            return React.createElement(
+	                "div",
+	                { className: "chinese-report-block" },
+	                React.createElement(
+	                    "div",
+	                    { className: "report-header" },
+	                    React.createElement(
+	                        "h1",
+	                        { className: "title" },
+	                        "您的" + title
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "status" },
+	                        title + "状况: " + getLevelText(level)
+	                    ),
+	                    React.createElement(
+	                        "div",
+	                        { className: "stars" },
+	                        React.createElement(
+	                            "h4",
+	                            null,
+	                            "您的" + title + "为: "
+	                        ),
+	                        onStars.concat(offStars)
+	                    ),
+	                    React.createElement(
+	                        "h4",
+	                        null,
+	                        "建议您注意:"
+	                    ),
+	                    notices
+	                ),
+	                React.createElement(
+	                    "div",
+	                    { className: "report-body" },
+	                    itemDOMs
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ReportBlock;
+	})(React.Component);
+
+	var Chinese = (function (_React$Component2) {
+	    _inherits(Chinese, _React$Component2);
+
+	    function Chinese() {
+	        _classCallCheck(this, Chinese);
+
+	        _get(Object.getPrototypeOf(Chinese.prototype), "constructor", this).apply(this, arguments);
+
+	        this.state = {
+	            data: null,
+	            loaded: false
+	        };
+	    }
+
+	    _createClass(Chinese, [{
+	        key: "fetchFailedHandler",
+	        value: function fetchFailedHandler() {
+	            this.setState({
+	                data: null,
+	                loaded: true
+	            });
+	        }
+	    }, {
+	        key: "componentDidMount",
+	        value: function componentDidMount() {
+	            var _this = this;
+
+	            var id = this.props.id;
+	            if (!_.isEmpty(window._chineseReportData[id])) {
+	                this.setState({
+	                    data: window._chineseReportData[id],
+	                    loaded: true
+	                });
+	                return;
+	            }
+	            var url = "/api/falthReport?id=" + id;
+	            $.getJSON(url).then(function (res) {
+	                console.log(res);
+	                window._chineseReportData[id] = res;
+	                _this.setState({
+	                    data: res,
+	                    loaded: true
+	                });
+	            }).fail(function (e) {
+	                console.error(e);
+	                _this.fetchFailedHandler();
+	            });
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            if (this.state.loaded) {
+	                if (this.state.data === null) {
+	                    return React.createElement(Alert, {
+	                        message: "没有您的生物电数据",
+	                        type: "info" });
+	                } else {
+	                    var data = filter(this.state.data);
+	                    return React.createElement(
+	                        "div",
+	                        null,
+	                        React.createElement(ReportBlock, _extends({ title: "脏腑" }, data.zangfu)),
+	                        React.createElement(ReportBlock, _extends({ title: "脊椎" }, data.jizhui))
+	                    );
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }]);
+
+	    return Chinese;
+	})(React.Component);
+
+	module.exports = Chinese;
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	var formatJizhui, formatZangfu;
+
+	module.exports.getStarLevel = function(level) {
+	  return Math.ceil(level / 2);
+	};
+
+	module.exports.getLevelText = function(level) {
+	  if ((8 < level && level <= 10)) {
+	    return "优秀";
+	  } else if (level > 6) {
+	    return "良好";
+	  } else if (level > 2) {
+	    return "一般";
+	  } else {
+	    return "差";
+	  }
+	};
+
+	formatZangfu = function(items, balance) {
+	  var children, curItem, i, itemArr, j, limit, ref;
+	  itemArr = [];
+	  children = items.children;
+	  limit = Math.min(children.length, 5);
+	  for (i = j = 0, ref = limit; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+	    curItem = children[i];
+	    if (curItem.value > balance) {
+	      itemArr.push({
+	        name: curItem.name,
+	        intro: curItem.rptStr_1 ? curItem.rptStr_1.split(/\n/) : "",
+	        advice: curItem.rptStr_2 ? curItem.rptStr_2.split(/\n/) : "",
+	        eating: curItem.rptStr_3 ? curItem.rptStr_3.split(/\n/) : ""
+	      });
+	    }
+	  }
+	  return {
+	    items: itemArr,
+	    level: items.level
+	  };
+	};
+
+	formatJizhui = function(items, balance) {
+	  var children, curItem, i, itemArr, j, limit, ref;
+	  itemArr = [];
+	  children = items.children;
+	  limit = Math.min(children.length, 5);
+	  for (i = j = 0, ref = limit; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+	    curItem = children[i];
+	    if (curItem.value > balance) {
+	      itemArr.push({
+	        name: curItem.name,
+	        itemId: curItem.itemid.toUpperCase(),
+	        intro: curItem.rptStr_1 ? curItem.rptStr_1.split(/\n/) : "",
+	        advice: curItem.rptStr_2 ? curItem.rptStr_2.split(/\n/) : ""
+	      });
+	    }
+	  }
+	  return {
+	    items: itemArr,
+	    level: items.level
+	  };
+	};
+
+	module.exports.filter = function(r) {
+	  var res;
+	  if (!r) {
+	    return '';
+	  }
+	  res = {
+	    id: r.recordid,
+	    score: r.score,
+	    balance: r.balance,
+	    zangfu: formatZangfu(r.fiveElementItems, r.balance),
+	    jizhui: formatJizhui(r.vertebraItems, r.balance)
+	  };
+	  return res;
+	};
+
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Loading = (function (_React$Component) {
+	    _inherits(Loading, _React$Component);
+
+	    function Loading() {
+	        _classCallCheck(this, Loading);
+
+	        _get(Object.getPrototypeOf(Loading.prototype), "constructor", this).apply(this, arguments);
+	    }
+
+	    _createClass(Loading, [{
+	        key: "render",
+	        value: function render() {
+	            return React.createElement(
+	                "div",
+	                { className: "loading" },
+	                React.createElement("img", { src: "/img/loading.gif" }),
+	                React.createElement(
+	                    "p",
+	                    null,
+	                    " ",
+	                    this.props.text,
+	                    " "
+	                )
+	            );
+	        }
+	    }], [{
+	        key: "defaultProps",
+	        value: {
+	            text: "正在加载数据..."
+	        },
+	        enumerable: true
+	    }]);
+
+	    return Loading;
+	})(React.Component);
+
+	module.exports = Loading;
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Banner = (function (_React$Component) {
+	    _inherits(Banner, _React$Component);
+
+	    function Banner() {
+	        _classCallCheck(this, Banner);
+
+	        _get(Object.getPrototypeOf(Banner.prototype), "constructor", this).apply(this, arguments);
+	    }
+
+	    _createClass(Banner, [{
+	        key: "render",
+	        value: function render() {
+	            var _this = this;
+
+	            return React.createElement(
+	                "div",
+	                { className: "banner" },
+	                (function () {
+	                    if (_this.props.backUrl) {
+	                        return React.createElement("i", { className: "anticon anticon-left left-icon",
+	                            onClick: function () {
+	                                location.href = _this.props.backUrl;
+	                            } });
+	                    }
+	                })(),
+	                React.createElement(
+	                    "h2",
+	                    null,
+	                    this.props.title
+	                )
+	            );
+	        }
+	    }], [{
+	        key: "propTypes",
+	        value: {
+	            title: React.PropTypes.string.isRequired,
+	            backUrl: React.PropTypes.string
+	        },
+	        enumerable: true
+	    }]);
+
+	    return Banner;
+	})(React.Component);
+
+	module.exports = Banner;
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Icon = (function (_React$Component) {
+	    _inherits(Icon, _React$Component);
+
+	    function Icon() {
+	        _classCallCheck(this, Icon);
+
+	        _get(Object.getPrototypeOf(Icon.prototype), "constructor", this).apply(this, arguments);
+	    }
+
+	    _createClass(Icon, [{
+	        key: "render",
+	        value: function render() {
+	            return React.createElement("img", _extends({ className: "anticon tab-icon", src: this.props.src }, this.props));
+	        }
+	    }]);
+
+	    return Icon;
+	})(React.Component);
+
+	module.exports = Icon;
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _ANTD = ANTD;
+	var Tabs = _ANTD.Tabs;
+	var Banner = __webpack_require__(14);
+	var ReportList = __webpack_require__(17);
+	var ReportTrade = __webpack_require__(18);
+	var Icon = __webpack_require__(15);
+	var TabPane = Tabs.TabPane;
+	var Reports = (function (_React$Component) {
+	    _inherits(Reports, _React$Component);
+
+	    function Reports() {
+	        var _this = this;
+
+	        _classCallCheck(this, Reports);
+
+	        _get(Object.getPrototypeOf(Reports.prototype), 'constructor', this).apply(this, arguments);
+
+	        this.state = {
+	            tabTitles: ["体检记录", "变化趋势"],
+	            currentTab: 0,
+	            data: null
+	        };
+
+	        this.changeHandler = function (e) {
+	            _this.setState({ currentTab: e });
+	        };
+	    }
+
+	    _createClass(Reports, [{
+	        key: 'fetchFailedHandler',
+	        value: function fetchFailedHandler() {
+	            this.setState({
+	                data: []
+	            });
+	        }
+	    }, {
+	        key: 'formatData',
+	        value: function formatData(list) {
+	            var res = {};
+	            _(list).sortBy("timestamp").reverse().forEach(function (item) {
+	                res[item.id] = item;
+	            }).run();
+	            return res;
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            if (window._reportListData !== null) {
+	                this.setState({
+	                    data: window._reportListData
+	                });
+	                return;
+	            }
+	            var url = "/api/history?openId=" + this.props.params.openId;
+	            $.getJSON(url).then(function (res) {
+	                console.log(res);
+	                if (res.status === 200) {
+	                    var data = _this2.formatData(res.data);
+	                    window._reportListData = data;
+	                    _.forEach(data, function (e) {
+	                        window._reportData[e.id] = e;
+	                    });
+	                    _this2.setState({
+	                        data: data
+	                    });
+	                } else {
+	                    _this2.fetchFailedHandler();
+	                }
+	            }).fail(function (e) {
+	                console.error(e);
+	                _this2.fetchFailedHandler();
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { id: 'report-list' },
+	                React.createElement(Banner, { title: this.state.tabTitles[this.state.currentTab] }),
+	                React.createElement(
+	                    'div',
+	                    { className: 'bottom-tab-wrapper' },
+	                    React.createElement(
+	                        Tabs,
+	                        { onChange: this.changeHandler },
+	                        React.createElement(
+	                            TabPane,
+	                            { tab: React.createElement(
+	                                    'div',
+	                                    null,
+	                                    React.createElement('i', { className: 'bg-record' }),
+	                                    React.createElement(
+	                                        'p',
+	                                        null,
+	                                        this.state.tabTitles[0]
+	                                    )
+	                                ), key: '0' },
+	                            React.createElement(ReportList, { openId: this.props.params.openId, data: this.state.data })
+	                        ),
+	                        React.createElement(
+	                            TabPane,
+	                            { tab: React.createElement(
+	                                    'div',
+	                                    null,
+	                                    React.createElement('i', { className: 'bg-trade' }),
+	                                    React.createElement(
+	                                        'p',
+	                                        null,
+	                                        this.state.tabTitles[1]
+	                                    )
+	                                ), key: '1' },
+	                            React.createElement(ReportTrade, { openId: this.props.params.openId, data: this.state.data })
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Reports;
+	})(React.Component);
+
+	module.exports = Reports;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _ANTD = ANTD;
+	var Timeline = _ANTD.Timeline;
+	var Alert = _ANTD.Alert;
+	var message = _ANTD.message;
+	var Loading = __webpack_require__(13);
+	var ReportList = (function (_React$Component) {
+	    _inherits(ReportList, _React$Component);
+
+	    function ReportList() {
+	        var _this = this;
+
+	        _classCallCheck(this, ReportList);
+
+	        _get(Object.getPrototypeOf(ReportList.prototype), "constructor", this).apply(this, arguments);
+
+	        this.clickItem = function (reportId) {
+	            location.href = "/reports#/" + _this.props.openId + "/" + reportId;
+	        };
+	    }
+
+	    _createClass(ReportList, [{
+	        key: "render",
+	        value: function render() {
+	            var _this2 = this;
+
+	            var timeline = [];
+	            var data = this.props.data;
+
+	            if (data === null) {
+	                timeline = React.createElement(Loading, { text: "正在加载体检记录..." });
+	            } else if (Object.keys(data).length == 0) {
+	                timeline = React.createElement(Alert, {
+	                    message: "没有找到您的体检记录",
+	                    type: "info" });
+	            } else {
+	                timeline = React.createElement(
+	                    Timeline,
+	                    null,
+	                    _.map(data, function (item) {
+	                        return React.createElement(
+	                            "div",
+	                            { onClick: _this2.clickItem.bind(_this2, item.id) },
+	                            React.createElement(
+	                                Timeline.Item,
+	                                { color: "green", key: item.timestamp },
+	                                item.location,
+	                                React.createElement("div", { className: "arrow1" }),
+	                                React.createElement(
+	                                    "p",
+	                                    { className: "timestamp" },
+	                                    ReportList.formatTime(item.timestamp)
+	                                ),
+	                                React.createElement("div", { className: "arrow2" })
+	                            )
+	                        );
+	                    })
+	                );
+	            }
+	            return React.createElement(
+	                "div",
+	                { id: "list-timeline" },
+	                timeline
+	            );
+	        }
+	    }], [{
+	        key: "formatTime",
+	        value: function formatTime(t) {
+	            var date = new Date(parseInt(t, 10));
+	            return date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日 \n" + (_.padLeft(date.getHours(), 2, 0) + ":" + _.padLeft(date.getMinutes(), 2, 0));
+	        }
+	    }]);
+
+	    return ReportList;
+	})(React.Component);
+
+	module.exports = ReportList;
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _ANTD = ANTD;
+	var Tabs = _ANTD.Tabs;
+	var message = _ANTD.message;
+	var Alert = _ANTD.Alert;
+	var Loading = __webpack_require__(13);
+	var Echarts = __webpack_require__(5);
+	var HeightWeight = __webpack_require__(19);
+	var Blood = __webpack_require__(20);
+	var O2 = __webpack_require__(21);
+	var Chinese = __webpack_require__(22);
+	var Icon = __webpack_require__(15);
+	var TabPane = Tabs.TabPane;
+
+	var ReportTrade = (function (_React$Component) {
+	    _inherits(ReportTrade, _React$Component);
+
+	    function ReportTrade() {
+	        _classCallCheck(this, ReportTrade);
+
+	        _get(Object.getPrototypeOf(ReportTrade.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(ReportTrade, [{
+	        key: 'getHeightWeight',
+	        value: function getHeightWeight() {
+	            var data = this.props.data;
+
+	            if (data !== null) {
+	                if (_(data).pluck("height").compact().run().length > 0) {
+	                    return React.createElement(HeightWeight, { data: data });
+	                } else {
+	                    return React.createElement(Alert, { message: '没有您的身体数据', type: 'info' });
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }, {
+	        key: 'getBlood',
+	        value: function getBlood() {
+	            var data = this.props.data;
+
+	            if (data !== null) {
+	                if (_(data).pluck("sbp").compact().run().length > 0) {
+	                    return React.createElement(Blood, { data: data });
+	                } else {
+	                    return React.createElement(Alert, { message: '没有您的血压数据', type: 'info' });
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }, {
+	        key: 'getO2',
+	        value: function getO2() {
+	            var data = this.props.data;
+
+	            if (data !== null) {
+	                if (_(data).pluck("spo2h").compact().run().length > 0) {
+	                    return React.createElement(O2, { data: data });
+	                } else {
+	                    return React.createElement(Alert, { message: '没有您的血氧数据', type: 'info' });
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }, {
+	        key: 'getChinese',
+	        value: function getChinese() {
+	            var data = this.props.data;
+
+	            if (data !== null) {
+	                if (_(data).pluck("cacheScore").compact().run().length > 0) {
+	                    return React.createElement(Chinese, { data: data });
+	                } else {
+	                    return React.createElement(Alert, { message: '没有您的生物电数据', type: 'info' });
+	                }
+	            } else {
+	                return React.createElement(Loading, null);
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { id: 'report-trade', className: 'top-tab-wrapper' },
+	                React.createElement(
+	                    Tabs,
+	                    { size: 'mini' },
+	                    React.createElement(
+	                        TabPane,
+	                        { tab: '身体', key: '1' },
+	                        this.getHeightWeight()
+	                    ),
+	                    React.createElement(
+	                        TabPane,
+	                        { tab: '血压', key: '2' },
+	                        this.getBlood()
+	                    ),
+	                    React.createElement(
+	                        TabPane,
+	                        { tab: '血氧', key: '3' },
+	                        this.getO2()
+	                    ),
+	                    React.createElement(
+	                        TabPane,
+	                        { tab: '生物电', key: '4' },
+	                        this.getChinese()
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ReportTrade;
+	})(React.Component);
+
+	module.exports = ReportTrade;
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Echarts = __webpack_require__(5);
+	var Tips = __webpack_require__(6);
+	var util = __webpack_require__(9);
+
+	var _require = __webpack_require__(7);
+
+	var baseLineOpt = _require.baseLineOpt;
+
+	var HeightWeight = (function (_React$Component) {
+	    _inherits(HeightWeight, _React$Component);
+
+	    function HeightWeight() {
+	        _classCallCheck(this, HeightWeight);
+
+	        _get(Object.getPrototypeOf(HeightWeight.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(HeightWeight, [{
+	        key: 'formattedData',
+	        value: function formattedData() {
+	            var res = {
+	                xs: [],
+	                height: [],
+	                weight: []
+	            },
+	                v = undefined,
+	                data = this.props.data;
+
+	            for (var k in data) {
+	                v = data[k];
+	                if (v.height) {
+	                    res.xs.push(util.formatTime(v.timestamp));
+	                    res.height.push(~ ~v.height);
+	                    res.weight.push(~ ~v.weight);
+	                }
+	            }
+	            return res;
+	        }
+	    }, {
+	        key: 'getOption',
+	        value: function getOption() {
+	            var data = this.formattedData();
+	            var option = {
+	                legend: {
+	                    data: ['身高', '体重']
+	                },
+	                xAxis: [{
+	                    type: 'category',
+	                    boundaryGap: false,
+	                    data: data.xs
+	                }],
+	                yAxis: [{
+	                    name: '身高(cm)',
+	                    type: 'value',
+	                    max: util.getMax(data.height),
+	                    min: util.getMin(data.height)
+	                }, {
+	                    name: '体重(kg)',
+	                    type: 'value',
+	                    max: util.getMax(data.weight),
+	                    min: util.getMin(data.weight)
+	                }],
+	                series: [{
+	                    name: '身高',
+	                    type: 'line',
+	                    yAxisIndex: 0,
+	                    data: data.height
+	                }, {
+	                    name: '体重',
+	                    type: 'line',
+	                    yAxisIndex: 1,
+	                    data: data.weight
+	                }]
+	            };
+	            return _.defaults(option, baseLineOpt);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(Echarts, { option: this.getOption(), height: '300', width: '100%' }),
+	                React.createElement(Tips, { text: '您的体型正常，请继续保持!' })
+	            );
+	        }
+	    }]);
+
+	    return HeightWeight;
+	})(React.Component);
+
+	module.exports = HeightWeight;
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Echarts = __webpack_require__(5);
+	var Tips = __webpack_require__(6);
+	var util = __webpack_require__(9);
+
+	var _require = __webpack_require__(7);
+
+	var baseLineOpt = _require.baseLineOpt;
+
+	var Blood = (function (_React$Component) {
+	    _inherits(Blood, _React$Component);
+
+	    function Blood() {
+	        _classCallCheck(this, Blood);
+
+	        _get(Object.getPrototypeOf(Blood.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(Blood, [{
+	        key: 'formattedData',
+	        value: function formattedData() {
+	            var res = {
+	                xs: [],
+	                high: [],
+	                low: [],
+	                beat: []
+	            },
+	                v = undefined,
+	                data = this.props.data;
+
+	            for (var k in data) {
+	                v = data[k];
+	                if (v.sbp) {
+	                    res.xs.push(util.formatTime(v.timestamp));
+	                    res.high.push(~ ~v.sbp);
+	                    res.low.push(~ ~v.dbp);
+	                    res.beat.push(~ ~v.heartRate);
+	                }
+	            }
+	            return res;
+	        }
+	    }, {
+	        key: 'getOption',
+	        value: function getOption() {
+	            var data = this.formattedData();
+	            var option = {
+	                legend: {
+	                    data: ['伸缩压', '舒张压', '心率']
+	                },
+	                xAxis: [{
+	                    type: 'category',
+	                    boundaryGap: false,
+	                    data: data.xs
+	                }],
+	                yAxis: [{
+	                    name: '血压(mmHg)',
+	                    type: 'value',
+	                    max: util.getMax(data.high),
+	                    min: util.getMin(data.low)
+	                }, {
+	                    name: '心率(bpm)',
+	                    type: 'value',
+	                    max: util.getMax(data.beat),
+	                    min: util.getMin(data.beat)
+	                }],
+	                series: [{
+	                    name: '伸缩压',
+	                    type: 'line',
+	                    yAxisIndex: 0,
+	                    data: data.high
+	                }, {
+	                    name: '舒张压',
+	                    type: 'line',
+	                    yAxisIndex: 0,
+	                    data: data.low
+	                }, {
+	                    name: '心率',
+	                    type: 'line',
+	                    yAxisIndex: 1,
+	                    data: data.beat
+	                }]
+	            };
+	            return _.defaults(option, baseLineOpt);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(Echarts, { option: this.getOption(), height: '300', width: '100%' }),
+	                React.createElement(Tips, { text: '您的血压正常，请继续保持!' })
+	            );
+	        }
+	    }]);
+
+	    return Blood;
+	})(React.Component);
+
+	module.exports = Blood;
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Echarts = __webpack_require__(5);
+	var Tips = __webpack_require__(6);
+	var util = __webpack_require__(9);
+
+	var _require = __webpack_require__(7);
+
+	var baseLineOpt = _require.baseLineOpt;
+
+	var O2 = (function (_React$Component) {
+	    _inherits(O2, _React$Component);
+
+	    function O2() {
+	        _classCallCheck(this, O2);
+
+	        _get(Object.getPrototypeOf(O2.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(O2, [{
+	        key: 'formattedData',
+	        value: function formattedData() {
+	            var res = {
+	                xs: [],
+	                O2: []
+	            },
+	                v = undefined,
+	                data = this.props.data;
+
+	            for (var k in data) {
+	                v = data[k];
+	                if (v.spo2h) {
+	                    res.xs.push(util.formatTime(v.timestamp));
+	                    res.O2.push(~ ~v.spo2h);
+	                }
+	            }
+	            return res;
+	        }
+	    }, {
+	        key: 'getOption',
+	        value: function getOption() {
+	            var data = this.formattedData();
+	            var option = {
+	                legend: {
+	                    data: ['血氧']
+	                },
+	                xAxis: [{
+	                    type: 'category',
+	                    boundaryGap: false,
+	                    data: data.xs
+	                }],
+	                yAxis: [{
+	                    name: '血氧(%)',
+	                    type: 'value',
+	                    max: util.getMax(data.O2),
+	                    min: util.getMin(data.O2)
+	                }],
+	                series: [{
+	                    name: '血氧',
+	                    type: 'line',
+	                    data: data.O2
+	                }]
+	            };
+	            return _.defaults(option, baseLineOpt);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(Echarts, { option: this.getOption(), height: '300', width: '100%' }),
+	                React.createElement(Tips, { text: '您的血氧正常，请继续保持!' })
+	            );
+	        }
+	    }]);
+
+	    return O2;
+	})(React.Component);
+
+	module.exports = O2;
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Echarts = __webpack_require__(5);
+	var Tips = __webpack_require__(6);
+	var util = __webpack_require__(9);
+
+	var _require = __webpack_require__(7);
+
+	var baseLineOpt = _require.baseLineOpt;
+
+	var Chinese = (function (_React$Component) {
+	    _inherits(Chinese, _React$Component);
+
+	    function Chinese() {
+	        _classCallCheck(this, Chinese);
+
+	        _get(Object.getPrototypeOf(Chinese.prototype), 'constructor', this).apply(this, arguments);
+	    }
+
+	    _createClass(Chinese, [{
+	        key: 'formattedData',
+	        value: function formattedData() {
+	            var res = {
+	                xs: [],
+	                score: []
+	            },
+	                v = undefined,
+	                data = this.props.data;
+
+	            for (var k in data) {
+	                v = data[k];
+	                if (v.cacheScore) {
+	                    res.xs.push(util.formatTime(v.timestamp));
+	                    res.score.push(~ ~v.cacheScore);
+	                }
+	            }
+	            return res;
+	        }
+	    }, {
+	        key: 'getOption',
+	        value: function getOption() {
+	            var data = this.formattedData();
+	            var option = {
+	                legend: {
+	                    data: ['生物电']
+	                },
+	                xAxis: [{
+	                    type: 'category',
+	                    boundaryGap: false,
+	                    data: data.xs
+	                }],
+	                yAxis: [{
+	                    name: '得分',
+	                    type: 'value',
+	                    max: 10,
+	                    min: 0
+	                }],
+	                series: [{
+	                    name: '生物电',
+	                    type: 'line',
+	                    data: data.score
+	                }]
+	            };
+	            return _.defaults(option, baseLineOpt);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(Echarts, { option: this.getOption(), height: '300', width: '100%' }),
+	                React.createElement(Tips, { text: '您的生物电正常，请继续保持!' })
+	            );
+	        }
+	    }]);
+
+	    return Chinese;
+	})(React.Component);
+
+	module.exports = Chinese;
+
+/***/ }
+/******/ ]);

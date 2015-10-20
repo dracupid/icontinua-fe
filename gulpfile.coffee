@@ -20,8 +20,6 @@ gulp.task 'jsx', (cb) ->
         entry:
             main: cfg.src + "jsx/main.jsx"
             admin: cfg.src + "jsx/admin.jsx"
-            'admin/user': cfg.src + "jsx/admin/user.jsx"
-            'admin/report': cfg.src + "jsx/admin/report.jsx"
         output:
             filename: cfg.dist + 'js/[name].js'
         module:
@@ -32,9 +30,9 @@ gulp.task 'jsx', (cb) ->
                     test: /\.coffee$/, loader: 'coffee-loader'
                 }
             ]
-        plugins: [
-            new webpack.optimize.UglifyJsPlugin()
-        ]
+#        plugins: [
+#            new webpack.optimize.UglifyJsPlugin()
+#        ]
         externals:
             jquery: 'window.$'
             react: 'window.React'
@@ -70,7 +68,7 @@ gulp.task 'lib_css', ->
 gulp.task 'lib_antd', (cb) ->
     webpack = require 'webpack'
     webpack
-        entry: "./antd.js"
+        entry: cfg.src + "antd.js"
         output:
             filename: cfg.dist + '/js/lib/antd.min.js'
         module:
@@ -99,7 +97,14 @@ gulp.task 'html', ->
     .pipe jade pretty: '    ', compileDebug: true
     .pipe gulp.dest cfg.dist + 'html'
 
-gulp.task 'default', ['jsx', 'css', 'lib', 'html']
+gulp.task 'copy', ->
+    gulp.src cfg.src + 'img/*'
+    .pipe gulp.dest cfg.dist + 'img'
+
+    gulp.src cfg.src + 'lib/*.js'
+    .pipe gulp.dest cfg.dist + 'js/lib'
+
+gulp.task 'default', ['jsx', 'css', 'lib', 'html', 'copy']
 
 gulp.task 'watch', ['jsx', 'css', 'html'], ->
     gulp.watch "./src/jsx/**", ["jsx"]

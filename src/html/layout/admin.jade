@@ -1,0 +1,18 @@
+include ./mixin
+doctype html
+
+html(lang="zh-cmn-Hans")
+    head
+        mixin head()
+        block title
+        mixin css("/css/antd.min")
+        mixin css("/css/admin")
+
+    body
+        #main
+        script(src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js")
+        script(src="http://cdn.bootcss.com/lodash.js/3.10.1/lodash.min.js")
+        script(src="http://cdn.bootcss.com/react/0.13.3/react.min.js")
+        script(src="http://cdn.bootcss.com/react-router/1.0.0-rc1/ReactRouter.min.js")
+        mixin js("/js/lib/antd.min")
+        block js

@@ -1,14 +1,15 @@
-let {Table, Popconfirm} = ANTD;
+let {Table, Popconfirm} = ANTD,
+    {Link} = ReactRouter;
 
-class UserPanel extends React.Component {
+class UserList extends React.Component {
     state = {
         dataSource: new Table.DataSource({
-            url: '/admin/data/user',
-            resolve: function (result) {
-                _.forEach(result, (obj) => {
+            url: '/admin/user',
+            resolve: function ({data}) {
+                _.forEach(data, (obj) => {
                     obj.location = `${obj.country} ${obj.province} ${obj.city}`
                 });
-                return result;
+                return data;
             },
             getPagination: function (result) {
             },
@@ -23,7 +24,7 @@ class UserPanel extends React.Component {
             title: '头像',
             dataIndex: 'avatarUrl',
             render(text) {
-                return <img src={text} style={{width: '45px'}}></img>
+                return <img src={text} style={{width: '45px'}}/>
             }
         }, {
             title: '昵称',
@@ -63,8 +64,8 @@ class UserPanel extends React.Component {
             dataIndex: '',
             render: function (text, record) {
                 return <span>
-                        <a href={"/admin/report.html?openId=" + record.openId}>体检记录</a>
-                        <span className="ant-divider"></span>
+                        <Link to={`/${record.openId}`}>体检记录</Link>
+                        <span className="ant-divider"/>
                         <Popconfirm placement="left" title="确定要删除这个用户吗？"
                                     onConfirm={self.deleteRaw.bind(self, record.openId)}>
                             <a href="javascript:;">删除</a>
@@ -97,14 +98,13 @@ class UserPanel extends React.Component {
     }
 
     render() {
-        return <Table rowSelection={UserPanel.rowSelection}
+        return <Table rowSelection={UserList.rowSelection}
                       rowKey={(record) => {return record.openId}}
                       dataSource={this.state.dataSource}
                       columns={this.getColumns()}
-                      expandedRowRender={UserPanel.expandedRowRender} ref="table"/>
+                      expandedRowRender={UserList.expandedRowRender} ref="table"/>
     }
 }
 
-React.render(<UserPanel />, document.body);
-
+module.exports = UserList;
 

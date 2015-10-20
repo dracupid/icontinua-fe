@@ -1,9 +1,9 @@
 let {Table, Popconfirm, Modal} = ANTD;
 
-class ReportPanel extends React.Component {
+class ReportList extends React.Component {
     state = {
         dataSource: new Table.DataSource({
-            url: '/admin/data/report' + location.search,
+            url: '/admin/report?openId=' + this.props.params.openId,
             resolve: function (result) {
                 return result;
             },
@@ -48,9 +48,12 @@ class ReportPanel extends React.Component {
         }, {
             title: '生物电',
             dataIndex: 'cacheId',
-            render(text) {
+            render(text, r) {
                 if (text) {
-                    return <a href={'/api/falthReport?id=' + text} target="_blank">查看详情</a>
+                    return <span>
+                        {r.cacheScore + "分"}
+                        <a style={{paddingLeft: '10px'}} href={'/api/falthReport?id=' + text} target="_blank">查看详情</a>
+                    </span>
                 } else {
                     return ''
                 }
@@ -61,7 +64,7 @@ class ReportPanel extends React.Component {
             render: function (text, record) {
                 return <span>
                         <Popconfirm placement="left" title="确定要删除这条测量记录吗？"
-                                    onConfirm={self.deleteRaw.bind(self, record.reportId)}>
+                                    onConfirm={self.deleteRaw.bind(self, record.id)}>
                             <a href="javascript:;">删除</a>
                         </Popconfirm>
                 </span>;
@@ -86,20 +89,19 @@ class ReportPanel extends React.Component {
         let {table} = this.refs;
         table.setState({
             data: _.filter(table.state.data, (k) => {
-                return k.reportId !== id
+                return k.id !== id
             })
         });
     }
 
     render() {
-        return <Table rowSelection={ReportPanel.rowSelection}
+        return <Table rowSelection={ReportList.rowSelection}
                       rowKey={(record) => {return record.reportId}}
                       dataSource={this.state.dataSource}
                       columns={this.getColumns()}
-                      expandedRowRender={ReportPanel.expandedRowRender} ref="table"/>
+                      expandedRowRender={ReportList.expandedRowRender} ref="table"/>
     }
 }
 
-React.render(<ReportPanel />, document.body);
-
+module.exports = ReportList;
 

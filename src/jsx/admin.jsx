@@ -1,18 +1,11 @@
-let {Menu, SubMenu} = ANTD;
+let{ Router, Route, Link } = ReactRouter,
+    Report = require("./admin/ReportList.jsx"),
+    UserList = require("./admin/UserList.jsx");
 
-class Admin extends React.Component {
-    state = {
-        current: 'mail'
-    };
 
-    handleClick(e) {
-        this.setState({
-            current: e.key
-        });
-    }
-
-    render() {
-        return <User />
-    }
-}
-
+React.render((
+    <Router >
+        <Route path="/" component={UserList} />
+        <Route path="/:openId" component={Report}/>
+    </Router>
+), document.body);
