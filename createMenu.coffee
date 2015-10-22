@@ -16,23 +16,28 @@ if not appId or not appSecret
 menuStr =
     button: [
         {
-            name: '产品中心',
-            sub_button: [{type: 'click', name: '中医治未病', key: 'TREATMENT'}]
-        }, {
-            name: '报告查询',
-            sub_button: [{
-                type: 'view',
-                name: '我的体检报告',
-                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent 'http://112.80.52.187/wechat/auth'}&response_type=code&scope=snsapi_base" # 702ea5a.nat123.net
-        }, {
-                type: 'view',
-                name: '我的二维码',
-                url: 'http://mp.weixin.qq.com/s?__biz=MzA3MDEwMjA1Ng==&mid=209560360&idx=1&sn=5608f0f9f36e327a20aa353a9a1adc49&scene=18#rd'
-            }]
-        }, {
-            name: '服务咨询',
-            sub_button: [{type: 'click', name: '时令咨询', key: 'INFORMATION'}, {type: 'click', name: '新闻动态', key: 'NEWS'}]
+            type: 'view',
+            name: '我的体检报告',
+            url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent 'http://112.80.52.187/wechat/auth'}&response_type=code&scope=snsapi_base" # 702ea5a.nat123.net
         }
+#        {
+#            name: '产品中心',
+#            sub_button: [{type: 'click', name: '中医治未病', key: 'TREATMENT'}]
+#        }, {
+#            name: '报告查询',
+#            sub_button: [{
+#                type: 'view',
+#                name: '我的体检报告',
+#                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent 'http://112.80.52.187/wechat/auth'}&response_type=code&scope=snsapi_base" # 702ea5a.nat123.net
+#            }, {
+#                type: 'view',
+#                name: '我的二维码',
+#                url: 'http://mp.weixin.qq.com/s?__biz=MzA3MDEwMjA1Ng==&mid=209560360&idx=1&sn=5608f0f9f36e327a20aa353a9a1adc49&scene=18#rd'
+#            }]
+#        }, {
+#            name: '服务咨询',
+#            sub_button: [{type: 'click', name: '时令咨询', key: 'INFORMATION'}, {type: 'click', name: '新闻动态', key: 'NEWS'}]
+#        }
     ]
 
 getToken = ->
