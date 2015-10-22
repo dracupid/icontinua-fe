@@ -13,8 +13,8 @@ class Chinese extends React.Component {
         for (let k in data) {
             v = data[k];
             if (v.cacheScore) {
-                res.xs.push(util.formatTime(v.timestamp));
-                res.score.push(~~v.cacheScore);
+                res.xs.unshift(util.formatTime(v.timestamp));
+                res.score.unshift(~~v.cacheScore);
             }
         }
         return res

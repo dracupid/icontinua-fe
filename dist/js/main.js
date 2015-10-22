@@ -1864,9 +1864,9 @@
 	            for (var k in data) {
 	                v = data[k];
 	                if (v.height) {
-	                    res.xs.push(util.formatTime(v.timestamp));
-	                    res.height.push(~ ~v.height);
-	                    res.weight.push(~ ~v.weight);
+	                    res.xs.unshift(util.formatTime(v.timestamp));
+	                    res.height.unshift(~ ~v.height);
+	                    res.weight.unshift(~ ~v.weight);
 	                }
 	            }
 	            return res;
@@ -1973,10 +1973,10 @@
 	            for (var k in data) {
 	                v = data[k];
 	                if (v.sbp) {
-	                    res.xs.push(util.formatTime(v.timestamp));
-	                    res.high.push(~ ~v.sbp);
-	                    res.low.push(~ ~v.dbp);
-	                    res.beat.push(~ ~v.heartRate);
+	                    res.xs.unshift(util.formatTime(v.timestamp));
+	                    res.high.unshift(~ ~v.sbp);
+	                    res.low.unshift(~ ~v.dbp);
+	                    res.beat.unshift(~ ~v.heartRate);
 	                }
 	            }
 	            return res;
@@ -2086,8 +2086,8 @@
 	            for (var k in data) {
 	                v = data[k];
 	                if (v.spo2h) {
-	                    res.xs.push(util.formatTime(v.timestamp));
-	                    res.O2.push(~ ~v.spo2h);
+	                    res.xs.unshift(util.formatTime(v.timestamp));
+	                    res.O2.unshift(~ ~v.spo2h);
 	                }
 	            }
 	            return res;
@@ -2181,8 +2181,8 @@
 	            for (var k in data) {
 	                v = data[k];
 	                if (v.cacheScore) {
-	                    res.xs.push(util.formatTime(v.timestamp));
-	                    res.score.push(~ ~v.cacheScore);
+	                    res.xs.unshift(util.formatTime(v.timestamp));
+	                    res.score.unshift(~ ~v.cacheScore);
 	                }
 	            }
 	            return res;
