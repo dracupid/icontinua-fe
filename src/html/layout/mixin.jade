@@ -1,8 +1,8 @@
 mixin css(name)
-    link(rel='stylesheet', href= name + '.css')
+    link(rel='stylesheet', href= name + '.css?t=_TIMESTAMP_')
 
 mixin js(name)
-    script(src= name + '.js')
+    script(src= name + '.js?t=_TIMESTAMP_')
 
 mixin head()
     meta(charset='UTF-8')

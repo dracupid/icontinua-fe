@@ -30,7 +30,7 @@ class ReportList extends React.Component {
                         return (
                             <div onClick={this.clickItem.bind(this, item.id)}>
                                 <Timeline.Item color="green" key={item.timestamp}>
-                                    {item.location}
+                                    {item.location || "未知"}
                                     <div className="arrow1"/>
                                     <p className="timestamp">
                                         {ReportList.formatTime(item.timestamp)}

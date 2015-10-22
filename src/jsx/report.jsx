@@ -62,10 +62,10 @@ class Report extends React.Component {
     }
 
     getHeightWeight() {
-        let {height, weight, bodyFatRate} = this.state.report;
+        let {height, weight} = this.state.report;
         if (this.state.loaded) {
             if (height && weight) {
-                return <HeightWeight height={~~height} weight={~~weight} rate={~~bodyFatRate}/>
+                return <HeightWeight {...this.state.report}/>
             } else {
                 return <Alert
                     message="没有您的身体数据"

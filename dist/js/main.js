@@ -163,11 +163,10 @@
 	            var _state$report = this.state.report;
 	            var height = _state$report.height;
 	            var weight = _state$report.weight;
-	            var bodyFatRate = _state$report.bodyFatRate;
 
 	            if (this.state.loaded) {
 	                if (height && weight) {
-	                    return React.createElement(HeightWeight, { height: ~ ~height, weight: ~ ~weight, rate: ~ ~bodyFatRate });
+	                    return React.createElement(HeightWeight, this.state.report);
 	                } else {
 	                    return React.createElement(Alert, {
 	                        message: "没有您的身体数据",
@@ -316,28 +315,29 @@
 	                if (obj[key]) {
 	                    items.push(React.createElement(
 	                        'div',
-	                        { className: 'kv-item', key: key + obj[key] },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'key' },
-	                            ' ',
-	                            key,
-	                            ' '
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'value' },
-	                            ' ',
-	                            obj[key],
-	                            ' '
-	                        )
+	                        { className: 'key', key: key },
+	                        key
+	                    ));
+	                    items.push(React.createElement(
+	                        'div',
+	                        { className: 'value', key: obj[key] },
+	                        obj[key]
 	                    ));
 	                }
 	            }
+	            var columnNum = Math.ceil(items.length / 6),
+	                ret = [];
+	            for (var i = 0; i < columnNum; i++) {
+	                ret.push(React.createElement(
+	                    'div',
+	                    { key: i, className: "kv-map flex-" + (i + 1) },
+	                    items.slice(i * 6, (i + 1) * 6)
+	                ));
+	            }
 	            return React.createElement(
 	                'div',
-	                { className: 'kv-map' },
-	                items
+	                { className: 'kv-map-wrapper' },
+	                ret
 	            );
 	        }
 	    }], [{
@@ -440,9 +440,21 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var fatRate = undefined;
-	            if (this.props.rate) {
-	                fatRate = this.props.rate + '%';
+	            var _props3 = this.props;
+	            var bodyFat = _props3.bodyFat;
+	            var bodyMuscle = _props3.bodyMuscle;
+	            var bodyKcal = _props3.bodyKcal;
+	            var bodyWater = _props3.bodyWater;
+	            var bodyViscera = _props3.bodyViscera;
+
+	            bodyFat = bodyFat && bodyFat + ' %';
+	            bodyMuscle = bodyMuscle && bodyMuscle + ' %';
+	            bodyKcal = bodyKcal && bodyKcal + ' Kcal';
+	            bodyWater = bodyWater && bodyWater + ' %';
+	            bodyViscera = bodyViscera && bodyViscera + ' %';
+
+	            if (this.props.bodyFat) {
+	                bodyFat = this.props.bodyFat + '%';
 	            }
 	            return React.createElement(
 	                'div',
@@ -458,7 +470,8 @@
 	                        this.props.height,
 	                        'CM'
 	                    ),
-	                    React.createElement(KVMap, { obj: { BMI: this.getBMI(), 体脂: fatRate } })
+	                    React.createElement(KVMap, { obj: { BMI: this.getBMI(), 体脂: bodyFat, 肌肉量: bodyMuscle,
+	                            基础代谢率: bodyKcal, 含水量: bodyWater, 内脏脂肪量: bodyViscera } })
 	                ),
 	                React.createElement(Echarts, { option: this.getWeightOpt(), height: '300', width: '100%' }),
 	                React.createElement(Tips, { text: this.getTips(), fix: true })
@@ -1079,8 +1092,59 @@
 	    return ReportBlock;
 	})(React.Component);
 
-	var Chinese = (function (_React$Component2) {
-	    _inherits(Chinese, _React$Component2);
+	var Scores = (function (_React$Component2) {
+	    _inherits(Scores, _React$Component2);
+
+	    function Scores() {
+	        _classCallCheck(this, Scores);
+
+	        _get(Object.getPrototypeOf(Scores.prototype), "constructor", this).apply(this, arguments);
+	    }
+
+	    _createClass(Scores, [{
+	        key: "render",
+	        value: function render() {
+	            var _props2 = this.props;
+	            var zangfu = _props2.zangfu;
+	            var jizhui = _props2.jizhui;
+	            var xiaohua = _props2.xiaohua;
+	            var miniao = _props2.miniao;
+	            var data = {
+	                脏腑: zangfu,
+	                脊椎: jizhui,
+	                消化: xiaohua,
+	                泌尿: miniao
+	            };
+	            var res = _.map(data, function (v, k) {
+	                return React.createElement(
+	                    "div",
+	                    { className: "kv", key: k },
+	                    React.createElement(
+	                        "span",
+	                        { className: "key" },
+	                        k
+	                    ),
+	                    React.createElement(
+	                        "span",
+	                        { className: "value" },
+	                        parseFloat(v).toFixed(1)
+	                    )
+	                );
+	            });
+
+	            return React.createElement(
+	                "div",
+	                { className: "c-kv-map" },
+	                res
+	            );
+	        }
+	    }]);
+
+	    return Scores;
+	})(React.Component);
+
+	var Chinese = (function (_React$Component3) {
+	    _inherits(Chinese, _React$Component3);
 
 	    function Chinese() {
 	        _classCallCheck(this, Chinese);
@@ -1140,6 +1204,7 @@
 	                    return React.createElement(
 	                        "div",
 	                        null,
+	                        React.createElement(Scores, data.scores),
 	                        React.createElement(ReportBlock, _extends({ title: "脏腑" }, data.zangfu)),
 	                        React.createElement(ReportBlock, _extends({ title: "脊椎" }, data.jizhui))
 	                    );
@@ -1231,7 +1296,8 @@
 	    score: r.score,
 	    balance: r.balance,
 	    zangfu: formatZangfu(r.fiveElementItems, r.balance),
-	    jizhui: formatJizhui(r.vertebraItems, r.balance)
+	    jizhui: formatJizhui(r.vertebraItems, r.balance),
+	    scores: r.scores
 	  };
 	  return res;
 	};
@@ -1586,7 +1652,7 @@
 	                            React.createElement(
 	                                Timeline.Item,
 	                                { color: "green", key: item.timestamp },
-	                                item.location,
+	                                item.location || "未知",
 	                                React.createElement("div", { className: "arrow1" }),
 	                                React.createElement(
 	                                    "p",

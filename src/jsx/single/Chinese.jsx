@@ -75,6 +75,26 @@ class ReportBlock extends React.Component {
     }
 }
 
+class Scores extends React.Component {
+    render() {
+        let {zangfu, jizhui, xiaohua, miniao} = this.props,
+            data = {
+                脏腑: zangfu,
+                脊椎: jizhui,
+                消化: xiaohua,
+                泌尿: miniao
+            },
+            res = _.map(data, (v, k) => {
+                return <div className="kv" key={k}>
+                    <span className="key">{k}</span>
+                    <span className="value">{parseFloat(v).toFixed(1)}</span>
+                </div>
+            });
+
+        return <div className="c-kv-map">{res}</div>;
+    }
+}
+
 class Chinese extends React.Component {
     state = {
         data: null,
@@ -121,6 +141,7 @@ class Chinese extends React.Component {
                 let data = filter(this.state.data);
                 return (
                     <div>
+                        <Scores {...data.scores}/>
                         <ReportBlock title="脏腑" {...data.zangfu}/>
                         <ReportBlock title="脊椎" {...data.jizhui}/>
                     </div>

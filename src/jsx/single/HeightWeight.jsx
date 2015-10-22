@@ -12,17 +12,17 @@ class KVMap extends React.Component {
             obj = this.props.obj;
         for (let key in obj) {
             if (obj[key]) {
-                items.push(
-                    <div className='kv-item' key={key + obj[key]}>
-                        <div className='key'> {key} </div>
-                        <div className='value'> {obj[key]} </div>
-                    </div>
-                )
+                items.push(<div className='key' key={key}>{key}</div>);
+                items.push(<div className='value' key={obj[key]}>{obj[key]}</div>);
             }
         }
-        return (
-            <div className="kv-map">{items}</div>
-        )
+        let columnNum = Math.ceil(items.length / 6), ret = [];
+        for (let i = 0; i < columnNum; i++) {
+            ret.push(
+                <div key={i} className={"kv-map flex-" + (i + 1)}>{items.slice(i * 6, (i + 1) * 6)}</div>
+            )
+        }
+        return <div className="kv-map-wrapper">{ret}</div>;
     }
 }
 
@@ -109,9 +109,15 @@ class HeightWeight extends React.Component {
     }
 
     render() {
-        let fatRate;
-        if (this.props.rate) {
-            fatRate = this.props.rate + '%'
+        let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera} = this.props;
+        bodyFat = bodyFat && (bodyFat + ' %');
+        bodyMuscle = bodyMuscle && (bodyMuscle + ' %');
+        bodyKcal = bodyKcal && (bodyKcal + ' Kcal');
+        bodyWater = bodyWater && (bodyWater + ' %');
+        bodyViscera = bodyViscera && (bodyViscera + ' %');
+
+        if (this.props.bodyFat) {
+            bodyFat = this.props.bodyFat + '%'
         }
         return (
             <div>
@@ -120,7 +126,8 @@ class HeightWeight extends React.Component {
 
                     <div className="line"></div>
                     <div className="text">{this.props.height}CM</div>
-                    <KVMap obj={{BMI: this.getBMI(), 体脂: fatRate}}/>
+                    <KVMap obj={{BMI: this.getBMI(), 体脂: bodyFat, 肌肉量: bodyMuscle,
+                    基础代谢率: bodyKcal, 含水量: bodyWater, 内脏脂肪量: bodyViscera}}/>
                 </div>
                 <Echarts option={this.getWeightOpt()} height="300" width="100%"/>
                 <Tips text={this.getTips()} fix={true}/>

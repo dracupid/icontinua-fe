@@ -92,9 +92,11 @@ gulp.task 'lib', ['lib_css', 'lib_antd']
 
 gulp.task 'html', ->
     jade = require 'gulp-jade'
+    replace = require 'gulp-replace'
 
     gulp.src [cfg.src + 'html/**/*.jade', '!**/html/layout/**'], base: cfg.src + 'html'
     .pipe jade pretty: '    ', compileDebug: true
+    .pipe replace("_TIMESTAMP_", +new Date())
     .pipe gulp.dest cfg.dist + 'html'
 
 gulp.task 'copy', ->

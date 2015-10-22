@@ -49,4 +49,5 @@ module.exports.filter = (r) ->
         balance: r.balance
         zangfu: formatZangfu r.fiveElementItems, r.balance
         jizhui: formatJizhui r.vertebraItems, r.balance
+        scores: r.scores
     return res

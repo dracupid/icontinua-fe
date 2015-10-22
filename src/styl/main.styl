@@ -78,11 +78,15 @@ $bannerHeight = 45px
             font-size 11px
             padding 0
             padding-top 5px
+            &:hover
+                color inherit
         p
             margin-top -3px
     .ant-tabs-tab-active
         a
             color $green !important
+
+
 
 // 顶部tab样式
 .top-tab-wrapper
@@ -140,6 +144,7 @@ $bannerHeight = 45px
             top 13px
             width 90%
             line-height 25px
+            min-height 25px
             padding 0 0 0 10px
             margin-left 25px
             border-radius 3px
@@ -202,19 +207,41 @@ $bannerHeight = 45px
             padding-left 10px
             font-size 1.2em
             font-weight bold
-
+    .kv-map-wrapper
+        display flex
+        flex 1
     .kv-map
         flex 1
-        .kv-item
-            margin-bottom 15px
-            display flex
-            flex-direction column
-        .key
-            font-size 1.4em
-            color: $green
-            font-weight bold
+        height 188px
+        display flex
+        flex-direction column
+
+        &.flex-1
+            flex 1.5
+        &.flex-2
+            flex 2.5
+    .key
+        font-size 1.4em
+        color: $green
+        font-weight bold
+    .value
+        font-size 1.2em
+        margin-bottom 8px
+    .c-kv-map
+        border 2px solid $green
+        border-radius 5px
+        margin-bottom 10px
+        display flex
+        flex-direction row
+        .kv
+            line-height 30px
+            flex 1
+            text-align center
         .value
-            font-size 1.2em
+            margin-left 5px
+            font-size 1.6em
+            font-weight bold
+            color #C82121
 
     .chinese-report-block
         margin-bottom 15px
