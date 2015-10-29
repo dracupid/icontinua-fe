@@ -12,7 +12,7 @@ let {baseGaugeOpt} = require("./option.coffee");
 
 class Report extends React.Component {
     state = {
-        title: "体检记录",
+        title: "体检报告",
         report: {},
         loaded: false
     };
@@ -30,35 +30,46 @@ class Report extends React.Component {
     }
 
     componentDidMount() {
-        let reportId = this.props.params.reportId;
-        if (!_.isEmpty(window._reportData[reportId])) {
-            this.setState({
-                title: Report.formatTime(window._reportData[reportId].timestamp),
-                report: window._reportData[reportId],
-                loaded: true
-            });
-            return;
+        let promise = $.Deferred().resolve();
+        if (window._advice == null) {
+            promise = $.getJSON("/data/advice.json")
+                .then((res) => {
+                    window._advice = res
+                })
         }
-        let url = "/api/report?reportId=" + reportId;
-        $.getJSON(url).then((res) => {
-            console.log(res);
-            if (res.status === 200) {
-                window._reportData[reportId] = {
-                    title: Report.formatTime(res.data.timestamp),
-                    report: res.data
-                };
+        console.log(promise)
+        promise.then(() => {
+            let reportId = this.props.params.reportId;
+            if (!_.isEmpty(window._reportData[reportId])) {
                 this.setState({
-                    title: Report.formatTime(res.data.timestamp),
-                    report: res.data,
+                    title: Report.formatTime(window._reportData[reportId].timestamp),
+                    report: window._reportData[reportId],
                     loaded: true
                 });
-            } else {
-                this.fetchFailedHandler();
+                return;
             }
-        }).fail((e) => {
-            console.error(e);
-            this.fetchFailedHandler();
-        });
+            $.getJSON("/api/report?reportId=" + reportId)
+                .then((res) => {
+                    console.log(res);
+                    if (res.status === 200) {
+                        window._reportData[reportId] = {
+                            title: Report.formatTime(res.data.timestamp),
+                            report: res.data
+                        };
+                        this.setState({
+                            title: Report.formatTime(res.data.timestamp),
+                            report: res.data,
+                            loaded: true
+                        });
+                    } else {
+                        this.fetchFailedHandler();
+                    }
+                })
+                .fail((e) => {
+                    console.error(e);
+                    this.fetchFailedHandler();
+                });
+        })
     }
 
     getHeightWeight() {
@@ -122,9 +133,10 @@ class Report extends React.Component {
     }
 
     render() {
+        let {openId} = this.props.params;
         return (
             <div id="report" className="top-tab-wrapper">
-                <Banner title={this.state.title} backUrl={"/reports#/" + this.props.params.openId}/>
+                <Banner title={this.state.title} backUrl={openId ? "/reports#/" + openId : null}/>
                 <Tabs size="mini">
                     <TabPane tab="身体" key="1">{this.getHeightWeight()}</TabPane>
                     <TabPane tab="血压" key="2">{this.getBlood()}</TabPane>

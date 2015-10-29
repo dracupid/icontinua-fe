@@ -1,6 +1,6 @@
 class Loading extends React.Component {
     static defaultProps = {
-        text: "正在加载数据..."
+        text: "数据加载中..."
     };
 
     render() {

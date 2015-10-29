@@ -97,15 +97,15 @@ class HeightWeight extends React.Component {
 
     getTips() {
         let tips = [
-                "该增加体重了",
+                window._advice["BMI低"],
                 "请继续保持",
-                "该多运动减肥",
-                "快去减肥吧"
+                window._advice["BMI高"],
+                window._advice["BMI高"]
             ],
             text = this.getBMIText(),
             index = BMIText.indexOf(text);
 
-        return `您的体重${text}， ${tips[index]}!`
+        return `您的体重${text}。${tips[index]}!`
     }
 
     render() {

@@ -56,6 +56,7 @@
 	window._reportData = {};
 	window._reportListData = null;
 	window._chineseReportData = {};
+	window._advice = null;
 
 	React.render(React.createElement(
 	    Router,
@@ -108,7 +109,7 @@
 	        _get(Object.getPrototypeOf(Report.prototype), "constructor", this).apply(this, arguments);
 
 	        this.state = {
-	            title: "体检记录",
+	            title: "体检报告",
 	            report: {},
 	            loaded: false
 	        };
@@ -127,34 +128,42 @@
 	        value: function componentDidMount() {
 	            var _this = this;
 
-	            var reportId = this.props.params.reportId;
-	            if (!_.isEmpty(window._reportData[reportId])) {
-	                this.setState({
-	                    title: Report.formatTime(window._reportData[reportId].timestamp),
-	                    report: window._reportData[reportId],
-	                    loaded: true
+	            var promise = $.Deferred().resolve();
+	            if (window._advice == null) {
+	                promise = $.getJSON("/data/advice.json").then(function (res) {
+	                    window._advice = res;
 	                });
-	                return;
 	            }
-	            var url = "/api/report?reportId=" + reportId;
-	            $.getJSON(url).then(function (res) {
-	                console.log(res);
-	                if (res.status === 200) {
-	                    window._reportData[reportId] = {
-	                        title: Report.formatTime(res.data.timestamp),
-	                        report: res.data
-	                    };
+	            console.log(promise);
+	            promise.then(function () {
+	                var reportId = _this.props.params.reportId;
+	                if (!_.isEmpty(window._reportData[reportId])) {
 	                    _this.setState({
-	                        title: Report.formatTime(res.data.timestamp),
-	                        report: res.data,
+	                        title: Report.formatTime(window._reportData[reportId].timestamp),
+	                        report: window._reportData[reportId],
 	                        loaded: true
 	                    });
-	                } else {
-	                    _this.fetchFailedHandler();
+	                    return;
 	                }
-	            }).fail(function (e) {
-	                console.error(e);
-	                _this.fetchFailedHandler();
+	                $.getJSON("/api/report?reportId=" + reportId).then(function (res) {
+	                    console.log(res);
+	                    if (res.status === 200) {
+	                        window._reportData[reportId] = {
+	                            title: Report.formatTime(res.data.timestamp),
+	                            report: res.data
+	                        };
+	                        _this.setState({
+	                            title: Report.formatTime(res.data.timestamp),
+	                            report: res.data,
+	                            loaded: true
+	                        });
+	                    } else {
+	                        _this.fetchFailedHandler();
+	                    }
+	                }).fail(function (e) {
+	                    console.error(e);
+	                    _this.fetchFailedHandler();
+	                });
 	            });
 	        }
 	    }, {
@@ -233,10 +242,12 @@
 	    }, {
 	        key: "render",
 	        value: function render() {
+	            var openId = this.props.params.openId;
+
 	            return React.createElement(
 	                "div",
 	                { id: "report", className: "top-tab-wrapper" },
-	                React.createElement(Banner, { title: this.state.title, backUrl: "/reports#/" + this.props.params.openId }),
+	                React.createElement(Banner, { title: this.state.title, backUrl: openId ? "/reports#/" + openId : null }),
 	                React.createElement(
 	                    Tabs,
 	                    { size: "mini" },
@@ -431,11 +442,11 @@
 	    }, {
 	        key: 'getTips',
 	        value: function getTips() {
-	            var tips = ["该增加体重了", "请继续保持", "该多运动减肥", "快去减肥吧"],
+	            var tips = [window._advice["BMI低"], "请继续保持", window._advice["BMI高"], window._advice["BMI高"]],
 	                text = this.getBMIText(),
 	                index = BMIText.indexOf(text);
 
-	            return '您的体重' + text + '， ' + tips[index] + '!';
+	            return '您的体重' + text + '。' + tips[index] + '!';
 	        }
 	    }, {
 	        key: 'render',
@@ -735,24 +746,24 @@
 	            if (low >= 60 && low <= 80) {
 	                lowText = "正常";
 	            } else if (low < 60) {
-	                error = true;
+	                error = 'l';
 	                lowText = "偏低";
 	            } else {
-	                error = true;
+	                error = 'h';
 	                lowText = "偏高";
 	            }
 
 	            if (high >= 90 && high <= 120) {
 	                highText = "正常";
 	            } else if (high < 90) {
-	                error = true;
+	                error = 'l';
 	                highText = "偏低";
 	            } else {
-	                error = true;
+	                error = 'h';
 	                highText = "偏高";
 	            }
 
-	            return '您的舒张压' + lowText + '，收缩压' + highText + '，' + (error ? "请多加注意。" : "请继续保持。");
+	            return '您的舒张压' + lowText + '，收缩压' + highText + '，' + ('' + (error ? "请多加注意。" + (error === 'h' ? window._advice["高血压"] : window._advice["低血压"]) : "请继续保持。"));
 	        }
 	    }, {
 	        key: 'render',
@@ -770,7 +781,9 @@
 	                        React.createElement(
 	                            'div',
 	                            { style: { position: 'relative' } },
-	                            React.createElement(Echarts, { option: this._getOpt(this.props.high, "收缩压", 'mmHg', [90, 120, 140], 60, 160, true), height: '300',
+	                            React.createElement(Echarts, {
+	                                option: this._getOpt(this.props.high, "收缩压", 'mmHg', [90, 120, 140], 60, 160, true),
+	                                height: '300',
 	                                width: width, className: 'mini top-left' })
 	                        )
 	                    ),
@@ -780,7 +793,8 @@
 	                        React.createElement(
 	                            'div',
 	                            { style: { position: 'relative' } },
-	                            React.createElement(Echarts, { option: this._getOpt(this.props.low, "舒张压", 'mmHg', [60, 80, 90], 40, 120, true), height: '300',
+	                            React.createElement(Echarts, { option: this._getOpt(this.props.low, "舒张压", 'mmHg', [60, 80, 90], 40, 120, true),
+	                                height: '300',
 	                                width: width, className: 'mini top-right' })
 	                        )
 	                    )
@@ -875,7 +889,7 @@
 	            if (this.isNormal()) {
 	                return "您的血氧值正常，请继续保持";
 	            } else {
-	                return "您的血氧值偏低，请注意";
+	                return "您的血氧值偏低。" + window._advice["血氧低"];
 	            }
 	        }
 	    }, {
@@ -1345,7 +1359,7 @@
 	    }], [{
 	        key: "defaultProps",
 	        value: {
-	            text: "正在加载数据..."
+	            text: "数据加载中..."
 	        },
 	        enumerable: true
 	    }]);

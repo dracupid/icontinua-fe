@@ -9,7 +9,7 @@ class O2 extends React.Component {
         if (this.isNormal()) {
             return "您的血氧值正常，请继续保持"
         } else {
-            return "您的血氧值偏低，请注意"
+            return "您的血氧值偏低。" + window._advice["血氧低"]
         }
     }
 

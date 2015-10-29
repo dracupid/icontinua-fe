@@ -5,6 +5,7 @@ let { Router, Route, Link } = ReactRouter,
 window._reportData = {};
 window._reportListData = null;
 window._chineseReportData = {};
+window._advice = null;
 
 React.render((
     <Router >

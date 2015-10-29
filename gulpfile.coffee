@@ -100,11 +100,12 @@ gulp.task 'html', ->
     .pipe gulp.dest cfg.dist + 'html'
 
 gulp.task 'copy', ->
-    gulp.src cfg.src + 'img/*'
-    .pipe gulp.dest cfg.dist + 'img'
+    gulp.src [cfg.src + 'img/**', cfg.src + 'data/**'], base: cfg.src
+    .pipe gulp.dest cfg.dist
 
     gulp.src cfg.src + 'lib/*.js'
     .pipe gulp.dest cfg.dist + 'js/lib'
+
 
 gulp.task 'default', ['jsx', 'css', 'lib', 'html', 'copy']
 
