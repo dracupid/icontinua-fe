@@ -2,7 +2,7 @@ let Tips = require("../Components/Tips.jsx");
 
 class O2 extends React.Component {
     isNormal() {
-        return this.props.OO >= 90
+        return this.props.OO >= 96
     }
 
     getTips() {

@@ -58,11 +58,25 @@
 	window._chineseReportData = {};
 	window._advice = null;
 
+	(function () {
+	    var cacheImg = function cacheImg(url) {
+	        var img = new Image();
+	        img.src = url;
+	    };
+	    cacheImg("/img/loading.gif");
+	    cacheImg("/img/record.png");
+	    cacheImg("/img/trade.png");
+	    cacheImg("/img/trade-a.png");
+	    cacheImg("/img/body.png");
+	    cacheImg("/img/wave.png");
+	})();
+
 	React.render(React.createElement(
 	    Router,
 	    null,
 	    React.createElement(Route, { path: '/', component: reports }),
 	    React.createElement(Route, { path: '/:openId', component: reports }),
+	    React.createElement(Route, { path: '/share/:reportId', component: report }),
 	    React.createElement(Route, { path: '/:openId/:reportId', component: report })
 	), document.body);
 
@@ -134,7 +148,6 @@
 	                    window._advice = res;
 	                });
 	            }
-	            console.log(promise);
 	            promise.then(function () {
 	                var reportId = _this.props.params.reportId;
 	                if (!_.isEmpty(window._reportData[reportId])) {
@@ -307,6 +320,8 @@
 	var _require = __webpack_require__(7);
 
 	var baseGaugeOpt = _require.baseGaugeOpt;
+	var _ANTD = ANTD;
+	var Modal = _ANTD.Modal;
 
 	var KVMap = (function (_React$Component) {
 	    _inherits(KVMap, _React$Component);
@@ -318,17 +333,36 @@
 	    }
 
 	    _createClass(KVMap, [{
+	        key: 'info',
+	        value: function info(title, content) {
+	            Modal.info({
+	                title: title,
+	                content: content,
+	                width: '90%'
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var items = [],
 	                obj = this.props.obj;
 	            for (var key in obj) {
 	                if (obj[key]) {
-	                    items.push(React.createElement(
-	                        'div',
-	                        { className: 'key', key: key },
-	                        key
-	                    ));
+	                    if (window._advice[key]) {
+	                        items.push(React.createElement(
+	                            'div',
+	                            { className: 'key', key: key,
+	                                onClick: this.info.bind(this, key, window._advice[key]),
+	                                style: { textDecoration: 'underline' } },
+	                            key
+	                        ));
+	                    } else {
+	                        items.push(React.createElement(
+	                            'div',
+	                            { className: 'key', key: key },
+	                            key
+	                        ));
+	                    }
 	                    items.push(React.createElement(
 	                        'div',
 	                        { className: 'value', key: obj[key] },
@@ -881,7 +915,7 @@
 	    _createClass(O2, [{
 	        key: "isNormal",
 	        value: function isNormal() {
-	            return this.props.OO >= 90;
+	            return this.props.OO >= 96;
 	        }
 	    }, {
 	        key: "getTips",
@@ -1217,7 +1251,7 @@
 	                    var data = filter(this.state.data);
 	                    return React.createElement(
 	                        "div",
-	                        null,
+	                        { style: { marginBottom: '20px' } },
 	                        React.createElement(Scores, data.scores),
 	                        React.createElement(ReportBlock, _extends({ title: "脏腑" }, data.zangfu)),
 	                        React.createElement(ReportBlock, _extends({ title: "脊椎" }, data.jizhui))
@@ -1402,10 +1436,11 @@
 	                { className: "banner" },
 	                (function () {
 	                    if (_this.props.backUrl) {
-	                        return React.createElement("i", { className: "anticon anticon-left left-icon",
-	                            onClick: function () {
-	                                location.href = _this.props.backUrl;
-	                            } });
+	                        return React.createElement(
+	                            "a",
+	                            { href: _this.props.backUrl, style: { color: 'inherit' } },
+	                            React.createElement("i", { className: "anticon anticon-left left-icon" })
+	                        );
 	                    }
 	                })(),
 	                React.createElement(

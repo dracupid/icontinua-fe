@@ -37,7 +37,6 @@ class Report extends React.Component {
                     window._advice = res
                 })
         }
-        console.log(promise)
         promise.then(() => {
             let reportId = this.props.params.reportId;
             if (!_.isEmpty(window._reportData[reportId])) {

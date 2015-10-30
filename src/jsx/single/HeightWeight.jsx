@@ -1,18 +1,37 @@
 let Echarts = require('../Components/Echarts.jsx'),
     Tips = require('../Components/Tips.jsx'),
-    {baseGaugeOpt} = require('../option.coffee');
+    {baseGaugeOpt} = require('../option.coffee'),
+    {Modal} = ANTD;
 
 class KVMap extends React.Component {
     static defaultProps = {
         obj: {}
     };
 
+    info(title, content) {
+        Modal.info({
+            title,
+            content,
+            width: '90%'
+        });
+    }
+
     render() {
         let items = [],
             obj = this.props.obj;
         for (let key in obj) {
             if (obj[key]) {
-                items.push(<div className='key' key={key}>{key}</div>);
+                if (window._advice[key]) {
+                    items.push(
+                        <div className='key' key={key}
+                             onClick={this.info.bind(this, key, window._advice[key])}
+                             style={{textDecoration: 'underline'}}>
+                            {key}
+                        </div>
+                    );
+                } else {
+                    items.push(<div className='key' key={key}>{key}</div>);
+                }
                 items.push(<div className='value' key={obj[key]}>{obj[key]}</div>);
             }
         }

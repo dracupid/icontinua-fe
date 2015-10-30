@@ -140,7 +140,7 @@ class Chinese extends React.Component {
             } else {
                 let data = filter(this.state.data);
                 return (
-                    <div>
+                    <div style={{marginBottom: '20px'}}>
                         <Scores {...data.scores}/>
                         <ReportBlock title="脏腑" {...data.zangfu}/>
                         <ReportBlock title="脊椎" {...data.jizhui}/>

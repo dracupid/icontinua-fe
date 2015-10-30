@@ -9,10 +9,11 @@ class Banner extends React.Component {
             <div className="banner">
                 {(() => {
                     if (this.props.backUrl) {
-                        return (<i className="anticon anticon-left left-icon"
-                                   onClick={() => { location.href = this.props.backUrl}}></i>)
-                    }
-                })()}
+                        return <a href={this.props.backUrl} style={{color: 'inherit'}}>
+                            <i className="anticon anticon-left left-icon"/>
+                        </a>
+                        }
+                    })()}
                 <h2>{this.props.title}</h2>
             </div>
         )
