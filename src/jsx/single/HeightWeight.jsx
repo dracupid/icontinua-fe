@@ -8,7 +8,7 @@ class KVMap extends React.Component {
         obj: {}
     };
 
-    info(title, content) {
+    static info(title, content) {
         Modal.info({
             title,
             content,
@@ -24,7 +24,7 @@ class KVMap extends React.Component {
                 if (window._advice[key]) {
                     items.push(
                         <div className='key' key={key}
-                             onClick={this.info.bind(this, key, window._advice[key])}
+                             onClick={KVMap.info.bind(this, key, window._advice[key])}
                              style={{textDecoration: 'underline'}}>
                             {key}
                         </div>

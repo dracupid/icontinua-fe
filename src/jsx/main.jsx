@@ -21,7 +21,7 @@ window._advice = null;
 })();
 
 React.render((
-    <Router >
+    <Router>
         <Route path="/" component={reports}/>
         <Route path="/:openId" component={reports}/>
         <Route path="/share/:reportId" component={report}/>

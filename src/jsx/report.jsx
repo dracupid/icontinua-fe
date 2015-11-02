@@ -36,6 +36,10 @@ class Report extends React.Component {
                 .then((res) => {
                     window._advice = res
                 })
+                .fail((e) => {
+                    console.error(e);
+                    this.fetchFailedHandler();
+                });
         }
         promise.then(() => {
             let reportId = this.props.params.reportId;

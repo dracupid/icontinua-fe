@@ -26,13 +26,16 @@ gulp.task 'jsx', (cb) ->
             loaders: [
                 {
                     test: /\.jsx?$/, loader: 'babel?stage=0'
+#                    query: {
+#                        presets: ['stage-0', 'es2015', 'react']
+#                    }
                 }, {
                     test: /\.coffee$/, loader: 'coffee-loader'
                 }
             ]
-#        plugins: [
-#            new webpack.optimize.UglifyJsPlugin()
-#        ]
+        plugins: [
+            new webpack.optimize.UglifyJsPlugin()
+        ]
         externals:
             jquery: 'window.$'
             react: 'window.React'
