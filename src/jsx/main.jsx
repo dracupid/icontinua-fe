@@ -1,6 +1,7 @@
 let { Router, Route, Link } = ReactRouter,
     report = require('./report.jsx'),
     reports = require('./reports.jsx');
+require('./wechat.coffee');
 
 window._reportData = {};
 window._reportListData = null;
@@ -19,6 +20,7 @@ window._advice = null;
     cacheImg("/img/body.png");
     cacheImg("/img/wave.png");
 })();
+
 
 React.render((
     <Router>

@@ -6,7 +6,8 @@ let {Tabs, message, Alert} = ANTD,
     Loading = require('./Components/Loading.jsx'),
     Banner = require('./Components/Banner.jsx'),
     Icon = require('./Components/Icon.jsx'),
-    Echarts = require('./Components/Echarts.jsx');
+    Echarts = require('./Components/Echarts.jsx'),
+    wechat = require('./wechat.coffee');
 let TabPane = Tabs.TabPane;
 let {baseGaugeOpt} = require("./option.coffee");
 
@@ -136,6 +137,7 @@ class Report extends React.Component {
     }
 
     render() {
+        wechat.setReport(this.props.params.reportId);
         let {openId} = this.props.params;
         return (
             <div id="report" className="top-tab-wrapper">
