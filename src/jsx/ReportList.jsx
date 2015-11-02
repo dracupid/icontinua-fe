@@ -24,23 +24,29 @@ class ReportList extends React.Component {
                     type="info"/>
             )
         } else {
+            let index = 0;
             timeline = (
-                <Timeline>
+                <ul className="timeline-wrapper">
                     {_.map(data, ((item) => {
+                        index += 1;
                         return (
-                            <div onClick={this.clickItem.bind(this, item.id)}>
-                                <Timeline.Item color="green" key={item.timestamp}>
-                                    {item.location || "未知"}
-                                    <div className="arrow1"/>
-                                    <p className="timestamp">
-                                        {ReportList.formatTime(item.timestamp)}
-                                    </p>
-                                    <div className="arrow2"/>
-                                </Timeline.Item>
+                        <li className="timeline-item" onClick={this.clickItem.bind(this, item.id)} key={item.timestamp}>
+                            <p className="timestamp">
+                                {ReportList.formatTime(item.timestamp)}
+                                <span className="arrow2"/>
+                            </p>
+                            <div className="timeline-item-middle">
+                                <div className="timeline-item-tail"/>
+                                <div className="timeline-item-id">{index}</div>
                             </div>
-                        );
-                    }))}
-                </Timeline>
+                            <div className="timeline-item-content">
+                                <span className="arrow1"/>
+                                {item.location || "未知"}
+                            </div>
+                        </li>
+                            );
+                        }))}
+                </ul>
             );
         }
         return (

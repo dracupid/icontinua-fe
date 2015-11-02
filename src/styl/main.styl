@@ -12,7 +12,7 @@ body
     -webkit-font-smoothing: antialiased;
     background-color #f2f2f2
 
-middle(h){
+middle(h) {
     height h
     line-height h
 }
@@ -86,8 +86,6 @@ $bannerHeight = 45px
         a
             color $green !important
 
-
-
 // 顶部tab样式
 .top-tab-wrapper
     .ant-tabs-nav
@@ -119,61 +117,67 @@ $bannerHeight = 45px
 
 #report-list
     #list-timeline
-        padding 25px 20px 40px
-        ul
-            padding-left 32%
+        padding-top 20px
+        padding-left 5px
+        margin-bottom 30px
+        .timeline-wrapper
+            padding-left 0
             list-style-type none
-            counter-reset sectioncounter
-            li:before
-                content: counter(sectioncounter);
-                counter-increment: sectioncounter;
-                z-index: 9;
-                color: white;
-                absolute top -2px left 3.5px
-        .ant-timeline-item-head
-            size: 14px
-            border-radius 7px
-        .ant-timeline-item
-            height 80px
-        .ant-timeline-item-tail
-            border-left-color #bebebe
-            display block !important
-        .ant-timeline-item-content
+        .timeline-item
+            display block
+            position relative
+            color #fff
             font-size 12px
             font-weight bold
-            top 13px
-            width 90%
-            line-height 25px
-            min-height 25px
-            padding 0 0 0 10px
-            margin-left 25px
-            border-radius 3px
-            background-color $green_dark
-            color #fff
-            .timestamp
-                absolute top -22px left -132px
+            height 80px
+            margin auto
+            width 100%
+            .timeline-item-middle
+                absolute top 10px left 33%
+                size 14px 100%
+                .timeline-item-id
+                    border-radius 50%
+                    size 14px
+                    line-height 14px
+                    background-color $green_dark
+                    text-align center
+                    font-weight normal
+                .timeline-item-tail
+                    absolute top 0 left 6px
+                    height 100%
+                    border-left: 2px solid #bebebe;
+                    z-index -1
+            .timeline-item-content
+                absolute top 25px left 40%
+                width 55%
+                line-height 25px
+                min-height 25px
+                padding 0 0 0 10px
                 border-radius 3px
                 background-color $green_dark
-                size: 97px 32px
-                text-align: center;
-                padding: 3px;
-                line-height: 13px;
+                .arrow1
+                    size 0
+                    border-top 5px solid transparent
+                    border-right 10px solid $green_dark
+                    border-bottom 5px solid transparent
+                    absolute top 7px left -9px
+            .timestamp
+                absolute top 0 right 70%
+                border-radius 3px
+                background-color $green_dark
+                size 97px 32px
+                text-align center
+                padding 3px
+                line-height 13px
                 transform scale(0.9)
-            .arrow2
-                size 0
-                border-top 5px solid transparent
-                border-left 10px solid $green_dark
-                border-bottom 5px solid transparent
-                absolute top -11px left -40px
-        .ant-timeline-item-head-green
-            background-color $green_dark
-            border none
-        .arrow1
-            size 0
-            border-top 5px solid transparent
-            border-right 10px solid $green_dark
-            border-bottom 5px solid transparent
-            absolute top 6px left -10px
+                color white
+                .arrow2
+                    size 0
+                    border-top 5px solid transparent
+                    border-left 10px solid $green_dark
+                    border-bottom 5px solid transparent
+                    absolute top 11px right -9px
+
 
     .item-num
         absolute top 10px right 0
@@ -358,9 +362,17 @@ $bannerHeight = 45px
 
 .ant-confirm .ant-confirm-body .ant-confirm-content
     margin 10px 0 0
+
 .info-tag
     font-size 10px
     vertical-align super
 
 .ant-tabs-content
     padding-bottom 20px
+
+.anticon-info-circle
+    color $green !important
+
+.ant-btn-primary
+    background-color $green
+    border-color $green
