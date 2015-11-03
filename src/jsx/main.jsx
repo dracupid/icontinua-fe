@@ -29,4 +29,4 @@ React.render((
         <Route path="/share/:reportId" component={report}/>
         <Route path="/:openId/:reportId" component={report}/>
     </Router>
-), document.body);
+), document.getElementById('main'));

@@ -8,4 +8,4 @@ React.render((
         <Route path="/" component={UserList} />
         <Route path="/:openId" component={Report}/>
     </Router>
-), document.body);
+), document.getElementById('main'));
