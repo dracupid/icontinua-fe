@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'production'
 gulp = require 'gulp'
 path = require 'path'
 
@@ -67,6 +68,9 @@ gulp.task 'lib_css', ->
     .pipe rename 'antd.min.css'
     .pipe gulp.dest cfg.dist + 'css'
 
+gulp.task 'lib_js', ->
+    gulp.src 'node_modules/react-router/umd/ReactRouter.min.js'
+    .pipe gulp.dest cfg.dist + 'js/lib'
 
 gulp.task 'lib_antd', (cb) ->
     webpack = require 'webpack'
@@ -91,7 +95,7 @@ gulp.task 'lib_antd', (cb) ->
         console.log stats.toString colors: yes, chunks: no
         cb()
 
-gulp.task 'lib', ['lib_css', 'lib_antd']
+gulp.task 'lib', ['lib_css', 'lib_antd', 'lib_js']
 
 gulp.task 'html', ->
     jade = require 'gulp-jade'
