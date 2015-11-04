@@ -11,4 +11,5 @@ class Tips extends React.Component {
         )
     }
 }
-module.exports = Tips;
+
+export default Tips;

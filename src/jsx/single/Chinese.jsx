@@ -1,6 +1,7 @@
-let {filter, getStarLevel, getLevelText} = require("./chinese.coffee"),
-    Loading = require('../Components/Loading.jsx'),
-    {message, Alert} = ANTD;
+import {filter, getStarLevel, getLevelText} from "./chinese.coffee"
+import Loading from '../Components/Loading.jsx'
+
+let {message, Alert} = ANTD;
 
 class ReportBlock extends React.Component {
     render() {
@@ -154,4 +155,4 @@ class Chinese extends React.Component {
     }
 }
 
-module.exports = Chinese;
+export default Chinese

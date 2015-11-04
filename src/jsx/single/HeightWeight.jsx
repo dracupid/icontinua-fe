@@ -1,7 +1,7 @@
-let Echarts = require('../Components/Echarts.jsx'),
-    Tips = require('../Components/Tips.jsx'),
-    {baseGaugeOpt} = require('../option.coffee'),
-    {Modal} = ANTD;
+import Echarts from '../Components/Echarts.jsx'
+import Tips from '../Components/Tips.jsx'
+import {baseGaugeOpt} from '../option.coffee'
+let {Modal} = ANTD;
 
 class KVMap extends React.Component {
     static defaultProps = {
@@ -119,4 +119,4 @@ class HeightWeight extends React.Component {
     }
 }
 
-module.exports = HeightWeight;
+export default HeightWeight

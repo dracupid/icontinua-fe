@@ -1,7 +1,8 @@
-let { Router, Route, Link } = ReactRouter,
-    report = require('./report.jsx'),
-    reports = require('./reports.jsx');
-require('./wechat.coffee');
+import report from './report.jsx'
+import reports from './reports.jsx'
+import "./wechat.coffee"
+
+let { Router, Route, Link } = ReactRouter;
 
 window._reportData = {};
 window._reportListData = null;

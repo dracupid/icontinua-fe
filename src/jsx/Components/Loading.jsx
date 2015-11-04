@@ -14,4 +14,4 @@ class Loading extends React.Component {
     }
 }
 
-module.exports = Loading;
+export default Loading;

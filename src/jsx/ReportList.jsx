@@ -1,5 +1,5 @@
-let {Timeline, Alert, message} = ANTD,
-    Loading = require('./Components/Loading.jsx');
+import Loading from './Components/Loading.jsx'
+let {Timeline, Alert, message} = ANTD;
 
 class ReportList extends React.Component {
     clickItem = (reportId) => {
@@ -57,4 +57,4 @@ class ReportList extends React.Component {
     }
 }
 
-module.exports = ReportList;
+export default ReportList;

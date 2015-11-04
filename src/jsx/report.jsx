@@ -1,15 +1,17 @@
+import HeightWeight from './single/HeightWeight.jsx'
+import Blood from "./single/Blood.jsx"
+import O2 from "./single/O2.jsx"
+import Chinese from "./single/Chinese.jsx"
+import Loading from './Components/Loading.jsx'
+import Banner from './Components/Banner.jsx'
+import Icon from './Components/Icon.jsx'
+import Echarts from './Components/Echarts.jsx'
+import wechat from './wechat.coffee'
+
+import {baseGaugeOpt} from "./option.coffee"
+
 let {Tabs, message, Alert} = ANTD,
-    HeightWeight = require('./single/HeightWeight.jsx'),
-    Blood = require("./single/Blood.jsx"),
-    O2 = require("./single/O2.jsx"),
-    Chinese = require("./single/Chinese.jsx"),
-    Loading = require('./Components/Loading.jsx'),
-    Banner = require('./Components/Banner.jsx'),
-    Icon = require('./Components/Icon.jsx'),
-    Echarts = require('./Components/Echarts.jsx'),
-    wechat = require('./wechat.coffee');
-let TabPane = Tabs.TabPane;
-let {baseGaugeOpt} = require("./option.coffee");
+    TabPane = Tabs.TabPane;
 
 class Report extends React.Component {
     state = {
@@ -156,4 +158,5 @@ class Report extends React.Component {
         )
     }
 }
-module.exports = Report;
+
+export default Report;

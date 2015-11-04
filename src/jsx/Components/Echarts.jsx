@@ -1,5 +1,6 @@
-document.body.appendChild(document.createElement('script')).src = "/js/lib/echarts.source.min.js"
-let Loading = require('./Loading.jsx');
+document.body.appendChild(document.createElement('script')).src = "/js/lib/echarts.source.min.js";
+
+import Loading from './Loading.jsx'
 
 class Echarts extends React.Component {
     static propTypes = {
@@ -41,4 +42,5 @@ class Echarts extends React.Component {
 
     }
 }
-module.exports = Echarts;
+
+export default Echarts

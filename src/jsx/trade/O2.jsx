@@ -1,7 +1,7 @@
-let Echarts = require('../Components/Echarts.jsx'),
-    Tips = require('../Components/Tips.jsx'),
-    util = require('../util.coffee'),
-    {baseLineOpt} = require('../option.coffee');
+import Echarts from '../Components/Echarts.jsx'
+import Tips from '../Components/Tips.jsx'
+import util from '../util.coffee'
+import {baseLineOpt} from '../option.coffee'
 
 class O2 extends React.Component {
     formattedData() {
@@ -63,4 +63,4 @@ class O2 extends React.Component {
     }
 }
 
-module.exports = O2;
+export default O2;

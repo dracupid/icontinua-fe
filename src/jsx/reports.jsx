@@ -1,8 +1,8 @@
+import Banner from './Components/Banner.jsx'
+import ReportList from './ReportList.jsx'
+import ReportTrade from './ReportTrade.jsx'
+import Icon from './Components/Icon.jsx'
 let {Tabs} = ANTD,
-    Banner = require('./Components/Banner.jsx'),
-    ReportList = require('./ReportList.jsx'),
-    ReportTrade = require('./ReportTrade.jsx'),
-    Icon = require('./Components/Icon.jsx'),
     TabPane = Tabs.TabPane;
 
 class Reports extends React.Component {
@@ -87,4 +87,4 @@ class Reports extends React.Component {
         );
     }
 }
-module.exports = Reports;
+export default Reports;

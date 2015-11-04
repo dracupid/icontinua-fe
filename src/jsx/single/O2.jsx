@@ -1,4 +1,4 @@
-let Tips = require("../Components/Tips.jsx");
+import Tips from '../Components/Tips.jsx'
 
 class O2 extends React.Component {
     render() {
@@ -19,4 +19,4 @@ class O2 extends React.Component {
     }
 }
 
-module.exports = O2;
+export default O2

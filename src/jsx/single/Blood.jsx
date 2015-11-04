@@ -1,7 +1,7 @@
-let Echarts = require('../Components/Echarts.jsx'),
-    Tips = require('../Components/Tips.jsx'),
-    util = require('../util.coffee'),
-    {baseGaugeOpt} = require('../option.coffee');
+import Echarts from '../Components/Echarts.jsx'
+import Tips from '../Components/Tips.jsx'
+import util from '../util.coffee'
+import {baseGaugeOpt} from '../option.coffee'
 
 class Blood extends React.Component {
     _getOpt(val, text, unit, lines, _min, _max) {
@@ -70,4 +70,4 @@ class Blood extends React.Component {
     }
 }
 
-module.exports = Blood;
+export default Blood

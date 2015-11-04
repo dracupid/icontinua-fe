@@ -1,9 +1,9 @@
 class Icon extends React.Component {
     render() {
         return (
-            <img className="anticon tab-icon" src={this.props.src} {...this.props} ></img>
+            <img className="anticon tab-icon" src={this.props.src} {...this.props} />
         )
     }
 }
 
-module.exports = Icon;
+export default Icon

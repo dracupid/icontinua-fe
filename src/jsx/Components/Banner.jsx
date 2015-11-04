@@ -19,4 +19,4 @@ class Banner extends React.Component {
         )
     }
 }
-module.exports = Banner;
+export default Banner

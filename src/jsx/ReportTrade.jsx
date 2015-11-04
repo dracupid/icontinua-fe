@@ -1,12 +1,13 @@
+import HeightWeight from './trade/HeightWeight.jsx'
+import Blood from "./trade/Blood.jsx"
+import O2 from "./trade/O2.jsx"
+import Chinese from "./trade/Chinese.jsx"
+import Loading from './Components/Loading.jsx'
+import Icon from './Components/Icon.jsx'
+import Echarts from './Components/Echarts.jsx'
+
 let {Tabs, message, Alert} = ANTD,
-    Loading = require('./Components/Loading.jsx'),
-    Echarts = require('./Components/Echarts.jsx'),
-    HeightWeight = require("./trade/HeightWeight.jsx"),
-    Blood = require("./trade/Blood.jsx"),
-    O2 = require("./trade/O2.jsx"),
-    Chinese = require("./trade/Chinese.jsx"),
-    Icon = require('./Components/Icon.jsx');
-let TabPane = Tabs.TabPane;
+    TabPane = Tabs.TabPane;
 
 class ReportTrade extends React.Component {
     getHeightWeight() {
@@ -75,4 +76,4 @@ class ReportTrade extends React.Component {
     }
 }
 
-module.exports = ReportTrade;
+export default ReportTrade;
