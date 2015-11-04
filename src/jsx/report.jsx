@@ -26,6 +26,7 @@ class Report extends React.Component {
     }
 
     static formatTime(t) {
+        if (!t) return '体检报告';
         let time = new Date(t);
         return `${time.getFullYear()}年${time.getMonth() + 1}月${time.getDate()}日`
     }
@@ -52,7 +53,7 @@ class Report extends React.Component {
                 });
                 return;
             }
-            $.getJSON("/api/report?reportId=" + reportId)
+            $.getJSON("/api/report?diagnose=true&reportId=" + reportId)
                 .then((res) => {
                     console.log(res);
                     if (res.status === 200) {
@@ -92,10 +93,13 @@ class Report extends React.Component {
     }
 
     getBlood() {
-        let {sbp, dbp, heartRate} = this.state.report;
+        let {sbp, dbp, heartRate, result} = this.state.report;
         if (this.state.loaded) {
             if (sbp && dbp) {
-                return <Blood high={~~sbp} low={~~dbp} beat={~~heartRate}/>
+                return <Blood high={~~sbp} low={~~dbp} beat={~~heartRate}
+                              resultHigh={result.sbp}
+                              resultLow={result.dbp}
+                              resultMain={result.bp}/>
             } else {
                 return <Alert
                     message="没有您的血压数据"
@@ -107,10 +111,10 @@ class Report extends React.Component {
     }
 
     getO2() {
-        let {spo2h} = this.state.report;
+        let {spo2h, result} = this.state.report;
         if (this.state.loaded) {
             if (spo2h) {
-                return <O2 OO={~~spo2h}/>
+                return <O2 value={~~spo2h} result={result.spo2h}/>
             } else {
                 return <Alert
                     message="没有您的血氧数据"

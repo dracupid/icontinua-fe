@@ -45,37 +45,15 @@ class KVMap extends React.Component {
     }
 }
 
-let BMIPoints = [18.5, 25, 28],
-    BMIText = ['偏瘦', '正常', '偏胖', '肥胖'];
-
 class HeightWeight extends React.Component {
     static propTypes = {
         height: React.PropTypes.any.isRequired,
         weight: React.PropTypes.any.isRequired
     };
 
-    getBMI() {
-        let {weight, height} = this.props;
-        return (weight / (height * height / 10000)).toFixed(1);
-    }
-
-    getBMIText() {
-        let BMI = this.getBMI();
-        if (BMI < BMIPoints[0]) {
-            return BMIText[0];
-        }
-
-        for (let i = BMIPoints.length - 1; i >= 0; i--) {
-            if (BMI >= BMIPoints[i]) {
-                return BMIText[i + 1];
-            }
-        }
-        return BMIText[0];
-    }
-
     getWeightOpt() {
-        let {weight, height} = this.props,
-            weightPoints = BMIPoints.map((point) => {
+        let {weight, height, result} = this.props,
+            weightPoints = result.BMI.bounds.map((point) => {
                 return point * height * height / 10000
             });
         let min = _.round(Math.min(weightPoints[0] - 10, weight - 10), -1),
@@ -105,7 +83,6 @@ class HeightWeight extends React.Component {
                     },
                     data: [{
                         value: weight
-                        //name: this.getBMIText()
                     }],
                     min: min,
                     max: max
@@ -114,21 +91,8 @@ class HeightWeight extends React.Component {
         }, baseGaugeOpt);
     }
 
-    getTips() {
-        let tips = [
-                window._advice["BMI低"],
-                "请继续保持",
-                window._advice["BMI高"],
-                window._advice["BMI高"]
-            ],
-            text = this.getBMIText(),
-            index = BMIText.indexOf(text);
-
-        return `您的体重${text}。${tips[index]}!`
-    }
-
     render() {
-        let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera} = this.props;
+        let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, result} = this.props;
         bodyFat = bodyFat && (bodyFat + ' %');
         bodyMuscle = bodyMuscle && (bodyMuscle + ' %');
         bodyKcal = bodyKcal && (bodyKcal + ' Kcal');
@@ -145,11 +109,11 @@ class HeightWeight extends React.Component {
 
                     <div className="line"></div>
                     <div className="text">{this.props.height}CM</div>
-                    <KVMap obj={{BMI: this.getBMI(), 体脂: bodyFat, 肌肉量: bodyMuscle,
+                    <KVMap obj={{BMI: result.BMI.value.toFixed(1), 体脂: bodyFat, 肌肉量: bodyMuscle,
                     基础代谢率: bodyKcal, 含水量: bodyWater, 内脏脂肪量: bodyViscera}}/>
                 </div>
                 <Echarts option={this.getWeightOpt()} height="300" width="100%"/>
-                <Tips text={this.getTips()} fix={true}/>
+                <Tips text={result.BMI.advice} fix={true}/>
             </div>
         )
     }

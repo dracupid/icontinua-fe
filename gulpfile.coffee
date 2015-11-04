@@ -12,7 +12,7 @@ cssminConfig =
     aggressiveMerging: false
 
 autoPrefixConfig =
-    browsers: ['android > 2', 'ios >= 5'] # , 'and_ff > 30', 'and_chr > 10'
+    browsers: ['android > 2', 'ios >= 6'] # , 'and_ff > 30', 'and_chr > 10'
     cascade: true
 
 gulp.task 'jsx', (cb) ->

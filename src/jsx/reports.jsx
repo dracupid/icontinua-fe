@@ -33,7 +33,7 @@ class Reports extends React.Component {
             });
             return;
         }
-        let url = "/api/history?openId=" + this.props.params.openId;
+        let url = "/api/history?diagnose=true&openId=" + this.props.params.openId;
         $.getJSON(url).then((res) => {
             console.log(res);
             if (res.status === 200) {

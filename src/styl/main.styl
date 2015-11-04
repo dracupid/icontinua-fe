@@ -3,6 +3,7 @@
 $green = #80cbc4
 $green_dark = #2dacb9
 $pad_both = 10px
+$red = #DF5353
 body
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent; /* For some Androids */
@@ -301,13 +302,16 @@ $bannerHeight = 45px
 
 .spo2h-report
     padding 0 10px
+    color $green
+    &.alert
+        color $red
     .flex-box
         align-items center
         justify-content center
         margin 50px 0
     p
         flex 1
-        color $green
+        color inherit
         font-weight bold
         font-size 28px
         text-align center

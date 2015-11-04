@@ -38,61 +38,33 @@ class Blood extends React.Component {
         }, baseGaugeOpt);
     }
 
-    getTips() {
-        let {low, high} = this.props,
-            lowText = "",
-            highText = "",
-            error = false;
-        if (low >= 60 && low <= 80) {
-            lowText = "正常";
-        } else if (low < 60) {
-            error = 'l';
-            lowText = "偏低";
-        } else {
-            error = 'h';
-            lowText = "偏高";
-        }
-
-        if (high >= 90 && high <= 120) {
-            highText = "正常"
-        } else if (high < 90) {
-            error = 'l';
-            highText = "偏低"
-        } else {
-            error = 'h';
-            highText = "偏高"
-        }
-
-        return `您的舒张压${lowText}，收缩压${highText}，` +
-            `${error ? "请多加注意。" + (error === 'h' ? window._advice["高血压"] : window._advice["低血压"]) : "请继续保持。"}`
-
-    }
-
     render() {
-        let width = "200%";
+        let {resultLow, resultHigh, resultMain} = this.props,
+            width = "200%", height = '300';
         return (
             <div className="blood-tab">
                 <div className="flex-box">
                     <div className="echart-mini-wrapper">
                         <div style={{position: 'relative'}}>
                             <Echarts
-                                option={this._getOpt(this.props.high, "收缩压", 'mmHg', [90, 120, 140], 60, 160, true)}
-                                height="300"
+                                option={this._getOpt(this.props.high, "收缩压", 'mmHg', resultHigh.bounds, 60, 160, true)}
+                                height={height}
                                 width={width} className="mini top-left"/>
                         </div>
                     </div>
 
                     <div className="echart-mini-wrapper">
                         <div style={{position: 'relative'}}>
-                            <Echarts option={this._getOpt(this.props.low, "舒张压", 'mmHg', [60, 80, 90], 40, 120, true)}
-                                     height="300"
-                                     width={width} className="mini top-right"/>
+                            <Echarts
+                                option={this._getOpt(this.props.low, "舒张压", 'mmHg', resultLow.bounds, 40, 120, true)}
+                                height={height}
+                                width={width} className="mini top-right"/>
                         </div>
                     </div>
                 </div>
                 <Echarts option={this._getOpt(this.props.beat, "心率", 'bpm', [60, 100, 120], 40, 140)} height="300"
                          className="bottom-echart"/>
-                <Tips text={this.getTips()} fix={true}/>
+                <Tips text={resultMain.advice} fix={true}/>
             </div>
         )
     }
