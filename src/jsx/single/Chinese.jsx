@@ -1,7 +1,7 @@
 import {filter, getStarLevel, getLevelText} from "./chinese.coffee"
 import Loading from '../Components/Loading.jsx'
 
-let {message, Alert} = ANTD;
+let {Affix, Alert} = ANTD;
 
 class ReportBlock extends React.Component {
     render() {
@@ -97,6 +97,10 @@ class Scores extends React.Component {
 }
 
 class Chinese extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
     state = {
         data: null,
         loaded: false
@@ -142,7 +146,9 @@ class Chinese extends React.Component {
                 let data = filter(this.state.data);
                 return (
                     <div style={{marginBottom: '20px'}}>
-                        <Scores {...data.scores}/>
+                        <Affix>
+                            <Scores {...data.scores}/>
+                        </Affix>
                         <ReportBlock title="脏腑" {...data.zangfu}/>
                         <ReportBlock title="脊椎" {...data.jizhui}/>
                     </div>

@@ -17,7 +17,7 @@ class Echarts extends React.Component {
     renderChart() {
         if (window.echarts) {
             let option = this.props.option,
-                myChart = window.echarts.init(React.findDOMNode(this.refs.echarts), 'macarons');
+                myChart = window.echarts.init(ReactDOM.findDOMNode(this.refs.echarts), 'macarons');
             myChart.setOption(option, true);
         }
     }

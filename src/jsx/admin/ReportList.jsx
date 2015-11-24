@@ -1,4 +1,4 @@
-let {Table, Popconfirm, Modal} = ANTD;
+let {Table, Popconfirm} = ANTD;
 
 class ReportList extends React.Component {
     state = {

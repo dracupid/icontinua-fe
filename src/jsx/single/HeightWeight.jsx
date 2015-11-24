@@ -1,7 +1,7 @@
 import Echarts from '../Components/Echarts.jsx'
 import Tips from '../Components/Tips.jsx'
 import {baseGaugeOpt} from '../option.coffee'
-let {Modal} = ANTD;
+let {info} = ANTD.Modal;
 
 class KVMap extends React.Component {
     static defaultProps = {
@@ -9,7 +9,7 @@ class KVMap extends React.Component {
     };
 
     static info(title, content) {
-        Modal.info({
+        info({
             title,
             content,
             width: '90%'

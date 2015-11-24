@@ -10,10 +10,14 @@ import wechat from './wechat.coffee'
 
 import {baseGaugeOpt} from "./option.coffee"
 
-let {Tabs, message, Alert} = ANTD,
+let {Tabs, Affix, Alert} = ANTD,
     TabPane = Tabs.TabPane;
 
 class Report extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
     state = {
         title: "体检报告",
         report: {},

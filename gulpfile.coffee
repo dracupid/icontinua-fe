@@ -40,6 +40,7 @@ gulp.task 'jsx', (cb) ->
         externals:
             jquery: 'window.$'
             react: 'window.React'
+            'react-dom': 'window.ReactDOM'
     , (err, stats) ->
         if err then throw err
         console.log stats.toString colors: yes, chunks: no
@@ -90,6 +91,7 @@ gulp.task 'lib_antd', (cb) ->
         externals:
             jquery: 'window.$'
             react: 'window.React'
+            'react-dom': 'window.ReactDOM'
     , (err, stats) ->
         if err then throw err
         console.log stats.toString colors: yes, chunks: no

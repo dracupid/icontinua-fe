@@ -14,7 +14,6 @@ window._advice = null;
         let img = new Image();
         img.src = url;
     };
-    cacheImg("/img/loading.gif");
     cacheImg("/img/record.png");
     cacheImg("/img/trade.png");
     cacheImg("/img/trade-a.png");
@@ -23,7 +22,7 @@ window._advice = null;
 })();
 
 
-React.render((
+ReactDOM.render((
     <Router>
         <Route path="/" component={reports}/>
         <Route path="/:openId" component={reports}/>

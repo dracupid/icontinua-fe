@@ -3,7 +3,7 @@ let{ Router, Route, Link } = ReactRouter,
     UserList = require("./admin/UserList.jsx");
 
 
-React.render((
+ReactDOM.render((
     <Router >
         <Route path="/" component={UserList} />
         <Route path="/:openId" component={Report}/>

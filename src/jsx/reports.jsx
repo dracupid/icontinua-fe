@@ -6,6 +6,10 @@ let {Tabs} = ANTD,
     TabPane = Tabs.TabPane;
 
 class Reports extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
     state = {
         tabTitles: ["体检记录", "变化趋势"],
         currentTab: 0,
@@ -54,8 +58,9 @@ class Reports extends React.Component {
         });
     }
 
-    changeHandler = (e) => {
+    changeHandler(e) {
         this.setState({currentTab: e});
+        return true
     };
 
     render() {
@@ -64,7 +69,7 @@ class Reports extends React.Component {
                 <Banner title={this.state.tabTitles[this.state.currentTab]}/>
 
                 <div className="bottom-tab-wrapper">
-                    <Tabs onChange={this.changeHandler}>
+                    <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''}>
                         <TabPane tab={
                             <div>
                                 <i className="bg-record"/>

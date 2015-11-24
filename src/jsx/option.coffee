@@ -30,13 +30,12 @@ module.exports.baseLineOpt =
     dataZoom:
         show: true
         realtime: true
-        start: 0
+        start: 20
         end: 100
+        showDetail: false
     toolbox:
         show: false
     calculable: true
     grid:
         x: 40
         x2: 30
-
-
