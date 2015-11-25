@@ -1,5 +1,5 @@
 import Loading from './Components/Loading.jsx'
-let {QueueAnim, Alert} = ANTD;
+let {Alert} = ANTD;
 
 class ReportList extends React.Component {
     clickItem(reportId) {
@@ -27,28 +27,26 @@ class ReportList extends React.Component {
             let index = 0;
             timeline = (
                 <ul className="timeline-wrapper">
-                    <QueueAnim delay={200}>
-                        {_.map(data, ((item) => {
-                            index += 1;
-                            return (
-                            <li className="timeline-item" onClick={this.clickItem.bind(this, item.id)}
-                                key={item.timestamp}>
-                                <p className="timestamp">
-                                    {ReportList.formatTime(item.timestamp)}
-                                    <span className="arrow2"/>
-                                </p>
-                                <div className="timeline-item-middle">
-                                    <div className="timeline-item-tail"/>
-                                    <div className="timeline-item-id">{index}</div>
-                                </div>
-                                <div className="timeline-item-content">
-                                    <span className="arrow1"/>
-                                    {item.location || "未知"}
-                                </div>
-                            </li>
-                                );
-                            }))}
-                    </QueueAnim>
+                    {_.map(data, ((item) => {
+                        index += 1;
+                        return (
+                        <li className="timeline-item" onClick={this.clickItem.bind(this, item.id)}
+                            key={item.timestamp}>
+                            <p className="timestamp">
+                                {ReportList.formatTime(item.timestamp)}
+                                <span className="arrow2"/>
+                            </p>
+                            <div className="timeline-item-middle">
+                                <div className="timeline-item-tail"/>
+                                <div className="timeline-item-id">{index}</div>
+                            </div>
+                            <div className="timeline-item-content">
+                                <span className="arrow1"/>
+                                {item.location || "未知"}
+                            </div>
+                        </li>
+                            );
+                        }))}
                 </ul>
             );
         }
