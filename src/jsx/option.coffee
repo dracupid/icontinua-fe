@@ -28,11 +28,9 @@ module.exports.baseLineOpt =
     tooltip:
         trigger: "axis"
     dataZoom:
-        show: true
-        realtime: true
-        start: 20
+        type: 'inside'
+        start: 50
         end: 100
-        showDetail: false
     toolbox:
         show: false
     calculable: true

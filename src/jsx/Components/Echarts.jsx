@@ -1,4 +1,4 @@
-document.body.appendChild(document.createElement('script')).src = "/js/lib/echarts.source.min.js";
+document.body.appendChild(document.createElement('script')).src = "/js/lib/echarts.min.js";
 
 import Loading from './Loading.jsx'
 
