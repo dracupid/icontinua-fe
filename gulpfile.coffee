@@ -27,9 +27,9 @@ gulp.task 'jsx', (cb) ->
             loaders: [
                 {
                     test: /\.jsx?$/, loader: 'babel'
-                   query: {
-                       presets: ['es2015', 'react', 'stage-0']
-                   }
+#                   query: {
+#                       presets: ['es2015', 'react', 'stage-0']
+#                   }
                 }, {
                     test: /\.coffee$/, loader: 'coffee-loader'
                 }

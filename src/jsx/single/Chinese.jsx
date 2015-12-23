@@ -1,164 +1,185 @@
-import {filter, getStarLevel, getLevelText} from "./chinese.coffee"
+import { filter, getStarLevel, getLevelText } from './chinese.coffee'
 import Loading from '../Components/Loading.jsx'
 
-let {Affix, Alert} = ANTD;
+let {Affix, Alert} = ANTD
 
 class ReportBlock extends React.Component {
-    render() {
-        let {title, level, items} = this.props,
-            starNum = getStarLevel(level),
-            notices = _.pluck(items, "name").join("，"),
-            itemDOMs = items.map((item, i) => {
-                return (
-                    <div key={i}>
-                        <h3 className="name">{item.name}</h3>
-                        { (() => {
-                            if (item.intro) {
-                                return (
-                                <div className="block">
-                                    <h3 className="title">【简介】</h3>
+  static propTypes = {
+    title: React.PropTypes.string.isRequired,
+    level: React.PropTypes.number.isRequired,
+    items: React.PropTypes.object.isRequired
+  }
 
-                                    <div className="content">{item.intro}</div>
-                                </div>
-                                    )
-                                }
-                            })()}
-                        { (() => {
-                            if (item.advice) {
-                                return (
-                                <div className="block">
-                                    <h3 className="title">【调理建议】</h3>
-                                    <ol className="content">{item.advice.map((e, i) => {
-                                        return <li key={i}> {e} </li>
-                                        })}
-                                    </ol>
-                                </div>
-                                    )
-                                }
-                            })()}
-                        { (() => {
-                            if (item.eating) {
-                                return (
-                                <div className="block">
-                                    <h3 className="title">【饮食建议】</h3>
-
-                                    <div className="content">{item.eating}</div>
-                                </div>
-                                    )
-                                }
-                            })()}
-                    </div>
-                )
-            });
-
-        let onStars = new Array(starNum),
-            offStars = new Array(5 - starNum),
-            onStar = <div className="star on"/>,
-            offStar = <div className="star off"/>;
-
-        _.fill(onStars, onStar);
-        _.fill(offStars, offStar);
-
-        return (
-            <div className="chinese-report-block">
-                <div className="report-header">
-                    <h1 className="title">{"您的" + title}</h1>
-
-                    <div className="status">{title + "状况: " + getLevelText(level)}</div>
-                    <div className="stars">
-                        <h4>{`您的${title}为: `}</h4>{onStars.concat(offStars)}
-                    </div>
-                    <h4>建议您注意:</h4>{notices}
-                </div>
-                <div className="report-body">{itemDOMs}</div>
+  render () {
+    let {title, level, items} = this.props
+    let starNum = getStarLevel(level)
+    let notices = _.pluck(items, 'name').join('，')
+    let itemDOMs = items.map((item, i) => {
+      let intro = (() => {
+        if (item.intro) {
+          return (
+            <div className='block'>
+              <h3 className='title'>【简介】</h3>
+              <div className='content'>{item.intro}</div>
             </div>
-        )
-    }
+          )
+        }
+      })()
+
+      let advise = (() => {
+        if (item.advice) {
+          return (
+            <div className='block'>
+              <h3 className='title'>【调理建议】</h3>
+              <ol className='content'>{item.advice.map((e, i) => {
+                return <li key={i}> {e} </li>
+              })}
+              </ol>
+            </div>
+          )
+        }
+      })()
+
+      let adviceFood = (() => {
+        if (item.eating) {
+          return (
+            <div className='block'>
+              <h3 className='title'>【饮食建议】</h3>
+
+              <div className='content'>{item.eating}</div>
+            </div>
+          )
+        }
+      })()
+
+      return (
+        <div key={i}>
+          <h3 className='name'>{item.name}</h3>
+          {intro}
+          {advise}
+          {adviceFood}
+        </div>
+      )
+    })
+
+    let onStars = new Array(starNum)
+    let offStars = new Array(5 - starNum)
+    let onStar = <div className='star on'/>
+    let offStar = <div className='star off'/>
+
+    _.fill(onStars, onStar)
+    _.fill(offStars, offStar)
+
+    return (
+      <div className='chinese-report-block'>
+        <div className='report-header'>
+          <h1 className='title'>{'您的' + title}</h1>
+
+          <div className='status'>{title + '状况: ' + getLevelText(level)}</div>
+          <div className='stars'>
+            <h4>{`您的${title}为: `}</h4>{onStars.concat(offStars)}
+          </div>
+          <h4>建议您注意:</h4>{notices}
+        </div>
+        <div className='report-body'>{itemDOMs}</div>
+      </div>
+    )
+  }
 }
 
 class Scores extends React.Component {
-    render() {
-        let {zangfu, jizhui, xiaohua, miniao} = this.props,
-            data = {
-                脏腑: zangfu,
-                脊椎: jizhui,
-                消化: xiaohua,
-                泌尿: miniao
-            },
-            res = _.map(data, (v, k) => {
-                return <div className="kv" key={k}>
-                    <span className="key">{k}</span>
-                    <span className="value">{parseFloat(v).toFixed(1)}</span>
-                </div>
-            });
+  static propTypes = {
+    zangfu: React.PropTypes.number.isRequired,
+    jizhui: React.PropTypes.number.isRequired,
+    xiaohua: React.PropTypes.number.isRequired,
+    miniao: React.PropTypes.number.isRequired
+  }
 
-        return <div className="c-kv-map">{res}</div>;
+  render () {
+    let {zangfu, jizhui, xiaohua, miniao} = this.props
+    let data = {
+      脏腑: zangfu,
+      脊椎: jizhui,
+      消化: xiaohua,
+      泌尿: miniao
     }
+    let res = _.map(data, (v, k) => {
+      return <div className='kv' key={k}>
+        <span className='key'>{k}</span>
+        <span className='value'>{parseFloat(v).toFixed(1)}</span>
+      </div>
+    })
+
+    return <div className='c-kv-map'>{res}</div>
+  }
 }
 
 class Chinese extends React.Component {
-    constructor(props) {
-        super(props)
+  static propTypes = {
+    id: React.PropTypes.string.isRequired
+  }
+
+  constructor (props) {
+    super(props)
+  }
+
+  state = {
+    data: null,
+    loaded: false
+  }
+
+  fetchFailedHandler () {
+    this.setState({
+      data: null,
+      loaded: true
+    })
+  }
+
+  componentDidMount () {
+    let id = this.props.id
+    if (!_.isEmpty(window._chineseReportData[id])) {
+      this.setState({
+        data: window._chineseReportData[id],
+        loaded: true
+      })
+      return
     }
+    let url = '/api/falthReport?id=' + id
+    $.getJSON(url).then((res) => {
+      console.log(res)
+      window._chineseReportData[id] = res
+      this.setState({
+        data: res,
+        loaded: true
+      })
+    }).fail((e) => {
+      console.error(e)
+      this.fetchFailedHandler()
+    })
+  }
 
-    state = {
-        data: null,
-        loaded: false
-    };
-
-    fetchFailedHandler() {
-        this.setState({
-            data: null,
-            loaded: true
-        });
+  render () {
+    if (this.state.loaded) {
+      if (this.state.data === null) {
+        return <Alert
+          message='没有您的生物电数据'
+          type='info'/>
+      } else {
+        let data = filter(this.state.data)
+        return (
+          <div style={{marginBottom: '20px'}}>
+            <Affix>
+              <Scores {...data.scores}/>
+            </Affix>
+            <ReportBlock title='脏腑' {...data.zangfu}/>
+            <ReportBlock title='脊椎' {...data.jizhui}/>
+          </div>
+        )
+      }
+    } else {
+      return <Loading />
     }
-
-    componentDidMount() {
-        let id = this.props.id;
-        if (!_.isEmpty(window._chineseReportData[id])) {
-            this.setState({
-                data: window._chineseReportData[id],
-                loaded: true
-            });
-            return;
-        }
-        let url = "/api/falthReport?id=" + id;
-        $.getJSON(url).then((res) => {
-            console.log(res);
-            window._chineseReportData[id] = res;
-            this.setState({
-                data: res,
-                loaded: true
-            });
-        }).fail((e) => {
-            console.error(e);
-            this.fetchFailedHandler();
-        });
-    }
-
-    render() {
-        if (this.state.loaded) {
-            if (this.state.data === null) {
-                return <Alert
-                    message="没有您的生物电数据"
-                    type="info"/>
-            } else {
-                let data = filter(this.state.data);
-                return (
-                    <div style={{marginBottom: '20px'}}>
-                        <Affix>
-                            <Scores {...data.scores}/>
-                        </Affix>
-                        <ReportBlock title="脏腑" {...data.zangfu}/>
-                        <ReportBlock title="脊椎" {...data.jizhui}/>
-                    </div>
-                )
-            }
-        } else {
-            return <Loading />
-        }
-
-    }
+  }
 }
 
 export default Chinese
