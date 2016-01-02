@@ -20,7 +20,7 @@ class Chinese extends React.Component {
       v = data[k]
       if (v.cacheScore) {
         res.xs.unshift(util.formatTime(v.timestamp))
-        res.score.unshift(~~v.cacheScore)
+        res.score.unshift(parseFloat(v.cacheScore))
       }
     }
     return res
@@ -62,7 +62,6 @@ class Chinese extends React.Component {
     return (
       <div>
         <Echarts option={this.getOption()} height='300' width='100%'/>
-        <Tips text='您的生物电正常，请继续保持!'/>
       </div>
     )
   }

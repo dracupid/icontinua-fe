@@ -18,7 +18,7 @@ class ReportTrade extends React.Component {
       if (_(data).pluck('height').compact().run().length > 0) {
         return <HeightWeight data={data}/>
       } else {
-        return <Alert message='没有您的身体数据' type='info'/>
+        return <Alert message='没有您的身体数据' type='info' showIcon/>
       }
     } else {
       return <Loading />
@@ -31,7 +31,7 @@ class ReportTrade extends React.Component {
       if (_(data).pluck('sbp').compact().run().length > 0) {
         return <Blood data={data}/>
       } else {
-        return <Alert message='没有您的血压数据' type='info'/>
+        return <Alert message='没有您的血压数据' type='info' showIcon/>
       }
     } else {
       return <Loading />
@@ -44,7 +44,7 @@ class ReportTrade extends React.Component {
       if (_(data).pluck('spo2h').compact().run().length > 0) {
         return <O2 data={data}/>
       } else {
-        return <Alert message='没有您的血氧数据' type='info'/>
+        return <Alert message='没有您的血氧数据' type='info' showIcon/>
       }
     } else {
       return <Loading />
@@ -57,7 +57,7 @@ class ReportTrade extends React.Component {
       if (_(data).pluck('cacheScore').compact().run().length > 0) {
         return <Chinese data={data}/>
       } else {
-        return <Alert message='没有您的生物电数据' type='info'/>
+        return <Alert message='没有您的生物电数据' type='info' showIcon/>
       }
     } else {
       return <Loading />

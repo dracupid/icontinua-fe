@@ -72,7 +72,7 @@ class Reports extends React.Component {
         <Banner title={this.state.tabTitles[this.state.currentTab]}/>
 
         <div className='bottom-tab-wrapper'>
-          <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''}>
+          <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''} >
             <TabPane tab={
     <div>
                                 <i className='bg-record'/>

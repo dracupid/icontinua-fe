@@ -1,3 +1,5 @@
+MAX_ITEM_NUM = 5
+
 module.exports.getStarLevel = (level) ->
     Math.ceil(level / 2);
 
@@ -10,10 +12,9 @@ module.exports.getLevelText = (level) ->
 formatZangfu = (items, balance) ->
     itemArr = []
     children = items.children
-    limit = Math.min children.length, 5
+    limit = Math.min children.length, MAX_ITEM_NUM
 
-    for i in [0...limit]
-        curItem = children[i]
+    for curItem in children
         if curItem.value > balance
             itemArr.push
                 name: curItem.name
@@ -21,16 +22,15 @@ formatZangfu = (items, balance) ->
                 advice: if curItem.rptStr_2 then curItem.rptStr_2.split(/\n/) else ""
                 eating: if curItem.rptStr_3 then curItem.rptStr_3.split(/\n/) else ""
 
-    items: itemArr
+    items: itemArr[0...limit]
     level: items.level
 
 formatJizhui = (items, balance) ->
     itemArr = []
     children = items.children
-    limit = Math.min children.length, 5
+    limit = Math.min children.length, MAX_ITEM_NUM
 
-    for i in [0...limit]
-        curItem = children[i]
+    for curItem in children
         if curItem.value > balance
             itemArr.push
                 name: curItem.name
@@ -38,7 +38,7 @@ formatJizhui = (items, balance) ->
                 intro: if curItem.rptStr_1 then curItem.rptStr_1.split(/\n/) else ""
                 advice: if curItem.rptStr_2 then curItem.rptStr_2.split(/\n/) else ""
 
-    items: itemArr
+    items: itemArr[0...limit]
     level: items.level
 
 module.exports.filter = (r) ->

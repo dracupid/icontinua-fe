@@ -20,7 +20,7 @@ class O2 extends React.Component {
       v = data[k]
       if (v.spo2h) {
         res.xs.unshift(util.formatTime(v.timestamp))
-        res.O2.unshift(~~v.spo2h)
+        res.O2.unshift(parseFloat(v.spo2h))
       }
     }
     return res
@@ -62,7 +62,6 @@ class O2 extends React.Component {
     return (
       <div>
         <Echarts option={this.getOption()} height='300' width='100%'/>
-        <Tips text='您的血氧正常，请继续保持!'/>
       </div>
     )
   }

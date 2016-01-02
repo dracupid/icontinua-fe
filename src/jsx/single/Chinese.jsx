@@ -163,7 +163,7 @@ class Chinese extends React.Component {
       if (this.state.data === null) {
         return <Alert
           message='没有您的生物电数据'
-          type='info'/>
+          type='info' showIcon/>
       } else {
         let data = filter(this.state.data)
         return (

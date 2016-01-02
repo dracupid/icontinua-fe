@@ -21,8 +21,8 @@ class HeightWeight extends React.Component {
       v = data[k]
       if (v.height) {
         res.xs.unshift(util.formatTime(v.timestamp))
-        res.height.unshift(~~v.height)
-        res.weight.unshift(~~v.weight)
+        res.height.unshift(parseFloat(v.height))
+        res.weight.unshift(parseFloat(v.weight))
       }
     }
     return res
@@ -77,7 +77,6 @@ class HeightWeight extends React.Component {
     return (
       <div>
         <Echarts option={this.getOption()} height='300' width='100%'/>
-        <Tips text='您的体型正常，请继续保持!'/>
       </div>
     )
   }

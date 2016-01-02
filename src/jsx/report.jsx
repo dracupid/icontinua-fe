@@ -91,7 +91,7 @@ class Report extends React.Component {
       } else {
         return <Alert
           message='没有您的身体数据'
-          type='info'/>
+          type='info' showIcon/>
       }
     } else {
       return <Loading />
@@ -109,7 +109,7 @@ class Report extends React.Component {
       } else {
         return <Alert
           message='没有您的血压数据'
-          type='info'/>
+          type='info' showIcon/>
       }
     } else {
       return <Loading />
@@ -124,7 +124,7 @@ class Report extends React.Component {
       } else {
         return <Alert
           message='没有您的血氧数据'
-          type='info'/>
+          type='info' showIcon/>
       }
     } else {
       return <Loading />
@@ -139,7 +139,7 @@ class Report extends React.Component {
       } else {
         return <Alert
           message='没有您的中医数据'
-          type='info'/>
+          type='info' showIcon/>
       }
     } else {
       return <Loading />

@@ -83,7 +83,6 @@ class Blood extends React.Component {
     return (
       <div>
         <Echarts option={this.getOption()} height='300' width='100%'/>
-        <Tips text='您的血压正常，请继续保持!'/>
       </div>
     )
   }

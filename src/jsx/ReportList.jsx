@@ -26,7 +26,7 @@ class ReportList extends React.Component {
       timeline = (
         <Alert
           message='没有找到您的体检记录'
-          type='info'/>
+          type='info' showIcon/>
       )
     } else {
       let index = 0
