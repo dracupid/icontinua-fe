@@ -10,10 +10,10 @@
   "author": "dracupid <dracupid@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "antd": "0.11.1",
+    "antd": "0.11.2",
     "babel-core": "6.3.26",
     "babel-eslint": "^5.0.0-beta6",
-    "babel-loader": "6.2.0",
+    "babel-loader": "6.2.1",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
@@ -39,7 +39,7 @@
   "dependencies": {
     "history": "^1.17.0",
     "react-dom": "^0.14.5",
-    "react-router": "^2.0.0-rc4"
+    "react-router": "^1.0.3"
   },
   "standard": {
     "parser": "babel-eslint",

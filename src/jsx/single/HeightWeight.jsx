@@ -80,7 +80,7 @@ class HeightWeight extends React.Component {
       series: [
         {
           detail: {
-            formatter: '{value}KG'
+            formatter: '\n\n体重\n{value}KG'
           },
           axisLine: {
             lineStyle: {
@@ -119,7 +119,7 @@ class HeightWeight extends React.Component {
           <img src='/img/body.png'/>
 
           <div className='line'></div>
-          <div className='text'>{this.props.height}CM</div>
+          <div className='text'>身高<br/>{this.props.height}CM</div>
           <KVMap obj={{BMI: result.BMI.value.toFixed(1), 体脂: bodyFat, 肌肉量: bodyMuscle,
     基础代谢率: bodyKcal, 含水量: bodyWater, 内脏脂肪量: bodyViscera}}/>
         </div>
