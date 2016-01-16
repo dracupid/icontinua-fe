@@ -8,7 +8,7 @@ class ReportBlock extends React.Component {
     title: React.PropTypes.string.isRequired,
     level: React.PropTypes.number.isRequired,
     items: React.PropTypes.object.isRequired
-  }
+  };
 
   render () {
     let {title, level, items} = this.props
@@ -93,7 +93,7 @@ class Scores extends React.Component {
     jizhui: React.PropTypes.number.isRequired,
     xiaohua: React.PropTypes.number.isRequired,
     miniao: React.PropTypes.number.isRequired
-  }
+  };
 
   render () {
     let {zangfu, jizhui, xiaohua, miniao} = this.props
@@ -117,7 +117,7 @@ class Scores extends React.Component {
 class Chinese extends React.Component {
   static propTypes = {
     id: React.PropTypes.string.isRequired
-  }
+  };
 
   constructor (props) {
     super(props)
@@ -126,7 +126,7 @@ class Chinese extends React.Component {
   state = {
     data: null,
     loaded: false
-  }
+  };
 
   fetchFailedHandler () {
     this.setState({

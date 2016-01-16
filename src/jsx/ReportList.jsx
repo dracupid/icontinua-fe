@@ -5,7 +5,7 @@ class ReportList extends React.Component {
   static propTypes = {
     openId: React.PropTypes.string.isRequired,
     data: React.PropTypes.object
-  }
+  };
 
   clickItem (reportId) {
     window.location.href = `/reports#/${this.props.openId}/${reportId}`

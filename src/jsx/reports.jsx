@@ -7,7 +7,7 @@ let TabPane = Tabs.TabPane
 class Reports extends React.Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired
-  }
+  };
 
   constructor (props) {
     super(props)
@@ -17,7 +17,7 @@ class Reports extends React.Component {
     tabTitles: ['体检记录', '变化趋势'],
     currentTab: 0,
     data: null
-  }
+  };
 
   fetchFailedHandler () {
     this.setState({

@@ -6,11 +6,11 @@ let {info} = ANTD.Modal
 class KVMap extends React.Component {
   static defaultProps = {
     obj: {}
-  }
+  };
 
   static propTypes = {
     obj: React.PropTypes.object
-  }
+  };
 
   static info (title, content) {
     info({
@@ -60,7 +60,7 @@ class HeightWeight extends React.Component {
     bodyWater: React.PropTypes.any,
     bodyViscera: React.PropTypes.any,
     result: React.PropTypes.object
-  }
+  };
 
   getWeightOpt () {
     let {weight, height, result} = this.props

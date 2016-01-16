@@ -16,7 +16,7 @@ class UserList extends React.Component {
       getParams: function (pagination, filters, sorter) {
       }
     })
-  }
+  };
 
   getColumns () {
     let self = this
@@ -82,7 +82,7 @@ class UserList extends React.Component {
     onSelectAll (selected, selectedRows) {
       console.log(selected, selectedRows)
     }
-  }
+  };
 
   static expandedRowRender (record) {
     return <pre><code>{JSON.stringify(record, null, '  ')}</code></pre>

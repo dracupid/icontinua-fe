@@ -11,7 +11,7 @@ class Blood extends React.Component {
     high: React.PropTypes.number.isRequired,
     low: React.PropTypes.number.isRequired,
     beat: React.PropTypes.number.isRequired
-  }
+  };
 
   _getOpt (val, text, unit, lines, _min, _max) {
     let min = util.getMin([val], 10, _min)

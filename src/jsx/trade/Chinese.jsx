@@ -1,12 +1,12 @@
 import Echarts from '../Components/Echarts.jsx'
-import Tips from '../Components/Tips.jsx'
+// import Tips from '../Components/Tips.jsx'
 import util from '../util.coffee'
 import { baseLineOpt } from '../option.coffee'
 
 class Chinese extends React.Component {
   static propTypes = {
     data: React.PropTypes.array.isRequired
-  }
+  };
 
   formattedData () {
     let res = {

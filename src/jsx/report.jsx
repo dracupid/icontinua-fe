@@ -12,7 +12,7 @@ let TabPane = Tabs.TabPane
 class Report extends React.Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired
-  }
+  };
 
   constructor (props) {
     super(props)
@@ -22,7 +22,7 @@ class Report extends React.Component {
     title: '体检报告',
     report: {},
     loaded: false
-  }
+  };
 
   fetchFailedHandler () {
     this.setState({
