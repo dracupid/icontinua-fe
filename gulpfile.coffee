@@ -20,7 +20,7 @@ gulp.task 'jsx', (cb) ->
     webpack
         entry:
             main: cfg.src + "jsx/main.jsx"
-            admin: cfg.src + "jsx/admin.jsx"
+            # admin: cfg.src + "jsx/admin.jsx"
         output:
             filename: cfg.dist + 'js/[name].js'
         module:
