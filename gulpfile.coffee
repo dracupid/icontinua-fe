@@ -69,9 +69,9 @@ gulp.task 'lib_css', ->
     .pipe rename 'antd.min.css'
     .pipe gulp.dest cfg.dist + 'css'
 
-gulp.task 'lib_js', ->
-    gulp.src 'node_modules/react-router/umd/ReactRouter.min.js'
-    .pipe gulp.dest cfg.dist + 'js/lib'
+gulp.task 'lib_js', -> {}
+#     gulp.src 'node_modules/react-router/umd/ReactRouter.min.js'
+#     .pipe gulp.dest cfg.dist + 'js/lib'
 
 gulp.task 'lib_antd', (cb) ->
     webpack = require 'webpack'
