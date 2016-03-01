@@ -120,7 +120,7 @@ class HeightWeight extends React.Component {
 
           <div className='line'></div>
           <div className='text'>身高<br/>{this.props.height}CM</div>
-          <KVMap obj={{BMI: result.BMI.value.toFixed(1), 体脂: bodyFat, 肌肉量: bodyMuscle,
+          <KVMap obj={{BMI: result.BMI.value.toFixed(1), 体脂率: bodyFat, 肌肉量: bodyMuscle,
     基础代谢率: bodyKcal, 含水量: bodyWater, 内脏脂肪量: bodyViscera}}/>
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%'/>
