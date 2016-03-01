@@ -33,8 +33,10 @@ class Report extends React.Component {
 
   static formatTime (t) {
     if (!t) return '体检报告'
-    let time = new Date(t)
-    return `${time.getFullYear()}年${time.getMonth() + 1}月${time.getDate()}日`
+
+    let date = new Date(parseInt(t, 10))
+    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 \n` +
+      `${_.padLeft(date.getHours(), 2, 0)}:${_.padLeft(date.getMinutes(), 2, 0)}`
   }
 
   componentDidMount () {

@@ -11,16 +11,24 @@ class Chinese extends React.Component {
   formattedData () {
     let res = {
       xs: [],
-      score: []
+      score: [],
+      jizhui: [],
+      zangfu: [],
+      xiaohua: [],
+      miniao: []
     }
     let v
     let data = this.props.data
 
     for (let k in data) {
       v = data[k]
-      if (v.cacheScore) {
+      if (v.cacheId) {
         res.xs.unshift(util.formatTime(v.timestamp))
         res.score.unshift(parseFloat(v.cacheScore))
+        res.jizhui.unshift(parseFloat(v.jizhui))
+        res.zangfu.unshift(parseFloat(v.zangfu))
+        res.xiaohua.unshift(parseFloat(v.xiaohua))
+        res.miniao.unshift(parseFloat(v.miniao))
       }
     }
     return res
@@ -30,7 +38,7 @@ class Chinese extends React.Component {
     let data = this.formattedData()
     let option = {
       legend: {
-        data: ['生物电']
+        data: ['脊椎', '脏腑', '消化', '泌尿']
       },
       xAxis: [
         {
@@ -49,9 +57,24 @@ class Chinese extends React.Component {
       ],
       series: [
         {
-          name: '生物电',
+          name: '脊椎',
           type: 'line',
-          data: data.score
+          data: data.jizhui
+        },
+        {
+          name: '脏腑',
+          type: 'line',
+          data: data.zangfu
+        },
+        {
+          name: '消化',
+          type: 'line',
+          data: data.xiaohua
+        },
+        {
+          name: '泌尿',
+          type: 'line',
+          data: data.miniao
         }
       ]
     }
