@@ -7,7 +7,7 @@ gulp jsx html css
 root='/var/www'
 dest=${root}/static
 
-host=root@114.215.176.66
+host=wcm@172.18.9.7
 
 mkdir -p upload
 
