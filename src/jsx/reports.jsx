@@ -35,27 +35,19 @@ class Reports extends React.Component {
 
   componentDidMount () {
     if (window._reportListData !== null) {
-      this.setState({
-        data: window._reportListData
-      })
+      this.setState(window._reportListData)
       return
     }
     let url = '/api/history?diagnose=true&openId=' + this.props.params.openId
     $.getJSON(url).then((res) => {
       console.log(res)
       if (res.status === 200) {
-        let data = this.formatData(res.data.data)
-        window._reportListData = data
-        _.forEach(data, (e) => {
+        res.data.data = this.formatData(res.data.data)
+        window._reportListData = res.data
+        _.forEach(res.data, (e) => {
           window._reportData[e.id] = e
         })
-        this.setState({
-          data: data,
-          avatar: res.data.avatar,
-          age: res.data.age,
-          sex: res.data.sex,
-          nickname: res.data.nickname
-        })
+        this.setState(res.data)
       } else {
         this.fetchFailedHandler()
       }
