@@ -1,14 +1,18 @@
 got = require 'got'
 
-appId = 'wx1071ef65b25ab039'
-appSecret = '235aaa4ed220afbf47af54939bebcff3'
+# appId = 'wx1071ef65b25ab039'
+# appSecret = '235aaa4ed220afbf47af54939bebcff3'
+
+appId = 'wxfe9b0e3e8fbb136b'
+appSecret = '7b3eb61c4a25a4bcd4b4f3766fd34ed3'
+host = 'http://icontinua.cn'
 
 menuStr =
     button: [
         {
             type: 'view',
             name: '我的体检报告',
-            url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent 'http://112.80.52.187/wechat/auth'}&response_type=code&scope=snsapi_base"
+            url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth'}&response_type=code&scope=snsapi_base"
         }
 #        {
 #            name: '产品中心',
