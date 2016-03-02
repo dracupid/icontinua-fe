@@ -2,7 +2,7 @@
 
 set -e
 
-gulp jsx html css
+npm run build
 
 root='/var/www'
 dest=${root}/static
