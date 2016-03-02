@@ -17,4 +17,4 @@ data健康云服务前端（静态资源）
 - coffeescript
 - ECMA 2015
 - echarts
-    + [build bundle](http://ecomfe.github.io/echarts-builder-web/build-echarts3.html?charts=line,gauge&components=grid,title,legend,tooltip,dataZoom&version=3&dev=true)
+    + [build bundle](http://echarts.baidu.com/builder/echarts.html?charts=line,gauge&components=grid,title,legend,tooltip,dataZoom&version=3)
