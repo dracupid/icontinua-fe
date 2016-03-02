@@ -10,9 +10,8 @@ data健康云服务前端（静态资源）
     + ant.design
     + react-router
 - webpack
-- npm/bower
+- npm
 - stylus
-    + nib
 - jade
 - coffeescript
 - ECMA 2015
