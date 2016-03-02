@@ -10,15 +10,15 @@ got = require 'got'
 appId = 'wx1071ef65b25ab039'
 appSecret = '235aaa4ed220afbf47af54939bebcff3'
 
-if not appId or not appSecret
-    throw new Error "appId or appSecret is required"
+# if not appId or not appSecret
+    # throw new Error "appId or appSecret is required"
 
 menuStr =
     button: [
         {
             type: 'view',
             name: '我的体检报告',
-            url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent 'http://112.80.52.187/wechat/auth'}&response_type=code&scope=snsapi_base" # 702ea5a.nat123.net
+            url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent 'http://112.80.52.187/wechat/auth'}&response_type=code&scope=snsapi_base"
         }
 #        {
 #            name: '产品中心',
