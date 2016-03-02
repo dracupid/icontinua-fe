@@ -71,20 +71,22 @@ class Reports extends React.Component {
   }
 
   render () {
-    return (
-      <div id='report-list'>
-        <Banner title={this.state.tabTitles[this.state.currentTab]} rightComponent={
-            <Popover
-              overlay={<div>
+    let popoverComp = null
+    if (this.state.avatar) {
+      popoverComp = <Popover
+        overlay={<div>
                 <span>{"性别: " + (this.state.sex == "1" ? "男" : "女")}</span><br/>
                 <span>{"年龄: " + this.state.age}</span>
                 </div>
               }
-              prefixCls="user-info-prop ant-popover"
-              title={this.state.nickname || '爱康体用户'} trigger="click" placement="bottomRight">
-                <div className="banner-right"><img src={this.state.avatar} alt=""/></div>
-            </Popover>
-        }/>
+        prefixCls="user-info-prop ant-popover"
+        title={this.state.nickname || '爱康体用户'} trigger="click" placement="bottomRight">
+        <div className="banner-right"><img src={this.state.avatar} alt=""/></div>
+      </Popover>
+    }
+    return (
+      <div id='report-list'>
+        <Banner title={this.state.tabTitles[this.state.currentTab]} rightComponent={popoverComp}/>
 
         <div className='bottom-tab-wrapper'>
           <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''}>
