@@ -44,13 +44,16 @@ class Reports extends React.Component {
     $.getJSON(url).then((res) => {
       console.log(res)
       if (res.status === 200) {
-        let data = this.formatData(res.data)
+        let data = this.formatData(res.data.data)
         window._reportListData = data
         _.forEach(data, (e) => {
           window._reportData[e.id] = e
         })
         this.setState({
-          data: data
+          data: data,
+          avatar: res.data.avatar,
+          age: res.data.age,
+          sex: res.data.sex
         })
       } else {
         this.fetchFailedHandler()
@@ -69,7 +72,9 @@ class Reports extends React.Component {
   render () {
     return (
       <div id='report-list'>
-        <Banner title={this.state.tabTitles[this.state.currentTab]}/>
+        <Banner title={this.state.tabTitles[this.state.currentTab]} rightComponent={
+          <div className="banner-right"><img src={this.state.avatar} alt=""/></div>
+        }/>
 
         <div className='bottom-tab-wrapper'>
           <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''} >

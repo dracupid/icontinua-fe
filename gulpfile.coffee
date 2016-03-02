@@ -26,8 +26,6 @@ gulp.task 'jsx', (cb) ->
             loaders: [
                 {
                     test: /\.jsx?$/, loader: 'babel'
-                }, {
-                    test: /\.coffee$/, loader: 'coffee-loader'
                 }
             ]
         plugins: [

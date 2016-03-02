@@ -1,7 +1,7 @@
 import Echarts from '../Components/Echarts.jsx'
 import Tips from '../Components/Tips.jsx'
-import util from '../util.coffee'
-import { baseGaugeOpt } from '../option.coffee'
+import util from '../util.jsx'
+import { baseGaugeOpt } from '../option.jsx'
 
 class Blood extends React.Component {
   static propTypes = {
@@ -72,8 +72,9 @@ class Blood extends React.Component {
             </div>
           </div>
         </div>
-        <Echarts option={this._getOpt(this.props.beat, '心率', 'bpm', [60, 100, 120], 40, 140)} height='300'
-                 className='bottom-echart'/>
+        <Echarts
+          option={this._getOpt(this.props.beat, '心率', 'bpm', [60, 100, 120], 40, 140)} height='300'
+          className='bottom-echart'/>
         <Tips text={resultMain.advice} fix/>
       </div>
     )

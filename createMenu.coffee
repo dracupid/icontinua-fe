@@ -1,17 +1,7 @@
-# fs = require 'fs'
-# path = require 'path'
 got = require 'got'
-
-# configFile = fs.readFileSync path.join(__dirname, './config/application.yaml'), encoding: 'utf-8'
-
-# [_, appId] = configFile.match /\s*appId:\s*(\w*)/
-# [_, appSecret] = configFile.match /\s*appSecret:\s*(\w*)/
 
 appId = 'wx1071ef65b25ab039'
 appSecret = '235aaa4ed220afbf47af54939bebcff3'
-
-# if not appId or not appSecret
-    # throw new Error "appId or appSecret is required"
 
 menuStr =
     button: [
@@ -41,7 +31,7 @@ menuStr =
     ]
 
 getToken = ->
-    url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=#{appId}&secret=#{appSecret}";
+    url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=#{appId}&secret=#{appSecret}"
 
     got(url).then (res) ->
         res = JSON.parse res.body

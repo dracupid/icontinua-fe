@@ -1,6 +1,6 @@
 import report from './report.jsx'
 import reports from './reports.jsx'
-import './wechat.coffee'
+import './wechat.jsx'
 
 let { Router, Route } = ReactRouter
 

@@ -4,7 +4,7 @@ import O2 from './single/O2.jsx'
 import Chinese from './single/Chinese.jsx'
 import Loading from './Components/Loading.jsx'
 import Banner from './Components/Banner.jsx'
-import wechat from './wechat.coffee'
+import wechat from './wechat.jsx'
 
 let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane

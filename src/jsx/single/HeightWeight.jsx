@@ -1,6 +1,6 @@
 import Echarts from '../Components/Echarts.jsx'
 import Tips from '../Components/Tips.jsx'
-import { baseGaugeOpt } from '../option.coffee'
+import { baseGaugeOpt } from '../option.jsx'
 let {info} = ANTD.Modal
 
 class KVMap extends React.Component {
@@ -27,9 +27,7 @@ class KVMap extends React.Component {
       if (obj[key]) {
         if (window._advice[key]) {
           items.push(
-            <div className='key' key={key}
-                 onClick={KVMap.info.bind(this, key, window._advice[key])}
-                 style={{textDecoration: 'underline'}}>
+            <div className='key' key={key} onClick={KVMap.info.bind(this, key, window._advice[key])} style={{textDecoration: 'underline'}}>
               {key}
             </div>
           )

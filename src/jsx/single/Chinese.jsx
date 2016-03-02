@@ -1,4 +1,4 @@
-import { filter, getStarLevel, getLevelText } from './chinese.coffee'
+import { filter, getStarLevel, getLevelText } from './chineseUtil.jsx'
 import Loading from '../Components/Loading.jsx'
 
 let {Affix, Alert} = ANTD
@@ -118,10 +118,6 @@ class Chinese extends React.Component {
   static propTypes = {
     id: React.PropTypes.string.isRequired
   };
-
-  constructor (props) {
-    super(props)
-  }
 
   state = {
     data: null,

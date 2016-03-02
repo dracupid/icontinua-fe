@@ -1,7 +1,7 @@
 import Echarts from '../Components/Echarts.jsx'
 // import Tips from '../Components/Tips.jsx'
-import util from '../util.coffee'
-import { baseLineOpt } from '../option.coffee'
+import util from '../util.jsx'
+import { baseLineOpt } from '../option.jsx'
 
 class Chinese extends React.Component {
   static propTypes = {
