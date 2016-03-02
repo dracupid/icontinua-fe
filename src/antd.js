@@ -7,5 +7,6 @@ window.ANTD = {
   Popconfirm: require('../node_modules/antd/lib//popconfirm'),
   message: require('../node_modules/antd/lib/message'),
   Alert: require('../node_modules/antd/lib/alert'),
-  Spin: require('../node_modules/antd/lib/spin')
+  Spin: require('../node_modules/antd/lib/spin'),
+  Popover: require('../node_modules/antd/lib/popover')
 };

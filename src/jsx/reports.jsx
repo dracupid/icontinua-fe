@@ -1,7 +1,7 @@
 import Banner from './Components/Banner.jsx'
 import ReportList from './ReportList.jsx'
 import ReportTrade from './ReportTrade.jsx'
-let {Tabs} = ANTD
+let {Tabs, Popover} = ANTD
 let TabPane = Tabs.TabPane
 
 class Reports extends React.Component {
@@ -53,7 +53,8 @@ class Reports extends React.Component {
           data: data,
           avatar: res.data.avatar,
           age: res.data.age,
-          sex: res.data.sex
+          sex: res.data.sex,
+          nickname: res.data.nickname
         })
       } else {
         this.fetchFailedHandler()
@@ -73,11 +74,20 @@ class Reports extends React.Component {
     return (
       <div id='report-list'>
         <Banner title={this.state.tabTitles[this.state.currentTab]} rightComponent={
-          <div className="banner-right"><img src={this.state.avatar} alt=""/></div>
+            <Popover
+              overlay={<div>
+                <span>{"性别: " + (this.state.sex == "1" ? "男" : "女")}</span><br/>
+                <span>{"年龄: " + this.state.age}</span>
+                </div>
+              }
+              prefixCls="user-info-prop ant-popover"
+              title={this.state.nickname || '爱康体用户'} trigger="click" placement="bottomRight">
+                <div className="banner-right"><img src={this.state.avatar} alt=""/></div>
+            </Popover>
         }/>
 
         <div className='bottom-tab-wrapper'>
-          <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''} >
+          <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''}>
             <TabPane tab={
     <div>
                                 <i className='bg-record'/>
