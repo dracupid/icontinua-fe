@@ -1,7 +1,7 @@
 MAX_ITEM_NUM = 5
 
 module.exports.getStarLevel = (level) ->
-    Math.ceil(level / 2);
+    Math.ceil(level / 2)
 
 module.exports.getLevelText = (level) ->
     if 8 < level <= 10 then "优秀"

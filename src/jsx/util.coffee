@@ -1,5 +1,5 @@
 module.exports =
-    getMin: (arr, offset = 5, limit = Infinity)->
+    getMin: (arr, offset = 5, limit = Infinity) ->
         _arr = _.map arr, (a) -> a - offset
         _arr.push limit
         minVal = _.round (_.min(_arr)), -1
@@ -14,4 +14,3 @@ module.exports =
     formatTime: (t) ->
         t = new Date t
         "#{t.getFullYear()}/#{t.getMonth() + 1}/#{t.getDate()}"
-
