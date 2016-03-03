@@ -40,7 +40,7 @@ class Reports extends React.Component {
       this.setState(window._reportListData)
       return
     }
-    let url = '/api/history?diagnose=true&openId=' + this.props.params.openId
+    let url = '/api/reports?diagnose=true&id=' + this.props.params.userId
     $.getJSON(url).then((res) => {
       console.log(res)
       if (res.status === 200) {
@@ -72,7 +72,7 @@ class Reports extends React.Component {
 
   handleOk () {
     this.setState({applyEditing: true});
-    $.getJSON(`/api/data/update-user?openId=${this.props.params.openId}&age=${this.state.age}&sex=${this.state.sex}`)
+    $.getJSON(`/api/user/update?id=${this.props.params.userId}&age=${this.state.age}&sex=${this.state.sex}`)
     .then((res) => {
       if (res.status === 200) {
         this.setState({applyEditing: false, editing: false});
@@ -129,7 +129,7 @@ class Reports extends React.Component {
                                 <p>{this.state.tabTitles[0]}</p>
                             </div>
     } key='0'>
-              <ReportList openId={this.props.params.openId} data={this.state.data}/>
+              <ReportList userId={this.props.params.userId} data={this.state.data}/>
             </TabPane>
             <TabPane tab={
     <div>
@@ -137,7 +137,7 @@ class Reports extends React.Component {
                                 <p>{this.state.tabTitles[1]}</p>
                             </div>
     } key='1'>
-              <ReportTrade openId={this.props.params.openId} data={this.state.data}/>
+              <ReportTrade userId={this.props.params.userId} data={this.state.data}/>
             </TabPane>
           </Tabs>
         </div>

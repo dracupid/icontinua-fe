@@ -5,7 +5,7 @@ const itemPerPage = 10;
 
 class ReportList extends React.Component {
   static propTypes = {
-    openId: React.PropTypes.string.isRequired,
+    userId: React.PropTypes.string.isRequired,
     data: React.PropTypes.object
   };
 
@@ -14,7 +14,7 @@ class ReportList extends React.Component {
   }
 
   clickItem (reportId) {
-    window.location.href = `/reports#/${this.props.openId}/${reportId}`
+    window.location.href = `/reports#/${this.props.userId}/${reportId}`
   }
 
   static formatTime (t) {

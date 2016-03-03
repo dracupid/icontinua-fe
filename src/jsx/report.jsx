@@ -149,10 +149,10 @@ class Report extends React.Component {
 
   render () {
     wechat.setReport(this.props.params.reportId)
-    let {openId} = this.props.params
+    let {userId} = this.props.params
     return (
       <div id='report' className='top-tab-wrapper'>
-        <Banner title={this.state.title} backUrl={openId ? '/reports#/' + openId : null}/>
+        <Banner title={this.state.title} backUrl={userId ? '/reports#/' + userId : null}/>
         <Tabs size='mini'>
           <TabPane tab='身体' key='1'>{this.getHeightWeight()}</TabPane>
           <TabPane tab='血压' key='2'>{this.getBlood()}</TabPane>

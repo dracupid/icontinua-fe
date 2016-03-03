@@ -24,8 +24,8 @@ window._advice = null
 ReactDOM.render((
   <Router>
     <Route path='/' component={reports}/>
-    <Route path='/:openId' component={reports}/>
+    <Route path='/:userId' component={reports}/>
     <Route path='/share/:reportId' component={report}/>
-    <Route path='/:openId/:reportId' component={report}/>
+    <Route path='/:userId/:reportId' component={report}/>
   </Router>
   ), document.getElementById('main'))
