@@ -9,7 +9,7 @@ let TabPane = Tabs.TabPane
 
 class ReportTrade extends React.Component {
   static propTypes = {
-    data: React.PropTypes.array
+    data: React.PropTypes.object
   };
 
   getHeightWeight () {
