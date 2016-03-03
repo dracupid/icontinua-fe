@@ -1,11 +1,17 @@
 import Loading from './Components/Loading.jsx'
-let {Alert} = ANTD
+let {Alert, Pagination} = ANTD
+
+const itemPerPage = 10;
 
 class ReportList extends React.Component {
   static propTypes = {
     openId: React.PropTypes.string.isRequired,
     data: React.PropTypes.object
   };
+
+  state = {
+    curPage: 0
+  }
 
   clickItem (reportId) {
     window.location.href = `/reports#/${this.props.openId}/${reportId}`
@@ -17,9 +23,14 @@ class ReportList extends React.Component {
       `${_.padLeft(date.getHours(), 2, 0)}:${_.padLeft(date.getMinutes(), 2, 0)}`
   }
 
+  onChangePage (pageNum) {
+    this.setState({curPage: pageNum - 1})
+  }
+
   render () {
     let timeline = []
     let {data} = this.props
+
     if (data === null) {
       timeline = <Loading text='正在加载你的体检记录...'/>
     } else if (Object.keys(data).length === 0) {
@@ -30,34 +41,43 @@ class ReportList extends React.Component {
       )
     } else {
       let index = 0
+      let _data = _.values(data)
+      let total = _data.length
+      let pageData = _data.slice(this.state.curPage * itemPerPage, (this.state.curPage + 1) * itemPerPage)
       timeline = (
-        <ul className='timeline-wrapper'>
-          {_.map(data, (item) => {
-            index += 1
-            return (
-            <li className='timeline-item' onClick={this.clickItem.bind(this, item.id)}
-                key={item.timestamp}>
-              <p className='timestamp'>
-                {ReportList.formatTime(item.timestamp)}
-                <span className='arrow2'/>
-              </p>
-              <div className='timeline-item-middle'>
-                <div className='timeline-item-tail'/>
-                <div className='timeline-item-id'>{index}</div>
-              </div>
-              <div className='timeline-item-content'>
-                <span className='arrow1'/>
-                {item.location || '未知'}
-              </div>
-            </li>
-              )
-          })}
-        </ul>
+        <div>
+          <ul className='timeline-wrapper'>
+            {_.map(pageData, (item) => {
+              index += 1
+              return (
+              <li className='timeline-item' onClick={this.clickItem.bind(this, item.id)}
+                  key={item.timestamp}>
+                <p className='timestamp'>
+                  {ReportList.formatTime(item.timestamp)}
+                  <span className='arrow2'/>
+                </p>
+                <div className='timeline-item-middle'>
+                  <div className='timeline-item-tail'/>
+                  <div className='timeline-item-id'>{index}</div>
+                </div>
+                <div className='timeline-item-content'>
+                  <span className='arrow1'/>
+                  {item.location || '未知'}
+                </div>
+              </li>
+                )
+              })}
+          </ul>
+          <Pagination size="small" defaultCurrent={1} total={total} pageSize={itemPerPage}
+                      onChange={this.onChangePage.bind(this)}/>
+
+        </div>
       )
     }
     return (
       <div id='list-timeline'>
         {timeline}
+
       </div>
     )
   }
