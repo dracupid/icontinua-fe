@@ -90,7 +90,8 @@ $bannerHeight = 45px
 .loading
     display block
     text-align center
-
+.ant-tabs-nav-container
+    height inherit
 // 底部tab覆盖样式
 .bottom-tab-wrapper > .ant-tabs > .ant-tabs-tabs-bar
     margin-bottom 0
@@ -98,8 +99,7 @@ $bannerHeight = 45px
         position fixed
         bottom 0
         z-index 9
-        width: 100%
-
+        width 100%
     .ant-tabs-tab
         background-color #fff
         .tab-icon
@@ -431,6 +431,7 @@ $bannerHeight = 45px
     display flex
     justify-content center
     margin 20px 0 0 -10px
+    z-index 9999
 .ant-pagination.mini .ant-pagination-item
     margin 0 4px
 .ant-pagination-item-active
