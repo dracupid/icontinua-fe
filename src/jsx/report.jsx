@@ -63,7 +63,6 @@ class Report extends React.Component {
       }
       $.getJSON('/api/report?diagnose=true&reportId=' + reportId)
         .then((res) => {
-          console.log(res)
           if (res.status === 200) {
             window._reportData[reportId] = {
               title: Report.formatTime(res.data.timestamp),
@@ -92,7 +91,7 @@ class Report extends React.Component {
         return <HeightWeight {...this.state.report}/>
       } else {
         return <Alert
-          message='没有您的身体数据'
+          message='你本次没有测量身体数据'
           type='info' showIcon/>
       }
     } else {
@@ -110,7 +109,7 @@ class Report extends React.Component {
                       resultMain={result.bp}/>
       } else {
         return <Alert
-          message='没有您的血压数据'
+          message='你本次没有测量血压'
           type='info' showIcon/>
       }
     } else {
@@ -125,7 +124,7 @@ class Report extends React.Component {
         return <O2 value={~~spo2h} result={result.spo2h}/>
       } else {
         return <Alert
-          message='没有您的血氧数据'
+          message='你本次没有测量血氧'
           type='info' showIcon/>
       }
     } else {
@@ -140,7 +139,7 @@ class Report extends React.Component {
         return <Chinese id={cacheId}/>
       } else {
         return <Alert
-          message='没有您的中医数据'
+          message='你本次没有测量生物电'
           type='info' showIcon/>
       }
     } else {

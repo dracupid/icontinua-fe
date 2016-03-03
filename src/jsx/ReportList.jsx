@@ -21,11 +21,11 @@ class ReportList extends React.Component {
     let timeline = []
     let {data} = this.props
     if (data === null) {
-      timeline = <Loading text='正在加载体检记录...'/>
+      timeline = <Loading text='正在加载你的体检记录...'/>
     } else if (Object.keys(data).length === 0) {
       timeline = (
         <Alert
-          message='没有找到您的体检记录'
+          message='你还没有体检过，体验一下爱康体吧！'
           type='info' showIcon/>
       )
     } else {
