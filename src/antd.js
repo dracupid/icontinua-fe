@@ -8,5 +8,10 @@ window.ANTD = {
   message: require('../node_modules/antd/lib/message'),
   Alert: require('../node_modules/antd/lib/alert'),
   Spin: require('../node_modules/antd/lib/spin'),
-  Popover: require('../node_modules/antd/lib/popover')
+  Popover: require('../node_modules/antd/lib/popover'),
+  Icon: require('../node_modules/antd/lib/icon'),
+  Button: require('../node_modules/antd/lib/button'),
+  Form: require('../node_modules/antd/lib/form'),
+  InputNumber: require('../node_modules/antd/lib/input-number'),
+  Radio: require('../node_modules/antd/lib/radio')
 };

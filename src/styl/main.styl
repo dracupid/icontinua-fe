@@ -38,18 +38,27 @@ $bannerHeight = 45px
         img
             width 100%
             border-radius 50%
-            border 2px $green_dark solid
+            //border 2px $green_dark solid
 
 .user-info-prop
     right 4px
     left inherit !important
     font-size 15px
 .user-info-prop .ant-popover-inner
-    min-width 100px
+    min-width 120px
     .ant-popover-title
         padding 0 10px
+        text-align center
     .ant-popover-content
         padding 6px 10px
+        position relative
+    .user-info-edit
+        font-size 20px
+        color $green_dark
+    .user-info-wrapper
+        display flex
+        align-items center
+        justify-content space-around
 
 // antd tab
 .ant-tabs-mini, .ant-tabs-tab
@@ -417,3 +426,5 @@ $bannerHeight = 45px
 
 .ant-spin-dot
     background-color $green !important
+
+
