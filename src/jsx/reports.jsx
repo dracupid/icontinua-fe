@@ -40,13 +40,13 @@ class Reports extends React.Component {
       this.setState(window._reportListData)
       return
     }
-    let url = '/api/reports?diagnose=true&id=' + this.props.params.userId
+    let url = '/api/reports?rank=true&diagnose=true&id=' + this.props.params.userId
     $.getJSON(url).then((res) => {
       console.log(res)
       if (res.status === 200) {
         res.data.data = this.formatData(res.data.data)
         window._reportListData = res.data
-        _.forEach(res.data, (e) => {
+        _.forEach(res.data.data, (e) => {
           window._reportData[e.id] = e
         })
         this.setState(res.data)

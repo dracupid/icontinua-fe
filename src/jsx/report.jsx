@@ -61,7 +61,7 @@ class Report extends React.Component {
         })
         return
       }
-      $.getJSON('/api/report?diagnose=true&reportId=' + reportId)
+      $.getJSON('/api/report?rank=true&diagnose=true&reportId=' + reportId)
         .then((res) => {
           if (res.status === 200) {
             window._reportData[reportId] = {
@@ -85,10 +85,10 @@ class Report extends React.Component {
   }
 
   getHeightWeight () {
-    let {height, weight} = this.state.report
+    let {height, weight, rank} = this.state.report
     if (this.state.loaded) {
       if (height && weight) {
-        return <HeightWeight {...this.state.report}/>
+        return <HeightWeight {...this.state.report} rank={{身高: rank.height, 体重: rank.weight}}/>
       } else {
         return <Alert
           message='你本次没有测量身体数据'
@@ -100,13 +100,14 @@ class Report extends React.Component {
   }
 
   getBlood () {
-    let {sbp, dbp, heartRate, result} = this.state.report
+    let {sbp, dbp, heartRate, result, rank} = this.state.report
     if (this.state.loaded) {
       if (sbp && dbp) {
         return <Blood high={~~sbp} low={~~dbp} beat={~~heartRate}
                       resultHigh={result.sbp}
                       resultLow={result.dbp}
-                      resultMain={result.bp}/>
+                      resultMain={result.bp}
+                      rank={{收缩压: rank.sbp, 舒张压: rank.dbp}}/>
       } else {
         return <Alert
           message='你本次没有测量血压'
@@ -118,10 +119,10 @@ class Report extends React.Component {
   }
 
   getO2 () {
-    let {spo2h, result} = this.state.report
+    let {spo2h, result, rank} = this.state.report
     if (this.state.loaded) {
       if (spo2h) {
-        return <O2 value={~~spo2h} result={result.spo2h}/>
+        return <O2 value={~~spo2h} result={result.spo2h} rank={{血氧值: rank.spo2h}}/>
       } else {
         return <Alert
           message='你本次没有测量血氧'

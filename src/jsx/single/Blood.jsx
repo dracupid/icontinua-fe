@@ -1,5 +1,6 @@
 import Echarts from '../Components/Echarts.jsx'
 import Tips from '../Components/Tips.jsx'
+import Rank from '../Components/Rank.jsx'
 import util from '../util.jsx'
 import { baseGaugeOpt } from '../option.jsx'
 
@@ -76,6 +77,7 @@ class Blood extends React.Component {
           option={this._getOpt(this.props.beat, '心率', 'bpm', [60, 100, 120], 40, 140)} height='300'
           className='bottom-echart'/>
         <Tips text={resultMain.advice} fix/>
+        <Rank obj={this.props.rank}/>
       </div>
     )
   }
