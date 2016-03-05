@@ -54,7 +54,7 @@ class ReportTrade extends React.Component {
   getChinese () {
     let {data} = this.props
     if (data !== null) {
-      if (_(data).pluck('cacheScore').compact().run().length > 0) {
+      if (_(data).pluck('cacheId').compact().run().length > 0) {
         return <Chinese data={data}/>
       } else {
         return <Alert message='您还没有进行过生物电检测' type='info' showIcon/>
