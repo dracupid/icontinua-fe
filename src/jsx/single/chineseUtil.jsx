@@ -35,7 +35,7 @@ let formatZangfu = function (items, balance) {
 
   return {
     items: itemArr.slice(0, limit),
-    level: items.level
+    level: parseFloat(items.level)
   }
 }
 
@@ -55,10 +55,9 @@ let formatJizhui = function (items, balance) {
       })
     }
   }
-
   return {
     items: itemArr.slice(0, limit),
-    level: items.level
+    level: parseFloat(items.level)
   }
 }
 

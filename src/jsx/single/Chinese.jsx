@@ -1,5 +1,6 @@
 import { filter, getStarLevel, getLevelText } from './chineseUtil.jsx'
 import Loading from '../Components/Loading.jsx'
+import Tips from '../Components/Tips.jsx'
 
 let {Affix, Alert} = ANTD
 
@@ -7,7 +8,7 @@ class ReportBlock extends React.Component {
   static propTypes = {
     title: React.PropTypes.string.isRequired,
     level: React.PropTypes.number.isRequired,
-    items: React.PropTypes.object.isRequired
+    items: React.PropTypes.array.isRequired
   };
 
   render () {
@@ -142,7 +143,6 @@ class Chinese extends React.Component {
     }
     let url = '/api/falthReport?id=' + id
     $.getJSON(url).then((res) => {
-      console.log(res)
       window._chineseReportData[id] = res
       this.setState({
         data: res,
@@ -164,6 +164,7 @@ class Chinese extends React.Component {
         let data = filter(this.state.data)
         return (
           <div style={{marginBottom: '20px'}}>
+            <Tips text={"中医简介预留"} title="简介"/>
             <Affix>
               <Scores {...data.scores}/>
             </Affix>

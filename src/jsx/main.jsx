@@ -4,8 +4,9 @@ import './wechat.jsx'
 
 let { Router, Route } = ReactRouter
 
-window._reportData = {}
 window._reportListData = null
+window._reportData = {}
+window._fullReportData = {}
 window._chineseReportData = {}
 window._advice = null
 

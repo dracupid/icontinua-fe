@@ -6,15 +6,29 @@ import { baseGaugeOpt } from '../option.jsx'
 
 class Blood extends React.Component {
   static propTypes = {
-    resultLow: React.PropTypes.object.isRequired,
-    resultHigh: React.PropTypes.object.isRequired,
-    resultMain: React.PropTypes.object.isRequired,
-    high: React.PropTypes.number.isRequired,
-    low: React.PropTypes.number.isRequired,
-    beat: React.PropTypes.number.isRequired
+    high: React.PropTypes.object.isRequired,
+    low: React.PropTypes.object.isRequired,
+    beat: React.PropTypes.object.isRequired
   };
 
-  _getOpt (val, text, unit, lines, _min, _max) {
+  _getOpt (full = false, val, text, unit, lines, _min, _max) {
+    if (!full) {
+      return _.defaultsDeep({
+        series: [
+          {
+            detail: {
+              formatter: `{value} ${unit}`
+            },
+            data: [{
+              value: val,
+              name: text
+            }],
+            min: 0,
+            max: 200
+          }]
+      }, baseGaugeOpt)
+    }
+
     let min = util.getMin([val], 10, _min)
     let max = util.getMax([val], 10, _max)
 
@@ -27,7 +41,6 @@ class Blood extends React.Component {
           detail: {
             formatter: `{value} ${unit}`
           },
-
           axisLine: {
             lineStyle: {
               color: [
@@ -49,7 +62,7 @@ class Blood extends React.Component {
   }
 
   render () {
-    let {resultLow, resultHigh, resultMain} = this.props
+    let {high, low, bp,beat} = this.props
     let width = '200%'
     let height = '300'
     return (
@@ -58,7 +71,7 @@ class Blood extends React.Component {
           <div className='echart-mini-wrapper'>
             <div style={{position: 'relative'}}>
               <Echarts
-                option={this._getOpt(this.props.high, '收缩压', 'mmHg', resultHigh.bounds, 60, 160, true)}
+                option={this._getOpt(this.props.fullLoaded, high.value, '收缩压', 'mmHg', high.bounds, 60, 160, true)}
                 height={height}
                 width={width} className='mini top-left'/>
             </div>
@@ -67,17 +80,17 @@ class Blood extends React.Component {
           <div className='echart-mini-wrapper'>
             <div style={{position: 'relative'}}>
               <Echarts
-                option={this._getOpt(this.props.low, '舒张压', 'mmHg', resultLow.bounds, 40, 120, true)}
+                option={this._getOpt(this.props.fullLoaded, low.value, '舒张压', 'mmHg', low.bounds, 40, 120, true)}
                 height={height}
                 width={width} className='mini top-right'/>
             </div>
           </div>
         </div>
         <Echarts
-          option={this._getOpt(this.props.beat, '心率', 'bpm', [60, 100, 120], 40, 140)} height='300'
+          option={this._getOpt(this.props.fullLoaded, beat.value, '心率', 'bpm', [60, 100, 120], 40, 140)} height='300'
           className='bottom-echart'/>
-        <Tips text={resultMain.advice} fix/>
-        <Rank obj={this.props.rank}/>
+        {this.props.fullLoaded ? <Tips text={bp.advice} fix/> : null}
+        {this.props.fullLoaded ? <Rank obj={{收缩压: high.rank, 舒张压: low.rank}}/> : null}
       </div>
     )
   }

@@ -1,4 +1,6 @@
 import Loading from './Components/Loading.jsx'
+import Ad from './Components/Ad.jsx'
+import util from './util.jsx'
 let {Alert, Pagination} = ANTD
 
 const itemPerPage = 10;
@@ -15,12 +17,6 @@ class ReportList extends React.Component {
 
   clickItem (reportId) {
     window.location.href = `/reports#/${this.props.userId}/${reportId}`
-  }
-
-  static formatTime (t) {
-    let date = new Date(parseInt(t, 10))
-    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 \n` +
-      `${_.padLeft(date.getHours(), 2, 0)}:${_.padLeft(date.getMinutes(), 2, 0)}`
   }
 
   onChangePage (pageNum) {
@@ -53,7 +49,7 @@ class ReportList extends React.Component {
               <li className='timeline-item' onClick={this.clickItem.bind(this, item.id)}
                   key={item.timestamp}>
                 <p className='timestamp'>
-                  {ReportList.formatTime(item.timestamp)}
+                  {util.formatDateTime(item.timestamp, true)}
                   <span className='arrow2'/>
                 </p>
                 <div className='timeline-item-middle'>
@@ -76,8 +72,10 @@ class ReportList extends React.Component {
     }
     return (
       <div id='list-timeline'>
+        <Ad title="一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！"
+          text={<div>皮皮夺宝（<a href="http://www.ppduobao.com">www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
+          img="/img/res/pipi.jpg"/>
         {timeline}
-
       </div>
     )
   }

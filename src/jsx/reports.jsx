@@ -40,9 +40,8 @@ class Reports extends React.Component {
       this.setState(window._reportListData)
       return
     }
-    let url = '/api/reports?rank=true&diagnose=true&id=' + this.props.params.userId
+    let url = '/api/report/list?id=' + this.props.params.userId
     $.getJSON(url).then((res) => {
-      console.log(res)
       if (res.status === 200) {
         res.data.data = this.formatData(res.data.data)
         window._reportListData = res.data
@@ -158,8 +157,8 @@ class Reports extends React.Component {
               labelCol={{ span: 6 }}
               wrapperCol={{ span: 18 }}>
               <Radio.Group value={this.state.sex} onChange={this.onChangeSex.bind(this)}>
-                <Radio.Button value="1">男</Radio.Button>
-                <Radio.Button value="2">女</Radio.Button>
+                <Radio value="1">男</Radio>
+                <Radio value="2">女</Radio>
               </Radio.Group>
             </Form.Item>
 

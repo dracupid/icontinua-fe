@@ -28,7 +28,8 @@ class KVMap extends React.Component {
       if (obj[key]) {
         if (window._advice[key]) {
           items.push(
-            <div className='key' key={key} onClick={KVMap.info.bind(this, key, window._advice[key])} style={{textDecoration: 'underline'}}>
+            <div className='key' key={key} onClick={KVMap.info.bind(this, key, window._advice[key])}
+                 style={{textDecoration: 'underline'}}>
               {key}
             </div>
           )
@@ -57,13 +58,32 @@ class HeightWeight extends React.Component {
     bodyMuscle: React.PropTypes.any,
     bodyKcal: React.PropTypes.any,
     bodyWater: React.PropTypes.any,
-    bodyViscera: React.PropTypes.any,
-    result: React.PropTypes.object
+    bodyViscera: React.PropTypes.any
   };
 
-  getWeightOpt () {
-    let {weight, height, result} = this.props
-    let weightPoints = result.BMI.bounds.map((point) => {
+  getWeightOpt (bmi = false) {
+    let {weight, height, others} = this.props
+    weight = weight.value
+    height = height.value
+
+    if (! bmi) {
+      return _.defaultsDeep({
+        series: [
+          {
+            detail: {
+              formatter: '\n\n体重\n{value}KG'
+            },
+            data: [{
+              value: weight
+            }],
+            min: 0,
+            max: 250
+          }
+        ]
+      }, baseGaugeOpt)
+    }
+
+    let weightPoints = others.BMI.bounds.map((point) => {
       return point * height * height / 10000
     })
     let min = _.round(Math.min(weightPoints[0] - 10, weight - 10), -1)
@@ -102,29 +122,26 @@ class HeightWeight extends React.Component {
   }
 
   render () {
-    let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, result} = this.props
+    let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, others, height, weight} = this.props
     bodyFat = bodyFat && (bodyFat + ' %')
     bodyMuscle = bodyMuscle && (bodyMuscle + ' %')
     bodyKcal = bodyKcal && (bodyKcal + ' Kcal')
     bodyWater = bodyWater && (bodyWater + ' %')
     bodyViscera = bodyViscera && (bodyViscera + ' %')
 
-    if (this.props.bodyFat) {
-      bodyFat = this.props.bodyFat + '%'
-    }
     return (
       <div>
         <div className='height-wrapper'>
           <img src='/img/body.png'/>
 
           <div className='line'></div>
-          <div className='text'>身高<br/>{this.props.height}CM</div>
-          <KVMap obj={{BMI: result.BMI.value.toFixed(1), 体脂率: bodyFat, 肌肉量: bodyMuscle,
+          <div className='text'>身高<br/>{height.value}CM</div>
+          <KVMap obj={{BMI: (weight.value / (height.value * height.value / 10000)).toFixed(1), 体脂率: bodyFat, 肌肉量: bodyMuscle,
     基础代谢率: bodyKcal, 含水量: bodyWater, 内脏脂肪量: bodyViscera}}/>
         </div>
-        <Echarts option={this.getWeightOpt()} height='300' width='100%'/>
-        <Tips text={result.BMI.advice} fix/>
-        <Rank obj={this.props.rank}/>
+        <Echarts option={this.getWeightOpt(this.props.fullLoaded)} height='300' width='100%'/>
+        {this.props.fullLoaded ? <Tips text={others.BMI.advice} fix/> : null}
+        {this.props.fullLoaded ? <Rank obj={{身高: height.rank, 体重: weight.rank}}/> : null}
       </div>
     )
   }

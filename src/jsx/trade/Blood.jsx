@@ -5,7 +5,7 @@ import { baseLineOpt } from '../option.jsx'
 
 class Blood extends React.Component {
   static propTypes = {
-    data: React.PropTypes.array.isRequired
+    data: React.PropTypes.object.isRequired
   };
 
   formattedData () {
