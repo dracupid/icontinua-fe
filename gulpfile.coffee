@@ -29,7 +29,7 @@ gulp.task 'jsx', (cb) ->
                 }
             ]
         plugins: [
-            new webpack.optimize.UglifyJsPlugin()
+#            new webpack.optimize.UglifyJsPlugin()
         ]
         externals:
             jquery: 'window.$'
