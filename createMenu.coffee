@@ -11,8 +11,26 @@ menuStr =
     button: [
         {
             type: 'view',
-            name: '我的体检报告',
+            name: '体检报告',
             url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth'}&response_type=code&scope=snsapi_base"
+        }, {
+            name: '咨询医生',
+            sub_button: [{
+                type: 'view',
+                name: '快速咨询',
+                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth'}&response_type=code&scope=snsapi_base"
+            }]
+        }, {
+            name: '更多服务',
+            sub_button: [{
+                type: 'view',
+                name: '必备应用',
+                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth'}&response_type=code&scope=snsapi_base"
+            }, {
+                type: 'view',
+                name: '个人中心',
+                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth'}&response_type=code&scope=snsapi_base"
+            }]
         }
 #        {
 #            name: '产品中心',
