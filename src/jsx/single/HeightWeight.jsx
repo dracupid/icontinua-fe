@@ -28,8 +28,9 @@ class KVMap extends React.Component {
       if (obj[key]) {
         if (window._advice[key]) {
           items.push(
-            <div className='key' key={key} onClick={KVMap.info.bind(this, key, window._advice[key])}
-                 style={{textDecoration: 'underline'}}>
+            <div
+              className='key' key={key} onClick={KVMap.info.bind(this, key, window._advice[key])}
+              style={{textDecoration: 'underline'}}>
               {key}
             </div>
           )
@@ -66,7 +67,7 @@ class HeightWeight extends React.Component {
     weight = weight.value
     height = height.value
 
-    if (! bmi) {
+    if (!bmi) {
       return _.defaultsDeep({
         series: [
           {

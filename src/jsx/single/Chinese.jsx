@@ -164,7 +164,7 @@ class Chinese extends React.Component {
         let data = filter(this.state.data)
         return (
           <div style={{marginBottom: '20px'}}>
-            <Tips text={"中医简介预留"} title="简介"/>
+            <Tips text={'中医简介预留'} title='简介'/>
             <Affix>
               <Scores {...data.scores}/>
             </Affix>

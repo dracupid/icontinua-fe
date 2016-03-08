@@ -1,7 +1,7 @@
-import Tips from "./Tips.jsx"
+import Tips from './Tips.jsx'
 
 function Rank (props) {
-  let text = "";
+  let text = ''
   _.map(props.obj, (v, k) => {
     if (v === 0) {
       text += `你的${k}在同性别同年龄段用户中是最高的。`
@@ -11,7 +11,7 @@ function Rank (props) {
       text += `你的${k}在同性别同年龄段用户中位于${v}%的位置。`
     }
   })
-  return <Tips text={text} title="比较"/>
+  return <Tips text={text} title='比较'/>
 }
 
 Rank.propTypes = {

@@ -62,7 +62,7 @@ class Blood extends React.Component {
   }
 
   render () {
-    let {high, low, bp,beat} = this.props
+    let {high, low, bp, beat} = this.props
     let width = '200%'
     let height = '300'
     return (

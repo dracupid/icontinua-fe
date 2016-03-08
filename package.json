@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "standard src/jsx/**/*.jsx",
+    "lint": "standard src/jsx/**/*.jsx | snazzy",
     "build": "gulp"
   },
   "author": "dracupid <dracupid@gmail.com>",
@@ -33,6 +33,7 @@
     "gulp-uglify": "^1.5.3",
     "nib": "^1.1.0",
     "react": "0.14.7",
+    "snazzy": "^3.0.0",
     "standard": "^6.0.7",
     "webpack": "^1.12.14"
   },

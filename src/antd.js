@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 window.ANTD = {
   Affix: require('../node_modules/antd/lib/affix'),
@@ -15,4 +15,4 @@ window.ANTD = {
   InputNumber: require('../node_modules/antd/lib/input-number'),
   Radio: require('../node_modules/antd/lib/radio'),
   Pagination: require('../node_modules/antd/lib/pagination')
-};
+}
