@@ -36,16 +36,14 @@ class Report extends React.Component {
   state = {
     title: '体检报告',
     report: {},
-    loaded: false,
-    fullLoaded: false
+    loaded: false
   };
 
-  formatAndSetState (data, fullLoaded = true) {
+  formatAndSetState (data) {
     this.setState({
       title: util.formatDateTime(data.timestamp),
       report: data,
-      loaded: true,
-      fullLoaded
+      loaded: true
     })
 
     return {
@@ -104,16 +102,16 @@ class Report extends React.Component {
   getHeightWeight () {
     let {height, weight} = this.state.report
     if (height && weight) {
-      return <HeightWeight {...this.state.report} fullLoaded={this.state.fullLoaded}/>
+      return <HeightWeight {...this.state.report}/>
     } else {
       return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量身体数据'/>
     }
   }
 
   getBlood () {
-    let {sbp, dbp, heartRate, others} = this.state.report
+    let {sbp, dbp, heartRate, bp} = this.state.report
     if (sbp && dbp) {
-      return <Blood high={sbp} low={dbp} beat={heartRate} bp={others && others.bp} fullLoaded={this.state.fullLoaded}/>
+      return <Blood high={sbp} low={dbp} beat={heartRate} bp={bp}/>
     } else {
       return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血压'/>
     }
@@ -122,7 +120,7 @@ class Report extends React.Component {
   getO2 () {
     let {spo2h} = this.state.report
     if (spo2h) {
-      return <O2 data={spo2h} fullLoaded={this.state.fullLoaded}/>
+      return <O2 data={spo2h}/>
     } else {
       return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血氧'/>
     }

@@ -1,5 +1,6 @@
 import Tips from '../Components/Tips.jsx'
 import Rank from '../Components/Rank.jsx'
+import util from '../util.jsx'
 
 function O2 (props) {
   let {advice, result, intro, value, rank} = props.data
@@ -13,9 +14,9 @@ function O2 (props) {
         </div>
         <img src='/img/wave.png'/>
       </div>
-      {props.fullLoaded ? <Tips text={intro} title='简介'/> : null}
-      {props.fullLoaded ? <Tips text={advice}/> : null}
-      {props.fullLoaded ? <Rank obj={{血氧: rank}}/> : null}
+      <Tips text={intro} title='简介'/>
+      <Tips text={advice}/>
+      <Rank obj={{血氧: rank}}/>
     </div>
   )
 }
