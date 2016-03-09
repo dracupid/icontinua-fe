@@ -2,12 +2,23 @@
 
 set -e
 
-npm run build
+export NODE_ENV="production"
+
 
 root='/var/www'
 dest=${root}/static
 
-host=wcm@172.18.9.7
+if [ $1 ]; then
+    host=$1
+else
+    host=wcm@172.18.9.7
+fi
+
+echo -e "\033[0;32mDeploy to ${host}\033[0m"
+
+
+echo "Building..."
+npm run build
 
 mkdir -p upload
 

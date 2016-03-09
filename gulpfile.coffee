@@ -1,4 +1,6 @@
-process.env.NODE_ENV = 'production'
+isProduction = do ->
+    process.env.NODE_ENV == 'production'
+
 gulp = require 'gulp'
 path = require 'path'
 
@@ -28,16 +30,18 @@ gulp.task 'jsx', (cb) ->
                     test: /\.jsx?$/, loader: 'babel'
                 }
             ]
-        plugins: [
-#            new webpack.optimize.UglifyJsPlugin()
-        ]
+        plugins: do ->
+            if isProduction
+                [new webpack.optimize.UglifyJsPlugin()]
+            else
+                null
         externals:
             jquery: 'window.$'
             react: 'window.React'
             'react-dom': 'window.ReactDOM'
     , (err, stats) ->
         if err then throw err
-        console.log stats.toString colors: yes, chunks: no
+        if not isProduction then console.log stats.toString colors: yes, chunks: no
         cb()
 
 gulp.task 'css', ->
@@ -45,17 +49,19 @@ gulp.task 'css', ->
     autoprefixer = require 'gulp-autoprefixer'
     cssmin = require 'gulp-minify-css'
     nib = require 'nib'
+    gulpif = require 'gulp-if'
 
     gulp.src cfg.src + 'styl/*.styl'
     .pipe stylus(use: nib())
     .pipe autoprefixer autoPrefixConfig
-    .pipe cssmin cssminConfig
+    .pipe gulpif isProduction, cssmin cssminConfig
     .pipe gulp.dest cfg.dist + 'css'
 
 gulp.task '_antd_css', ->
     autoprefixer = require 'gulp-autoprefixer'
     cssmin = require 'gulp-minify-css'
     rename = require 'gulp-rename'
+
 
     gulp.src 'node_modules/antd/lib/index.css'
     .pipe autoprefixer autoPrefixConfig
@@ -73,25 +79,29 @@ gulp.task 'lib_antd', ['_antd_css'], (cb) ->
             loaders: [{
                 test: /\.js$/, loader: 'babel'
             }]
-        plugins: [
-            new webpack.optimize.UglifyJsPlugin()
-        ]
+        plugins: do ->
+            if isProduction
+                [new webpack.optimize.UglifyJsPlugin()]
+            else
+                null
         externals:
             jquery: 'window.$'
             react: 'window.React'
             'react-dom': 'window.ReactDOM'
     , (err, stats) ->
         if err then throw err
-        console.log stats.toString colors: yes, chunks: no
+        if not isProduction then console.log stats.toString colors: yes, chunks: no
         cb()
 
 gulp.task 'html', ->
     jade = require 'gulp-jade'
     replace = require 'gulp-replace'
+    gulpif = require 'gulp-if'
 
     gulp.src [cfg.src + 'html/**/*.jade', '!**/html/layout/**'], base: cfg.src + 'html'
     .pipe jade pretty: '    ', compileDebug: true
-    .pipe replace("_TIMESTAMP_", +new Date())
+    .pipe gulpif isProduction, replace("_TIMESTAMP_", +new Date())
+    .pipe gulpif isProduction, replace("react.js", "react.min.js")
     .pipe gulp.dest cfg.dist + 'html'
 
 gulp.task 'copy', ->
