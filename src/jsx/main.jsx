@@ -15,9 +15,9 @@ window._advice = null
     let img = new window.Image()
     img.src = url
   }
-  cacheImg('/img/record.png')
-  cacheImg('/img/trade.png')
-  cacheImg('/img/trade-a.png')
+  // cacheImg('/img/record.png')
+  // cacheImg('/img/trade.png')
+  // cacheImg('/img/trade-a.png')
   cacheImg('/img/body.png')
   cacheImg('/img/wave.png')
 })()

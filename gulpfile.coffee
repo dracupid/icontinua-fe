@@ -50,10 +50,12 @@ gulp.task 'css', ->
     cssmin = require 'gulp-minify-css'
     nib = require 'nib'
     gulpif = require 'gulp-if'
+    cssBase64 = require 'gulp-css-base64'
 
     gulp.src cfg.src + 'styl/*.styl'
     .pipe stylus(use: nib())
     .pipe autoprefixer autoPrefixConfig
+    .pipe cssBase64 baseDir: "./src/"
     .pipe gulpif isProduction, cssmin cssminConfig
     .pipe gulp.dest cfg.dist + 'css'
 
