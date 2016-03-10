@@ -14,11 +14,22 @@ class Echarts extends React.Component {
     height: '500px'
   };
 
+  initEcharts () {
+    let option = this.props.option
+    let myChart = window.echarts.init(ReactDOM.findDOMNode(this.refs.echarts), 'macarons')
+    myChart.setOption(option, true)
+  }
+
   renderChart () {
     if (window.echarts) {
-      let option = this.props.option
-      let myChart = window.echarts.init(ReactDOM.findDOMNode(this.refs.echarts), 'macarons')
-      myChart.setOption(option, true)
+        this.initEcharts()
+    } else {
+      let timer = setInterval(() => {
+        if (window.echarts) {
+          clearInterval(timer)
+          this.forceUpdate(this.initEcharts.bind(this))
+        }
+      }, 100)
     }
   }
 
