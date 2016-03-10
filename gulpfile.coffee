@@ -71,12 +71,14 @@ gulp.task '_antd_css', ->
     .pipe rename 'antd.min.css'
     .pipe gulp.dest cfg.dist + 'css'
 
-gulp.task 'lib_antd', ['_antd_css'], (cb) ->
+gulp.task 'lib_js', ['_antd_css'], (cb) ->
     webpack = require 'webpack'
     webpack
-        entry: cfg.src + "antd.js"
+        entry:
+            antd: cfg.src + "antd.js"
+            echarts: cfg.src + "echarts.js"
         output:
-            filename: cfg.dist + '/js/lib/antd.min.js'
+            filename: cfg.dist + 'js/lib/[name].min.js'
         module:
             loaders: [{
                 test: /\.js$/, loader: 'babel'
@@ -110,11 +112,8 @@ gulp.task 'copy', ->
     gulp.src [cfg.src + 'img/**', cfg.src + 'data/**'], base: cfg.src
     .pipe gulp.dest cfg.dist
 
-    gulp.src cfg.src + 'lib/*.js'
-    .pipe gulp.dest cfg.dist + 'js/lib'
-
 gulp.task 'build', ['jsx', 'css', 'html', 'copy']
-gulp.task 'default', ['build', 'lib_antd']
+gulp.task 'default', ['build', 'lib_js']
 
 gulp.task 'watch', ['build'], ->
     gulp.watch "./src/jsx/**", ["jsx"]
