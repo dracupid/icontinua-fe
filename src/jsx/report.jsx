@@ -4,7 +4,7 @@ import O2 from './single/O2.jsx'
 import Chinese from './single/Chinese.jsx'
 import Loading from './Components/Loading.jsx'
 import Banner from './Components/Banner.jsx'
-import wechat from './wechat.jsx'
+import {setReport} from './wechat.jsx'
 import util from './util.jsx'
 
 let {Tabs, Alert} = ANTD
@@ -133,7 +133,7 @@ class Report extends React.Component {
   }
 
   render () {
-    wechat.setReport(this.props.params.reportId)
+    setReport(this.props.params.reportId)
     let {userId} = this.props.params
     return (
       <div id='report' className='top-tab-wrapper'>
