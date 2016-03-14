@@ -1,19 +1,18 @@
 import Tips from './Tips.jsx'
 
 function High (props) {
-  return <span style={{color: 'Red'}}>{props.children}</span>
+  return <span style={{color: '#DF5353', fontWeight: 600}}>{props.children}</span>
 }
 
 function Middle (props) {
-  return <span style={{color: 'yellow'}}>{props.children}</span>
+  return <span style={{color: '#959613', fontWeight: 600}}>{props.children}</span>
 }
 
 function Low (props) {
-  return <span style={{color: 'green'}}>{props.children}</span>
+  return <span style={{color: '#55BF3B', fontWeight: 600}}>{props.children}</span>
 }
 
 function ageGroup (age) {
-
   if (age < 20) {
     let lowAge = age - age % 5
     return `${lowAge} - ${lowAge + 5}岁`
@@ -23,7 +22,6 @@ function ageGroup (age) {
     let lowAge = age - age % 10
     return `${lowAge} - ${lowAge + 10}岁`
   }
-
 }
 
 function Rank (props) {

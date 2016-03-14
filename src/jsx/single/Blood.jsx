@@ -28,9 +28,9 @@ class Blood extends React.Component {
           axisLine: {
             lineStyle: {
               color: [
-                [percents[0], '#DDDF0D'],
+                [percents[0], '#959613'],
                 [percents[1], '#55BF3B'],
-                [percents[2], '#DDDF0D'],
+                [percents[2], '#959613'],
                 [1, '#DF5353']
               ]
             }

@@ -31,7 +31,7 @@ cd ..
 scp upload/static.tar.bz2 ${host}:${dest}
 
 echo "Unpacking..."
-ssh $host "mkdir -p ${dest} && cd ${dest} && tar -xjf static.tar.bz2 && rm static.tar.bz2"
+ssh ${host} "mkdir -p ${dest} && cd ${dest} && tar -mxjf static.tar.bz2 && rm static.tar.bz2"
 
 echo "Cleaning..."
 rm -rf upload

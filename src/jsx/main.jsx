@@ -8,16 +8,13 @@ window._reportListData = null
 window._reportData = {}
 window._fullReportData = {}
 window._chineseReportData = {}
-window._advice = null
+window._advice = null;
 
-;(function () {
+(function () {
   let cacheImg = function (url) {
     let img = new window.Image()
     img.src = url
   }
-  // cacheImg('/img/record.png')
-  // cacheImg('/img/trade.png')
-  // cacheImg('/img/trade-a.png')
   cacheImg('/img/body.png')
   cacheImg('/img/wave.png')
 })()
@@ -29,4 +26,4 @@ ReactDOM.render((
     <Route path='/share/:reportId' component={report}/>
     <Route path='/:userId/:reportId' component={report}/>
   </Router>
-  ), document.getElementById('main'))
+), document.getElementById('main'))

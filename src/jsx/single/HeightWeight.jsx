@@ -43,9 +43,9 @@ class HeightWeight extends React.Component {
           axisLine: {
             lineStyle: {
               color: [
-                [percents[0], '#DDDF0D'], // 过轻
+                [percents[0], '#959613'], // 过轻
                 [percents[1], '#55BF3B'], // 正常
-                [percents[2], '#DDDF0D'], // 过重
+                [percents[2], '#959613'], // 过重
                 [1, '#DF5353'] // 非常肥胖
               ]
             }
