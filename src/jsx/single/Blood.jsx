@@ -46,7 +46,7 @@ class Blood extends React.Component {
   }
 
   render () {
-    let {high, low, bp, beat} = this.props
+    let {high, low, bp, beat, user} = this.props
     let width = '200%'
     let height = '300'
     return (
@@ -74,7 +74,7 @@ class Blood extends React.Component {
           option={this._getOpt(getValue(beat), '心率', 'bpm', [60, 100, 120], 40, 140)} height='300'
           className='bottom-echart'/>
         <Tips text={bp.advice} fix/>
-        <Rank obj={{收缩压: high.rank, 舒张压: low.rank}}/>
+        <Rank obj={{收缩压: high.rank, 舒张压: low.rank}} user={user}/>
       </div>
     )
   }

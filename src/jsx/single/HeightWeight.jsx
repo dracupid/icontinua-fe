@@ -61,7 +61,7 @@ class HeightWeight extends React.Component {
   }
 
   render () {
-    let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, bmi, height, weight} = this.props
+    let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, bmi, height, weight, user} = this.props
 
     return (
       <div>
@@ -75,7 +75,7 @@ class HeightWeight extends React.Component {
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%'/>
         <Tips text={bmi.advice} fix/>
-        <Rank obj={{身高: height.rank, 体重: weight.rank}}/>
+        <Rank obj={{身高: height.rank, 体重: weight.rank}} user={user}/>
       </div>
     )
   }

@@ -109,18 +109,18 @@ class Report extends React.Component {
   }
 
   getBlood () {
-    let {sbp, dbp, heartRate, bp} = this.state.report
+    let {sbp, dbp, heartRate, bp, user} = this.state.report
     if (sbp && dbp) {
-      return <Blood high={sbp} low={dbp} beat={heartRate} bp={bp}/>
+      return <Blood high={sbp} low={dbp} beat={heartRate} bp={bp} user={user}/>
     } else {
       return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血压'/>
     }
   }
 
   getO2 () {
-    let {spo2h} = this.state.report
+    let {spo2h, user} = this.state.report
     if (spo2h) {
-      return <O2 data={spo2h}/>
+      return <O2 data={spo2h} user={user}/>
     } else {
       return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血氧'/>
     }

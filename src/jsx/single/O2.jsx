@@ -3,7 +3,7 @@ import Rank from '../Components/Rank.jsx'
 import util from '../util.jsx'
 
 function O2 (props) {
-  let {advice, result, intro, value, rank} = props.data
+  let {advice, result, intro, value, rank, user} = props.data
   let className = 'spo2h-report' + (result === 'NORMAL' ? '' : ' alert')
   return (
     <div>
@@ -16,7 +16,7 @@ function O2 (props) {
       </div>
       <Tips text={intro} title='简介'/>
       <Tips text={advice}/>
-      <Rank obj={{血氧: rank}}/>
+      <Rank obj={{血氧: rank}} user={user}/>
     </div>
   )
 }
