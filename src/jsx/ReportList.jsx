@@ -3,7 +3,7 @@ import Ad from './Components/Ad.jsx'
 import util from './util.jsx'
 let {Alert, Pagination} = ANTD
 
-const itemPerPage = 10;
+const itemPerPage = 10
 
 class ReportList extends React.Component {
   static propTypes = {
@@ -13,7 +13,7 @@ class ReportList extends React.Component {
 
   state = {
     curPage: 0
-  }
+  };
 
   clickItem (reportId) {
     window.location.href = `/reports#/${this.props.userId}/${reportId}`
@@ -45,9 +45,7 @@ class ReportList extends React.Component {
           <ul className='timeline-wrapper'>
             {_.map(pageData, (item) => {
               index += 1
-              return (
-              <li className='timeline-item' onClick={this.clickItem.bind(this, item.id)}
-                  key={item.timestamp}>
+              return (<li className='timeline-item' onClick={this.clickItem.bind(this, item.id)} key={item.timestamp}>
                 <p className='timestamp'>
                   {util.formatDateTime(item.timestamp, true)}
                   <span className='arrow2'/>
@@ -62,19 +60,21 @@ class ReportList extends React.Component {
                 </div>
               </li>
                 )
-              })}
+            })}
           </ul>
-          <Pagination size="small" defaultCurrent={1} total={total} pageSize={itemPerPage}
-                      onChange={this.onChangePage.bind(this)}/>
+          <Pagination
+            size='small' defaultCurrent={1} total={total} pageSize={itemPerPage}
+            onChange={this.onChangePage.bind(this)}/>
 
         </div>
       )
     }
     return (
       <div id='list-timeline'>
-        <Ad title="一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！"
-          text={<div>皮皮夺宝（<a href="http://www.ppduobao.com">www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
-          img="/img/res/pipi.jpg"/>
+        <Ad
+          title='一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！'
+          text={<div>皮皮夺宝（<a href='http://www.ppduobao.com'>www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
+          img='/img/res/pipi.jpg'/>
         {timeline}
       </div>
     )

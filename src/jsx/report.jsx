@@ -23,15 +23,10 @@ NoDataBLock.propTypes = {
   noDataText: React.PropTypes.string
 }
 
-
 class Report extends React.Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired
   };
-
-  constructor (props) {
-    super(props)
-  }
 
   state = {
     title: '体检报告',
@@ -75,7 +70,6 @@ class Report extends React.Component {
           this.fetchFailedHandler()
         })
     }
-
 
     promise.then(() => {
       let reportId = this.props.params.reportId

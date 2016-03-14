@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "standard src/jsx/**/*.jsx | snazzy",
+    "lint": "standard 'src/jsx/**/*.jsx' | snazzy",
     "build": "gulp build --silent"
   },
   "author": "dracupid <dracupid@gmail.com>",
@@ -51,10 +51,10 @@
     "globals": [
       "React",
       "ReactDOM",
-      "$",
       "ANTD",
       "_",
-      "ReactRouter"
+      "wx",
+      "fetch"
     ]
   },
   "babel": {

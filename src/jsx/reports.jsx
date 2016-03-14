@@ -10,10 +10,6 @@ class Reports extends React.Component {
     params: React.PropTypes.object.isRequired
   };
 
-  constructor (props) {
-    super(props)
-  }
-
   state = {
     tabTitles: ['体检记录', '变化趋势'],
     currentTab: 0,
@@ -65,49 +61,49 @@ class Reports extends React.Component {
   showModal () {
     this.setState({
       editing: true
-    });
+    })
   }
 
   handleOk () {
-    this.setState({applyEditing: true});
+    this.setState({applyEditing: true})
     util.fetchAPI(`/api/user/update?id=${this.props.params.userId}&age=${this.state.age}&sex=${this.state.sex}`)
       .then(() => {
-        this.setState({applyEditing: false, editing: false});
+        this.setState({applyEditing: false, editing: false})
       }, () => {
-        message.error('更新用户信息失败');
-        this.setState({applyEditing: false, editing: true});
+        message.error('更新用户信息失败')
+        this.setState({applyEditing: false, editing: true})
       })
   }
 
   handleCancel () {
-    this.setState({editing: false});
+    this.setState({editing: false})
   }
 
   render () {
     let popoverComp = null
     let sex
     if (this.state.sex) {
-      sex = (this.state.sex == "1" ? "男" : "女")
+      sex = (parseInt(this.state.sex, 10) === 1 ? '男' : '女')
     } else {
       sex = ''
     }
 
     if (this.state.avatar) {
       popoverComp = <Popover
-        overlay={<div className="user-info-wrapper">
-                  <div className="user-info-left">
-                    <div>{"性别: " + sex}</div>
-                    <div>{"年龄: " + (this.state.age || '')}</div>
-                  </div>
-                  <div className="user-info-edit" onClick={this.showModal.bind(this)}>
-                    <Icon type="edit"/>
-                  </div>
-
-                </div>
-              }
-        prefixCls="user-info-prop ant-popover"
-        title={this.state.nickname || '爱康体用户'} trigger="click" placement="bottomRight">
-        <div className="banner-right"><img src={this.state.avatar} alt=""/></div>
+        overlay={
+          <div className='user-info-wrapper'>
+            <div className='user-info-left'>
+              <div>{'性别: ' + sex}</div>
+              <div>{'年龄: ' + (this.state.age || '')}</div>
+            </div>
+            <div className='user-info-edit' onClick={this.showModal.bind(this)}>
+              <Icon type='edit'/>
+            </div>
+          </div>
+        }
+        prefixCls='user-info-prop ant-popover'
+        title={this.state.nickname || '爱康体用户'} trigger='click' placement='bottomRight'>
+        <div className='banner-right'><img src={this.state.avatar} alt=''/></div>
       </Popover>
     }
     return (
@@ -116,53 +112,45 @@ class Reports extends React.Component {
 
         <div className='bottom-tab-wrapper'>
           <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''}>
-            <TabPane tab={
-    <div>
-                                <i className='bg-record'/>
-                                <p>{this.state.tabTitles[0]}</p>
-                            </div>
-    } key='0'>
+            <TabPane tab={<div><i className='bg-record'/><p>{this.state.tabTitles[0]}</p></div>} key='0'>
               <ReportList userId={this.props.params.userId} data={this.state.data}/>
             </TabPane>
-            <TabPane tab={
-    <div>
-                                <i className='bg-trade'/>
-                                <p>{this.state.tabTitles[1]}</p>
-                            </div>
-    } key='1'>
+            <TabPane tab={<div><i className='bg-trade'/><p>{this.state.tabTitles[1]}</p></div>} key='1'>
               <ReportTrade userId={this.props.params.userId} data={this.state.data}/>
             </TabPane>
           </Tabs>
         </div>
 
-        <Modal ref="modal"
-               visible={this.state.editing}
-               width="90%"
-               title="修改用户信息" onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}
-               footer={[
-            <Button key="back" type="ghost" size="large" onClick={this.handleCancel.bind(this)}>取 消</Button>,
-            <Button key="submit" type="primary" size="large" loading={this.state.applyEditing} onClick={this.handleOk.bind(this)}>
+        <Modal
+          ref='modal'
+          visible={this.state.editing}
+          width='90%'
+          title='修改用户信息' onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}
+          footer={[
+            <Button key='back' type='ghost' size='large' onClick={this.handleCancel.bind(this)}>取 消</Button>,
+            <Button key='submit' type='primary' size='large' loading={this.state.applyEditing} onClick={this.handleOk.bind(this)}>
               提 交
             </Button>
           ]}>
           <Form horizontal>
             <Form.Item
-              label="性别："
+              label='性别：'
               labelCol={{ span: 6 }}
               wrapperCol={{ span: 18 }}>
               <Radio.Group value={this.state.sex} onChange={this.onChangeSex.bind(this)}>
-                <Radio value="1">男</Radio>
-                <Radio value="2">女</Radio>
+                <Radio value='1'>男</Radio>
+                <Radio value='2'>女</Radio>
               </Radio.Group>
             </Form.Item>
 
             <Form.Item
-              id="control-input"
-              label="年龄："
+              id='control-input'
+              label='年龄：'
               labelCol={{ span: 6 }}
               wrapperCol={{ span: 14 }}>
-              <InputNumber min={1} max={130} defaultValue={parseInt(this.state.age)}
-                           onChange={this.onChangeAge.bind(this)}/>
+              <InputNumber
+                min={1} max={130} defaultValue={parseInt(this.state.age)}
+                onChange={this.onChangeAge.bind(this)}/>
             </Form.Item>
           </Form>
         </Modal>
