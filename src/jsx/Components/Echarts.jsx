@@ -22,7 +22,7 @@ class Echarts extends React.Component {
 
   renderChart () {
     if (window.echarts) {
-        this.initEcharts()
+      this.initEcharts()
     } else {
       let timer = setInterval(() => {
         if (window.echarts) {

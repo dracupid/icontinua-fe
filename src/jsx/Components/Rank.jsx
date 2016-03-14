@@ -17,7 +17,7 @@ function ageGroup (age) {
     let lowAge = age - age % 5
     return `${lowAge} - ${lowAge + 5}岁`
   } else if (age >= 100) {
-    return `100岁以上`
+    return '100岁以上'
   } else {
     let lowAge = age - age % 10
     return `${lowAge} - ${lowAge + 10}岁`
@@ -41,9 +41,9 @@ function Rank (props) {
     }
   })
   return <Tips text={<div>
-    {`在${ageGroup(props.user.age)}的${ props.user.sex == "1" ? "男" : "女" }性用户中：`}
+    {`在${ageGroup(props.user.age)}的${parseInt(props.user.sex, 10) === 1 ? '男' : '女'}性用户中：`}
     {text}
-    </div>} title='排名情况'/>
+  </div>} title='排名情况'/>
 }
 
 Rank.propTypes = {

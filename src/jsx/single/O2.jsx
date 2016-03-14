@@ -1,6 +1,5 @@
 import Tips from '../Components/Tips.jsx'
 import Rank from '../Components/Rank.jsx'
-import util from '../util.jsx'
 
 function O2 (props) {
   let {advice, result, intro, value, rank} = props.data
