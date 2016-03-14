@@ -1,6 +1,6 @@
 function Banner (props) {
   return (
-    <div className='banner'>
+    <div className='header'>
       {(() => {
         if (props.backUrl) {
           return (<a href={props.backUrl} style={{color: 'inherit'}}>

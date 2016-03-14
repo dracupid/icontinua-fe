@@ -19,6 +19,19 @@ autoPrefixConfig =
 
 gulp.task 'jsx', (cb) ->
     webpack = require 'webpack'
+
+    plugins = [
+        new webpack.ProvidePlugin({
+            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+            'Promise1': 'yaku'
+        })
+    ]
+
+    if isProduction
+        plugins = plugins.concat [
+            new webpack.optimize.UglifyJsPlugin(),
+        ]
+
     webpack
         entry:
             main: cfg.src + "jsx/main.jsx"
@@ -30,16 +43,7 @@ gulp.task 'jsx', (cb) ->
                     test: /\.jsx?$/, loader: 'babel'
                 }
             ]
-        plugins: do ->
-            plugins = [new webpack.ProvidePlugin({
-                'window.fetch': 'whatwg-fetch'
-                'window.Promise': 'yaku'
-            })]
-            if isProduction
-                plugins.concat [
-                    new webpack.optimize.UglifyJsPlugin(),
-                ]
-            plugins
+        plugins: plugins
         externals:
             jquery: 'window.$'
             react: 'window.React'

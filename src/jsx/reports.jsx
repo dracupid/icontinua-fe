@@ -103,7 +103,7 @@ class Reports extends React.Component {
         }
         prefixCls='user-info-prop ant-popover'
         title={this.state.nickname || '爱康体用户'} trigger='click' placement='bottomRight'>
-        <div className='banner-right'><img src={this.state.avatar} alt=''/></div>
+        <div className='header-right'><img src={this.state.avatar} alt=''/></div>
       </Popover>
     }
     return (
