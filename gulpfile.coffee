@@ -93,10 +93,10 @@ gulp.task 'lib_js', ['_antd_css'], (cb) ->
                 test: /\.js$/, loader: 'babel'
             }]
         plugins: do ->
-            if isProduction
-                [new webpack.optimize.UglifyJsPlugin()]
-            else
-                null
+            # if isProduction
+            [new webpack.optimize.UglifyJsPlugin()]
+            # else
+                # null
         externals:
             jquery: 'window.$'
             react: 'window.React'
