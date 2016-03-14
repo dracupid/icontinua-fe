@@ -1,11 +1,11 @@
 got = require 'got'
 
-appId = 'wx1071ef65b25ab039'
-appSecret = '235aaa4ed220afbf47af54939bebcff3'
-host = 'http://112.80.52.187'
-# appId = 'wxfe9b0e3e8fbb136b'
-# appSecret = '7b3eb61c4a25a4bcd4b4f3766fd34ed3'
-# host = 'http://icontinua.cn'
+# appId = 'wx1071ef65b25ab039'
+# appSecret = '235aaa4ed220afbf47af54939bebcff3'
+# host = 'http://112.80.52.187'
+appId = 'wxfe9b0e3e8fbb136b'
+appSecret = '7b3eb61c4a25a4bcd4b4f3766fd34ed3'
+host = 'http://icontinua.com'
 
 menuStr =
     button: [
