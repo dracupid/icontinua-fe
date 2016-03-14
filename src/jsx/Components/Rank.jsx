@@ -29,15 +29,15 @@ function Rank (props) {
     let prefix = `你的${k}`
 
     if (v === 0) {
-      return <span>{prefix + '是'}<High>最高</High>的。</span>
+      return <span key={k}>{prefix + '是'}<High>最高</High>的。</span>
     } else if (v === 100) {
-      return <span>{prefix + '是'}<Low>最低的</Low>。</span>
+      return <span key={k}>{prefix + '是'}<Low>最低的</Low>。</span>
     } else if (v <= 40) {
-      return <span>{prefix + '位于'}<Low>{v}%</Low>的位置。</span>
+      return <span key={k}>{prefix + '位于'}<Low>{v}%</Low>的位置。</span>
     } else if (v <= 60) {
-      return <span>{prefix + '位于'}<Middle>{v}%</Middle>的位置。</span>
+      return <span key={k}>{prefix + '位于'}<Middle>{v}%</Middle>的位置。</span>
     } else {
-      return <span>{prefix + '位于'}<High>{v}%</High>的位置。</span>
+      return <span key={k}>{prefix + '位于'}<High>{v}%</High>的位置。</span>
     }
   })
   return <Tips text={<div>

@@ -31,10 +31,15 @@ gulp.task 'jsx', (cb) ->
                 }
             ]
         plugins: do ->
+            plugins = [new webpack.ProvidePlugin({
+                'window.fetch': 'whatwg-fetch'
+                'window.Promise': 'yaku'
+            })]
             if isProduction
-                [new webpack.optimize.UglifyJsPlugin()]
-            else
-                null
+                plugins.concat [
+                    new webpack.optimize.UglifyJsPlugin(),
+                ]
+            plugins
         externals:
             jquery: 'window.$'
             react: 'window.React'

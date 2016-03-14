@@ -11,8 +11,7 @@ function Tips (props) {
 }
 
 Tips.propTypes = {
-  fix: React.PropTypes.bool,
-  text: React.PropTypes.string
+  fix: React.PropTypes.bool
 }
 
 export default Tips

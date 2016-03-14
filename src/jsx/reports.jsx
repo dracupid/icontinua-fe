@@ -1,6 +1,7 @@
 import Banner from './Components/Banner.jsx'
 import ReportList from './ReportList.jsx'
 import ReportTrade from './ReportTrade.jsx'
+import util from './util.jsx'
 let {Tabs, Popover, Icon, Modal, Button, Form, InputNumber, Radio, message} = ANTD
 let TabPane = Tabs.TabPane
 
@@ -41,21 +42,19 @@ class Reports extends React.Component {
       return
     }
     let url = '/api/report/list?id=' + this.props.params.userId
-    $.getJSON(url).then((res) => {
-      if (res.status === 200) {
+    util.fetchAPI(url)
+      .then((res) => {
         res.data.data = this.formatData(res.data.data)
         window._reportListData = res.data
         _.forEach(res.data.data, (e) => {
           window._reportData[e.id] = e
         })
         this.setState(res.data)
-      } else {
+      })
+      .catch((e) => {
+        console.error(e)
         this.fetchFailedHandler()
-      }
-    }).fail((e) => {
-      console.error(e)
-      this.fetchFailedHandler()
-    })
+      })
   }
 
   changeHandler (e) {
@@ -71,18 +70,13 @@ class Reports extends React.Component {
 
   handleOk () {
     this.setState({applyEditing: true});
-    $.getJSON(`/api/user/update?id=${this.props.params.userId}&age=${this.state.age}&sex=${this.state.sex}`)
-    .then((res) => {
-      if (res.status === 200) {
+    util.fetchAPI(`/api/user/update?id=${this.props.params.userId}&age=${this.state.age}&sex=${this.state.sex}`)
+      .then(() => {
         this.setState({applyEditing: false, editing: false});
-      } else {
+      }, () => {
         message.error('更新用户信息失败');
         this.setState({applyEditing: false, editing: true});
-      }
-    }, () => {
-      message.error('更新用户信息失败');
-      this.setState({applyEditing: false, editing: true});
-    })
+      })
   }
 
   handleCancel () {

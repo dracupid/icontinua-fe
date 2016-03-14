@@ -60,38 +60,35 @@ class Report extends React.Component {
   }
 
   componentDidMount () {
-    let promise = $.Deferred().resolve()
+    let promise = Promise.resolve()
+
     if (window._advice == null) {
-      promise = $.getJSON('/data/advice.json')
+      promise = fetch('/data/advice.json')
+        .then((res) => {
+          return res.json()
+        })
         .then((res) => {
           window._advice = res
         })
-        .fail((e) => {
+        .catch((e) => {
           console.error(e)
           this.fetchFailedHandler()
         })
     }
+
+
     promise.then(() => {
       let reportId = this.props.params.reportId
 
       if (!_.isEmpty(window._fullReportData[reportId])) { // 完整数据
         this.formatAndSetState(window._fullReportData[reportId])
-      } else { // 首次访问, 获取完整数据
-        //if (!_.isEmpty(window._reportData[reportId])) { // 没有完整数据,fallback到部分数据
-        //  let data = window._reportData[reportId]
-        //  //data.
-        //  this.formatAndSetState(data, false)
-        //}
-        $.getJSON('/api/report?rank=true&diagnose=true&reportId=' + reportId)
+      } else {
+        util.fetchAPI('/api/report?rank=true&diagnose=true&reportId=' + reportId)
           .then((res) => {
-            if (res.status === 200) {
-              this.formatAndSetState(res.data)
-              window._fullReportData[reportId] = res.data
-            } else {
-              this.fetchFailedHandler()
-            }
+            this.formatAndSetState(res.data)
+            window._fullReportData[reportId] = res.data
           })
-          .fail((e) => {
+          .catch((e) => {
             console.error(e)
             this.fetchFailedHandler()
           })

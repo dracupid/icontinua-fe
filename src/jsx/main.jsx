@@ -4,6 +4,7 @@ import './wechat.jsx'
 
 import Router from "../../node_modules/react-router/lib/Router"
 import Route from "../../node_modules/react-router/lib/Route"
+import hashHistory from "../../node_modules/react-router/lib/hashHistory"
 
 window._reportListData = null
 window._reportData = {}
@@ -21,7 +22,7 @@ window._advice = null;
 })()
 
 ReactDOM.render((
-  <Router>
+  <Router history={hashHistory}>
     <Route path='/' component={reports}/>
     <Route path='/:userId' component={reports}/>
     <Route path='/share/:reportId' component={report}/>

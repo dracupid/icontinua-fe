@@ -40,5 +40,18 @@ export default {
   getStringValue (t, suffix = '') {
     let value = getValue(t);
     return value && value + suffix
+  },
+
+  fetchAPI (url) {
+    return fetch(url)
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          return res.json()
+        } else {
+          var error = new Error(res.statusText)
+          error.res = res
+          throw error
+        }
+      })
   }
 };

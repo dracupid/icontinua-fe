@@ -1,5 +1,4 @@
 import Echarts from '../Components/Echarts.jsx'
-// import Tips from '../Components/Tips.jsx'
 import util from '../util.jsx'
 import { baseLineOpt } from '../option.jsx'
 

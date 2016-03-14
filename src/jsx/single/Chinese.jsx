@@ -1,6 +1,7 @@
 import { filter, getStarLevel, getLevelText } from './chineseUtil.jsx'
 import Loading from '../Components/Loading.jsx'
 import Tips from '../Components/Tips.jsx'
+import util from '../util.jsx'
 
 let {Affix, Alert} = ANTD
 
@@ -142,13 +143,13 @@ class Chinese extends React.Component {
       return
     }
     let url = '/api/falthReport?id=' + id
-    $.getJSON(url).then((res) => {
+    util.fetchAPI(url).then((res) => {
       window._chineseReportData[id] = res
       this.setState({
         data: res,
         loaded: true
       })
-    }).fail((e) => {
+    }).catch((e) => {
       console.error(e)
       this.fetchFailedHandler()
     })
