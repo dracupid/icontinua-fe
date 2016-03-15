@@ -127,7 +127,7 @@ class Report extends React.Component {
   }
 
   render () {
-    setReport(this.props.params.reportId)
+    setReport(this.props.params.reportId, this.state.report.user)
     let {userId} = this.props.params
     return (
       <div id='report' className='top-tab-wrapper'>
