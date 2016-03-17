@@ -4,7 +4,6 @@ doctype html
 html(lang="zh-cmn-Hans")
     head
         mixin head()
-        mixin css("/css/antd.min")
         mixin css("/css/app")
         title 应用市场 | 爱康体
         style.
@@ -19,9 +18,6 @@ html(lang="zh-cmn-Hans")
         #main
             .pre-tip 正在加载应用市场,请稍候...
 
-        script(src="http://cdn.bootcss.com/lodash.js/3.10.1/lodash.min.js")
-        mixin js("/js/lib/antd.min")
+        mixin foot()
         script(src="/js/app.js?t=_TIMESTAMP_")
-        script(src="http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js")
-        script.
-            FastClick.attach(document.body);
+
