@@ -2,10 +2,7 @@ import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
 import Banner from './Banner.jsx'
 let {Button} = ANTD
-
-function toUrl (url) {
-  location.href = url
-}
+import appUtil from './util.jsx'
 
 function format (num) {
   if (num > 100000) {
@@ -38,7 +35,7 @@ function AppInfo (props) {
         <span>{app.score}<strong>分</strong></span>
         <span>{format(app.downloadNum) + '人在用'}</span>
       </div>
-      <Button type='primary' size='small' onClick={toUrl.bind(this, app.apkUrl)}>
+      <Button type='primary' size='small' onClick={appUtil.toApkUrl.bind(this, app.apkUrl)}>
         下载
       </Button>
     </div>

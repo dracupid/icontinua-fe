@@ -1,6 +1,5 @@
 import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
-let {Button} = ANTD
 
 function format (num) {
   if (num > 100000) {
@@ -42,9 +41,8 @@ class AppList extends React.Component {
     itemPerPage: 10
   }
 
-  loadPage(){
+  loadPage () {
     let num = this.state.curPage + 1
-    console.log("load " + num)
     this.setState({
       loading: true,
       curPage: num
@@ -58,7 +56,6 @@ class AppList extends React.Component {
         })
       })
   }
-
 
   componentDidMount () {
     this.loadPage()
@@ -75,20 +72,25 @@ class AppList extends React.Component {
       let arr = this.state.data.map((v) => {
         return <AppListItem {...v} key={v.uid}/>
       })
-
-      let btnContent = (function(self) {
-        if(self.state.loading) {
+      if (_.isEmpty(arr)) {
+        arr = <h3 className="not-found">没有找到相关应用</h3>
+      }
+      let btnContent = (function (self) {
+        if (self.state.loading) {
           return <div>
-             加载中
+            加载中
           </div>
-        } else{
+        } else {
           return "加载更多"
         }
       })(this)
 
       return <div>
         {arr}
-        {this.state.hasMore ? <h3 className="btn-load-more" size="large" loading={this.state.loading} onClick={this.onChangePage.bind(this)}>
+        {this.state.hasMore ?
+        <h3
+          className="btn-load-more" size="large" loading={this.state.loading}
+          onClick={this.onChangePage.bind(this)}>
           {btnContent}
         </h3> : null}
       </div>

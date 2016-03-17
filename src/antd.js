@@ -15,5 +15,6 @@ window.ANTD = {
   InputNumber: require('../node_modules/antd/lib/input-number'),
   Radio: require('../node_modules/antd/lib/radio'),
   Pagination: require('../node_modules/antd/lib/pagination'),
-  Input: require('../node_modules/antd/lib/input')
+  Input: require('../node_modules/antd/lib/input'),
+  notification: require('../node_modules/antd/lib/notification')
 }
