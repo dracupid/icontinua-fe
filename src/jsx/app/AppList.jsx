@@ -14,25 +14,25 @@ function format (num) {
 }
 
 function AppListItem (props) {
-  return <div className="app-list-item" onClick={() => {location.href = "/apps#/item/" + props.uid}}>
-      <div className="info-icon">
-        <img src={props.imgUrl}/>
-      </div>
-      <div className="info-text-wrapper">
-        <h3>{props.name}</h3>
-        <span>{format(props.downloadNum) + "人在用"}</span>
-      </div>
-      <div className="app-desc-short">
-        {props.shortDesc}
-      </div>
+  return <div className='app-list-item' onClick={() => { location.href = '/apps#/item/' + props.uid }}>
+    <div className='info-icon'>
+      <img src={props.imgUrl}/>
     </div>
+    <div className='info-text-wrapper'>
+      <h3>{props.name}</h3>
+      <span>{format(props.downloadNum) + '人在用'}</span>
+    </div>
+    <div className='app-desc-short'>
+      {props.shortDesc}
+    </div>
+  </div>
 }
 
 class AppList extends React.Component {
   state = {
     curPage: 0,
     data: null
-  }
+  };
 
   componentDidMount () {
     util.fetchAPI(`/api/app/tag?pageNum=${this.state.curPage}&name=${this.props.tagName}`)
@@ -52,9 +52,7 @@ class AppList extends React.Component {
       })
       return <div>{arr}</div>
     }
-
   }
 }
-
 
 export default AppList

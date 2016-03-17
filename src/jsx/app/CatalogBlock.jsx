@@ -6,7 +6,7 @@ function CatalogBlock (props) { // todo: move to appblock
   })
 
   return <div>
-    <div className="app-block-title">
+    <div className='app-block-title'>
       <h3>{props.name}</h3>
       <h4><a href={`/apps#/tag/${props.name}`}>更多</a></h4>
     </div>

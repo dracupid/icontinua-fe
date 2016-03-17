@@ -1,7 +1,5 @@
-import SearchInput from '../Components/Search.jsx'
 import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
-import CatalogList from './CatalogList.jsx'
 import Banner from './Banner.jsx'
 let {Button} = ANTD
 
@@ -21,39 +19,37 @@ function format (num) {
   }
 }
 
-function formatDesc(text) {
+function formatDesc (text) {
   let arr = text.split(/\s\s+/).map((part) => {
     return [part, <br/>, <br/>]
   })
   return _.flatten(arr)
-
 }
 
 function AppInfo (props) {
   let {app} = props
-  return <div className="app-detail-info">
-    <div className="app-detail-top">
-      <div className="info-icon">
+  return <div className='app-detail-info'>
+    <div className='app-detail-top'>
+      <div className='info-icon'>
         <img src={app.imgUrl}/>
       </div>
-      <div className="info-text-wrapper">
+      <div className='info-text-wrapper'>
         <h3>{app.name}</h3>
         <span>{app.score}<strong>分</strong></span>
-        <span>{format(app.downloadNum) + "人在用"}</span>
+        <span>{format(app.downloadNum) + '人在用'}</span>
       </div>
-      <Button type="primary" size="small" onClick={toUrl.bind(this, app.apkUrl)}>
+      <Button type='primary' size='small' onClick={toUrl.bind(this, app.apkUrl)}>
         下载
       </Button>
     </div>
-    <div className="app-detail-down">
+    <div className='app-detail-down'>
       {app.shortDesc}
     </div>
   </div>
 }
 
-
-function AppDesc(props) {
-  return <div className="app-desc">
+function AppDesc (props) {
+  return <div className='app-desc'>
     {formatDesc(props.text)}
   </div>
 }
@@ -65,7 +61,7 @@ class AppDetail extends React.Component {
   };
 
   componentDidMount () {
-    util.fetchAPI("/api/app?id=" + this.props.params.uid)
+    util.fetchAPI('/api/app?id=' + this.props.params.uid)
       .then((res) => {
         this.setState({data: res.data, title: res.data.name})
       })
@@ -84,7 +80,7 @@ class AppDetail extends React.Component {
 
   render () {
     return <div>
-      <Banner title={this.state.title} back={true}/>
+      <Banner title={this.state.title} back/>
       {this.renderInfo()}
     </div>
   }

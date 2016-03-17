@@ -1,4 +1,3 @@
-import SearchInput from '../Components/Search.jsx'
 import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
 import CatalogList from './CatalogList.jsx'
@@ -15,7 +14,7 @@ class MainApps extends React.Component {
   };
 
   componentDidMount () {
-    util.fetchAPI("/api/app/main?limit=4")
+    util.fetchAPI('/api/app/main?limit=4')
       .then((res) => {
         this.setState({data: res.data})
       })
@@ -37,7 +36,7 @@ class MainApps extends React.Component {
         return <TabPane tab={v} key={v}>{<AppList tagName={v}/>}</TabPane>
       })
       return <Tabs onChange={this.changeTab.bind(this)} size='small' activeKey={curTab}>
-        <TabPane tab="热门" key="热门"><CatalogList data={this.state.data}/></TabPane>
+        <TabPane tab='热门' key='热门'><CatalogList data={this.state.data}/></TabPane>
         {panels}
       </Tabs>
     }
