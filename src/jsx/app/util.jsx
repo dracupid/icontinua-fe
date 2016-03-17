@@ -52,7 +52,6 @@ export default {
     if (env.ios) {
       notification.error({
         message: '抱歉，商店暂不支持ios应用直接下载，请到AppStore搜索应用',
-        duration: null,
         key: "ios"
       })
       return
