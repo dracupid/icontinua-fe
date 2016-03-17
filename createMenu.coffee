@@ -25,7 +25,7 @@ menuStr =
             sub_button: [{
                 type: 'view',
                 name: '必备应用',
-                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth'}&response_type=code&scope=snsapi_base"
+                url: host + '/apps'
             }, {
                 type: 'view',
                 name: '个人中心',
