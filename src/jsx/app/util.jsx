@@ -52,13 +52,15 @@ export default {
     if (env.ios) {
       notification.error({
         message: '抱歉，商店暂不支持ios应用直接下载，请到AppStore搜索应用',
-        duration: null
+        duration: null,
+        key: "ios"
       })
       return
     }
     if (env.weixin) {
       notification.error({
-        message: '请点击右上角，选择『在浏览器中打开』下载应用'
+        message: '请点击右上角，选择『在浏览器中打开』下载应用',
+        key: "weixin"
       })
       return
     }
