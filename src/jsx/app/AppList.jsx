@@ -1,5 +1,6 @@
 import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
+let {Button} = ANTD
 
 function format (num) {
   if (num > 100000) {
@@ -30,21 +31,41 @@ function AppListItem (props) {
 
 class AppList extends React.Component {
   state = {
-    curPage: 0,
-    data: null
+    curPage: -1,
+    data: null,
+    hasMore: true,
+    loading: false
   };
 
   static defaultProps = {
-    type: 'tag'
+    type: 'tag',
+    itemPerPage: 10
   }
 
-  componentDidMount () {
-    util.fetchAPI(`/api/app/${this.props.type}?pageNum=${this.state.curPage}&name=${this.props.tagName}`)
+  loadPage(){
+    let num = this.state.curPage + 1
+    console.log("load " + num)
+    this.setState({
+      loading: true,
+      curPage: num
+    })
+    util.fetchAPI(`/api/app/${this.props.type}?itemPerPage=${this.props.itemPerPage}&pageNum=${num}&name=${this.props.tagName}`)
       .then((res) => {
         this.setState({
-          data: res.data
+          data: this.state.data === null ? res.data : this.state.data.concat(res.data),
+          hasMore: res.data.length === parseInt(this.props.itemPerPage, 10),
+          loading: false
         })
       })
+  }
+
+
+  componentDidMount () {
+    this.loadPage()
+  }
+
+  onChangePage () {
+    this.loadPage()
   }
 
   render () {
@@ -54,7 +75,23 @@ class AppList extends React.Component {
       let arr = this.state.data.map((v) => {
         return <AppListItem {...v} key={v.uid}/>
       })
-      return <div>{arr}</div>
+
+      let btnContent = (function(self) {
+        if(self.state.loading) {
+          return <div>
+             加载中
+          </div>
+        } else{
+          return "加载更多"
+        }
+      })(this)
+
+      return <div>
+        {arr}
+        {this.state.hasMore ? <h3 className="btn-load-more" size="large" loading={this.state.loading} onClick={this.onChangePage.bind(this)}>
+          {btnContent}
+        </h3> : null}
+      </div>
     }
   }
 }
