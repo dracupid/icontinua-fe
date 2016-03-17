@@ -44,7 +44,7 @@ class MainApps extends React.Component {
 
   render () {
     return <div>
-      {<Banner />}
+      <Banner />
       {this.renderList()}
     </div>
   }

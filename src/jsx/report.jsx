@@ -6,6 +6,7 @@ import Loading from './Components/Loading.jsx'
 import Banner from './Components/Banner.jsx'
 import {setReport} from './wechat.jsx'
 import util from './util.jsx'
+import Footer from './Components/Footer.jsx'
 
 let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane
@@ -138,6 +139,7 @@ class Report extends React.Component {
           <TabPane tab='血氧' key='3'>{this.getO2()}</TabPane>
           <TabPane tab='生物电' key='4'>{this.getChinese()}</TabPane>
         </Tabs>
+        <Footer />
       </div>
     )
   }

@@ -34,8 +34,12 @@ class AppList extends React.Component {
     data: null
   };
 
+  static defaultProps = {
+    type: 'tag'
+  }
+
   componentDidMount () {
-    util.fetchAPI(`/api/app/tag?pageNum=${this.state.curPage}&name=${this.props.tagName}`)
+    util.fetchAPI(`/api/app/${this.props.type}?pageNum=${this.state.curPage}&name=${this.props.tagName}`)
       .then((res) => {
         this.setState({
           data: res.data

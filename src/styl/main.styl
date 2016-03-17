@@ -1,22 +1,9 @@
 @import "nib/size"
 @import "nib/positions"
-$green = #80cbc4
-$green_dark = #2dacb9
+@import "./mixin.styl"
+
 $pad_both = 10px
 $red = #DF5353
-body
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-tap-highlight-color: transparent; /* For some Androids */
-    -webkit-touch-callout: none;
-    -webkit-user-drag: none;
-    -webkit-text-size-adjust: none;
-    -webkit-font-smoothing: antialiased;
-    background-color #f2f2f2
-
-middle(h) {
-    height h
-    line-height h
-}
 
 $bannerHeight = 45px
 .header
@@ -85,17 +72,17 @@ $bannerHeight = 45px
 
 .ant-tabs-content
     padding 0 $pad_both
-    margin-bottom 20px
+    //margin-bottom 20px
 
 .loading
     display block
     text-align center
-    margin-bottom: 70px
+    margin-bottom 70px
 
 .ant-tabs-nav-container
     height inherit
 // 底部tab覆盖样式
-.bottom-tab-wrapper > .ant-tabs > .ant-tabs-tabs-bar
+.bottom-tab-wrapper > .ant-tabs > .ant-tabs-bar
     margin-bottom 0
     .ant-tabs-nav-container
         position fixed
@@ -153,7 +140,7 @@ $bannerHeight = 45px
                 color #fff !important
                 background-color $green
 
-    .ant-tabs-tabs-bar
+    .ant-tabs-bar
         border-bottom none !important
 
 #report-list
@@ -415,8 +402,8 @@ $bannerHeight = 45px
     font-size 10px
     vertical-align super
 
-.ant-tabs-content
-    padding-bottom 20px
+//.ant-tabs-content
+    //padding-bottom 20px
 
 .anticon-info-circle
     color $green !important

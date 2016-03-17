@@ -4,6 +4,7 @@ import ReportTrade from './ReportTrade.jsx'
 import util from './util.jsx'
 let {Tabs, Popover, Icon, Modal, Button, Form, InputNumber, Radio, message} = ANTD
 let TabPane = Tabs.TabPane
+import Footer from './Components/Footer.jsx'
 
 class Reports extends React.Component {
   static propTypes = {
@@ -114,9 +115,11 @@ class Reports extends React.Component {
           <Tabs onChange={this.changeHandler.bind(this)} activeKey={this.state.currentTab + ''}>
             <TabPane tab={<div><i className='bg-record'/><p>{this.state.tabTitles[0]}</p></div>} key='0'>
               <ReportList userId={this.props.params.userId} data={this.state.data}/>
+              <Footer style={{marginBottom: '52px'}}/>
             </TabPane>
             <TabPane tab={<div><i className='bg-trade'/><p>{this.state.tabTitles[1]}</p></div>} key='1'>
               <ReportTrade userId={this.props.params.userId} data={this.state.data}/>
+              <Footer/>
             </TabPane>
           </Tabs>
         </div>

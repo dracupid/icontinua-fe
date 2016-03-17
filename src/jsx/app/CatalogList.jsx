@@ -6,7 +6,7 @@ function CatalogList (props) {
     return <CatalogBlock name={v} apps={data} key={v}/>
   })
 
-  return <div>
+  return <div className="app-catalog-list">
     {list}
   </div>
 }

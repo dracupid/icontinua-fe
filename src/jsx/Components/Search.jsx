@@ -1,4 +1,4 @@
-let { Icon, Input, Button } = ANTD
+let { Icon, Input, Button, Form } = ANTD
 let InputGroup = Input.Group
 
 class SearchInput extends React.Component {
@@ -27,19 +27,22 @@ class SearchInput extends React.Component {
 
   render () {
     return (
-      <InputGroup className={'ant-search-input' + this.state.focus ? ' ant-search-input-focus' : ''}>
-        <Input
-          {...this.props}
-          value={this.state.value} onChange={this.handleInputChange.bind(this)}
-          onFocus={this.handleFocusBlur.bind(this)} onBlur={this.handleFocusBlur.bind(this)}/>
-        <div className='ant-input-group-wrap'>
-          <Button
-            className='ant-search-btn ant-search-btn'
-            onClick={this.handleSearch.bind(this)}>
-            <Icon type='search'/>
-          </Button>
-        </div>
-      </InputGroup>
+      <Form>
+        <InputGroup className={'ant-search-input' + this.state.focus ? ' ant-search-input-focus' : ''}>
+          <Input
+            {...this.props}
+            value={this.state.value} onChange={this.handleInputChange.bind(this)}
+            onFocus={this.handleFocusBlur.bind(this)} onBlur={this.handleFocusBlur.bind(this)}/>
+          <div className='ant-input-group-wrap'>
+            <Button
+              htmlType="submit"
+              className='ant-search-btn ant-search-btn'
+              onClick={this.handleSearch.bind(this)}>
+              <Icon type='search'/>
+            </Button>
+          </div>
+        </InputGroup>
+      </Form>
     )
   }
 }

@@ -19,10 +19,7 @@ class Banner extends React.Component {
   }
 
   doSearch (key) {
-    util.fetchAPI('/api/app/search?name=' + key)
-      .then((res) => {
-        console.log(res)
-      })
+    location.href = "/apps#/s/" + key
   }
 
   render () {
