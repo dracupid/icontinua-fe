@@ -19,6 +19,10 @@ menuStr =
                 type: 'view',
                 name: '快速咨询',
                 url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth'}&response_type=code&scope=snsapi_base"
+            }, {
+                type: 'view',
+                name: '专家帮你',
+                url: "http://m.haodf.com/touch/jibing/list.html"
             }]
         }, {
             name: '更多服务',
@@ -26,6 +30,10 @@ menuStr =
                 type: 'view',
                 name: '必备应用',
                 url: host + '/apps'
+            }, {
+                type: 'view',
+                name: '预约转诊',
+                url: "http://m.haodf.com/touch/booking/hospitallistbyarea?areaName=%D5%E3%BD%AD&type=1"
             }, {
                 type: 'view',
                 name: '个人中心',
