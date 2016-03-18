@@ -4,7 +4,7 @@ import Loading from '../Components/Loading.jsx'
 function format (num) {
   if (num > 100000) {
     return _.round(num / 10000) + '万'
-  } else if (num > 10000) {
+  } else if (num > 9500) {
     return _.round(num / 10000, 1) + '万'
   } else if (num > 1000) {
     return _.round(num / 1000) + '千'
@@ -23,7 +23,7 @@ function AppListItem (props) {
       <span>{format(props.downloadNum) + '人在用'}</span>
     </div>
     <div className='app-desc-short'>
-      {props.shortDesc}
+      {props.slogan || props.shortDesc}
     </div>
   </div>
 }
