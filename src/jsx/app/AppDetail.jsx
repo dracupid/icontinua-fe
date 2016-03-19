@@ -1,7 +1,7 @@
 import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
 import Banner from './Banner.jsx'
-let {Button} = ANTD
+let {Button, Carousel} = ANTD
 import appUtil from './util.jsx'
 
 function format (num) {
@@ -17,8 +17,10 @@ function format (num) {
 }
 
 function formatDesc (text) {
-  if (text == null) {return ''}
-  let arr = text.split(/\s\s+/).map((part) => {
+  if (text == null) {
+    return ''
+  }
+  let arr = text.trim().split(/\s\s+/).map((part) => {
     return [part, <br/>, <br/>]
   })
   return _.flatten(arr)
@@ -61,6 +63,10 @@ class AppDetail extends React.Component {
   componentDidMount () {
     util.fetchAPI('/api/app?id=' + this.props.params.uid)
       .then((res) => {
+        if (!res.data) {
+          location.href = '/apps'
+          return
+        }
         this.setState({data: res.data, title: res.data.name})
       })
   }
@@ -69,8 +75,20 @@ class AppDetail extends React.Component {
     if (this.state.data == null) {
       return <Loading />
     } else {
+      let snapshots = (() => {
+        let data = this.state.data.snapshot;
+        if (_.isEmpty(data)) {
+          return null
+        }
+        return <Carousel dots="false" autoplay>
+          {data.map((imgUrl, i) => {
+            return <div><img src={imgUrl} key={i} className="snapshot-img"/></div>
+            })}
+        </Carousel>
+      })()
       return <div>
         <AppInfo app={this.state.data}/>
+        {snapshots}
         <AppDesc text={this.state.data.description}/>
       </div>
     }
