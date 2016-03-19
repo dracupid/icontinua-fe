@@ -17,5 +17,5 @@ window.ANTD = {
   Pagination: require('../node_modules/antd/lib/pagination'),
   Input: require('../node_modules/antd/lib/input'),
   notification: require('../node_modules/antd/lib/notification'),
-  Carousel: require('../node_modules/antd/lib/c arousel')
+  Carousel: require('../node_modules/antd/lib/carousel')
 }
