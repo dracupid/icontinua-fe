@@ -76,14 +76,14 @@ class AppDetail extends React.Component {
       return <Loading />
     } else {
       let snapshots = (() => {
-        let data = this.state.data.snapshot;
+        let data = this.state.data.snapshot
         if (_.isEmpty(data)) {
           return null
         }
-        return <Carousel dots="false" autoplay>
+        return <Carousel dots='false' autoplay>
           {data.map((imgUrl, i) => {
-            return <div><img src={imgUrl} key={i} className="snapshot-img"/></div>
-            })}
+            return <div><img src={imgUrl} key={i} className='snapshot-img'/></div>
+          })}
         </Carousel>
       })()
       return <div>

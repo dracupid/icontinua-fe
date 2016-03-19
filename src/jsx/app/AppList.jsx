@@ -39,7 +39,7 @@ class AppList extends React.Component {
   static defaultProps = {
     type: 'tag',
     itemPerPage: 10
-  }
+  };
 
   loadPage () {
     let num = this.state.curPage + 1
@@ -73,7 +73,7 @@ class AppList extends React.Component {
         return <AppListItem {...v} key={v.uid}/>
       })
       if (_.isEmpty(arr)) {
-        arr = <h3 className="not-found">没有找到相关应用</h3>
+        arr = <h3 className='not-found'>没有找到相关应用</h3>
       }
       let btnContent = (function (self) {
         if (self.state.loading) {
@@ -81,18 +81,18 @@ class AppList extends React.Component {
             加载中
           </div>
         } else {
-          return "加载更多"
+          return '加载更多'
         }
       })(this)
 
       return <div>
         {arr}
-        {this.state.hasMore ?
-        <h3
-          className="btn-load-more" size="large" loading={this.state.loading}
-          onClick={this.onChangePage.bind(this)}>
-          {btnContent}
-        </h3> : null}
+        {this.state.hasMore
+          ? <h3
+            className='btn-load-more' size='large' loading={this.state.loading}
+            onClick={this.onChangePage.bind(this)}>
+            {btnContent}
+          </h3> : null}
       </div>
     }
   }

@@ -1,5 +1,4 @@
 import SearchInput from '../Components/Search.jsx'
-import util from '../util.jsx'
 let {Icon} = ANTD
 
 class Banner extends React.Component {
@@ -19,7 +18,7 @@ class Banner extends React.Component {
   }
 
   doSearch (key) {
-    location.href = "/apps#/s/" + key
+    location.href = '/apps#/s/' + key
   }
 
   render () {

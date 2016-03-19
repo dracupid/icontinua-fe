@@ -35,7 +35,7 @@ class SearchInput extends React.Component {
             onFocus={this.handleFocusBlur.bind(this)} onBlur={this.handleFocusBlur.bind(this)}/>
           <div className='ant-input-group-wrap'>
             <Button
-              htmlType="submit"
+              htmlType='submit'
               className='ant-search-btn ant-search-btn'
               onClick={this.handleSearch.bind(this)}>
               <Icon type='search'/>
