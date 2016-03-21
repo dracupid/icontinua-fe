@@ -1,3 +1,5 @@
+#!/usr/bin/env coffee
+
 got = require 'got'
 
 # appId = 'wx1071ef65b25ab039'
@@ -34,6 +36,10 @@ menuStr =
                 type: 'view',
                 name: '预约转诊',
                 url: "http://m.haodf.com/touch/booking/hospitallistbyarea?areaName=%D5%E3%BD%AD&type=1"
+            }, {
+                type: 'view',
+                name: '医药商城',
+                url: "http://m.star365.com/"
             }, {
                 type: 'view',
                 name: '个人中心',
