@@ -18,7 +18,7 @@ let shareData = {
 let defaultShareData = {
   title: '快来体验爱康体吧',
   desc: '体验"爱康体"，读懂你自己',
-  link: 'http://icontinua.com',
+  link: 'http://icontinua.com/html/intro.html',
   imgUrl: 'http://icontinua.com/img/logo.png'
 }
 

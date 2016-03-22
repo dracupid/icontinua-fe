@@ -112,7 +112,7 @@ gulp.task 'html', ->
     replace = require 'gulp-replace'
     gulpif = require 'gulp-if'
 
-    gulp.src [cfg.src + 'html/**/*.jade', '!**/html/layout/**'], base: cfg.src + 'html'
+    gulp.src [cfg.src + 'html/*.jade'], base: cfg.src + 'html'
     .pipe jade pretty: '    ', compileDebug: true
     .pipe gulpif isProduction, replace("_TIMESTAMP_", +new Date())
     .pipe gulpif isProduction, replace("react.js", "react.min.js")

@@ -25,6 +25,14 @@ menuStr =
                 type: 'view',
                 name: '专家帮你',
                 url: "http://m.haodf.com/touch/jibing/list.html"
+            }, {
+                type: 'view',
+                name: '疾病百科',
+                url: "http://wapjbk.39.net/"
+            }, {
+                type: 'view',
+                name: '药品查询',
+                url: "http://wapypk.39.net/index.aspx"
             }]
         }, {
             name: '更多服务',

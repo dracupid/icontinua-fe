@@ -7,8 +7,8 @@ middle(h) {
 }
 
 body
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-tap-highlight-color: transparent; /* For some Androids */
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+    -webkit-appearance: none
     -webkit-touch-callout: none;
     -webkit-user-drag: none;
     -webkit-text-size-adjust: none;
@@ -27,8 +27,10 @@ footer
     margin 20px 0 0 -10px
     z-index 9999
     font-size 16px
+
 .ant-pagination.mini .ant-pagination-item
     margin 0 4px
+
 .ant-pagination-item-active
     border-color $green_dark
     background-color $green_dark
