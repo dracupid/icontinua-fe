@@ -5,7 +5,9 @@ function BannerBlock ({icon, text, url}) {
     <div className='block-icon'>
       <Icon type={icon}/>
     </div>
-    <div className='block-text'>{text}</div>
+    <div className='block-text'>
+      {text}
+    </div>
     <div className='block-icon block-icon-right'>
       <Icon type='right'/>
     </div>

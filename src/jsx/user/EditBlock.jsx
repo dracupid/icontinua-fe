@@ -24,8 +24,9 @@ class EditBlock extends React.Component {
       if (editing) {
         switch (this.props.type) {
           case 'text':
-            return <input className="ant-input" value={this.state.inputValue || value}
-                          onChange={this.onChange.bind(this)}/>
+            return <input
+              className='ant-input' value={this.state.inputValue || value}
+              onChange={this.onChange.bind(this)}/>
           case 'radio':
             return <Radio.Group onChange={this.onChange.bind(this)} value={this.state.inputValue || defaultValue}>
               {_.map(this.props.data, (v, k) => {
@@ -33,8 +34,9 @@ class EditBlock extends React.Component {
               })}
             </Radio.Group>
           case 'number':
-            return <InputNumber size="large" min={this.props.min} max={this.props.max} defaultValue={value}
-                                onChange={this.onChange.bind(this)}/>
+            return <InputNumber
+              size='large' min={this.props.min} max={this.props.max} defaultValue={value}
+              onChange={this.onChange.bind(this)}/>
         }
       } else {
         return <div className='block-text text-value'>{value}</div>

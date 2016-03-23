@@ -3,9 +3,7 @@ let {Icon} = ANTD
 function Banner (props) {
   let left = (() => {
     if (props.backUrl) {
-      return (<a href={props.backUrl}>
-        <i className='anticon anticon-left left-icon'/>
-      </a>)
+      return (<a href={props.backUrl}><i className='anticon anticon-left left-icon'/></a>)
     } else {
       return <Icon/>
     }
@@ -22,7 +20,6 @@ function Banner (props) {
     <div className='header'>
       {left}
       <h2>{props.title}</h2>
-
       {right}
     </div>
   )

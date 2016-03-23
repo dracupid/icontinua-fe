@@ -1,6 +1,6 @@
 import Echarts from '../Components/Echarts.jsx'
 import util from '../util.jsx'
-import { baseLineOpt } from '../option.jsx'
+import {baseLineOpt} from '../option.jsx'
 
 class Blood extends React.Component {
   static propTypes = {

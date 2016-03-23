@@ -6,7 +6,7 @@ import Banner from '../Components/Banner.jsx'
 
 function UserInfo ({avatar, nickname, sex, age, id}) {
   return <div className='user-info-banner block'>
-    <img src={avatar} className="avatar"/>
+    <img src={avatar} className='avatar'/>
     <div className='user-info-wrapper'>
       <div>{nickname}</div>
       <div>{'性别：' + (sex == null ? '未知' : util.parseSex(sex))}</div>
@@ -32,7 +32,7 @@ class Main extends React.Component {
 
   render () {
     return <div>
-      <Banner title="个人中心"/>
+      <Banner title='个人中心'/>
       <UserInfo {...this.state.data} id={this.props.params.userId}/>
       <div className='block-wrapper'>
         <BannerBlock text='查看体检报告' icon='file-text' url={'/reports#/' + this.props.params.userId}/>

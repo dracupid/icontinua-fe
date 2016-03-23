@@ -2,9 +2,9 @@ import Banner from './Components/Banner.jsx'
 import ReportList from './ReportList.jsx'
 import ReportTrade from './ReportTrade.jsx'
 import util from './util.jsx'
+import Footer from './Components/Footer.jsx'
 let {Tabs, Popover, Icon, Modal, Button, Form, InputNumber, Radio, message} = ANTD
 let TabPane = Tabs.TabPane
-import Footer from './Components/Footer.jsx'
 
 class Reports extends React.Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import Echarts from '../Components/Echarts.jsx'
-// import Tips from '../Components/Tips.jsx'
 import util from '../util.jsx'
-import { baseLineOpt } from '../option.jsx'
+import {baseLineOpt} from '../option.jsx'
+// import Tips from '../Components/Tips.jsx'
 
 class O2 extends React.Component {
   static propTypes = {

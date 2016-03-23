@@ -2,8 +2,8 @@ import Echarts from '../Components/Echarts.jsx'
 import Tips from '../Components/Tips.jsx'
 import Rank from '../Components/Rank.jsx'
 import util from '../util.jsx'
+import {baseGaugeOpt} from '../option.jsx'
 let {getValue} = util
-import { baseGaugeOpt } from '../option.jsx'
 
 class Blood extends React.Component {
   static propTypes = {

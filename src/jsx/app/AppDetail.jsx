@@ -1,8 +1,8 @@
 import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
 import Banner from './Banner.jsx'
-let {Button, Carousel} = ANTD
 import appUtil from './util.jsx'
+let {Button, Carousel} = ANTD
 
 function format (num) {
   if (num > 100000) {
