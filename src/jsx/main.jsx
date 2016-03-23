@@ -1,10 +1,7 @@
 import report from './report.jsx'
 import reports from './reports.jsx'
+import {Route, Router, hashHistory} from './ReactRouter.jsx'
 import './wechat.jsx'
-
-import Router from '../../node_modules/react-router/lib/Router'
-import Route from '../../node_modules/react-router/lib/Route'
-import hashHistory from '../../node_modules/react-router/lib/hashHistory'
 
 window._reportListData = null
 window._reportData = {}

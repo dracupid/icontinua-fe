@@ -1,3 +1,6 @@
+@import "nib/size"
+@import "nib/positions"
+
 $green = #80cbc4
 $green_dark = #2dacb9
 
@@ -38,3 +41,32 @@ footer
         color $green_dark
         border-color $green_dark
         background-color $green_dark
+
+$bannerHeight = 45px
+
+.header
+    display flex
+    align-items center
+    justify-content space-between
+    padding 4px 10px
+    background-color $green
+    height $bannerHeight
+    color #eee
+    font-size 20px
+    a
+        color inherit
+    h1, h2
+        text-align center
+        font-size inherit
+        middle($bannerHeight)
+        overflow hidden
+    > .anticon, a
+        width 50px
+    .header-right
+        width 50px
+        display flex
+        justify-content flex-end
+        img
+            size(35px)
+            border-radius 50%
+            margin-right 10px

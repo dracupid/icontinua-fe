@@ -53,5 +53,17 @@ export default {
           throw error
         }
       })
+  },
+
+  parseSex (sex) {
+    if (!sex) {
+      return '未知'
+    }
+
+    return (parseInt(sex, 10) === 1) ? '男' : '女'
+  },
+
+  getUrlByHash (hash) {
+    return location.pathname + '#' + hash
   }
 }

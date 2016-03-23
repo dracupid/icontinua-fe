@@ -47,7 +47,7 @@ class Banner extends React.Component {
     })(this)
 
     return <div>
-      <div className='header-store'>
+      <div className='header'>
         {left}
         <div className='app-search-box'>
           {middle}

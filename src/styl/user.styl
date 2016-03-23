@@ -1,0 +1,99 @@
+@import "./mixin.styl"
+
+$infoHeight = 64px
+$btnBlockHeight = 40px
+
+.both-border
+    border-top 1px solid #E4E4E4
+    border-bottom 1px solid #E4E4E4
+
+.block
+    @extends .both-border
+    display flex
+    align-items center
+    justify-content space-between
+    border-top 1px solid #E4E4E4
+    border-bottom 1px solid #E4E4E4
+    background-color white
+    font-size 1.2em
+
+.block-wrapper
+    @extends .both-border
+    background-color white
+    padding-left 15px
+    margin-top 32px
+    .btn-block:last-child
+        border-bottom none
+
+.btn-block
+    min-height $btnBlockHeight
+    border-top none
+    .block-icon
+        width 30px
+        line-height $btnBlockHeight
+        font-size 20px
+        color $green_dark
+    .block-text
+        font-size 1.1em
+        margin-left 10px
+        flex 1
+        line-height $btnBlockHeight
+    .block-icon-right
+        font-size 0.8em
+        font-weight bold
+        color #9A9999
+        width 20px
+
+.user-edit-save
+    font-size 0.8em
+
+.edit-block
+    .text-tag
+        margin-left 0
+        font-weight bold
+        display flex
+        flex-direction column
+        justify-content center
+        flex none
+        width 70px
+    .text-value
+        text-align right
+        margin-right 15px
+        display flex
+        align-items flex-end
+        flex-direction column
+        justify-content center
+    .block-icon-right
+        width 36px
+        font-size 1em
+    .avatar
+        margin 3px
+    .ant-input-wrapper
+        margin 3px 15px 3px 0
+        width 80%
+        height $btnBlockHeight - 6px
+    input
+        middle($btnBlockHeight - 6px)
+    .ant-radio-group
+        line-height $btnBlockHeight
+    .ant-input-number
+        width 100%
+
+.avatar
+    size($infoHeight)
+    border-radius 5px
+    display block
+
+.user-info-banner
+    padding 10px
+    .user-info-wrapper
+        margin-left 20px
+        display flex
+        flex 1
+        flex-direction column
+        justify-content space-between
+    .user-info-edit
+        width 30px
+        line-height $infoHeight
+        font-size 20px
+        color $green_dark

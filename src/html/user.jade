@@ -1,0 +1,23 @@
+include lib/mixin
+doctype html
+
+html(lang="zh-cmn-Hans")
+    head
+        mixin head()
+        mixin css("/css/user")
+        title 用户中心 | 爱康体
+        style.
+            .pre-tip {
+                width: 100%;
+                text-align: center;
+                margin-top: 10%;
+                font-size: 22px;
+            }
+
+    body
+        #main
+            .pre-tip 正在加载用户中心,请稍候...
+
+        mixin foot()
+        script(src="/js/user.js?t=_TIMESTAMP_")
+
