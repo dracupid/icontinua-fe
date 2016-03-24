@@ -6,29 +6,26 @@ class EditBlock extends React.Component {
     confirmedValue: null
   };
 
-  onRefresh () {
-    this.setState({
-      inputValue: this.props.defaultValue || this.props.value
-    })
-  }
-
   onChange (v) {
-    v = v.target.value
+    v = (v.target && v.target.value) || v
     this.setState({inputValue: v})
     this.props.onChange && this.props.onChange(v)
   }
 
   render () {
     let {tag, value, editing, noedit, defaultValue} = this.props
+    value = this.state.inputValue || value
+    defaultValue = this.state.inputValue || defaultValue
+
     let middle = (() => {
       if (editing) {
         switch (this.props.type) {
           case 'text':
             return <input
-              className='ant-input' value={this.state.inputValue || value}
+              className='ant-input' value={value}
               onChange={this.onChange.bind(this)}/>
           case 'radio':
-            return <Radio.Group onChange={this.onChange.bind(this)} value={this.state.inputValue || defaultValue}>
+            return <Radio.Group onChange={this.onChange.bind(this)} value={defaultValue}>
               {_.map(this.props.data, (v, k) => {
                 return <Radio key={k} value={k}>{v}</Radio>
               })}
@@ -39,15 +36,18 @@ class EditBlock extends React.Component {
               onChange={this.onChange.bind(this)}/>
         }
       } else {
-        return <div className='block-text text-value'>{value}</div>
+        if (defaultValue) {
+          defaultValue = this.props.data[defaultValue]
+        }
+        return <div className='block-text text-value'>{ defaultValue || value}</div>
       }
     })()
 
     let rightIcon = (() => {
       if (!noedit) {
         if (editing) {
-          return <div className='block-icon block-icon-right' onClick={this.onRefresh.bind(this)}>
-            <Icon type='reload' style={{color: 'green'}}/>
+          return <div className='block-icon block-icon-right'>
+            <Icon type='edit' style={{color: 'green'}}/>
           </div>
         }
       }

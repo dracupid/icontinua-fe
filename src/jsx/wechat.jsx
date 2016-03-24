@@ -32,7 +32,9 @@ if (isWeixin) {
         'onMenuShareAppMessage',
         'onMenuShareQQ',
         'onMenuShareWeibo',
-        'onMenuShareQZone'
+        'onMenuShareQZone',
+        'chooseImage',
+        'uploadImage'
       ]
     }, data.data))
 
@@ -83,4 +85,36 @@ export function setReport (reportId, user) {
     }
   }
   share(data)
+}
+
+export function takePhoto () {
+  if (!isWeixin) {
+    alert('请在微信中打开网页进行拍照')
+  }
+  return new Promise((resolve, reject) => {
+    wx.chooseImage({
+      count: 1,
+      success (res) {
+        return resolve(res.localIds[0]);
+      },
+      fail (res) {
+        return reject(res)
+      }
+    });
+  })
+}
+
+export function uploadPhoto (id) {
+  return new Promise((resolve, reject) => {
+    wx.uploadImage({
+      localId: id, // 需要上传的图片的本地ID，由chooseImage接口获得
+      isShowProgressTips: 1, // 默认为1，显示进度提示
+      success (res) {
+        return resolve(res.serverId) // 返回图片的服务器端ID
+      },
+      fail (res) {
+        return reject(res)
+      }
+    });
+  })
 }

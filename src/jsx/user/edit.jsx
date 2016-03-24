@@ -21,7 +21,11 @@ class Edit extends React.Component {
   onSubmit () {
     if (this.state.editing) {
       let data = _.merge(this.state.data, this.state.newData)
-      util.fetchAPI(`/api/user/update?id=${this.props.params.userId}&age=${data.age}&sex=${data.sex}`)
+      let params = _.map(data, (v, k) => {
+        return `${k}=${v}`
+      }).join('&')
+
+      util.fetchAPI(`/api/user/update?id=${this.props.params.userId}&${params}`)
         .then(() => {
           message.info('更新个人资料成功')
           this.setState({editing: false, data})

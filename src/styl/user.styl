@@ -74,10 +74,13 @@ $btnBlockHeight = 40px
         height $btnBlockHeight - 6px
     input
         middle($btnBlockHeight - 6px)
+        border none
+        background-color #eee
     .ant-radio-group
         line-height $btnBlockHeight
     .ant-input-number
         width 100%
+        border none
 
 .avatar
     size($infoHeight)
@@ -97,3 +100,32 @@ $btnBlockHeight = 40px
         line-height $infoHeight
         font-size 20px
         color $green_dark
+
+.btn-photo
+    padding 15px
+    button
+        width 100%
+        background-color $green !important
+        border-color $green !important
+        transition none
+
+.btn-photo-two button
+    width 40%
+    margin 0 4.5%
+
+.upload-img
+    display block
+    margin auto
+    padding 15px
+    max-width 100%
+
+.img-grid-wrapper
+    display flex
+    padding 0 10px
+    .img-item
+        margin 0 5px
+        flex 1
+        height 128px
+        background-size 100%
+        background-position center center
+        background-repeat no-repeat
