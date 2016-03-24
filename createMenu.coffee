@@ -56,7 +56,7 @@ createMenu = (appId, appSecret, host)->
         got(url).then (res) ->
             res = JSON.parse res.body
             token = res.access_token
-            console.log "TOKEN: #{token}"
+            console.log host, " - TOKEN: #{token}"
             token
 
     getToken()
@@ -66,7 +66,7 @@ createMenu = (appId, appSecret, host)->
         got.post url,
             body: JSON.stringify menuStr
         .then (res) ->
-            console.log res.body
+            console.log host, ' - ',  res.body
     .catch (e) ->
         console.error e
 
