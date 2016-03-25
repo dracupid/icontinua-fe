@@ -27,19 +27,40 @@ function ageGroup (age) {
 function Rank (props) {
   let text = _.map(props.obj, (v, k) => {
     let prefix = `你的${k}`
+    let rank = v.rank
 
-    if (v === 0) {
+    if (rank === 0) {
       return <span key={k}>{prefix + '是'}<High>最高</High>的。</span>
-    } else if (v === 100) {
+    } else if (rank === 100) {
       return <span key={k}>{prefix + '是'}<Low>最低的</Low>。</span>
-    } else if (v <= 40) {
-      return <span key={k}>{prefix + '位于'}<Low>{v}%</Low>的位置。</span>
-    } else if (v <= 60) {
-      return <span key={k}>{prefix + '位于'}<Middle>{v}%</Middle>的位置。</span>
+    } else if (rank <= 40) {
+      return <span key={k}>{prefix + '位于'}<Low>{rank}%</Low>的位置。</span>
+    } else if (rank <= 60) {
+      return <span key={k}>{prefix + '位于'}<Middle>{rank}%</Middle>的位置。</span>
     } else {
-      return <span key={k}>{prefix + '位于'}<High>{v}%</High>的位置。</span>
+      return <span key={k}>{prefix + '位于'}<High>{rank}%</High>的位置。</span>
     }
   })
+
+  let refBlock = _.map(props.obj, (v, k) => {
+    let cur = v.value
+    let ref = v.refValue
+    let prefix = `${k}的平均值为${ref}，`
+    if (!ref) {return null}
+    if (ref < cur) {
+      return <span key={'ref'+ k}>{prefix + '你的测量值'}<High>偏高</High>。</span>
+    } else if (ref > cur) {
+      return <span key={'ref'+ k}>{prefix + '你的测量值'}<Low>偏低</Low>。</span>
+    } else {
+      return <span key={'ref'+ k}>{prefix + '你是'}<Middle>平均</Middle>水平。</span>
+    }
+  })
+
+  if (!_.isEmpty(_.compact(refBlock))) {
+    text.push(<br/>, <br/>, "根据统计数据，同性别同年龄段人群中：")
+    text = text.concat(refBlock)
+  }
+
   return <Tips text={<div>
     {`在${ageGroup(props.user.age)}的${parseInt(props.user.sex, 10) === 1 ? '男' : '女'}性用户中：`}
     {text}

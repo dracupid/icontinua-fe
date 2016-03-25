@@ -15,7 +15,7 @@ function O2 (props) {
       </div>
       <Tips text={intro} title='简介'/>
       <Tips text={advice}/>
-      <Rank obj={{血氧: rank}} user={props.user}/>
+      <Rank obj={{血氧: props.data}} user={props.user}/>
     </div>
   )
 }
