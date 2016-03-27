@@ -4,14 +4,16 @@ import {takePhoto, uploadPhoto} from '../wechat.jsx'
 import util from '../util.jsx'
 import {getUserInfo} from './util.jsx'
 
-function ImgBlock ({url}) {
-  return <div style={{backgroundImage: `url(${url})`}} className="img-item"/>
+function ImgBlock (props) {
+  return <div style={{backgroundImage: `url(${props.url}?thumb=1)`}} className='img-item' {...props}/>
 }
 
 class Photo extends React.Component {
   state = {
     data: {},
-    imgUrl: null
+    imgUrl: null,
+    fullScreen: false,
+    curImg: null
   };
 
   loading = false;
@@ -20,6 +22,21 @@ class Photo extends React.Component {
     takePhoto()
       .then((url) => {
         this.setState({imgUrl: url})
+      })
+  }
+
+  deletePhoto (url) {
+    util.fetchAPI(`/api/user/photo/delete?id=${this.props.params.userId}&imgId=${url}`)
+      .then(() => {
+        message.info('照片删除成功')
+        let data = this.state.data
+        if (data.photos) {
+          _.remove(data.photos, url)
+        }
+        this.setState({data})
+      })
+      .catch(() => {
+        message.error('照片删除失败, 请重试')
       })
   }
 
@@ -54,22 +71,29 @@ class Photo extends React.Component {
       })
   }
 
+  triggerFullScreen (img) {
+    this.setState({
+      fullScreen: !this.state.fullScreen,
+      curImg: img
+    })
+  }
+
   render () {
     let btn = (() => {
       if (this.state.imgUrl) {
-        return <div className="btn-photo btn-photo-two">
-          <Button type="primary" size="large" onClick={this.takePhoto.bind(this)}>
+        return <div className='btn-photo btn-photo-two'>
+          <Button type='primary' size='large' onClick={this.takePhoto.bind(this)}>
             <Icon type='reload'/>
             重新拍照
           </Button>
-          <Button type="primary" size="large" onClick={this.upload.bind(this)}>
+          <Button type='primary' size='large' onClick={this.upload.bind(this)}>
             <Icon type='upload'/>
             上传
           </Button>
         </div>
       } else {
-        return <div className="btn-photo" onClick={this.takePhoto.bind(this)}>
-          <Button type="primary" size="large">
+        return <div className='btn-photo' onClick={this.takePhoto.bind(this)}>
+          <Button type='primary' size='large'>
             <Icon type='camera'/>
             拍照上传
           </Button>
@@ -79,15 +103,17 @@ class Photo extends React.Component {
 
     let imgs = _.map(this.state.data.photos, (i, index) => {
       let url = i.indexOf('://') > 0 ? i : ('/resource/' + i)
-      return <ImgBlock url={url} key={index}/>
+      return <ImgBlock url={url} key={index} onClick={this.triggerFullScreen.bind(this, url)}/>
     })
 
     let imageBlocks = (() => {
-      let ret = [], i = 0, tmp
+      let ret = []
+      let i = 0
+      let tmp
       while (true) {
         tmp = _.slice(imgs, i, i + 3)
-        if (_.isEmpty(tmp)) break;
-        ret.push(<div className="img-grid-wrapper" key={i}>{tmp}</div>)
+        if (_.isEmpty(tmp)) break
+        ret.push(<div className='img-grid-wrapper' key={i}>{tmp}</div>)
         i += 3
       }
       return ret
@@ -96,8 +122,13 @@ class Photo extends React.Component {
     return <div>
       <Banner title='化验单拍照' backUrl={util.getUrlByHash(this.props.params.userId)}/>
       {btn}
-      {this.state.imgUrl ? <img src={this.state.imgUrl} className="upload-img"/> : null}
+      {this.state.imgUrl ? <img src={this.state.imgUrl} className='upload-img'/> : null}
       {imageBlocks}
+      <div
+        className='pop-image' style={{display: this.state.fullScreen ? 'block' : 'none'}}
+        onClick={this.triggerFullScreen.bind(this, null)}>
+        <img src={this.state.curImg}/>
+      </div>
     </div>
   }
 }

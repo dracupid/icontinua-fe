@@ -2,7 +2,7 @@ import Tips from '../Components/Tips.jsx'
 import Rank from '../Components/Rank.jsx'
 
 function O2 (props) {
-  let {advice, result, intro, value, rank} = props.data
+  let {advice, result, intro, value} = props.data
   let className = 'spo2h-report' + (result === 'NORMAL' ? '' : ' alert')
   return (
     <div>

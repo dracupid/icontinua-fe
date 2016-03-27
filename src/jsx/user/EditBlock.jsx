@@ -39,7 +39,7 @@ class EditBlock extends React.Component {
         if (defaultValue) {
           defaultValue = this.props.data[defaultValue]
         }
-        return <div className='block-text text-value'>{ defaultValue || value}</div>
+        return <div className='block-text text-value'>{defaultValue || value}</div>
       }
     })()
 

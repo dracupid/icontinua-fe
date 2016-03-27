@@ -42,8 +42,8 @@ export default {
     return value && value + suffix
   },
 
-  fetchAPI (url) {
-    return fetch(url)
+  fetchAPI (url, opt) {
+    return fetch(url, opt)
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
           return res.json()
@@ -59,7 +59,6 @@ export default {
     if (!sex) {
       return '未知'
     }
-
     return (parseInt(sex, 10) === 1) ? '男' : '女'
   },
 

@@ -46,18 +46,18 @@ function Rank (props) {
     let cur = v.value
     let ref = v.refValue
     let prefix = `${k}的平均值为${ref}，`
-    if (!ref) {return null}
+    if (!ref) { return null }
     if (ref < cur) {
-      return <span key={'ref'+ k}>{prefix + '你的测量值'}<High>偏高</High>。</span>
+      return <span key={'ref' + k}>{prefix + '你的测量值'}<High>偏高</High>。</span>
     } else if (ref > cur) {
-      return <span key={'ref'+ k}>{prefix + '你的测量值'}<Low>偏低</Low>。</span>
+      return <span key={'ref' + k}>{prefix + '你的测量值'}<Low>偏低</Low>。</span>
     } else {
-      return <span key={'ref'+ k}>{prefix + '你是'}<Middle>平均</Middle>水平。</span>
+      return <span key={'ref' + k}>{prefix + '你是'}<Middle>平均</Middle>水平。</span>
     }
   })
 
   if (!_.isEmpty(_.compact(refBlock))) {
-    text.push(<br/>, <br/>, "根据统计数据，同性别同年龄段人群中：")
+    text.push(<br/>, <br/>, '根据统计数据，同性别同年龄段人群中：')
     text = text.concat(refBlock)
   }
 
