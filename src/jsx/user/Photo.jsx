@@ -5,7 +5,11 @@ import util from '../util.jsx'
 import {getUserInfo} from './util.jsx'
 
 function ImgBlock (props) {
-  return <div style={{backgroundImage: `url(${props.url}?thumb=1)`}} className='img-item' {...props}/>
+  return <div style={{backgroundImage: `url(${props.url}?thumb=1)`}} className='img-item' {...props}>
+    <div className='btn-delete' onClick={props.onDelete}>
+      <Button type='ghost' shape='circle-outline' size='small'><Icon type='cross'/></Button>
+    </div>
+  </div>
 }
 
 class Photo extends React.Component {
@@ -25,19 +29,24 @@ class Photo extends React.Component {
       })
   }
 
-  deletePhoto (url) {
-    util.fetchAPI(`/api/user/photo/delete?id=${this.props.params.userId}&imgId=${url}`)
-      .then(() => {
-        message.info('照片删除成功')
-        let data = this.state.data
-        if (data.photos) {
-          _.remove(data.photos, url)
-        }
-        this.setState({data})
-      })
-      .catch(() => {
-        message.error('照片删除失败, 请重试')
-      })
+  deletePhoto (img) {
+    return (e) => {
+      e.stopPropagation()
+      util.fetchAPI(`/api/user/photo/delete?id=${this.props.params.userId}&imgId=${img}`)
+        .then(() => {
+          message.info('照片删除成功')
+          let data = this.state.data
+          if (data.photos) {
+            _.remove(data.photos, (item) => {
+              return item === img
+            })
+          }
+          this.setState({data})
+        })
+        .catch(() => {
+          message.error('照片删除失败, 请重试')
+        })
+    }
   }
 
   upload () {
@@ -103,7 +112,9 @@ class Photo extends React.Component {
 
     let imgs = _.map(this.state.data.photos, (i, index) => {
       let url = i.indexOf('://') > 0 ? i : ('/resource/' + i)
-      return <ImgBlock url={url} key={index} onClick={this.triggerFullScreen.bind(this, url)}/>
+      return <ImgBlock
+        url={url} key={index} onClick={this.triggerFullScreen.bind(this, url)}
+        onDelete={this.deletePhoto(i)}/>
     })
 
     let imageBlocks = (() => {
