@@ -8,20 +8,24 @@ class EditBlock extends React.Component {
 
   onChange (v) {
     v = (v.target && v.target.value) || v
+    if (this.props.pattern && !this.props.pattern.test(v)) {
+      return
+    }
     this.setState({inputValue: v})
     this.props.onChange && this.props.onChange(v)
   }
 
   render () {
     let {tag, value, editing, noedit, defaultValue} = this.props
-    value = this.state.inputValue || value
-    defaultValue = this.state.inputValue || defaultValue
+    value = this.state.inputValue || value || ''
+    defaultValue = this.state.inputValue || defaultValue || ''
 
     let middle = (() => {
       if (editing) {
         switch (this.props.type) {
           case 'text':
             return <input
+              type="text"
               className='ant-input' value={value}
               onChange={this.onChange.bind(this)}/>
           case 'radio':
@@ -36,7 +40,7 @@ class EditBlock extends React.Component {
               onChange={this.onChange.bind(this)}/>
         }
       } else {
-        if (defaultValue) {
+        if (defaultValue && this.props.data) {
           defaultValue = this.props.data[defaultValue]
         }
         return <div className='block-text text-value'>{defaultValue || value}</div>

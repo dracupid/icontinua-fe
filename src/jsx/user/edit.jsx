@@ -47,7 +47,7 @@ class Edit extends React.Component {
   }
 
   render () {
-    let {avatar, nickname, sex, age} = this.state.data
+    let {avatar, nickname, sex, age, phone} = this.state.data
     return <div>
       <Banner
         title='我的资料' backUrl={util.getUrlByHash(`/${this.props.params.userId}`)}
@@ -63,6 +63,9 @@ class Edit extends React.Component {
         <EditBlock
           tag='年龄' type='number' min={1} max={130}
           value={age} editing={this.state.editing} onChange={this.onChangeBuilder('age')}/>
+        <EditBlock
+          tag='联系电话' type='text' pattern={/^\d+$/}
+          value={phone} editing={this.state.editing} onChange={this.onChangeBuilder('phone')}/>
       </div>
     </div>
   }
