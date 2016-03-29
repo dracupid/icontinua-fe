@@ -5,7 +5,6 @@ import util from '../util.jsx'
 import {getUserInfo} from './util.jsx'
 
 function ImgBlock (props) {
-  alert(props.url)
   return <div style={{backgroundImage: `url(${props.url}?thumb=1)`}} className='img-item' {...props}>
     <div className='btn-delete' onClick={props.onDelete}>
       <Button type='ghost' shape='circle-outline' size='small'><Icon type='cross'/></Button>
