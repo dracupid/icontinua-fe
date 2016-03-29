@@ -5,6 +5,7 @@ import util from '../util.jsx'
 import {getUserInfo} from './util.jsx'
 
 function ImgBlock (props) {
+  alert(props.url)
   return <div style={{backgroundImage: `url(${props.url}?thumb=1)`}} className='img-item' {...props}>
     <div className='btn-delete' onClick={props.onDelete}>
       <Button type='ghost' shape='circle-outline' size='small'><Icon type='cross'/></Button>
@@ -56,13 +57,13 @@ class Photo extends React.Component {
       .then((id) => {
         return util.fetchAPI(`/api/user/photo?id=${this.props.params.userId}&imgId=${id}`)
       })
-      .then(() => {
+      .then(({data: url}) => {
         message.info('照片上传成功')
         let data = this.state.data
         if (data.photos) {
-          data.photos.push(this.state.imgUrl)
+          data.photos.push(url)
         } else {
-          data.photos = [this.state.imgUrl]
+          data.photos = [url]
         }
         this.setState({imgUrl: null, data})
         this.loading = false
