@@ -46,6 +46,10 @@ createMenu = (appId, appSecret, host)->
                 type: 'view',
                 name: '个人中心',
                 url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=usercenter'}&response_type=code&scope=snsapi_base"
+            }, {
+                type: 'view',
+                name: '产品介绍',
+                url: host + "/html/intro.html"
             }]
         }
     ]
