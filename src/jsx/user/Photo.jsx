@@ -5,7 +5,8 @@ import util from '../util.jsx'
 import {getUserInfo} from './util.jsx'
 
 function ImgBlock (props) {
-  return <div style={{backgroundImage: `url(${props.url}?thumb=1)`}} className='img-item' {...props}>
+  let thumbUrl = props.url.replace("http://cdn.icontinua.com", "http://cdn-img.icontinua.com") + '@0o_0l_50Q_128w.src'
+  return <div style={{backgroundImage: `url(${thumbUrl})`}} className='img-item' {...props}>
     <div className='btn-delete' onClick={props.onDelete}>
       <Button type='ghost' shape='circle-outline' size='small'><Icon type='cross'/></Button>
     </div>
@@ -111,7 +112,7 @@ class Photo extends React.Component {
     })()
 
     let imgs = _.map(this.state.data.photos, (i, index) => {
-      let url = i.indexOf('://') > 0 ? i : ('/resource/' + i)
+      let url = i.indexOf('://') > 0 ? i : ('http://cdn.icontinua.com/resource/' + i)
       return <ImgBlock
         url={url} key={index} onClick={this.triggerFullScreen.bind(this, url)}
         onDelete={this.deletePhoto(i)}/>
