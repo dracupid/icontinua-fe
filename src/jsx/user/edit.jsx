@@ -21,9 +21,10 @@ class Edit extends React.Component {
   onSubmit () {
     if (this.state.editing) {
       let data = _.merge(this.state.data, this.state.newData)
-      let params = _.map(data, (v, k) => {
+      let params = _.compact(_.map(data, (v, k) => {
+        if (v == null) return null
         return `${k}=${v}`
-      }).join('&')
+      })).join('&')
 
       util.fetchAPI(`/api/user/update?id=${this.props.params.userId}&${params}`)
         .then(() => {
@@ -64,7 +65,7 @@ class Edit extends React.Component {
           tag='年龄' type='number' min={1} max={130}
           value={age} editing={this.state.editing} onChange={this.onChangeBuilder('age')}/>
         <EditBlock
-          tag='联系电话' type='text' pattern={/^\d+$/}
+          tag='联系电话' type='text' pattern={/^\d*$/}
           value={phone} editing={this.state.editing} onChange={this.onChangeBuilder('phone')}/>
       </div>
     </div>
