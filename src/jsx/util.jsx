@@ -1,3 +1,5 @@
+let fetchCache = {}
+
 function getValue (t) {
   if (t == null) {
     return null
@@ -52,7 +54,10 @@ export default {
     return value && value + suffix
   },
 
-  fetchAPI (url, opt) {
+  fetchAPI (url, opt = {}) {
+    if (!opt.noCache && fetchCache[url]) {
+      return Promise.resolve(fetchCache[url])
+    }
     return fetch(url, opt)
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
@@ -64,7 +69,9 @@ export default {
         }
       })
       .then((json) => {
-        return json.data || {}
+        let data = /.json$/.test(url) ? json : (json.data || {})
+        if (!opt.noCache) fetchCache[url] = data
+        return data
       })
   },
 

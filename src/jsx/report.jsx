@@ -56,39 +56,24 @@ class Report extends React.Component {
   }
 
   componentDidMount () {
-    let promise = Promise.resolve()
-
-    if (window._advice == null) {
-      promise = fetch('/data/advice.json')
-        .then((res) => {
-          return res.json()
-        })
-        .then((res) => {
-          window._advice = res
-        })
-        .catch((e) => {
-          console.error(e)
-          this.fetchFailedHandler()
-        })
-    }
-
-    promise.then(() => {
-      let reportId = this.props.params.reportId
-
-      if (!_.isEmpty(window._fullReportData[reportId])) { // 完整数据
-        this.formatAndSetState(window._fullReportData[reportId])
-      } else {
+    util.fetchAPI('/data/advice.json')
+      .then((res) => {
+        window._advice = res
+      })
+      .then(() => {
+        let reportId = this.props.params.reportId
         util.fetchAPI('/api/report?rank=true&diagnose=true&reportId=' + reportId)
           .then((res) => {
             this.formatAndSetState(res)
-            window._fullReportData[reportId] = res
           })
           .catch((e) => {
             console.error(e)
-            this.fetchFailedHandler()
+            this.setState({
+              title: '体检报告',
+              loaded: true
+            })
           })
-      }
-    })
+      })
   }
 
   getHeightWeight () {

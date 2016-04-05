@@ -125,33 +125,21 @@ class Chinese extends React.Component {
     data: null,
     loaded: false
   };
-
-  fetchFailedHandler () {
-    this.setState({
-      data: null,
-      loaded: true
-    })
-  }
-
+  
   componentDidMount () {
     let id = this.props.id
-    if (!_.isEmpty(window._chineseReportData[id])) {
-      this.setState({
-        data: window._chineseReportData[id],
-        loaded: true
-      })
-      return
-    }
     let url = '/api/falthReport?id=' + id
     util.fetchAPI(url).then((res) => {
-      window._chineseReportData[id] = res
       this.setState({
         data: res,
         loaded: true
       })
     }).catch((e) => {
       console.error(e)
-      this.fetchFailedHandler()
+      this.setState({
+        data: null,
+        loaded: true
+      })
     })
   }
 

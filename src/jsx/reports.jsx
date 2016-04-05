@@ -17,12 +17,6 @@ class Reports extends React.Component {
     data: null
   };
 
-  fetchFailedHandler () {
-    this.setState({
-      data: []
-    })
-  }
-
   formatData (list) {
     let res = {}
     _(list).sortBy('timestamp').reverse().forEach((item) => {
@@ -32,23 +26,17 @@ class Reports extends React.Component {
   }
 
   componentDidMount () {
-    if (window._reportListData !== null) {
-      this.setState(window._reportListData)
-      return
-    }
     let url = '/api/report/list?id=' + this.props.params.userId
     util.fetchAPI(url)
       .then((res) => {
         res.data = this.formatData(res.data)
-        window._reportListData = res
-        _.forEach(res.data, (e) => {
-          window._reportData[e.id] = e
-        })
         this.setState(res)
       })
       .catch((e) => {
         console.error(e)
-        this.fetchFailedHandler()
+        this.setState({
+          data: []
+        })
       })
   }
 
