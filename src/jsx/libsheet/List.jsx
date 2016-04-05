@@ -1,4 +1,4 @@
-import BannerBlock from '../user/BannerBlock.jsx'
+import BannerBlock from '../Components/BannerBlock.jsx'
 import {fetchList} from './cache.jsx'
 import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'

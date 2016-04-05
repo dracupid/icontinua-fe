@@ -27,7 +27,7 @@ class Echarts extends React.Component {
       let timer = setInterval(() => {
         if (window.echarts) {
           clearInterval(timer)
-          this.forceUpdate(this.initEcharts.bind(this))
+          this.forceUpdate(::this.initEcharts)
         }
       }, 100)
     }

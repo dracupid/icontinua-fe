@@ -52,7 +52,7 @@ class Edit extends React.Component {
     return <div>
       <Banner
         title='我的资料' backUrl={util.getUrlByHash(`/${this.props.params.userId}`)}
-        rightComponent={<div className='user-edit-save' onClick={this.onSubmit.bind(this)}>{this.state.editing ? '保存' : '编辑'}</div>}/>
+        rightComponent={<div className='user-edit-save' onClick={::this.onSubmit}>{this.state.editing ? '保存' : '编辑'}</div>}/>
       <div className='block-wrapper' style={{marginTop: 0}}>
         <EditBlock tag='头像' value={<img src={avatar} className='avatar'/>} noedit/>
         <EditBlock

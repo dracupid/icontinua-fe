@@ -63,7 +63,7 @@ class ReportList extends React.Component {
           </ul>
           <Pagination
             size='small' current={this.state.curPage + 1} total={total} pageSize={itemPerPage}
-            onChange={this.onChangePage.bind(this)}/>
+            onChange={::this.onChangePage}/>
 
         </div>
       )

@@ -27,9 +27,9 @@ class EditBlock extends React.Component {
             return <input
               type='text'
               className='ant-input' value={value}
-              onChange={this.onChange.bind(this)}/>
+              onChange={::this.onChange}/>
           case 'radio':
-            return <Radio.Group onChange={this.onChange.bind(this)} value={defaultValue}>
+            return <Radio.Group onChange={::this.onChange} value={defaultValue}>
               {_.map(this.props.data, (v, k) => {
                 return <Radio key={k} value={k}>{v}</Radio>
               })}
@@ -37,7 +37,7 @@ class EditBlock extends React.Component {
           case 'number':
             return <InputNumber
               size='large' min={this.props.min} max={this.props.max} defaultValue={value}
-              onChange={this.onChange.bind(this)}/>
+              onChange={::this.onChange}/>
         }
       } else {
         if (defaultValue && this.props.data) {

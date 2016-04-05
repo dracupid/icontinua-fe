@@ -1,7 +1,7 @@
 let {Icon} = ANTD
 import util from '../util.jsx'
 import {getUserInfo} from './util.jsx'
-import BannerBlock from './BannerBlock.jsx'
+import BannerBlock from './../Components/BannerBlock.jsx'
 import Banner from '../Components/Banner.jsx'
 
 function UserInfo ({avatar, nickname, sex, age, id}) {

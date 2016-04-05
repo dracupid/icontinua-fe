@@ -112,17 +112,17 @@ class Photo extends React.Component {
     let btn = (() => {
       if (this.state.imgUrl) {
         return <div className='btn-photo btn-photo-two'>
-          <Button type='primary' size='large' onClick={this.takePhoto.bind(this)}>
+          <Button type='primary' size='large' onClick={::this.takePhoto}>
             <Icon type='reload'/>
             重新拍照
           </Button>
-          <Button type='primary' size='large' onClick={this.upload.bind(this)}>
+          <Button type='primary' size='large' onClick={::this.upload}>
             <Icon type='upload'/>
             上传
           </Button>
         </div>
       } else {
-        return <div className='btn-photo' onClick={this.takePhoto.bind(this)}>
+        return <div className='btn-photo' onClick={::this.takePhoto}>
           <Button type='primary' size='large'>
             <Icon type='camera'/>
             拍照上传
