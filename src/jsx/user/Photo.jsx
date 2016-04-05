@@ -59,9 +59,9 @@ class Photo extends React.Component {
       e.stopPropagation()
       let hide = message.loading('正在识别化验单中...', 0);
       util.fetchAPI(`/api/recognize/libSheet?filename=${img}`)
-        .then(({data}) => {
+        .then((data) => {
           hide()
-          alert(data)
+          location.href = '/html/libsheet.html#/' + data
         })
         .catch(() => {
           hide()
@@ -77,7 +77,7 @@ class Photo extends React.Component {
       .then((id) => {
         return util.fetchAPI(`/api/user/photo?id=${this.props.params.userId}&imgId=${id}`)
       })
-      .then(({data: url}) => {
+      .then((url) => {
         message.info('照片上传成功')
         let data = this.state.data
         if (data.photos) {

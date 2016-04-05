@@ -6,7 +6,7 @@ export function getUserInfo (userId, refresh = false) {
   }
   return util.fetchAPI('/api/user/info?id=' + userId)
     .then((res) => {
-      window._userInfoCache[userId] = res.data
-      return res.data
+      window._userInfoCache[userId] = res
+      return res
     })
 }

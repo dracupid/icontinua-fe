@@ -36,7 +36,7 @@ if (isWeixin) {
         'chooseImage',
         'uploadImage'
       ]
-    }, data.data))
+    }, data))
 
     wx.ready(() => {
       ready = true

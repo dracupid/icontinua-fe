@@ -1,7 +1,7 @@
 import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
-import CatalogList from './CatalogList.jsx'
-import Banner from './Banner.jsx'
+import CatalogList from './Components/CatalogList.jsx'
+import Banner from './Components/Banner.jsx'
 import AppList from './AppList.jsx'
 
 let {Tabs} = ANTD
@@ -15,8 +15,8 @@ class MainApps extends React.Component {
 
   componentDidMount () {
     util.fetchAPI('/api/app/main?limit=4')
-      .then((res) => {
-        this.setState({data: res.data})
+      .then((data) => {
+        this.setState({data})
       })
   }
 
@@ -35,7 +35,7 @@ class MainApps extends React.Component {
       let panels = this.state.data.topTags.map((v) => {
         return <TabPane tab={v} key={v}>{<AppList tagName={v}/>}</TabPane>
       })
-      return <Tabs onChange={this.changeTab.bind(this)} size='small' activeKey={curTab}>
+      return <Tabs onChange={::this.changeTab} size='small' activeKey={curTab} animation={null}>
         <TabPane tab='热门' key='热门'><CatalogList data={this.state.data}/></TabPane>
         {panels}
       </Tabs>
