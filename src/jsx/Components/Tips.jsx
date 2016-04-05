@@ -3,7 +3,7 @@ function Tips (props) {
     <div className={'report-tip-block' + (props.fix ? ' fix' : '')}>
       <h2>{props.title || '建议'}</h2>
       <div className='tip-text'>
-        {props.text || ''}
+        {props.text || props.children}
       </div>
       <br/>
     </div>

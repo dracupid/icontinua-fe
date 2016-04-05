@@ -1,32 +1,6 @@
 import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
-
-function format (num) {
-  if (num > 100000) {
-    return _.round(num / 10000) + '万'
-  } else if (num > 9500) {
-    return _.round(num / 10000, 1) + '万'
-  } else if (num > 1000) {
-    return _.round(num / 1000) + '千'
-  } else {
-    return num
-  }
-}
-
-function AppListItem (props) {
-  return <div className='app-list-item' onClick={() => { location.href = '/apps#/item/' + props.uid }}>
-    <div className='info-icon'>
-      <img src={props.imgUrl}/>
-    </div>
-    <div className='info-text-wrapper'>
-      <h3>{props.name}</h3>
-      <span>{format(props.downloadNum) + '人在用'}</span>
-    </div>
-    <div className='app-desc-short'>
-      {props.slogan || props.shortDesc}
-    </div>
-  </div>
-}
+import AppListItem from './Components/AppListItem.jsx'
 
 class AppList extends React.Component {
   state = {
@@ -43,15 +17,16 @@ class AppList extends React.Component {
 
   loadPage () {
     let num = this.state.curPage + 1
+    let {type, itemPerPage, tagName} = this.props
     this.setState({
       loading: true,
       curPage: num
     })
-    util.fetchAPI(`/api/app/${this.props.type}?itemPerPage=${this.props.itemPerPage}&pageNum=${num}&name=${this.props.tagName}`)
+    util.fetchAPI(`/api/app/${type}?itemPerPage=${itemPerPage}&pageNum=${num}&name=${tagName}`)
       .then((res) => {
         this.setState({
-          data: this.state.data === null ? res.data : this.state.data.concat(res.data),
-          hasMore: res.data.length === parseInt(this.props.itemPerPage, 10),
+          data: this.state.data === null ? res : this.state.data.concat(res),
+          hasMore: res.length === parseInt(itemPerPage, 10),
           loading: false
         })
       })
@@ -66,33 +41,24 @@ class AppList extends React.Component {
   }
 
   render () {
-    if (this.state.data == null) {
+    let {data, loading} = this.state
+
+    if (data == null) {
       return <Loading />
     } else {
-      let arr = this.state.data.map((v) => {
+      let apps = _.isEmpty(data)
+        ? <h3 className='not-found'>没有找到相关应用</h3>
+        : data.map((v) => {
         return <AppListItem {...v} key={v.uid}/>
       })
-      if (_.isEmpty(arr)) {
-        arr = <h3 className='not-found'>没有找到相关应用</h3>
-      }
-      let btnContent = (function (self) {
-        if (self.state.loading) {
-          return <div>
-            加载中
-          </div>
-        } else {
-          return '加载更多'
-        }
-      })(this)
 
       return <div>
-        {arr}
+        {apps}
         {this.state.hasMore
-          ? <h3
-            className='btn-load-more' size='large' loading={this.state.loading}
-            onClick={this.onChangePage.bind(this)}>
-            {btnContent}
-          </h3> : null}
+          ? <h3 className='btn-load-more' size='large' loading={loading} onClick={::this.onChangePage}>
+          {loading ? <div>加载中</div> : '加载更多'}
+        </h3>
+          : null}
       </div>
     }
   }

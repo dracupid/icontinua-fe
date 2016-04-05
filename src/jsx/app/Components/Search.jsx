@@ -20,9 +20,7 @@ class SearchInput extends React.Component {
   }
 
   handleSearch () {
-    if (this.props.onSearch) {
-      this.props.onSearch(this.state.value)
-    }
+    this.props.onSearch && this.props.onSearch(this.state.value)
   }
 
   render () {
@@ -31,13 +29,13 @@ class SearchInput extends React.Component {
         <InputGroup className={'ant-search-input' + this.state.focus ? ' ant-search-input-focus' : ''}>
           <Input
             {...this.props}
-            value={this.state.value} onChange={this.handleInputChange.bind(this)}
-            onFocus={this.handleFocusBlur.bind(this)} onBlur={this.handleFocusBlur.bind(this)}/>
+            value={this.state.value} onChange={::this.handleInputChange}
+            onFocus={::this.handleFocusBlur} onBlur={::this.handleFocusBlur}/>
           <div className='ant-input-group-wrap'>
             <Button
               htmlType='submit'
               className='ant-search-btn ant-search-btn'
-              onClick={this.handleSearch.bind(this)}>
+              onClick={::this.handleSearch}>
               <Icon type='search'/>
             </Button>
           </div>

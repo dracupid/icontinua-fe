@@ -48,14 +48,13 @@
     flex-direction row
     margin 6px
     .app-block
-        flex 1
-        text-align center
         display flex
         flex-direction column
+        flex 1
+        text-align center
         margin 0 1%
         .app-img-wrapper
-            width 64px
-            height 64px
+            size(64px)
             margin auto
         img
             display block
@@ -67,8 +66,7 @@
             width 64px
             margin auto
         .app-block-name
-            height 30px
-            line-height 30px
+            middle(20px)
             overflow hidden
 
 .app-detail-info
@@ -80,8 +78,7 @@
         align-items center
         justify-content space-between
     .info-icon
-        width 64px
-        height 64px
+        size(64px)
         img
             width 100%
             border-radius 10px
@@ -105,14 +102,13 @@
     background-color inherit
 
 .app-list-item
-    padding 10px
-    border-bottom 1px solid $green_dark
     display flex
     align-items center
     justify-content space-between
+    padding 10px
+    border-bottom 1px solid $green_dark
     .info-icon
-        width 48px
-        height 48px
+        size(48px)
         img
             width 100%
             border-radius 10px
@@ -125,6 +121,7 @@
         font-size 12px
     .app-desc-short
         flex 2
+        ellipse()
 
 .btn-load-more
     padding 10px
@@ -138,8 +135,9 @@
     width 90%
 
 .snapshot-img
-    width 70%
-    margin auto
+    img
+        width 70%
+        margin auto
 
 .slick-slider
     padding-bottom 0 !important

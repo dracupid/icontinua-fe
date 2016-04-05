@@ -1,8 +1,7 @@
 import Banner from './Banner.jsx'
-import AppList from './AppList.jsx'
+import AppList from './../AppList.jsx'
 
-function MainApps (props) {
-  let {keyword} = props.params
+function MainApps ({params: {keyword}}) {
   return <div>
     <Banner back title={keyword + '的搜索结果'}/>
     <AppList type='search' key={keyword} tagName={keyword}/>

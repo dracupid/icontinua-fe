@@ -80,8 +80,8 @@ class Report extends React.Component {
       } else {
         util.fetchAPI('/api/report?rank=true&diagnose=true&reportId=' + reportId)
           .then((res) => {
-            this.formatAndSetState(res.data)
-            window._fullReportData[reportId] = res.data
+            this.formatAndSetState(res)
+            window._fullReportData[reportId] = res
           })
           .catch((e) => {
             console.error(e)

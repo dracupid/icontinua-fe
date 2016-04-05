@@ -5,6 +5,16 @@ function getValue (t) {
   return _.isObject(t) ? t.value : t
 }
 
+function getUrlByHash (hash) {
+  return location.pathname + '#/' + (hash[0] === '/' ? hash.slice(1) : hash)
+}
+
+function toUrlFun (url) {
+  return function () {
+    location.href = url
+  }
+}
+
 export default {
   getMin (arr, offset = 5, limit = Infinity) {
     let _arr = _.map(arr, function (a) {
@@ -53,6 +63,9 @@ export default {
           throw error
         }
       })
+      .then((json) => {
+        return json.data || {}
+      })
   },
 
   parseSex (sex) {
@@ -62,7 +75,10 @@ export default {
     return (parseInt(sex, 10) === 1) ? '男' : '女'
   },
 
-  getUrlByHash (hash) {
-    return location.pathname + '#' + hash
+  getUrlByHash,
+  toUrlFun,
+
+  toHashUrlFun(hash) {
+    return toUrlFun(getUrlByHash(hash))
   }
 }
