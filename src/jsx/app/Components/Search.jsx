@@ -1,4 +1,4 @@
-let { Icon, Input, Button, Form } = ANTD
+let {Icon, Input, Button, Form} = ANTD
 let InputGroup = Input.Group
 
 class SearchInput extends React.Component {

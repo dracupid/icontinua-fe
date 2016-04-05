@@ -58,7 +58,8 @@
       "_",
       "wx",
       "fetch",
-      "location"
+      "location",
+      "ReactRouter"
     ]
   },
   "babel": {

@@ -48,16 +48,12 @@ class AppList extends React.Component {
     } else {
       let apps = _.isEmpty(data)
         ? <h3 className='not-found'>没有找到相关应用</h3>
-        : data.map((v) => {
-        return <AppListItem {...v} key={v.uid}/>
-      })
-
+        : data.map((v) => { return <AppListItem {...v} key={v.uid}/> })
       return <div>
         {apps}
         {this.state.hasMore
           ? <h3 className='btn-load-more' size='large' loading={loading} onClick={::this.onChangePage}>
-          {loading ? <div>加载中</div> : '加载更多'}
-        </h3>
+           {loading ? <div>加载中</div> : '加载更多'}</h3>
           : null}
       </div>
     }

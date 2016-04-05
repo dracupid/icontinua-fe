@@ -5,22 +5,14 @@ function Banner (props) {
     if (props.backUrl) {
       return <a href={props.backUrl}><i className='anticon anticon-left left-icon'/></a>
     } else if (props.goBack) {
-      return <a onClick={function() {
-         history.back()
-      }}><i className='anticon anticon-left left-icon'/></a>
-    }
-    else {
-      return <Icon/>
-    }
-  })()
-
-  let right = (() => {
-    if (props.rightComponent) {
-      return props.rightComponent
+      return <a onClick={() => { window.history.back() }}><i className='anticon anticon-left left-icon'/></a>
     } else {
       return <Icon/>
     }
   })()
+
+  let right = props.rightComponent || <Icon/>
+
   return (
     <div className='header'>
       {left}

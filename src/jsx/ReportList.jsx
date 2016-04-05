@@ -45,7 +45,7 @@ class ReportList extends React.Component {
           <ul className='timeline-wrapper'>
             {_.map(pageData, (item) => {
               index += 1
-              return (<li className='timeline-item' onClick={this.clickItem.bind(this, item.id)} key={item.timestamp}>
+              return <li className='timeline-item' onClick={this.clickItem.bind(this, item.id)} key={item.timestamp}>
                 <p className='timestamp'>
                   {util.formatDateTime(item.timestamp, true)}
                   <span className='arrow2'/>
@@ -59,7 +59,6 @@ class ReportList extends React.Component {
                   {item.location || '未知'}
                 </div>
               </li>
-                )
             })}
           </ul>
           <Pagination

@@ -21,21 +21,21 @@ class Item extends React.Component {
   }
 
   render () {
-    let {name: curName, catalog} = this.props.params;
+    let {name: curName, catalog} = this.props.params
     if (this.state.name !== curName) {
       this.getData()
     }
 
-    return <div className="libsheet-item">
+    return <div className='libsheet-item'>
       <Banner title={curName} backUrl={catalog ? util.getUrlByHash(catalog) : null}/>
-      <Tips title="描述">
-        <div dangerouslySetInnerHTML={{__html: this.state.data.item_description}} />
+      <Tips title='描述'>
+        <div dangerouslySetInnerHTML={{__html: this.state.data.item_description}}/>
       </Tips>
-      <Tips title="测量值解读">
-        <div dangerouslySetInnerHTML={{__html: this.state.data.item_value}} />
+      <Tips title='测量值解读'>
+        <div dangerouslySetInnerHTML={{__html: this.state.data.item_value}}/>
       </Tips>
-      <Tips title="参考值">
-        <div dangerouslySetInnerHTML={{__html: this.state.data.item_reference}} />
+      <Tips title='参考值'>
+        <div dangerouslySetInnerHTML={{__html: this.state.data.item_reference}}/>
       </Tips>
     </div>
   }

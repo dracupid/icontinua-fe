@@ -25,7 +25,7 @@ class EditBlock extends React.Component {
         switch (this.props.type) {
           case 'text':
             return <input
-              type="text"
+              type='text'
               className='ant-input' value={value}
               onChange={this.onChange.bind(this)}/>
           case 'radio':

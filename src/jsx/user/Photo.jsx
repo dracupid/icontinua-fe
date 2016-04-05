@@ -5,10 +5,10 @@ import util from '../util.jsx'
 import {getUserInfo} from './util.jsx'
 
 function ImgBlock (props) {
-  let thumbUrl = props.url.replace("http://cdn.icontinua.com", "http://cdn-img.icontinua.com") + '@0o_0l_50Q_128w.src'
+  let thumbUrl = props.url.replace('http://cdn.icontinua.com', 'http://cdn-img.icontinua.com') + '@0o_0l_50Q_128w.src'
   return <div style={{backgroundImage: `url(${thumbUrl})`}} className='img-item' {...props}>
-    <div className="btn-recognize" onClick={props.onRecognize}>
-      <Button className="btn-recognize">识别</Button>
+    <div className='btn-recognize' onClick={props.onRecognize}>
+      <Button className='btn-recognize'>识别</Button>
     </div>
 
     <div className='btn-delete' onClick={props.onDelete}>
@@ -57,7 +57,7 @@ class Photo extends React.Component {
   recognizePhoto (img) {
     return (e) => {
       e.stopPropagation()
-      let hide = message.loading('正在识别化验单中...', 0);
+      let hide = message.loading('正在识别化验单中...', 0)
       util.fetchAPI(`/api/recognize/libSheet?filename=${img}`)
         .then((data) => {
           hide()

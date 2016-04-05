@@ -78,7 +78,7 @@ export default {
   getUrlByHash,
   toUrlFun,
 
-  toHashUrlFun(hash) {
+  toHashUrlFun (hash) {
     return toUrlFun(getUrlByHash(hash))
   }
 }

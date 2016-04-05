@@ -21,8 +21,8 @@ class List extends React.Component {
   }
 
   render () {
-    let curName = this.props.params.name;
-    let hasName = !!curName;
+    let curName = this.props.params.name
+    let hasName = !!curName
     if (this.state.name !== curName) {
       this.getData()
     }

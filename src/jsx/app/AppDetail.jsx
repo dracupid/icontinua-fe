@@ -6,7 +6,7 @@ import Img from '../Components/Image.jsx'
 let {Button, Carousel} = ANTD
 
 function formatDesc (text) {
-  if (text == null)  return ''
+  if (text == null) return ''
 
   return _.flatten(text.trim().split(/\s\s+/).map((part) => {
     return [part, <br/>, <br/>]
@@ -17,7 +17,7 @@ function AppInfo (props) {
   let {imgUrl, name, score, downloadNum, apkUrl, shortDesc} = props.app
   return <div className='app-detail-info'>
     <div className='app-detail-top'>
-      <Img src={imgUrl} className="info-icon"/>
+      <Img src={imgUrl} className='info-icon'/>
       <div className='info-text-wrapper'>
         <h3>{name}</h3>
         <span>{score}<strong>分</strong></span>
@@ -41,7 +41,8 @@ class AppDetail extends React.Component {
     util.fetchAPI('/api/app?id=' + this.props.params.uid)
       .then((res) => {
         if (_.isEmpty(res)) {
-          return location.href = '/apps'
+          location.href = '/apps'
+          return
         }
         this.setState({data: res, title: res.name})
       })
@@ -52,14 +53,13 @@ class AppDetail extends React.Component {
       return <Loading />
     } else {
       let {snapshot, description} = this.state.data
+      let snapshotData = snapshot.map((imgUrl) => {
+        return <div><Img src={imgUrl} className='snapshot-img'/></div>
+      })
 
       let snapshots = _.isEmpty(snapshot)
         ? null
-        : <Carousel dots='false' autoplay>
-        {snapshot.map((imgUrl) => {
-          return <div><Img src={imgUrl} className='snapshot-img'/></div>
-        })}
-      </Carousel>
+        : <Carousel dots='false' autoplay>{snapshotData}</Carousel>
 
       return <div>
         <AppInfo app={this.state.data}/>

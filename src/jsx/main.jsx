@@ -1,7 +1,7 @@
 import report from './report.jsx'
 import reports from './reports.jsx'
-let {Route, Router, hashHistory} = ReactRouter
 import './wechat.jsx'
+let {Route, Router, hashHistory} = ReactRouter
 
 window._reportListData = null
 window._reportData = {}

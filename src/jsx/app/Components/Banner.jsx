@@ -33,7 +33,7 @@ class Banner extends React.Component {
       : <Icon type='search' onClick={::this.toggleSearch}/>
 
     let left = back
-      ? <Icon type='left' onClick={() => { history.back() }}/>
+      ? <Icon type='left' onClick={() => { window.history.back() }}/>
       : <Icon/>
 
     return <div>

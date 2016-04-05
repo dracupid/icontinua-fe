@@ -17,8 +17,8 @@ let weixinNotification = {
 let env = (function (ua) {
   let env = {}
 
-  ua.match(/(Android);?[\s\/]+([\d.]+)?/) && (env.android = true)
-  (ua.match(/(iPad).*OS\s([\d_]+)/) || ua.match(/(iPhone\sOS)\s([\d_]+)/)) && (env.ios = true)
+  if (ua.match(/(Android);?[\s\/]+([\d.]+)?/)) (env.android = true)
+  if (ua.match(/(iPad).*OS\s([\d_]+)/) || ua.match(/(iPhone\sOS)\s([\d_]+)/)) (env.ios = true)
 
   if (/MicroMessenger/i.test(ua)) env.weixin = true
   if (!(env.ios || env.android)) env.android = true
