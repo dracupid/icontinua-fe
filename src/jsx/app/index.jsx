@@ -1,7 +1,7 @@
-import {Route, Router, hashHistory} from '../ReactRouter.jsx'
+let {Route, Router, hashHistory} = ReactRouter
 import main from './main.jsx'
 import AppDetail from './AppDetail.jsx'
-import Search from './SearchResult.jsx'
+import Search from './Components/SearchResult.jsx'
 import Footer from '../Components/Footer.jsx'
 
 ReactDOM.render((
@@ -14,5 +14,4 @@ ReactDOM.render((
     </Router>
     <Footer />
   </div>
-
 ), document.getElementById('main'))

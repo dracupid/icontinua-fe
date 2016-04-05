@@ -1,4 +1,4 @@
-import {Route, Router, hashHistory} from '../ReactRouter.jsx'
+let {Route, Router, hashHistory} = ReactRouter
 import Footer from '../Components/Footer.jsx'
 import main from './main.jsx'
 import edit from './edit.jsx'
