@@ -1,0 +1,22 @@
+include lib/mixin
+doctype html
+
+html(lang="zh-cmn-Hans")
+    head
+        mixin head()
+        mixin css("/css/user")
+        title 化验单解读 | 爱康体
+        style.
+            .pre-tip {
+                width: 100%;
+                text-align: center;
+                margin-top: 10%;
+                font-size: 22px;
+            }
+
+    body
+        #main
+            .pre-tip 正在获取化验单内容,请稍候...
+
+        mixin foot()
+        script(src="/js/libsheet.js?t=_TIMESTAMP_")

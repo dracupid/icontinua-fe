@@ -37,6 +37,7 @@ gulp.task 'jsx', (cb) ->
             main: cfg.src + "jsx/main.jsx"
             app: cfg.src + "jsx/app/index.jsx"
             user: cfg.src + "jsx/user/index.jsx"
+            libsheet: cfg.src + "jsx/libsheet/index.jsx"
         output:
             filename: cfg.dist + 'js/[name].js'
         module:
@@ -95,10 +96,10 @@ gulp.task 'lib_js', ['_antd_css'], (cb) ->
                 test: /\.js$/, loader: 'babel'
             }]
         plugins: do ->
-            # if isProduction
+# if isProduction
             [new webpack.optimize.UglifyJsPlugin()]
-            # else
-                # null
+# else
+# null
         externals:
             jquery: 'window.$'
             react: 'window.React'
@@ -120,7 +121,7 @@ gulp.task 'html', ->
     .pipe gulp.dest cfg.dist + 'html'
 
 gulp.task 'copy', ->
-    gulp.src [cfg.src + 'img/**', cfg.src + 'data/**'], base: cfg.src
+    gulp.src [cfg.src + 'img/**', cfg.src + 'data/**', cfg.src + 'html/*.html'], base: cfg.src
     .pipe gulp.dest cfg.dist
 
 gulp.task 'build', ['jsx', 'css', 'html', 'copy']
