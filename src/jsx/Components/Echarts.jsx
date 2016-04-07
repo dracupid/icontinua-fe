@@ -1,5 +1,32 @@
 import Loading from './Loading.jsx'
 
+function getScript (url) {
+  return new Promise(function (resolve, reject) {
+    let s = document.createElement('script');
+    s.async = 'async';
+    s.src = url;
+    let h = document.getElementsByTagName('head')[0];
+    s.onload = s.onreadystatechange = function (__, isAbort) {
+      if (isAbort || !s.readyState || /loaded|complete/.test(s.readyState)) {
+        s.onload = s.onreadystatechange = null;
+        if (h && s.parentNode) {
+          h.removeChild(s);
+        }
+        s = undefined
+        if (isAbort) {
+          reject('Load Abort')
+        } else {
+          resolve()
+        }
+      } else {
+        reject('Load Failed')
+      }
+    };
+    h.insertBefore(s, h.firstChild);
+  })
+
+}
+
 class Echarts extends React.Component {
   static propTypes = {
     option: React.PropTypes.object.isRequired,
@@ -12,9 +39,17 @@ class Echarts extends React.Component {
     height: '500px'
   };
 
+  state = {
+    loaded: false
+  }
+
   constructor (props) {
     super(props)
-    document.body.appendChild(document.createElement('script')).src = '/js/lib/echarts.min.js'
+    getScript('/js/lib/echarts.min.js')
+      .then(() => {
+        this.setState({loaded: true})
+        this.forceUpdate(::this.initEcharts)
+      })
   }
 
   initEcharts () {
@@ -24,15 +59,8 @@ class Echarts extends React.Component {
   }
 
   renderChart () {
-    if (window.echarts) {
+    if (this.state.loaded) {
       this.initEcharts()
-    } else {
-      let timer = setInterval(() => { // TODO: 尝试onload事件
-        if (window.echarts) {
-          clearInterval(timer)
-          this.forceUpdate(::this.initEcharts)
-        }
-      }, 100)
     }
   }
 
@@ -45,7 +73,7 @@ class Echarts extends React.Component {
   }
 
   render () {
-    if (window.echarts) {
+    if (this.state.loaded) {
       return <div
         ref='echarts' className={'echarts ' + (this.props.className || '')}
         style={{height: this.props.height + 'px', width: this.props.width}}/>
