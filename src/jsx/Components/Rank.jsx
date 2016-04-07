@@ -27,7 +27,7 @@ function ageGroup (age) {
 function Rank (props) {
   let text = _.map(props.obj, (v, k) => {
     let prefix = `你的${k}`
-    let rank = v.rank
+    let rank = _.round(v.rank, 2)
 
     if (rank === 0) {
       return <span key={k}>{prefix + '是'}<High>最高</High>的。</span>

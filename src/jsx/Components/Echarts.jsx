@@ -1,5 +1,3 @@
-document.body.appendChild(document.createElement('script')).src = '/js/lib/echarts.min.js'
-
 import Loading from './Loading.jsx'
 
 class Echarts extends React.Component {
@@ -14,6 +12,11 @@ class Echarts extends React.Component {
     height: '500px'
   };
 
+  constructor (props) {
+    super(props)
+    document.body.appendChild(document.createElement('script')).src = '/js/lib/echarts.min.js'
+  }
+
   initEcharts () {
     let option = this.props.option
     let myChart = window.echarts.init(ReactDOM.findDOMNode(this.refs.echarts), 'macarons')
@@ -24,7 +27,7 @@ class Echarts extends React.Component {
     if (window.echarts) {
       this.initEcharts()
     } else {
-      let timer = setInterval(() => {
+      let timer = setInterval(() => { // TODO: 尝试onload事件
         if (window.echarts) {
           clearInterval(timer)
           this.forceUpdate(::this.initEcharts)
