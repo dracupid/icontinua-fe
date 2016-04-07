@@ -2,7 +2,7 @@ import HeightWeight from './trade/HeightWeight.jsx'
 import Blood from './trade/Blood.jsx'
 import O2 from './trade/O2.jsx'
 import Chinese from './trade/Chinese.jsx'
-import Loading from './Components/Loading.jsx'
+import Loading from '../Components/Loading.jsx'
 
 let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane

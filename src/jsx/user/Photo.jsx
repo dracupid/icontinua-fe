@@ -2,7 +2,7 @@ let {Icon, Button, message} = ANTD
 import Banner from '../Components/Banner.jsx'
 import {takePhoto, uploadPhoto} from '../wechat.jsx'
 import util from '../util.jsx'
-import {getUserInfo} from './util.jsx'
+import API from '../API/user.jsx'
 
 function ImgBlock (props) {
   let thumbUrl = props.url.replace('http://cdn.icontinua.com', 'http://cdn-img.icontinua.com') + '@0o_0l_50Q_128w.src'
@@ -37,7 +37,7 @@ class Photo extends React.Component {
   deletePhoto (img) {
     return (e) => {
       e.stopPropagation()
-      util.fetchAPI(`/api/user/photo/delete?id=${this.props.params.userId}&imgId=${img}`)
+      API.deletePhoto(this.props.params.userId, img)
         .then(() => {
           message.info('照片删除成功')
           let data = this.state.data
@@ -58,7 +58,7 @@ class Photo extends React.Component {
     return (e) => {
       e.stopPropagation()
       let hide = message.loading('正在识别化验单中...', 0)
-      util.fetchAPI(`/api/recognize/libSheet?filename=${img}`)
+      API.recognize(img)
         .then((data) => {
           hide()
           location.href = '/html/libsheet.html#/' + data
@@ -73,9 +73,9 @@ class Photo extends React.Component {
   upload () {
     if (this.loading === true) return
     this.loading = true
-    uploadPhoto(this.state.imgUrl)
+    API.uploadPhoto(this.state.imgUrl)
       .then((id) => {
-        return util.fetchAPI(`/api/user/photo?id=${this.props.params.userId}&imgId=${id}`)
+        return API.addPhoto(this.props.params.userId, id)
       })
       .then((url) => {
         message.info('照片上传成功')
@@ -95,7 +95,7 @@ class Photo extends React.Component {
   }
 
   componentDidMount () {
-    getUserInfo(this.props.params.userId)
+    API.getUserInfo(this.props.params.userId)
       .then((data) => {
         this.setState({data})
       })

@@ -46,16 +46,10 @@ class EditBlock extends React.Component {
         return <div className='block-text text-value'>{defaultValue || value}</div>
       }
     })()
-
-    let rightIcon = (() => {
-      if (!noedit) {
-        if (editing) {
-          return <div className='block-icon block-icon-right'>
-            <Icon type='edit' style={{color: 'green'}}/>
-          </div>
-        }
-      }
-    })()
+    
+    let rightIcon = (!noedit && editing)
+      ? <div className='block-icon block-icon-right'><Icon type='edit' style={{color: 'green'}}/></div>
+      : null
 
     return <div className='btn-block block edit-block'>
       <div className='block-text text-tag'>

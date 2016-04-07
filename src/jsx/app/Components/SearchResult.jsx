@@ -4,7 +4,7 @@ import AppList from './../AppList.jsx'
 function MainApps ({params: {keyword}}) {
   return <div>
     <Banner back title={keyword + '的搜索结果'}/>
-    <AppList type='search' key={keyword} tagName={keyword}/>
+    <AppList search keyword={keyword}/>
   </div>
 }
 

@@ -1,8 +1,8 @@
-import Banner from './Components/Banner.jsx'
+import Banner from './../Components/Banner.jsx'
 import ReportList from './ReportList.jsx'
 import ReportTrade from './ReportTrade.jsx'
-import util from './util.jsx'
-import Footer from './Components/Footer.jsx'
+import API from '../API/report.jsx'
+import Footer from './../Components/Footer.jsx'
 let {Tabs} = ANTD
 let TabPane = Tabs.TabPane
 
@@ -26,17 +26,16 @@ class Reports extends React.Component {
   }
 
   componentDidMount () {
-    let url = '/api/report/list?id=' + this.props.params.userId
-    util.fetchAPI(url)
+    API.reportList(this.props.params.userId)
       .then((res) => {
         res.data = this.formatData(res.data)
         this.setState(res)
       })
       .catch((e) => {
-        console.error(e)
         this.setState({
           data: []
         })
+        throw e
       })
   }
 

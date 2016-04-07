@@ -1,4 +1,4 @@
-import {fetchItem} from './cache.jsx'
+import API from '../API/libsheet.jsx'
 import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'
 import Tips from '../Components/Tips.jsx'
@@ -10,7 +10,7 @@ class Item extends React.Component {
   };
 
   getData () {
-    return fetchItem(this.props.params.name)
+    return API.fetchItem(this.props.params.name)
       .then((data) => {
         this.setState({data, name: this.props.params.name})
       })

@@ -1,7 +1,7 @@
-import {getUserInfo} from './util.jsx'
 import util from '../util.jsx'
 import Banner from '../Components/Banner.jsx'
 import EditBlock from './EditBlock.jsx'
+import API from '../API/user.jsx'
 let {message} = ANTD
 
 class Edit extends React.Component {
@@ -12,7 +12,7 @@ class Edit extends React.Component {
   };
 
   componentDidMount () {
-    getUserInfo(this.props.params.userId)
+    API.getUserInfo(this.props.params.userId)
       .then((data) => {
         this.setState({data})
       })
@@ -21,12 +21,8 @@ class Edit extends React.Component {
   onSubmit () {
     if (this.state.editing) {
       let data = _.merge(this.state.data, this.state.newData)
-      let params = _.compact(_.map(data, (v, k) => {
-        if (v == null) return null
-        return `${k}=${v}`
-      })).join('&')
 
-      util.fetchAPI(`/api/user/update?id=${this.props.params.userId}&${params}`)
+      API.updateUserInfo(this.props.params.userId, data)
         .then(() => {
           message.info('更新个人资料成功')
           this.setState({editing: false, data})

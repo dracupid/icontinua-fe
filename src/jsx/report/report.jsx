@@ -2,11 +2,12 @@ import HeightWeight from './single/HeightWeight.jsx'
 import Blood from './single/Blood.jsx'
 import O2 from './single/O2.jsx'
 import Chinese from './single/Chinese.jsx'
-import Loading from './Components/Loading.jsx'
-import Banner from './Components/Banner.jsx'
-import {setReport} from './wechat.jsx'
-import util from './util.jsx'
-import Footer from './Components/Footer.jsx'
+import Loading from './../Components/Loading.jsx'
+import Banner from './../Components/Banner.jsx'
+import {setReport} from './../wechat.jsx'
+import Footer from './../Components/Footer.jsx'
+import API from '../API/report.jsx'
+import reportUtil from './util.jsx'
 
 let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane
@@ -37,13 +38,13 @@ class Report extends React.Component {
 
   formatAndSetState (data) {
     this.setState({
-      title: util.formatDateTime(data.timestamp),
+      title: reportUtil.formatDateTime(data.timestamp),
       report: data,
       loaded: true
     })
 
     return {
-      title: util.formatDateTime(data.timestamp),
+      title: reportUtil.formatDateTime(data.timestamp),
       report: data
     }
   }
@@ -56,22 +57,18 @@ class Report extends React.Component {
   }
 
   componentDidMount () {
-    util.fetchAPI('/data/advice.json')
-      .then((res) => {
-        window._advice = res
-      })
+    API.advice()
       .then(() => {
-        let reportId = this.props.params.reportId
-        util.fetchAPI('/api/report?rank=true&diagnose=true&reportId=' + reportId)
+        API.report(this.props.params.reportId)
           .then((res) => {
             this.formatAndSetState(res)
           })
           .catch((e) => {
-            console.error(e)
             this.setState({
               title: '体检报告',
               loaded: true
             })
+            throw e
           })
       })
   }

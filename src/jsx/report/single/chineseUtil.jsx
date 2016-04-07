@@ -65,7 +65,7 @@ module.exports.filter = function (r) {
   if (!r) {
     return ''
   }
-  let res = {
+  return {
     id: r.recordid,
     score: r.score,
     balance: r.balance,
@@ -73,5 +73,4 @@ module.exports.filter = function (r) {
     jizhui: formatJizhui(r.vertebraItems, r.balance),
     scores: r.scores
   }
-  return res
 }

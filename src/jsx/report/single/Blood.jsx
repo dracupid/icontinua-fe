@@ -1,9 +1,9 @@
-import Echarts from '../Components/Echarts.jsx'
-import Tips from '../Components/Tips.jsx'
-import Rank from '../Components/Rank.jsx'
-import util from '../util.jsx'
-import {baseGaugeOpt} from '../option.jsx'
-let {getValue} = util
+import Echarts from '../../Components/Echarts.jsx'
+import Tips from '../../Components/Tips.jsx'
+import Rank from '../../Components/Rank.jsx'
+import reportUtil from '../util.jsx'
+import {baseGaugeOpt} from '../../report/option.jsx'
+let {getValue} = reportUtil
 
 class Blood extends React.Component {
   static propTypes = {
@@ -13,8 +13,8 @@ class Blood extends React.Component {
   };
 
   _getOpt (val, text, unit, lines, _min, _max) {
-    let min = util.getMin([val], 10, _min)
-    let max = util.getMax([val], 10, _max)
+    let min = reportUtil.getMin([val], 10, _min)
+    let max = reportUtil.getMax([val], 10, _max)
 
     let percents = lines.map((item) => {
       return ((item - min) / (max - min))

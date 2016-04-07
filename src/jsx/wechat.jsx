@@ -1,4 +1,4 @@
-import util from './util.jsx'
+import API from './API/index.jsx'
 let {message} = ANTD
 let ready = false
 let cache = null
@@ -23,7 +23,7 @@ let defaultShareData = {
 }
 
 if (isWeixin) {
-  util.fetchAPI('/wechat/config?url=' + encodeURIComponent(href.split('#')[0])).then((data) => {
+  API('/wechat/config?url=' + encodeURIComponent(href.split('#')[0])).then((data) => {
     wx.config(_.assign({
       debug: false,
       jsApiList: [
@@ -47,8 +47,6 @@ if (isWeixin) {
     wx.error((e) => {
       console.error(e)
     })
-  }).catch((e) => {
-    console.error(e)
   })
 }
 

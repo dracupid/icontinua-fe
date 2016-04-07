@@ -1,10 +1,11 @@
-import Echarts from '../Components/Echarts.jsx'
-import Tips from '../Components/Tips.jsx'
-import Rank from '../Components/Rank.jsx'
-import KVMap from '../Components/KVmap.jsx'
+import Echarts from '../../Components/Echarts.jsx'
+import Tips from '../../Components/Tips.jsx'
+import Rank from '../../Components/Rank.jsx'
+import KVMap from '../../Components/KVmap.jsx'
 import {baseGaugeOpt} from '../option.jsx'
-import util from '../util.jsx'
-let {getValue, getStringValue} = util
+import reportUtil from '../util.jsx'
+
+let {getValue, getStringValue} = reportUtil
 
 class HeightWeight extends React.Component {
   static propTypes = {

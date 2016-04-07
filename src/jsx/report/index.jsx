@@ -1,22 +1,14 @@
 import report from './report.jsx'
 import reports from './reports.jsx'
-import './wechat.jsx'
+import '../wechat.jsx'
 let {Route, Router, hashHistory} = ReactRouter
 
-window._reportListData = null
-window._reportData = {}
-window._fullReportData = {}
-window._chineseReportData = {}
-window._advice = null;
-
-(function () {
-  let cacheImg = function (url) {
-    let img = new window.Image()
-    img.src = url
-  }
-  cacheImg('/img/body.png')
-  cacheImg('/img/wave.png')
-})()
+let cacheImg = function (url) {
+  let img = new window.Image()
+  img.src = url
+}
+cacheImg('/img/body.png')
+cacheImg('/img/wave.png')
 
 ReactDOM.render((
   <Router history={hashHistory}>

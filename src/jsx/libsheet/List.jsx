@@ -1,5 +1,5 @@
 import BannerBlock from '../Components/BannerBlock.jsx'
-import {fetchList} from './cache.jsx'
+import API from '../API/libsheet.jsx'
 import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'
 
@@ -10,7 +10,7 @@ class List extends React.Component {
   };
 
   getData () {
-    return fetchList(this.props.params.name)
+    return API.fetchList(this.props.params.name)
       .then((data) => {
         this.setState({data, name: this.props.params.name})
       })

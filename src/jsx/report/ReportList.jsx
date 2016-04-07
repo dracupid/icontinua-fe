@@ -1,6 +1,6 @@
-import Loading from './Components/Loading.jsx'
-import Ad from './Components/Ad.jsx'
-import util from './util.jsx'
+import Loading from './../Components/Loading.jsx'
+import Ad from './../Components/Ad.jsx'
+import reportUtil from './util.jsx'
 let {Alert, Pagination} = ANTD
 
 const itemPerPage = 10
@@ -47,7 +47,7 @@ class ReportList extends React.Component {
               index += 1
               return <li className='timeline-item' onClick={this.clickItem.bind(this, item.id)} key={item.timestamp}>
                 <p className='timestamp'>
-                  {util.formatDateTime(item.timestamp, true)}
+                  {reportUtil.formatDateTime(item.timestamp, true)}
                   <span className='arrow2'/>
                 </p>
                 <div className='timeline-item-middle'>

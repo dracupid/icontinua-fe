@@ -1,7 +1,6 @@
-import Echarts from '../Components/Echarts.jsx'
-import util from '../util.jsx'
-import {baseLineOpt} from '../option.jsx'
-// import Tips from '../Components/Tips.jsx'
+import Echarts from '../../Components/Echarts.jsx'
+import {baseLineOpt} from '../../report/option.jsx'
+import reportUtil from '../util.jsx'
 
 class HeightWeight extends React.Component {
   static propTypes = {
@@ -20,7 +19,7 @@ class HeightWeight extends React.Component {
     for (let k in data) {
       v = data[k]
       if (v.height) {
-        res.xs.unshift(util.formatTime(v.timestamp))
+        res.xs.unshift(reportUtil.formatTime(v.timestamp))
         res.height.unshift(parseFloat(v.height))
         res.weight.unshift(parseFloat(v.weight))
       }
@@ -45,14 +44,14 @@ class HeightWeight extends React.Component {
         {
           name: '身高(cm)',
           type: 'value',
-          max: util.getMax(data.height),
-          min: util.getMin(data.height)
+          max: reportUtil.getMax(data.height),
+          min: reportUtil.getMin(data.height)
         },
         {
           name: '体重(kg)',
           type: 'value',
-          max: util.getMax(data.weight),
-          min: util.getMin(data.weight)
+          max: reportUtil.getMax(data.weight),
+          min: reportUtil.getMin(data.weight)
         }
       ],
       series: [

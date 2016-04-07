@@ -1,8 +1,8 @@
 let {Icon} = ANTD
 import util from '../util.jsx'
-import {getUserInfo} from './util.jsx'
 import BannerBlock from './../Components/BannerBlock.jsx'
 import Banner from '../Components/Banner.jsx'
+import API from '../API/user.jsx'
 
 function UserInfo ({avatar, nickname, sex, age, id}) {
   return <div className='user-info-banner block'>
@@ -24,7 +24,7 @@ class Main extends React.Component {
   };
 
   componentDidMount () {
-    getUserInfo(this.props.params.userId)
+    API.getUserInfo(this.props.params.userId)
       .then((data) => {
         this.setState({data})
       })

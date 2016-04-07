@@ -1,7 +1,7 @@
 import {filter, getStarLevel, getLevelText} from './chineseUtil.jsx'
-import Loading from '../Components/Loading.jsx'
-import Tips from '../Components/Tips.jsx'
-import util from '../util.jsx'
+import Loading from '../../Components/Loading.jsx'
+import Tips from '../../Components/Tips.jsx'
+import API from '../../API/report.jsx'
 
 let {Affix, Alert} = ANTD
 
@@ -125,19 +125,12 @@ class Chinese extends React.Component {
     data: null,
     loaded: false
   };
-  
+
   componentDidMount () {
     let id = this.props.id
-    let url = '/api/falthReport?id=' + id
-    util.fetchAPI(url).then((res) => {
+    API.falthReport('/api/falthReport?id=' + id, {raw: true}).then((res) => {
       this.setState({
         data: res,
-        loaded: true
-      })
-    }).catch((e) => {
-      console.error(e)
-      this.setState({
-        data: null,
         loaded: true
       })
     })

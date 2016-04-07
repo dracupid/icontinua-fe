@@ -1,7 +1,6 @@
-import Echarts from '../Components/Echarts.jsx'
-import util from '../util.jsx'
-import {baseLineOpt} from '../option.jsx'
-// import Tips from '../Components/Tips.jsx'
+import Echarts from '../../Components/Echarts.jsx'
+import {baseLineOpt} from '../../report/option.jsx'
+import reportUtil from '../util.jsx'
 
 class O2 extends React.Component {
   static propTypes = {
@@ -19,7 +18,7 @@ class O2 extends React.Component {
     for (let k in data) {
       v = data[k]
       if (v.spo2h) {
-        res.xs.unshift(util.formatTime(v.timestamp))
+        res.xs.unshift(reportUtil.formatTime(v.timestamp))
         res.O2.unshift(parseFloat(v.spo2h))
       }
     }
@@ -43,15 +42,15 @@ class O2 extends React.Component {
         {
           name: '血氧(%)',
           type: 'value',
-          max: util.getMax(data.O2),
-          min: util.getMin(data.O2)
+          max: reportUtil.getMax(data.O2),
+          min: reportUtil.getMin(data.O2)
         }
       ],
       series: [
         {
           name: '血氧',
           type: 'line',
-          data: data.O2
+          data: reportUtil.O2
         }
       ]
     }

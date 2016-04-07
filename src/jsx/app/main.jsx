@@ -1,8 +1,8 @@
-import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
 import CatalogList from './Components/CatalogList.jsx'
 import Banner from './Components/Banner.jsx'
 import AppList from './AppList.jsx'
+import API from '../API/app.jsx'
 
 let {Tabs} = ANTD
 let TabPane = Tabs.TabPane
@@ -14,7 +14,7 @@ class MainApps extends React.Component {
   };
 
   componentDidMount () {
-    util.fetchAPI('/api/app/main?limit=4')
+    API.main()
       .then((data) => {
         this.setState({data})
       })
@@ -33,7 +33,7 @@ class MainApps extends React.Component {
     } else {
       let curTab = this.props.params.tag || '热门'
       let panels = this.state.data.topTags.map((v) => {
-        return <TabPane tab={v} key={v}>{<AppList tagName={v}/>}</TabPane>
+        return <TabPane tab={v} key={v}>{<AppList keyword={v}/>}</TabPane>
       })
       return <Tabs onChange={::this.changeTab} size='small' activeKey={curTab} animation={null}>
         <TabPane tab='热门' key='热门'><CatalogList data={this.state.data}/></TabPane>

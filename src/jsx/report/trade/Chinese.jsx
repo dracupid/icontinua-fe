@@ -1,7 +1,6 @@
-import Echarts from '../Components/Echarts.jsx'
-import util from '../util.jsx'
-import {baseLineOpt} from '../option.jsx'
-// import Tips from '../Components/Tips.jsx'
+import Echarts from '../../Components/Echarts.jsx'
+import {baseLineOpt} from '../../report/option.jsx'
+import reportUtil from '../util.jsx'
 
 class Chinese extends React.Component {
   static propTypes = {
@@ -23,7 +22,7 @@ class Chinese extends React.Component {
     for (let k in data) {
       v = data[k]
       if (v.cacheId) {
-        res.xs.unshift(util.formatTime(v.timestamp))
+        res.xs.unshift(reportUtil.formatTime(v.timestamp))
         res.score.unshift(parseFloat(v.cacheScore))
         res.jizhui.unshift(parseFloat(v.jizhui))
         res.zangfu.unshift(parseFloat(v.zangfu))

@@ -1,6 +1,6 @@
-import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
 import AppListItem from './Components/AppListItem.jsx'
+import API from '../API/app.jsx'
 
 class AppList extends React.Component {
   state = {
@@ -17,16 +17,17 @@ class AppList extends React.Component {
 
   loadPage () {
     let num = this.state.curPage + 1
-    let {type, itemPerPage, tagName} = this.props
+    let {search, keyword} = this.props
     this.setState({
       loading: true,
       curPage: num
-    })
-    util.fetchAPI(`/api/app/${type}?itemPerPage=${itemPerPage}&pageNum=${num}&name=${tagName}`)
+    });
+
+    (search ? API.appListByKeyword(num, keyword) : API.appListByTag(num, keyword))
       .then((res) => {
         this.setState({
           data: this.state.data === null ? res : this.state.data.concat(res),
-          hasMore: res.length === parseInt(itemPerPage, 10),
+          hasMore: res.length === API.itemPerPage,
           loading: false
         })
       })

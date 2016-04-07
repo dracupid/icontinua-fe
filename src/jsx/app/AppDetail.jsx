@@ -1,8 +1,8 @@
-import util from '../util.jsx'
 import Loading from '../Components/Loading.jsx'
 import Banner from './Components/Banner.jsx'
 import appUtil from './util.jsx'
 import Img from '../Components/Image.jsx'
+import API from '../API/app.jsx'
 let {Button, Carousel} = ANTD
 
 function formatDesc (text) {
@@ -38,7 +38,7 @@ class AppDetail extends React.Component {
   };
 
   componentDidMount () {
-    util.fetchAPI('/api/app?id=' + this.props.params.uid)
+    API.appInfo(this.props.params.uid)
       .then((res) => {
         if (_.isEmpty(res)) {
           location.href = '/apps'

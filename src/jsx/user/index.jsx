@@ -4,8 +4,6 @@ import main from './main.jsx'
 import edit from './edit.jsx'
 import Photo from './Photo.jsx'
 
-window._userInfoCache = {}
-
 ReactDOM.render((
   <div>
     <Router history={hashHistory}>

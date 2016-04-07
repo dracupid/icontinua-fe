@@ -1,6 +1,6 @@
-import Echarts from '../Components/Echarts.jsx'
-import util from '../util.jsx'
-import {baseLineOpt} from '../option.jsx'
+import Echarts from '../../Components/Echarts.jsx'
+import {baseLineOpt} from '../../report/option.jsx'
+import reportUtil from '../util.jsx'
 
 class Blood extends React.Component {
   static propTypes = {
@@ -20,7 +20,7 @@ class Blood extends React.Component {
     for (let k in data) {
       v = data[k]
       if (v.sbp) {
-        res.xs.unshift(util.formatTime(v.timestamp))
+        res.xs.unshift(reportUtil.formatTime(v.timestamp))
         res.high.unshift(~~v.sbp)
         res.low.unshift(~~v.dbp)
         res.beat.unshift(~~v.heartRate)
@@ -46,14 +46,14 @@ class Blood extends React.Component {
         {
           name: '血压(mmHg)',
           type: 'value',
-          max: util.getMax(data.high),
-          min: util.getMin(data.low)
+          max: reportUtil.getMax(data.high),
+          min: reportUtil.getMin(data.low)
         },
         {
           name: '心率(bpm)',
           type: 'value',
-          max: util.getMax(data.beat),
-          min: util.getMin(data.beat)
+          max: reportUtil.getMax(data.beat),
+          min: reportUtil.getMin(data.beat)
         }
       ],
       series: [

@@ -3,8 +3,6 @@ import Footer from '../Components/Footer.jsx'
 import List from './List.jsx'
 import Item from './Item.jsx'
 
-window._userInfoCache = {}
-
 ReactDOM.render((
   <div>
     <Router history={hashHistory}>
