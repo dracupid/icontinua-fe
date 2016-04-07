@@ -34,7 +34,7 @@ gulp.task 'jsx', (cb) ->
 
     webpack
         entry:
-            main: cfg.src + "jsx/report/index.jsx"
+            report: cfg.src + "jsx/report/index.jsx"
             app: cfg.src + "jsx/app/index.jsx"
             user: cfg.src + "jsx/user/index.jsx"
             libsheet: cfg.src + "jsx/libsheet/index.jsx"
