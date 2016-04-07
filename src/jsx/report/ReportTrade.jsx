@@ -7,6 +7,10 @@ import Loading from '../Components/Loading.jsx'
 let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane
 
+function hasItem (data, name) {
+  return _(data).pluck(name).compact().run().length > 0
+}
+
 class ReportTrade extends React.Component {
   static propTypes = {
     data: React.PropTypes.object
@@ -15,11 +19,9 @@ class ReportTrade extends React.Component {
   getHeightWeight () {
     let {data} = this.props
     if (data !== null) {
-      if (_(data).pluck('height').compact().run().length > 0) {
-        return <HeightWeight data={data}/>
-      } else {
-        return <Alert message='您还没有测量过身体数据' type='info' showIcon/>
-      }
+      return hasItem(data, 'height')
+        ? <HeightWeight data={data}/>
+        : <Alert message='您还没有测量过身体数据' type='info' showIcon/>
     } else {
       return <Loading />
     }
@@ -28,11 +30,9 @@ class ReportTrade extends React.Component {
   getBlood () {
     let {data} = this.props
     if (data !== null) {
-      if (_(data).pluck('sbp').compact().run().length > 0) {
-        return <Blood data={data}/>
-      } else {
-        return <Alert message='您还没有测量过血压' type='info' showIcon/>
-      }
+      return hasItem(data, 'sbp')
+        ? <Blood data={data}/>
+        : <Alert message='您还没有测量过血压' type='info' showIcon/>
     } else {
       return <Loading />
     }
@@ -41,11 +41,9 @@ class ReportTrade extends React.Component {
   getO2 () {
     let {data} = this.props
     if (data !== null) {
-      if (_(data).pluck('spo2h').compact().run().length > 0) {
-        return <O2 data={data}/>
-      } else {
-        return <Alert message='您还没有测量过血氧' type='info' showIcon/>
-      }
+      return hasItem(data, 'spo2h')
+        ? <O2 data={data}/>
+        : <Alert message='您还没有测量过血氧' type='info' showIcon/>
     } else {
       return <Loading />
     }
@@ -54,11 +52,9 @@ class ReportTrade extends React.Component {
   getChinese () {
     let {data} = this.props
     if (data !== null) {
-      if (_(data).pluck('cacheId').compact().run().length > 0) {
-        return <Chinese data={data}/>
-      } else {
-        return <Alert message='您还没有进行过生物电检测' type='info' showIcon/>
-      }
+      return hasItem(data, 'cacheId')
+        ? <Chinese data={data}/>
+        : <Alert message='您还没有进行过生物电检测' type='info' showIcon/>
     } else {
       return <Loading />
     }

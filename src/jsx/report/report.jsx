@@ -13,11 +13,7 @@ let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane
 
 function NoDataBLock (props) {
-  if (props.loading) {
-    return <Loading />
-  } else {
-    return <Alert message={props.noDataText} type='info' showIcon/>
-  }
+  return props.loading ? <Loading /> : <Alert message={props.noDataText} type='info' showIcon/>
 }
 
 NoDataBLock.propTypes = {
@@ -60,9 +56,7 @@ class Report extends React.Component {
     API.advice()
       .then(() => {
         API.report(this.props.params.reportId)
-          .then((res) => {
-            this.formatAndSetState(res)
-          })
+          .then(::this.formatAndSetState)
           .catch((e) => {
             this.setState({
               title: '体检报告',
@@ -75,38 +69,30 @@ class Report extends React.Component {
 
   getHeightWeight () {
     let {height, weight} = this.state.report
-    if (height && weight) {
-      return <HeightWeight {...this.state.report}/>
-    } else {
-      return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量身体数据'/>
-    }
+    return (height && weight)
+      ? <HeightWeight {...this.state.report}/>
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量身体数据'/>
   }
 
   getBlood () {
     let {sbp, dbp, heartRate, bp, user} = this.state.report
-    if (sbp && dbp) {
-      return <Blood high={sbp} low={dbp} beat={heartRate} bp={bp} user={user}/>
-    } else {
-      return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血压'/>
-    }
+    return (sbp && dbp)
+      ? <Blood high={sbp} low={dbp} beat={heartRate} bp={bp} user={user}/>
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血压'/>
   }
 
   getO2 () {
     let {spo2h, user} = this.state.report
-    if (spo2h) {
-      return <O2 data={spo2h} user={user}/>
-    } else {
-      return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血氧'/>
-    }
+    return (spo2h)
+      ? <O2 data={spo2h} user={user}/>
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血氧'/>
   }
 
   getChinese () {
     let {cacheId} = this.state.report
-    if (cacheId) {
-      return <Chinese id={cacheId}/>
-    } else {
-      return <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量生物电'/>
-    }
+    return (cacheId)
+      ? <Chinese id={cacheId}/>
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量生物电'/>
   }
 
   render () {
