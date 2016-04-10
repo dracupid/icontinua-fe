@@ -128,7 +128,7 @@ class Chinese extends React.Component {
 
   componentDidMount () {
     let id = this.props.id
-    API.falthReport('/api/falthReport?id=' + id, {raw: true}).then((res) => {
+    API.falthReport(id).then((res) => {
       this.setState({
         data: res,
         loaded: true

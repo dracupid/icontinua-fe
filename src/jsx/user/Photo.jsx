@@ -73,7 +73,7 @@ class Photo extends React.Component {
   upload () {
     if (this.loading === true) return
     this.loading = true
-    API.uploadPhoto(this.state.imgUrl)
+    uploadPhoto(this.state.imgUrl)
       .then((id) => {
         return API.addPhoto(this.props.params.userId, id)
       })

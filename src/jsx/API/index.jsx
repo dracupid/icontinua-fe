@@ -9,7 +9,7 @@ export default function (url, opt = {}) {
   if (!opt.noCache && _cache[url]) {
     return Promise.resolve(_cache[url])
   }
-  
+
   return fetch(url, opt)
     .then((res) => {
       if (res.status >= 200 && res.status < 300) {
