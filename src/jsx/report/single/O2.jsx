@@ -1,3 +1,6 @@
+/**
+ * 血氧报告组件
+ */
 import Tips from '../../Components/Tips.jsx'
 import Rank from '../../Components/Rank.jsx'
 

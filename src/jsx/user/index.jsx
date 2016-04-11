@@ -1,3 +1,6 @@
+/**
+ * 用户中心路由
+ */
 let {Route, Router, hashHistory} = ReactRouter
 import Footer from '../Components/Footer.jsx'
 import main from './main.jsx'
@@ -14,5 +17,4 @@ ReactDOM.render((
     </Router>
     <Footer />
   </div>
-
 ), document.getElementById('main'))

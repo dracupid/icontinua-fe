@@ -1,9 +1,19 @@
 let MAX_ITEM_NUM = 5
 
+/**
+ * 获取星级
+ * @param level
+ * @returns {number}
+ */
 module.exports.getStarLevel = function (level) {
   return Math.ceil(level / 2)
 }
 
+/**
+ * 获取级别的文本描述
+ * @param level
+ * @returns {string}
+ */
 module.exports.getLevelText = function (level) {
   if (level > 8 && level <= 10) {
     return '优秀'
@@ -16,6 +26,9 @@ module.exports.getLevelText = function (level) {
   }
 }
 
+/**
+ * 格式化脏腑数据
+ */
 let formatZangfu = function (items, balance) {
   let itemArr = []
   let children = items.children
@@ -39,6 +52,12 @@ let formatZangfu = function (items, balance) {
   }
 }
 
+/**
+ * 格式化脊椎数据
+ * @param items
+ * @param balance
+ * @returns {{items: Array.<T>, level: Number}}
+ */
 let formatJizhui = function (items, balance) {
   let itemArr = []
   let children = items.children

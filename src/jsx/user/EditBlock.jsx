@@ -1,9 +1,12 @@
+/**
+ * 可编辑条目块
+ */
 let {Icon, Radio, InputNumber} = ANTD
 
 class EditBlock extends React.Component {
   state = {
-    inputValue: null,
-    confirmedValue: null
+    inputValue: null, // 输入值
+    confirmedValue: null //修改后的保存值
   };
 
   onChange (v) {
@@ -23,18 +26,18 @@ class EditBlock extends React.Component {
     let middle = (() => {
       if (editing) {
         switch (this.props.type) {
-          case 'text':
+          case 'text': // 文本
             return <input
               type='text'
               className='ant-input' value={value}
               onChange={::this.onChange}/>
-          case 'radio':
+          case 'radio': // 单选
             return <Radio.Group onChange={::this.onChange} value={defaultValue}>
               {_.map(this.props.data, (v, k) => {
                 return <Radio key={k} value={k}>{v}</Radio>
               })}
             </Radio.Group>
-          case 'number':
+          case 'number': // 数字
             return <InputNumber
               size='large' min={this.props.min} max={this.props.max} defaultValue={value}
               onChange={::this.onChange}/>

@@ -1,3 +1,6 @@
+/**
+ * 应用分类列表
+ */
 import CatalogBlock from './CatalogBlock.jsx'
 
 function CatalogList ({data}) {

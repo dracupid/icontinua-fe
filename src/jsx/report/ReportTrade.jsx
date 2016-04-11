@@ -1,3 +1,6 @@
+/**
+ * 历史数据趋势页面组件
+ */
 import HeightWeight from './trade/HeightWeight.jsx'
 import Blood from './trade/Blood.jsx'
 import O2 from './trade/O2.jsx'
@@ -7,6 +10,12 @@ import Loading from '../Components/Loading.jsx'
 let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane
 
+/**
+ * 是否存在某个测量项的历史数据
+ * @param data
+ * @param name
+ * @returns {boolean}
+ */
 function hasItem (data, name) {
   return _(data).pluck(name).compact().run().length > 0
 }

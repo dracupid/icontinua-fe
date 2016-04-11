@@ -1,3 +1,6 @@
+/**
+ * 应用商城主页
+ */
 import Loading from '../Components/Loading.jsx'
 import CatalogList from './Components/CatalogList.jsx'
 import Banner from './Components/Banner.jsx'

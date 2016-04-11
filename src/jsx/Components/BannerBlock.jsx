@@ -1,3 +1,6 @@
+/**
+ * 列表项组件
+ */
 let {Icon} = ANTD
 
 function BannerBlock ({icon, text, url, style}) {

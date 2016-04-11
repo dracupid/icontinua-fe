@@ -1,3 +1,6 @@
+/**
+ * 搜索banner
+ */
 import SearchInput from './Search.jsx'
 import util from '../../util.jsx'
 let {Icon} = ANTD

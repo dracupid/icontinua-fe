@@ -1,3 +1,6 @@
+/**
+ * 应用icon块
+ */
 let {Button} = ANTD
 import appUtil from './../util.jsx'
 import Image from '../../Components/Image.jsx'

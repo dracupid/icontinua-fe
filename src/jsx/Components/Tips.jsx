@@ -1,3 +1,6 @@
+/**
+ * 标题内容块组件
+ */
 function Tips (props) {
   return (
     <div className={'report-tip-block' + (props.fix ? ' fix' : '')}>

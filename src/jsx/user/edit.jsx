@@ -1,3 +1,6 @@
+/**
+ * 修改用户信息页面
+ */
 import util from '../util.jsx'
 import Banner from '../Components/Banner.jsx'
 import EditBlock from './EditBlock.jsx'
@@ -18,6 +21,9 @@ class Edit extends React.Component {
       })
   }
 
+  /**
+   * 信息提交
+   */
   onSubmit () {
     if (this.state.editing) {
       let data = _.merge(this.state.data, this.state.newData)

@@ -1,3 +1,6 @@
+/**
+ * 应用商城路由
+ */
 let {Route, Router, hashHistory} = ReactRouter
 import main from './main.jsx'
 import AppDetail from './AppDetail.jsx'

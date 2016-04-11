@@ -1,3 +1,6 @@
+/**
+ * K-V对组件
+ */
 let {info} = ANTD.Modal
 
 class KVMap extends React.Component {

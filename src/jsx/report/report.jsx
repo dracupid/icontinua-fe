@@ -1,3 +1,6 @@
+/**
+ * 单次报告详情页面
+ */
 import HeightWeight from './single/HeightWeight.jsx'
 import Blood from './single/Blood.jsx'
 import O2 from './single/O2.jsx'
@@ -12,8 +15,11 @@ import reportUtil from './util.jsx'
 let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane
 
-function NoDataBLock (props) {
-  return props.loading ? <Loading /> : <Alert message={props.noDataText} type='info' showIcon/>
+/**
+ * 无数据的组件
+ */
+function NoDataBLock ({loading, noDataText}) {
+  return loading ? <Loading /> : <Alert message={noDataText} type='info' showIcon/>
 }
 
 NoDataBLock.propTypes = {
@@ -32,6 +38,11 @@ class Report extends React.Component {
     loaded: false
   };
 
+  /**
+   * 数据格式化
+   * @param data
+   * @returns {{title: (*|string), report: *}}
+     */
   formatAndSetState (data) {
     this.setState({
       title: reportUtil.formatDateTime(data.timestamp),
@@ -43,13 +54,6 @@ class Report extends React.Component {
       title: reportUtil.formatDateTime(data.timestamp),
       report: data
     }
-  }
-
-  fetchFailedHandler () {
-    this.setState({
-      title: '体检报告',
-      loaded: true
-    })
   }
 
   componentDidMount () {

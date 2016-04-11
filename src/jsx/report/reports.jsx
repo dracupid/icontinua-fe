@@ -1,3 +1,6 @@
+/**
+ * 报告历史页面主页
+ */
 import Banner from './../Components/Banner.jsx'
 import ReportList from './ReportList.jsx'
 import ReportTrade from './ReportTrade.jsx'
@@ -17,6 +20,7 @@ class Reports extends React.Component {
     data: null
   };
 
+  // 将数据按时间排序,并格式化为一个对象
   formatData (list) {
     let res = {}
     _(list).sortBy('timestamp').reverse().forEach((item) => {

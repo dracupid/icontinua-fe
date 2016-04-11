@@ -1,3 +1,6 @@
+/**
+ * 身体报告页面
+ */
 import Echarts from '../../Components/Echarts.jsx'
 import Tips from '../../Components/Tips.jsx'
 import Rank from '../../Components/Rank.jsx'
@@ -18,6 +21,9 @@ class HeightWeight extends React.Component {
     bodyViscera: React.PropTypes.any
   };
 
+  /**
+   * 获取图片图表参数
+   */
   getWeightOpt () {
     let {weight, height, bmi} = this.props
     weight = weight.value

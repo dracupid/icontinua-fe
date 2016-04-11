@@ -1,3 +1,6 @@
+/**
+ * 获取echarts配置
+ */
 module.exports.baseGaugeOpt = {
   series: [
     {

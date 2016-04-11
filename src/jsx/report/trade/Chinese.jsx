@@ -1,3 +1,6 @@
+/**
+ * 中医趋势页面
+ */
 import Echarts from '../../Components/Echarts.jsx'
 import {baseLineOpt} from '../../report/option.jsx'
 import reportUtil from '../util.jsx'

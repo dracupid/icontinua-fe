@@ -1,3 +1,6 @@
+/**
+ * 广告组件
+ */
 let {Alert} = ANTD
 
 function Ad (props) {

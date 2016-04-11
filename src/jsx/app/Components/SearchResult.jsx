@@ -1,3 +1,6 @@
+/**
+ * 搜索结果页面
+ */
 import Banner from './Banner.jsx'
 import AppList from './../AppList.jsx'
 

@@ -1,3 +1,6 @@
+/**
+ * 应用详情页面
+ */
 import Loading from '../Components/Loading.jsx'
 import Banner from './Components/Banner.jsx'
 import appUtil from './util.jsx'
@@ -5,6 +8,11 @@ import Img from '../Components/Image.jsx'
 import API from '../API/app.jsx'
 let {Button, Carousel} = ANTD
 
+/**
+ * 格式化应用描述
+ * @param text
+ * @returns {string}
+ */
 function formatDesc (text) {
   if (text == null) return ''
 
@@ -57,6 +65,7 @@ class AppDetail extends React.Component {
         return <div><Img src={imgUrl} className='snapshot-img'/></div>
       })
 
+      // 应用快照
       let snapshots = _.isEmpty(snapshot)
         ? null
         : <Carousel dots='false' autoplay>{snapshotData}</Carousel>

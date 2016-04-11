@@ -1,8 +1,15 @@
+/**
+ * 报告页面路由
+ */
 import report from './report.jsx'
 import reports from './reports.jsx'
 import '../wechat.jsx'
 let {Route, Router, hashHistory} = ReactRouter
 
+/**
+ * 图片预加载
+ * @param url
+ */
 let cacheImg = function (url) {
   let img = new window.Image()
   img.src = url

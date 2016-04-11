@@ -1,3 +1,6 @@
+/**
+ * 血压报告页面
+ */
 import Echarts from '../../Components/Echarts.jsx'
 import Tips from '../../Components/Tips.jsx'
 import Rank from '../../Components/Rank.jsx'
@@ -12,6 +15,9 @@ class Blood extends React.Component {
     beat: React.PropTypes.number.isRequired
   };
 
+  /**
+   * 获取图表参数
+   */
   _getOpt (val, text, unit, lines, _min, _max) {
     let min = reportUtil.getMin([val], 10, _min)
     let max = reportUtil.getMax([val], 10, _max)

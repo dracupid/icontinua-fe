@@ -1,7 +1,10 @@
+/**
+ * 微信相关帮助函数
+ */
 import API from './API/index.jsx'
 let {message} = ANTD
-let ready = false
-let cache = null
+let ready = false // 微信是否已加载完成
+let cache = null  // 微信未加载成功时缓存设置的报告ID
 
 let {hostname, pathname, href} = window.location
 let pageUrl = 'http://' + hostname + pathname
@@ -22,6 +25,7 @@ let defaultShareData = {
   imgUrl: 'http://icontinua.com/img/logo.png'
 }
 
+// 配置微信
 if (isWeixin) {
   API('/wechat/config?url=' + encodeURIComponent(href.split('#')[0])).then((data) => {
     wx.config(_.assign({
@@ -50,6 +54,10 @@ if (isWeixin) {
   })
 }
 
+/**
+ * 设置微信分享文案
+ * @param data 分享数据
+ */
 function share (data) {
   let timeLineData = _.clone(data)
   timeLineData.title = data.desc
@@ -61,6 +69,11 @@ function share (data) {
   wx.onMenuShareQZone(data)
 }
 
+/**
+ * 设置分享用的报告ID
+ * @param reportId 报告UUID
+ * @param user 用户对象
+ */
 export function setReport (reportId, user) {
   if (!isWeixin) {
     return
@@ -85,6 +98,10 @@ export function setReport (reportId, user) {
   share(data)
 }
 
+/**
+ * 调起拍照
+ * @returns {Promise}
+ */
 export function takePhoto () {
   if (!isWeixin) {
     message.error('请在微信中打开网页进行拍照')
@@ -102,6 +119,11 @@ export function takePhoto () {
   })
 }
 
+/**
+ * 上传照片
+ * @param id 照片localId
+ * @returns {Promise}
+ */
 export function uploadPhoto (id) {
   return new Promise((resolve, reject) => {
     wx.uploadImage({

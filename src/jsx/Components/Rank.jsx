@@ -1,3 +1,6 @@
+/**
+ * 排名组件
+ */
 import Tips from './Tips.jsx'
 
 function High (props) {

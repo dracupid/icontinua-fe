@@ -1,3 +1,6 @@
+/**
+ * lazyload图片加载组件
+ */
 import Image from 'react-imageloader'
 let {Icon} = ANTD
 

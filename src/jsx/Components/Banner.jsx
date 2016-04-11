@@ -1,3 +1,6 @@
+/**
+ * 头部组件
+ */
 let {Icon} = ANTD
 
 function Banner (props) {

@@ -1,9 +1,15 @@
+/**
+ * 用户中心主页
+ */
 let {Icon} = ANTD
 import util from '../util.jsx'
 import BannerBlock from './../Components/BannerBlock.jsx'
 import Banner from '../Components/Banner.jsx'
 import API from '../API/user.jsx'
 
+/**
+ * 用户信息组件
+ */
 function UserInfo ({avatar, nickname, sex, age, id}) {
   return <div className='user-info-banner block'>
     <img src={avatar} className='avatar'/>
@@ -37,7 +43,7 @@ class Main extends React.Component {
         <UserInfo {...this.state.data} id={this.props.params.userId}/>
         <div className='block-wrapper'>
           <BannerBlock text='查看体检报告' icon='file-text' url={'/reports#/' + this.props.params.userId}/>
-          <BannerBlock text='化验单拍照上传' icon='camera-o' url={util.getUrlByHash('/photo/' + this.props.params.userId)}/>
+          <BannerBlock text='化验单拍照识别' icon='camera-o' url={util.getUrlByHash('/photo/' + this.props.params.userId)}/>
         </div>
       </div>
       }

@@ -27,6 +27,11 @@ let env = (function (ua) {
 })(navigator.userAgent)
 
 export default {
+  /**
+   * 获取app下载函数
+   * @param url
+   * @returns {Function}
+     */
   toApkUrlFun (url) {
     return function () {
       switch (true) {
@@ -41,6 +46,11 @@ export default {
       }
     }
   },
+  /**
+   * 格式化下载数量
+   * @param num
+   * @returns {string}
+     */
   formatDownload (num) {
     if (num > 100000) {
       return _.round(num / 10000) + '万'

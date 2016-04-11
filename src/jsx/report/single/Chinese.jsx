@@ -1,3 +1,6 @@
+/**
+ * 中医报告页面
+ */
 import {filter, getStarLevel, getLevelText} from './chineseUtil.jsx'
 import Loading from '../../Components/Loading.jsx'
 import Tips from '../../Components/Tips.jsx'

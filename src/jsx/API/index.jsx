@@ -1,5 +1,10 @@
 let _cache = {}
 
+/**
+ * 获取API请求
+ * @param url
+ * @param opt noCache: 不使用缓存, raw: 获取原始json数据
+ */
 export default function (url, opt = {}) {
   _.defaults(opt, {
     noCache: false,

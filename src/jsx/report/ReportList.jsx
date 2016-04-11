@@ -1,3 +1,6 @@
+/**
+ * 报告列表页面组件
+ */
 import Loading from './../Components/Loading.jsx'
 import Ad from './../Components/Ad.jsx'
 import reportUtil from './util.jsx'

@@ -1,3 +1,6 @@
+/**
+ * 应用分类块
+ */
 import AppBlock from './AppBlock.jsx'
 
 function CatalogBlock ({apps, name}) {

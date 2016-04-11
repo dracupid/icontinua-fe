@@ -1,3 +1,6 @@
+/**
+ * 应用列表项
+ */
 import appUtil from '../util.jsx'
 import util from '../../util.jsx'
 import Image from '../../Components/Image.jsx'

@@ -1,3 +1,6 @@
+/**
+ * Echarts 组件
+ */
 import Loading from './Loading.jsx'
 
 function getScript (url) {

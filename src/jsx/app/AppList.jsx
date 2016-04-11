@@ -1,3 +1,6 @@
+/**
+ * 应用列表页面
+ */
 import Loading from '../Components/Loading.jsx'
 import AppListItem from './Components/AppListItem.jsx'
 import API from '../API/app.jsx'
@@ -15,6 +18,9 @@ class AppList extends React.Component {
     itemPerPage: 10
   };
 
+  /**
+   * 加载page
+   */
   loadPage () {
     let num = this.state.curPage + 1
     let {search, keyword} = this.props
