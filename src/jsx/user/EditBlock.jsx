@@ -6,7 +6,7 @@ let {Icon, Radio, InputNumber} = ANTD
 class EditBlock extends React.Component {
   state = {
     inputValue: null, // 输入值
-    confirmedValue: null //修改后的保存值
+    confirmedValue: null // 修改后的保存值
   };
 
   onChange (v) {

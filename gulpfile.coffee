@@ -8,15 +8,18 @@ cfg =
     src: './src/'
     dist: './dist/'
 
+# clean-css 配置
 cssminConfig =
     keepSpecialComments: 0
     advanced: false
     aggressiveMerging: false
 
+# autoprefixer 配置
 autoPrefixConfig =
     browsers: ['android > 2', 'ios >= 6']
     cascade: true
 
+# 使用webpack编译jsx
 gulp.task 'jsx', (cb) ->
     webpack = require 'webpack'
 
@@ -29,7 +32,7 @@ gulp.task 'jsx', (cb) ->
 
     if isProduction
         plugins = plugins.concat [
-            new webpack.optimize.UglifyJsPlugin(),
+            new webpack.optimize.UglifyJsPlugin(), # uglify
         ]
 
     webpack
@@ -56,6 +59,7 @@ gulp.task 'jsx', (cb) ->
         if not isProduction then console.log stats.toString colors: yes, chunks: no
         cb()
 
+# 编译stylus, 压缩
 gulp.task 'css', ->
     stylus = require 'gulp-stylus'
     autoprefixer = require 'gulp-autoprefixer'
@@ -71,6 +75,7 @@ gulp.task 'css', ->
     .pipe gulpif isProduction, cssmin cssminConfig
     .pipe gulp.dest cfg.dist + 'css'
 
+# 编译压缩ant-design的css
 gulp.task '_antd_css', ->
     autoprefixer = require 'gulp-autoprefixer'
     cssmin = require 'gulp-clean-css'
@@ -83,6 +88,7 @@ gulp.task '_antd_css', ->
     .pipe rename 'antd.min.css'
     .pipe gulp.dest cfg.dist + 'css'
 
+# 打包第三方js库
 gulp.task 'lib_js', ['_antd_css'], (cb) ->
     webpack = require 'webpack'
     webpack
@@ -96,10 +102,7 @@ gulp.task 'lib_js', ['_antd_css'], (cb) ->
                 test: /\.js$/, loader: 'babel'
             }]
         plugins: do ->
-# if isProduction
             [new webpack.optimize.UglifyJsPlugin()]
-# else
-# null
         externals:
             jquery: 'window.$'
             react: 'window.React'
@@ -109,6 +112,7 @@ gulp.task 'lib_js', ['_antd_css'], (cb) ->
         if not isProduction then console.log stats.toString colors: yes, chunks: no
         cb()
 
+# 编译html
 gulp.task 'html', ->
     jade = require 'gulp-jade'
     replace = require 'gulp-replace'
