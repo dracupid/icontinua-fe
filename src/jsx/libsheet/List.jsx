@@ -26,10 +26,21 @@ class List extends React.Component {
     if (this.state.name !== curName) {
       this.getData()
     }
+    let items = this.props.params.items.split(',')
+
+    let shouldHighlight = (str) => {
+      for (let i of items) {
+        if (str.replace(/[^\u4e00-\u9fa5]+/, '') === i) return true
+      }
+      return false
+    }
+
     return <div>
       <Banner title={hasName ? curName : '化验单解读'} goBack/>
       {this.state.data.map((item) => {
-        return <BannerBlock text={item} key={item} url={util.getUrlByHash(hasName ? `item/${curName}/${item}` : item)}/>
+        return <BannerBlock
+          text={item} key={item} url={util.getUrlByHash(hasName ? `item/${curName}/${item}` : item)}
+          icon={shouldHighlight(item) ? 'check' : null}/>
       })}
     </div>
   }

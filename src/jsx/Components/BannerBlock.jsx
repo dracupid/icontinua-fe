@@ -1,8 +1,8 @@
 let {Icon} = ANTD
 
-function BannerBlock ({icon, text, url}) {
-  return <div className='btn-block block' onClick={() => { url && (location.href = url) }}>
-    {icon ? <div className='block-icon'><Icon type={icon}/></div> : null}
+function BannerBlock ({icon, text, url, style}) {
+  return <div className='btn-block block' onClick={() => { url && (location.href = url) }} style={style}>
+    {icon ? <div className='block-icon block-icon-left'><Icon type={icon}/></div> : null}
     <div className='block-text'>
       {text}
     </div>

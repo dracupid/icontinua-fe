@@ -8,6 +8,7 @@ ReactDOM.render((
     <Router history={hashHistory}>
       <Route path='/' component={List}/>
       <Route path='/:name' component={List}/>
+      <Route path='/:name/-/:items' component={List}/>
       <Route path='/item/:name' component={Item}/>
       <Route path='/item/:catalog/:name' component={Item}/>
     </Router>
