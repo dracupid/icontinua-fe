@@ -59,7 +59,7 @@ gulp.task 'jsx', (cb) ->
 gulp.task 'css', ->
     stylus = require 'gulp-stylus'
     autoprefixer = require 'gulp-autoprefixer'
-    cssmin = require 'gulp-minify-css'
+    cssmin = require 'gulp-clean-css'
     nib = require 'nib'
     gulpif = require 'gulp-if'
     cssBase64 = require 'gulp-css-base64'
@@ -73,7 +73,7 @@ gulp.task 'css', ->
 
 gulp.task '_antd_css', ->
     autoprefixer = require 'gulp-autoprefixer'
-    cssmin = require 'gulp-minify-css'
+    cssmin = require 'gulp-clean-css'
     rename = require 'gulp-rename'
 
 
