@@ -33,7 +33,7 @@ class Reports extends React.Component {
       })
       .catch((e) => {
         this.setState({
-          data: []
+          data: {}
         })
         throw e
       })

@@ -8,8 +8,18 @@ export default {
         return res
       })
   },
-  report: (id) => API('/api/report?rank=true&diagnose=true&reportId=' + id),
-  reportList: (userId) => API('/api/report/list?id=' + userId),
+  report: (id) => {
+    if (!id) {
+      return Promise.reject('reportId not provided.')
+    }
+    return API('/api/report?rank=true&diagnose=true&reportId=' + id)
+  },
+  reportList: (userId) => {
+    if (!userId) {
+      return Promise.reject('userId not provided.')
+    }
+    return API('/api/report/list?id=' + userId)
+  },
   falthReport: (id) => API('/api/falthReport?id=' + id, {raw: true})
 }
 

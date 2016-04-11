@@ -7,7 +7,7 @@ const itemPerPage = 10
 
 class ReportList extends React.Component {
   static propTypes = {
-    userId: React.PropTypes.string.isRequired,
+    userId: React.PropTypes.string,
     data: React.PropTypes.object
   };
 
@@ -16,7 +16,9 @@ class ReportList extends React.Component {
   };
 
   clickItem (reportId) {
-    window.location.href = `/reports#/${this.props.userId}/${reportId}`
+    let {userId} = this.props
+    if (!userId) return
+    window.location.href = `/reports#/${userId}/${reportId}`
   }
 
   onChangePage (pageNum) {

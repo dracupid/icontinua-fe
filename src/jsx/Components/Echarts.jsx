@@ -2,15 +2,15 @@ import Loading from './Loading.jsx'
 
 function getScript (url) {
   return new Promise(function (resolve, reject) {
-    let s = document.createElement('script');
-    s.async = 'async';
-    s.src = url;
-    let h = document.getElementsByTagName('head')[0];
+    let s = document.createElement('script')
+    s.async = 'async'
+    s.src = url
+    let h = document.getElementsByTagName('head')[0]
     s.onload = s.onreadystatechange = function (__, isAbort) {
       if (isAbort || !s.readyState || /loaded|complete/.test(s.readyState)) {
-        s.onload = s.onreadystatechange = null;
+        s.onload = s.onreadystatechange = null
         if (h && s.parentNode) {
-          h.removeChild(s);
+          h.removeChild(s)
         }
         s = undefined
         if (isAbort) {
@@ -21,10 +21,9 @@ function getScript (url) {
       } else {
         reject('Load Failed')
       }
-    };
-    h.insertBefore(s, h.firstChild);
+    }
+    h.insertBefore(s, h.firstChild)
   })
-
 }
 
 class Echarts extends React.Component {
@@ -41,7 +40,7 @@ class Echarts extends React.Component {
 
   state = {
     loaded: false
-  }
+  };
 
   constructor (props) {
     super(props)
