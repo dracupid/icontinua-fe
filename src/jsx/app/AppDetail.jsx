@@ -29,7 +29,7 @@ function AppInfo (props) {
       <div className='info-text-wrapper'>
         <h3>{name}</h3>
         <span>{score}<strong>分</strong></span>
-        <span>{appUtil.formatDownload(downloadNum) + '人在用'}</span>
+        <span>{name === '爱康体' ? null : (appUtil.formatDownload(downloadNum) + '人在用')}</span>
       </div>
       <Button type='primary' size='small' onClick={appUtil.toApkUrlFun(apkUrl)}>下载</Button>
     </div>
@@ -61,14 +61,11 @@ class AppDetail extends React.Component {
       return <Loading />
     } else {
       let {snapshot, description} = this.state.data
-      let snapshotData = snapshot.map((imgUrl) => {
-        return <div><Img src={imgUrl} className='snapshot-img'/></div>
-      })
 
       // 应用快照
       let snapshots = _.isEmpty(snapshot)
         ? null
-        : <Carousel dots='false' autoplay>{snapshotData}</Carousel>
+        : <Carousel dots='false' autoplay>{snapshot.map((imgUrl) => <div><Img src={imgUrl} className='snapshot-img'/></div>)}</Carousel>
 
       return <div>
         <AppInfo app={this.state.data}/>

@@ -76,9 +76,9 @@ class HeightWeight extends React.Component {
           <img src='/img/body.png'/>
           <div className='line'></div>
           <div className='text'>身高<br/>{height.value}CM</div>
-          <KVMap obj={{BMI: getValue(bmi).toFixed(1), 体脂率: getStringValue(bodyFat, ' %'),
-            肌肉量: getStringValue(bodyMuscle, ' %'), 基础代谢率: getStringValue(bodyKcal, ' Kcal'),
-            含水量: getStringValue(bodyWater, ' %'), 内脏脂肪量: getStringValue(bodyViscera, ' %')}}/>
+          <KVMap obj={{BMI: getValue(bmi).toFixed(1), 脂肪率: getStringValue(bodyFat, ' %'),
+            肌肉量: getStringValue(bodyMuscle, ' %'), BMR: getStringValue(bodyKcal, ' kcal'),
+            水分: getStringValue(bodyWater, ' %'), 内脏脂肪: getStringValue(bodyViscera, '')}}/>
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%'/>
         <Tips text={bmi.advice} fix/>
