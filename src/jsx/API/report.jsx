@@ -2,16 +2,6 @@ import API from './index.jsx'
 
 export default {
   /**
-   * 获取测量项介绍
-   */
-  advice () {
-    return API('/data/advice.json', {raw: true})
-      .then((res) => {
-        window._advice = res
-        return res
-      })
-  },
-  /**
    * 获取报告详情
    * @param id 报告ID
    */

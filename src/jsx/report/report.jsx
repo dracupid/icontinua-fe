@@ -42,7 +42,7 @@ class Report extends React.Component {
    * 数据格式化
    * @param data
    * @returns {{title: (*|string), report: *}}
-     */
+   */
   formatAndSetState (data) {
     this.setState({
       title: reportUtil.formatDateTime(data.timestamp),
@@ -57,17 +57,14 @@ class Report extends React.Component {
   }
 
   componentDidMount () {
-    API.advice()
-      .then(() => {
-        API.report(this.props.params.reportId)
-          .then(::this.formatAndSetState)
-          .catch((e) => {
-            this.setState({
-              title: '体检报告',
-              loaded: true
-            })
-            throw e
-          })
+    API.report(this.props.params.reportId)
+      .then(::this.formatAndSetState)
+      .catch((e) => {
+        this.setState({
+          title: '体检报告',
+          loaded: true
+        })
+        throw e
       })
   }
 

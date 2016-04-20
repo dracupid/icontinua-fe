@@ -2,6 +2,7 @@
  * K-V对组件
  */
 let {info} = ANTD.Modal
+let _advice = require('json!../../data/advice.json')
 
 class KVMap extends React.Component {
   static defaultProps = {
@@ -25,10 +26,10 @@ class KVMap extends React.Component {
     let obj = this.props.obj
     for (let key in obj) {
       if (obj[key]) {
-        if (window._advice[key]) {
+        if (_advice[key]) {
           items.push(
             <div
-              className='key' key={key} onClick={KVMap.info.bind(this, key, window._advice[key])}
+              className='key' key={key} onClick={KVMap.info.bind(this, key, _advice[key])}
               style={{textDecoration: 'underline'}}>
               {key}
             </div>
