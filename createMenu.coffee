@@ -53,7 +53,7 @@ createMenu = (appId, appSecret, host)->
                 }, {
                     type: 'view',
                     name: '产品介绍',
-                    url: host + "/html/intro.html"
+                    url: "http://cdnst.icontinua.com/html/intro.html/html/intro.html"
                 }]
             }
         ]
