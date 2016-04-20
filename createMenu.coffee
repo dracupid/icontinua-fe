@@ -18,7 +18,7 @@ createMenu = (appId, appSecret, host)->
                 sub_button: [{
                     type: 'view',
                     name: '快速咨询',
-                    url: host + ":8888/webdemo/index.html"
+                    url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=consult'}&response_type=code&scope=snsapi_base"
                 }, {
                     type: 'view',
                     name: '专家帮你',
