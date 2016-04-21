@@ -7,6 +7,7 @@ path = require 'path'
 cfg =
     src: './src/'
     dist: './dist/'
+    CDN: 'http://cdnst.icontinua.com'
 
 # clean-css 配置
 cssminConfig =
@@ -121,11 +122,15 @@ gulp.task 'html', ->
     gulp.src [cfg.src + 'html/*.jade'], base: cfg.src + 'html'
     .pipe jade pretty: '    ', compileDebug: true
     .pipe gulpif isProduction, replace("_TIMESTAMP_", +new Date())
+    .pipe gulpif isProduction, replace /((src|href|url)\s*=?\s*('|"|\()(\/)?((js)|(css)|(img)))\S*/g, (match)->
+        match.replace(/\/?js/, cfg.CDN + '/js')
+        .replace(/\/?css/, cfg.CDN + '/css')
+        .replace(/\/?img/, cfg.CDN + '/img')
     .pipe gulpif isProduction, replace("react.js", "react.min.js")
     .pipe gulp.dest cfg.dist + 'html'
 
 gulp.task 'copy', ->
-    gulp.src [cfg.src + 'img/**', cfg.src + 'data/**', cfg.src + 'html/*.html'], base: cfg.src
+    gulp.src [cfg.src + 'img/**', cfg.src + 'html/*.html'], base: cfg.src
     .pipe gulp.dest cfg.dist
 
 gulp.task 'build', ['jsx', 'css', 'html', 'copy']
