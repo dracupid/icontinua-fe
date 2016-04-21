@@ -47,7 +47,7 @@ class Echarts extends React.Component {
 
   constructor (props) {
     super(props)
-    getScript(`${location.host.indexOf('icontinua') > 0 ? 'http://cdnst.icontinua.com' : ''}/js/lib/echarts.min.js`)
+    getScript(`/js/lib/echarts.min.js`)
       .then(() => {
         this.setState({loaded: true})
         this.forceUpdate(::this.initEcharts)
