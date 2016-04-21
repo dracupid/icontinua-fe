@@ -11,10 +11,6 @@ export default function (url, opt = {}) {
     raw: false
   })
 
-  if (location.host.indexOf('cdn') > 0) {
-    url = "http://icontinua.com" + (url[0] === '/' ? url : `/${url}`)
-  }
-
   if (!opt.noCache && _cache[url]) {
     return Promise.resolve(_cache[url])
   }

@@ -2,13 +2,11 @@
 
 set -e
 
-export NODE_ENV="production"
-
-
 root='/var/www'
 dest=${root}/static
 
 if [ $1 ]; then
+    export NODE_ENV="production"
     host=$1
 else
     host=wcm@172.18.9.7
