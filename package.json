@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "antd": "0.12.15",
-    "echarts": "3.1.6",
+    "echarts": "3.1.7",
     "react": "15.0.1",
     "react-cropper": "^0.8.0",
     "react-dom": "15.0.1",
