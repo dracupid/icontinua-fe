@@ -53,7 +53,7 @@ class O2 extends React.Component {
         {
           name: '血氧',
           type: 'line',
-          data: reportUtil.O2
+          data: data.O2
         }
       ]
     }
