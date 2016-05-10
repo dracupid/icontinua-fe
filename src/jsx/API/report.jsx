@@ -14,8 +14,7 @@ export default {
         sid = sid.slice(3)
       }
       return API('/api/report-sid?sid=' + sid)
-    }
-    else {
+    } else {
       return Promise.reject('reportId not provided.')
     }
   },
