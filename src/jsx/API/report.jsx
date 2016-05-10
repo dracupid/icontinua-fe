@@ -4,12 +4,20 @@ export default {
   /**
    * 获取报告详情
    * @param id 报告ID
+   * @param sid 报告shortId
    */
-  report: (id) => {
-    if (!id) {
+  report: (id, sid) => {
+    if (id) {
+      return API('/api/report?rank=true&diagnose=true&reportId=' + id)
+    } else if (sid) {
+      if (sid.indexOf('AKT') === 0) {
+        sid = sid.slice(3)
+      }
+      return API('/api/report-sid?sid=' + sid)
+    }
+    else {
       return Promise.reject('reportId not provided.')
     }
-    return API('/api/report?rank=true&diagnose=true&reportId=' + id)
   },
   /**
    * 获取报告列表

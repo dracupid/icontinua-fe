@@ -57,7 +57,7 @@ class Report extends React.Component {
   }
 
   componentDidMount () {
-    API.report(this.props.params.reportId)
+    API.report(this.props.params.reportId, this.props.params.sid)
       .then(::this.formatAndSetState)
       .catch((e) => {
         this.setState({
