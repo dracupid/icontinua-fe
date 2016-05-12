@@ -6,7 +6,7 @@ import Loading from '../../Components/Loading.jsx'
 import Tips from '../../Components/Tips.jsx'
 import API from '../../API/report.jsx'
 
-let {Affix, Alert} = ANTD
+let {Alert} = ANTD
 
 class ReportBlock extends React.Component {
   static propTypes = {
@@ -152,9 +152,7 @@ class Chinese extends React.Component {
             <Tips
               text={'基于生物电技术，通过智能电子感知设备，持续诱导人体手掌皮肤生物电刺激，在人体组织内转化为离子流，依据离子流在阴、阳极间的极化运动。测量人体组织的生物电能及细胞膜的动作电位，通过3-5分钟扫描，根据应激反应数据评估全身各大组织器官的生物活性和功能状况，预测潜在的亚健康趋势，对疾病风险做出早期预警。'}
               title='简介'/>
-            <Affix>
-              <Scores {...data.scores}/>
-            </Affix>
+            <Scores {...data.scores}/>
             <ReportBlock title='脏腑' {...data.zangfu}/>
             <ReportBlock title='脊椎' {...data.jizhui}/>
           </div>
