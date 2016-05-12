@@ -79,19 +79,27 @@ class ReportList extends React.Component {
         </div>
       )
     }
+
     let ad
+    let defaultAd = <Ad
+      title='一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！'
+      text={<div>皮皮夺宝（<a href='http://www.ppduobao.com'>www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
+      img='/img/res/pipi.jpg'/>
+
     if (this.props.data != null && Object.keys(this.props.data).length) {
       let base = this.props.data[Object.keys(this.props.data)[0]]
+      if (!base) {
+        return ad = defaultAd
+      }
       if (base.channel === 'zhongfang') {
         ad = <Ad
           title={<div>扫码关注透明售房网，发送编码查看最新体检报告<br/><div style={{textAlign: 'center', lineHeight: '40px'}}><strong>AKT{base.sid}</strong></div></div>}
           img='/img/res/zhongfang.jpg'/>
       } else if (!base.channel) {
-        ad = <Ad
-          title='一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！'
-          text={<div>皮皮夺宝（<a href='http://www.ppduobao.com'>www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
-          img='/img/res/pipi.jpg'/>
+        ad = defaultAd
       }
+    } else {
+      ad = defaultAd
     }
 
     return (
