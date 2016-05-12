@@ -47,7 +47,10 @@ gulp.task 'jsx', (cb) ->
         module:
             loaders: [
                 {
-                    test: /\.jsx?$/, loader: 'babel'
+                    test: /\.jsx?$/, loader: 'babel',
+                    query: {
+                        cacheDirectory: '.cache',
+                    }
                 }
             ]
         plugins: plugins
