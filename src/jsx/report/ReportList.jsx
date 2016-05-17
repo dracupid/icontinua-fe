@@ -7,6 +7,11 @@ import reportUtil from './util.jsx'
 let {Alert, Pagination, message} = ANTD
 
 const itemPerPage = 10
+const currentActivitys = {
+  zhongfangHz: (sid) => <Ad
+    title={<div>扫码关注透明售房网，发送编码查看最新体检报告<br/><div style={{textAlign: 'center', lineHeight: '40px'}}><strong>AKT{sid}</strong></div></div>}
+    img='http://cdnst.icontinua.com/img/res/zhongfang.jpg'/>
+}
 
 class ReportList extends React.Component {
   static propTypes = {
@@ -18,8 +23,8 @@ class ReportList extends React.Component {
     curPage: 0
   };
 
-  clickItem (reportId, alert) {
-    if (alert) {
+  clickItem (reportId, channel) {
+    if (currentActivitys[channel]) {
       message.info('请按提示查看最新报告')
       return
     }
@@ -55,7 +60,7 @@ class ReportList extends React.Component {
             {_.map(pageData, (item) => {
               index += 1
               return <li
-                className='timeline-item' onClick={this.clickItem.bind(this, item.id, item.channel != null)}
+                className='timeline-item' onClick={this.clickItem.bind(this, item.id, item.channel)}
                 key={item.timestamp}>
                 <p className='timestamp'>
                   {reportUtil.formatDateTime(item.timestamp, true)}
@@ -80,26 +85,23 @@ class ReportList extends React.Component {
       )
     }
 
-    let ad
     let defaultAd = <Ad
       title='一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！'
       text={<div>皮皮夺宝（<a href='http://www.ppduobao.com'>www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
-      img='/img/res/pipi.jpg'/>
+      img='http://cdnst.icontinua.com/img/res/pipi.jpg'/>
 
-    if (this.props.data != null && Object.keys(this.props.data).length) {
-      let base = this.props.data[Object.keys(this.props.data)[0]]
-      if (!base) {
-        return ad = defaultAd
+    let ad
+
+    if (this.props.data != null) {
+      if (Object.keys(this.props.data).length) {
+        let base = this.props.data[Object.keys(this.props.data)[0]]
+        if (base && base.channel) {
+          if (currentActivitys[base.channel]) {
+            ad = currentActivitys[base.channel](base.sid)
+          }
+        }
       }
-      if (base.channel === 'zhongfang') {
-        ad = <Ad
-          title={<div>扫码关注透明售房网，发送编码查看最新体检报告<br/><div style={{textAlign: 'center', lineHeight: '40px'}}><strong>AKT{base.sid}</strong></div></div>}
-          img='/img/res/zhongfang.jpg'/>
-      } else if (!base.channel) {
-        ad = defaultAd
-      }
-    } else {
-      ad = defaultAd
+      ad = ad || defaultAd
     }
 
     return (
