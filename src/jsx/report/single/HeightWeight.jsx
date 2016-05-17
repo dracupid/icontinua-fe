@@ -73,7 +73,7 @@ class HeightWeight extends React.Component {
     return (
       <div>
         <div className='height-wrapper'>
-          <img src='/img/body.png'/>
+          <img src='http://cdnst.icontinua.com/img/body.png'/>
           <div className='line'></div>
           <div className='text'>身高<br/>{height.value}CM</div>
           <KVMap obj={{BMI: getValue(bmi).toFixed(1), 脂肪率: getStringValue(bodyFat, ' %'),

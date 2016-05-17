@@ -14,7 +14,7 @@ function O2 (props) {
           <p>SpO<span className='sub'>2</span>%</p>
           <p>{value}%</p>
         </div>
-        <img src='/img/wave.png'/>
+        <img src='http://cdnst.icontinua.com/img/wave.png'/>
       </div>
       <Tips text={intro} title='简介'/>
       <Tips text={advice}/>

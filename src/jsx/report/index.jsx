@@ -14,8 +14,8 @@ let cacheImg = function (url) {
   let img = new window.Image()
   img.src = url
 }
-cacheImg('/img/body.png')
-cacheImg('/img/wave.png')
+cacheImg('http://cdnst.icontinua.com/img/body.png')
+cacheImg('http://cdnst.icontinua.com/img/wave.png')
 
 ReactDOM.render((
   <Router history={hashHistory}>
