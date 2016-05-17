@@ -6,7 +6,7 @@ import Loading from '../../Components/Loading.jsx'
 import Tips from '../../Components/Tips.jsx'
 import API from '../../API/report.jsx'
 
-let {Alert} = ANTD
+let {Alert, Rate} = ANTD
 
 class ReportBlock extends React.Component {
   static propTypes = {
@@ -67,14 +67,6 @@ class ReportBlock extends React.Component {
       )
     })
 
-    let onStars = new Array(starNum)
-    let offStars = new Array(5 - starNum)
-    let onStar = <div className='star on'/>
-    let offStar = <div className='star off'/>
-
-    _.fill(onStars, onStar)
-    _.fill(offStars, offStar)
-
     return (
       <div className='chinese-report-block'>
         <div className='report-header'>
@@ -82,7 +74,7 @@ class ReportBlock extends React.Component {
 
           <div className='status'>{title + '状况: ' + getLevelText(level)}</div>
           <div className='stars'>
-            <h4>{`您的${title}为: `}</h4>{onStars.concat(offStars)}
+            <h4>{`您的${title}为: `}</h4>{<Rate disabled defaultValue={starNum}/>}
           </div>
           <h4>建议您注意:</h4>{notices}
         </div>

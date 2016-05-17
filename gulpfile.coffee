@@ -86,7 +86,7 @@ gulp.task '_antd_css', ->
     rename = require 'gulp-rename'
 
 
-    gulp.src 'node_modules/antd/lib/index.css'
+    gulp.src 'node_modules/antd/dist/antd.css'
     .pipe autoprefixer autoPrefixConfig
     .pipe cssmin cssminConfig
     .pipe rename 'antd.min.css'
