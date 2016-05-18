@@ -9,8 +9,8 @@ let {Alert, Pagination, message} = ANTD
 const itemPerPage = 10
 const currentActivitys = {
   zhongfangHz: (sid) => <Ad
-    title={<div>扫码关注透明售房网，发送编码查看最新体检报告<br/><div style={{textAlign: 'center', lineHeight: '40px'}}><strong>AKT{sid}</strong></div></div>}
-    img='http://cdnst.icontinua.com/img/res/zhongfang.jpg'/>
+    title={<div>先扫码关注透明售房网湖州站，才能查看完整体检报告</div>}
+    img='http://cdnst.icontinua.com/img/res/zhongfangHz.jpg'/>
 }
 
 class ReportList extends React.Component {
@@ -24,10 +24,10 @@ class ReportList extends React.Component {
   };
 
   clickItem (reportId, channel) {
-    if (currentActivitys[channel]) {
-      message.info('请按提示查看最新报告')
-      return
-    }
+    // if (currentActivitys[channel]) {
+    //   message.info('请按提示查看最新报告')
+    //   return
+    // }
     let {userId} = this.props
     if (!userId) return
     window.location.href = `/reports#/${userId}/${reportId}`
@@ -107,6 +107,7 @@ class ReportList extends React.Component {
     return (
       <div id='list-timeline'>
         {ad}
+        <div style={{textAlign: 'center', fontSize: '19px', padding: '5px 0', color: '#E9642B'}}>您的爱康体体检报告，请点击查看</div>
         {timeline}
       </div>
     )
