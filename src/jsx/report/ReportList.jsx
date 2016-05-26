@@ -7,11 +7,13 @@ import reportUtil from './util.jsx'
 let {Alert, Pagination, message} = ANTD
 
 const itemPerPage = 10
-const currentActivitys = {
-  zhongfangHz: (sid) => <Ad
-    title={<div>先扫码关注透明售房网湖州站，才能查看完整体检报告</div>}
-    img='http://cdnst.icontinua.com/img/res/zhongfangHz.jpg'/>
-}
+// const currentActivitys = {
+//   zhongfangHz: (sid) => <Ad
+//     title={<div>先扫码关注透明售房网湖州站，才能查看完整体检报告</div>}
+//     img='http://cdnst.icontinua.com/img/res/zhongfangHz.jpg'/>
+// }
+
+const currentActivitys = {}
 
 class ReportList extends React.Component {
   static propTypes = {
