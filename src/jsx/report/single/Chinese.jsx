@@ -133,7 +133,6 @@ class Chinese extends React.Component {
           loaded: true
         })
       }).catch((e) => {
-      throw e
       this.setState({
         data: null,
         loaded: true
