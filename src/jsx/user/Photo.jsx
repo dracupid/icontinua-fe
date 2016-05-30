@@ -21,9 +21,7 @@ function fileToBase64 (file) {
  * 用户拍照的图片组件
  */
 function ImgBlock (props) {
-  let thumbUrl = props.url.indexOf('data:') === 0
-    ? props.url
-    : props.url.replace('http://cdn.icontinua.com', 'http://cdn-img.icontinua.com') + '@0o_0l_50Q_128w.src'
+  let thumbUrl = 'http://cdn-img.icontinua.com/photo/' + props.url + '@0o_0l_60Q_400w.src'
   return <div style={{backgroundImage: `url(${thumbUrl})`}} className='img-item' {...props}>
     <div className='btn-recognize' onClick={props.onRecognize}>
       <Button className='btn-recognize'>识别</Button>
@@ -105,23 +103,21 @@ class Photo extends React.Component {
     this.loading = true
     this.canvas.toBlob((blob) => {
       API.uploadPhoto(this.props.params.userId, blob)
-        .then(() => {
+        .then((url) => {
           message.info('照片上传成功')
-          fileToBase64(blob)
-            .then((dataUri) => {
-              let data = this.state.data
-              if (data.photos) {
-                data.photos.push(dataUri)
-              } else {
-                data.photos = [dataUri]
-              }
-              this.setState({imgDataURL: null, data})
-            })
+          let data = this.state.data
+          if (data.photos) {
+            data.photos.push(url)
+          } else {
+            data.photos = [url]
+          }
+          this.setState({imgDataURL: null, data})
           this.loading = false
         })
-        .catch(() => {
+        .catch((e) => {
           message.error('照片上传失败, 请重试')
           this.loading = false
+          throw e
         })
     }, "image/jpeg")
   }
@@ -217,7 +213,7 @@ class Photo extends React.Component {
       <div
         className='pop-image' style={{display: this.state.fullScreen ? 'block' : 'none'}}
         onClick={this.triggerFullScreen.bind(this, null)}>
-        <img src={this.state.curImg}/>
+        <img src={'http://cdn.icontinua.com/photo/' + this.state.curImg}/>
       </div>
     </div>
   }

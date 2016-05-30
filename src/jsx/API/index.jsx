@@ -31,7 +31,3 @@ export default function (url, opt = {}) {
       return data
     })
 }
-
-export function postBlob (url, blob) {
-  return fetch(url, {method: 'POST', body: blob})
-}

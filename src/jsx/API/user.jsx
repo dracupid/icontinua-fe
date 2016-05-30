@@ -1,4 +1,4 @@
-import API, {postBlob} from './index.jsx'
+import API from './index.jsx'
 
 export default {
   /**
@@ -25,7 +25,7 @@ export default {
    * @param imgId 图片ID
    */
   addPhoto: (userId, imgId) => API(`/api/user/photo?id=${userId}&imgId=${imgId}`),
-  uploadPhoto: (userId, blob) => postBlob(`/api/ls/upload?id=${userId}`, blob),
+  uploadPhoto: (userId, blob) => API(`/api/ls/upload?id=${userId}`, {method: 'POST', body: blob, noCache: true}),
   /**
    * 删除照片
    * @param userId 用户ID
