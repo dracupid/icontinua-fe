@@ -1,4 +1,5 @@
 @import "./mixin.styl"
+@import '../../node_modules/cropperjs/dist/cropper.css'
 
 $infoHeight = 64px
 $btnBlockHeight = 40px
@@ -106,6 +107,11 @@ $btnBlockHeight = 40px
 
 .btn-photo
     padding 15px
+    > span
+        display flex
+        align-items center
+        flex-direction column
+        justify-content center
     button
         width 100%
         background-color $green !important
@@ -166,3 +172,4 @@ $btnBlockHeight = 40px
     .report-tip-block
         padding 10px
         padding-bottom 0
+

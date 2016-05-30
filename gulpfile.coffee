@@ -73,7 +73,7 @@ gulp.task 'css', ->
     cssBase64 = require 'gulp-css-base64'
 
     gulp.src cfg.src + 'styl/*.styl'
-    .pipe stylus(use: nib())
+    .pipe stylus(use: nib(), "include css": true)
     .pipe autoprefixer autoPrefixConfig
     .pipe cssBase64 baseDir: "./src/"
     .pipe gulpif isProduction, cssmin cssminConfig
