@@ -92,7 +92,7 @@ class Report extends React.Component {
   getChinese () {
     let {cacheId} = this.state.report
     return (cacheId)
-      ? <Chinese id={cacheId}/>
+      ? <Chinese {...this.state.report}/>
       : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量生物电'/>
   }
 

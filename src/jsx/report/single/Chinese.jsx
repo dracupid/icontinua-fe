@@ -5,8 +5,12 @@ import {filter, getStarLevel, getLevelText} from './chineseUtil.jsx'
 import Loading from '../../Components/Loading.jsx'
 import Tips from '../../Components/Tips.jsx'
 import API from '../../API/report.jsx'
+import reportUtil from '../util.jsx'
+import Rank from '../../Components/Rank.jsx'
 
 let {Alert, Rate} = ANTD
+let {getValue} = reportUtil
+
 
 class ReportBlock extends React.Component {
   static propTypes = {
@@ -113,7 +117,7 @@ class Scores extends React.Component {
 
 class Chinese extends React.Component {
   static propTypes = {
-    id: React.PropTypes.string.isRequired
+    cacheId: React.PropTypes.string.isRequired
   };
 
   state = {
@@ -122,16 +126,23 @@ class Chinese extends React.Component {
   };
 
   componentDidMount () {
-    let id = this.props.id
-    API.falthReport(id).then((res) => {
+    API.falthReport(this.props.cacheId)
+      .then((res) => {
+        this.setState({
+          data: res,
+          loaded: true
+        })
+      }).catch((e) => {
+      throw e
       this.setState({
-        data: res,
+        data: null,
         loaded: true
       })
     })
   }
 
   render () {
+    let {jizhui, zangfu, xiaohua, miniao, user} = this.props
     if (this.state.loaded) {
       if (this.state.data === null) {
         return <Alert
@@ -147,6 +158,8 @@ class Chinese extends React.Component {
             <Scores {...data.scores}/>
             <ReportBlock title='脏腑' {...data.zangfu}/>
             <ReportBlock title='脊椎' {...data.jizhui}/>
+            <Rank obj={{脏腑: zangfu, 脊椎: jizhui, 消化: xiaohua, 泌尿: miniao}}
+                  user={user}/>
           </div>
         )
       }
