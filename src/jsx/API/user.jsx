@@ -22,10 +22,9 @@ export default {
   /**
    * 增加图片
    * @param userId 用户ID
-   * @param imgId 图片ID
+   * @param blob 图片二进制对象
    */
-  addPhoto: (userId, imgId) => API(`/api/user/photo?id=${userId}&imgId=${imgId}`),
-  uploadPhoto: (userId, blob) => API(`/api/ls/upload?id=${userId}`, {method: 'POST', body: blob, noCache: true}),
+  uploadPhoto: (userId, blob) => API(`/api/user/photo?id=${userId}`, {method: 'POST', body: blob, noCache: true}),
   /**
    * 删除照片
    * @param userId 用户ID
