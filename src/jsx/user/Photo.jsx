@@ -1,17 +1,27 @@
 /**
  * 化验单识别页面
  */
-let {Icon, Button, message} = ANTD
+let {Icon, Button, message, Upload} = ANTD
 import Banner from '../Components/Banner.jsx'
-import {takePhoto, uploadPhoto} from '../wechat.jsx'
 import util from '../util.jsx'
 import API from '../API/user.jsx'
+import Cropper from 'react-cropper'
+
+function fileToBase64 (file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      resolve(reader.result, 1);
+    };
+    reader.readAsDataURL(file);
+  })
+}
 
 /**
  * 用户拍照的图片组件
  */
 function ImgBlock (props) {
-  let thumbUrl = props.url.replace('http://cdn.icontinua.com', 'http://cdn-img.icontinua.com') + '@0o_0l_50Q_128w.src'
+  let thumbUrl = 'http://cdn-img.icontinua.com/photo/' + props.url + '@0o_0l_60Q_400w.src'
   return <div style={{backgroundImage: `url(${thumbUrl})`}} className='img-item' {...props}>
     <div className='btn-recognize' onClick={props.onRecognize}>
       <Button className='btn-recognize'>识别</Button>
@@ -24,29 +34,22 @@ function ImgBlock (props) {
 }
 
 class Photo extends React.Component {
+  canvas = null
+
   state = {
     data: {},
-    imgUrl: null, // 拍照图片的url
     fullScreen: false, // 是否全屏显示
-    curImg: null // 当前全屏图片
+    curImg: null, // 当前全屏图片
+    imgFile: null,
+    imgDataURL: null
   };
 
   loading = false; // 是否正在上传图片,一次只能上传一张图片
 
   /**
-   * 使用微信接口进行拍照
-   */
-  takePhoto () {
-    takePhoto()
-      .then((url) => {
-        this.setState({imgUrl: url})
-      })
-  }
-
-  /**
    * 调用API删除照片
    * @param img 图片文件名
-     */
+   */
   deletePhoto (img) {
     return (e) => {
       e.stopPropagation()
@@ -71,7 +74,7 @@ class Photo extends React.Component {
   /**
    * 调用API识别化验单照片
    * @param img 图片名称
-     */
+   */
   recognizePhoto (img) {
     return (e) => {
       e.stopPropagation()
@@ -98,25 +101,25 @@ class Photo extends React.Component {
   upload () {
     if (this.loading === true) return
     this.loading = true
-    uploadPhoto(this.state.imgUrl)
-      .then((id) => {
-        return API.addPhoto(this.props.params.userId, id)
-      })
-      .then((url) => {
-        message.info('照片上传成功')
-        let data = this.state.data
-        if (data.photos) {
-          data.photos.push(url)
-        } else {
-          data.photos = [url]
-        }
-        this.setState({imgUrl: null, data})
-        this.loading = false
-      })
-      .catch(() => {
-        message.error('照片上传失败, 请重试')
-        this.loading = false
-      })
+    this.canvas.toBlob((blob) => {
+      API.uploadPhoto(this.props.params.userId, blob)
+        .then((url) => {
+          message.info('照片上传成功')
+          let data = this.state.data
+          if (data.photos) {
+            data.photos.push(url)
+          } else {
+            data.photos = [url]
+          }
+          this.setState({imgDataURL: null, data})
+          this.loading = false
+        })
+        .catch((e) => {
+          message.error('照片上传失败, 请重试')
+          this.loading = false
+          throw e
+        })
+    }, "image/jpeg")
   }
 
   componentDidMount () {
@@ -133,12 +136,27 @@ class Photo extends React.Component {
     })
   }
 
+  onUploadImage ({file}) {
+    fileToBase64(file.originFileObj)
+      .then((res) => {
+        this.setState({
+          imgFile: file,
+          imgDataURL: res
+        })
+      })
+
+  }
+
+  onCrop () {
+    this.canvas = this.refs.cropper.getCroppedCanvas()
+  }
+
   render () {
     // 拍照/上传按钮
     let btn = (() => {
-      if (this.state.imgUrl) {
+      if (this.state.imgDataURL) {
         return <div className='btn-photo btn-photo-two'>
-          <Button type='primary' size='large' onClick={::this.takePhoto}>
+          <Button type='primary' size='large' onClick={() => this.setState({imgDataURL: null})}>
             <Icon type='reload'/>
             重新拍照
           </Button>
@@ -148,20 +166,20 @@ class Photo extends React.Component {
           </Button>
         </div>
       } else {
-        return <div className='btn-photo' onClick={::this.takePhoto}>
-          <Button type='primary' size='large'>
-            <Icon type='camera'/>
-            拍照上传
-          </Button>
+        return <div className='btn-photo'>
+          <Upload action="//" accept='image/*' onChange={::this.onUploadImage} showUploadList={false}>
+            <Button type='primary' size='large' className="needsclick">
+              <Icon className="needsclick" type='camera'/><span className="needsclick">拍照上传</span>
+            </Button>
+          </Upload>
         </div>
       }
     })()
 
     // 图片列表
     let imgs = _.map(this.state.data.photos, (i, index) => {
-      let url = i.indexOf('://') > 0 ? i : ('http://cdn.icontinua.com/photo/' + i)
       return <ImgBlock
-        url={url} key={index} onClick={this.triggerFullScreen.bind(this, url)}
+        url={i} key={index} onClick={this.triggerFullScreen.bind(this, i)}
         onDelete={this.deletePhoto(i)}
         onRecognize={this.recognizePhoto(i)}/>
     })
@@ -179,16 +197,23 @@ class Photo extends React.Component {
       }
       return ret
     })()
-
     return <div>
       <Banner title='化验单识别' backUrl={util.getUrlByHash(this.props.params.userId)}/>
       {btn}
-      {this.state.imgUrl ? <img src={this.state.imgUrl} className='upload-img'/> : null}
+      <div>
+        {this.state.imgDataURL
+          ? <Cropper
+           ref="cropper"
+           src={this.state.imgDataURL} style={{height: 400, width: '100%'}}
+           crop={::this.onCrop}
+           guides={false} preview='.img-preview'/>
+          : null}
+      </div>
       {imageBlocks}
       <div
         className='pop-image' style={{display: this.state.fullScreen ? 'block' : 'none'}}
         onClick={this.triggerFullScreen.bind(this, null)}>
-        <img src={this.state.curImg}/>
+        <img src={'http://cdn.icontinua.com/photo/' + this.state.curImg}/>
       </div>
     </div>
   }
