@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "antd": "1.2.1",
+    "blueimp-canvas-to-blob": "^3.3.0",
     "echarts": "3.1.10",
     "react": "15.1.0",
     "react-cropper": "^0.8.0",

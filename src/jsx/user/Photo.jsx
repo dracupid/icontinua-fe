@@ -6,6 +6,7 @@ import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'
 import API from '../API/user.jsx'
 import Cropper from 'react-cropper'
+import 'blueimp-canvas-to-blob'
 
 function fileToBase64 (file) {
   return new Promise((resolve) => {
