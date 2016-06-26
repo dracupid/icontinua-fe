@@ -1,7 +1,7 @@
 /**
  * 化验单识别页面
  */
-let {Icon, Button, message, Upload} = ANTD
+let {Icon, Button, message, Upload, Spin} = ANTD
 import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'
 import API from '../API/user.jsx'
@@ -42,10 +42,9 @@ class Photo extends React.Component {
     fullScreen: false, // 是否全屏显示
     curImg: null, // 当前全屏图片
     imgFile: null,
-    imgDataURL: null
+    imgDataURL: null,
+    uploading: false // 是否正在上传图片,一次只能上传一张图片
   };
-
-  loading = false; // 是否正在上传图片,一次只能上传一张图片
 
   /**
    * 调用API删除照片
@@ -100,8 +99,7 @@ class Photo extends React.Component {
    * 图片上传
    */
   upload () {
-    if (this.loading === true) return
-    this.loading = true
+    this.setState({uploading: true})
     this.canvas.toBlob((blob) => {
       API.uploadPhoto(this.props.params.userId, blob)
         .then((url) => {
@@ -112,15 +110,15 @@ class Photo extends React.Component {
           } else {
             data.photos = [url]
           }
-          this.setState({imgDataURL: null, data})
-          this.loading = false
+          this.setState({imgDataURL: null, data, uploading: false})
         })
         .catch((e) => {
           message.error('照片上传失败, 请重试')
-          this.loading = false
+          this.setState({uploading: false})
           throw e
         })
     }, "image/jpeg")
+    console.log(this.uploading)
   }
 
   componentDidMount () {
@@ -161,10 +159,14 @@ class Photo extends React.Component {
             <Icon type='reload'/>
             重新拍照
           </Button>
-          <Button type='primary' size='large' onClick={::this.upload}>
-            <Icon type='upload'/>
-            上传
-          </Button>
+          {this.state.uploading
+            ? <Button type='primary' size='large'>
+             <Spin /> 上传中
+           </Button>
+            : <Button type='primary' size='large' onClick={::this.upload}>
+             <Icon type='upload'/>上传
+           </Button>
+          }
         </div>
       } else {
         return <div className='btn-photo'>
