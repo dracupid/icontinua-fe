@@ -78,20 +78,7 @@ class Photo extends React.Component {
   recognizePhoto (img) {
     return (e) => {
       e.stopPropagation()
-      let hide = message.loading('正在识别化验单中...', 0)
-      API.recognize(img)
-        .then((data) => {
-          if (!data.type) {
-            throw data
-          }
-          hide()
-          location.href = `/html/libsheet.html#/${data.type}/-/${encodeURIComponent(data.items || '')}`
-        })
-        .catch((e) => {
-          hide()
-          message.error('无法识别化验单')
-          throw e
-        })
+      location.href = `/html/libsheet.html#/${img}`
     }
   }
 
