@@ -4,34 +4,42 @@
 import API from '../API/libsheet.jsx'
 import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'
-import Tips from '../Components/Tips.jsx'
+let {Card} = ANTD
 
 class Item extends React.Component {
   state = {
     name: '',
-    data: {}
+    data: null
   };
 
   static formatRefVal (refVal) {
-    if (!refVal) return ''
+    if (!refVal) return '暂无'
     return `${refVal[0]} - ${refVal[1]} ${refVal[2]}`
   }
 
+  static formatSubResult(res) {
+    let ret = []
+    if (_.isArray(res)) {
+      for (let i of res) {
+        ret.push(<li>{i}</li>)
+      }
+    } else {
+      ret.push(<p>{res}</p>)
+    }
+    return ret
+  }
+
   static formatResult (result) {
-    if (_.isEmpty(result)) return ''
+    if (_.isEmpty(result)) return '暂无'
     if (_.isObject(result)) {
       let ret = []
-      if (result.high){
+      if (result.high) {
         ret.push(<h3>偏高:</h3>)
-        for (let i of result.high){
-          ret.push(<li>{i}</li>)
-        }
+        ret = ret.concat(Item.formatSubResult(result.high))
       }
       if (result.low) {
         ret.push(<h3>偏低:</h3>)
-        for (let i of result.low){
-          ret.push(<li>{i}</li>)
-        }
+        ret = ret.concat(Item.formatSubResult(result.low))
       }
       return ret
     }
@@ -40,9 +48,10 @@ class Item extends React.Component {
   }
 
   getData () {
-    return API.fetchItem(this.props.params.name)
+    let {name} = this.props.params
+    return API.fetchItem(name)
       .then((data) => {
-        this.setState({data, name: this.props.params.name})
+        this.setState({data, name})
       })
   }
 
@@ -52,25 +61,24 @@ class Item extends React.Component {
 
   render () {
     let {name: curName, catalog} = this.props.params
-    if (this.state.name !== curName) {
-      this.getData()
-    }
+    // if (this.state.name !== curName) {
+    //   this.getData()
+    // }
 
-    let {data} = this.state
-    console.log(data)
+    let loading = (this.state.data === null)
+    let data = this.state.data || {}
 
     return <div className='libsheet-item'>
       <Banner title={curName} backUrl={catalog ? util.getUrlByHash(catalog) : null}/>
-      <Tips title='名称'>
-        <p>{this.state.name + (data.abbr ? ` (${data.abbr})` : "")}</p>
-      </Tips>
-      <Tips title='测量值解读'>
+      <Card loading={loading} title="名称" className="card">
+        {this.state.name + (data.abbr ? ` (${data.abbr})` : "")}
+      </Card>
+      <Card loading={loading} title="测量值解读" className="card">
         {Item.formatResult(data.result)}
-      </Tips>
-      <Tips title='参考值'>
-        <p>{Item.formatRefVal(data.refVal)}</p>
-      </Tips>
-
+      </Card>
+      <Card loading={loading} title="参考值" className="card">
+        {Item.formatRefVal(data.refVal)}
+      </Card>
     </div>
   }
 
