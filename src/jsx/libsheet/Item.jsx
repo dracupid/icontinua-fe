@@ -70,13 +70,13 @@ class Item extends React.Component {
 
     return <div className='libsheet-item'>
       <Banner title={curName} backUrl={catalog ? util.getUrlByHash(catalog) : null}/>
-      <Card loading={loading} title="名称" className="card">
+      <Card loading={loading} title="名称" className="card with-margin">
         {this.state.name + (data.abbr ? ` (${data.abbr})` : "")}
       </Card>
-      <Card loading={loading} title="测量值解读" className="card">
+      <Card loading={loading} title="测量值解读" className="card with-margin">
         {Item.formatResult(data.result)}
       </Card>
-      <Card loading={loading} title="参考值" className="card">
+      <Card loading={loading} title="参考值" className="card with-margin">
         {Item.formatRefVal(data.refVal)}
       </Card>
     </div>
