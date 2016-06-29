@@ -12,7 +12,7 @@ function fileToBase64 (file) {
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.onloadend = () => {
-      resolve(reader.result, 1);
+      resolve(reader.result);
     };
     reader.readAsDataURL(file);
   })
@@ -35,8 +35,6 @@ function ImgBlock (props) {
 }
 
 class Photo extends React.Component {
-  canvas = null
-
   state = {
     data: {},
     fullScreen: false, // 是否全屏显示
@@ -87,7 +85,7 @@ class Photo extends React.Component {
    */
   upload () {
     this.setState({uploading: true})
-    this.canvas.toBlob((blob) => {
+    this.refs.cropper.getCroppedCanvas({fillColor: "white"}).toBlob((blob) => {
       API.uploadPhoto(this.props.params.userId, blob)
         .then((url) => {
           message.info('照片上传成功')
@@ -105,7 +103,6 @@ class Photo extends React.Component {
           throw e
         })
     }, "image/jpeg")
-    console.log(this.uploading)
   }
 
   componentDidMount () {
@@ -123,6 +120,7 @@ class Photo extends React.Component {
   }
 
   onUploadImage ({file}) {
+    this.refs.cropper && this.refs.cropper.reset()
     fileToBase64(file.originFileObj)
       .then((res) => {
         this.setState({
@@ -134,7 +132,11 @@ class Photo extends React.Component {
   }
 
   onCrop () {
-    this.canvas = this.refs.cropper.getCroppedCanvas()
+    // this.cropper = this.refs.cropper.getCroppedCanvas()
+  }
+
+  rotate(degree) {
+    this.refs.cropper.rotate(degree)
   }
 
   render () {
@@ -154,6 +156,16 @@ class Photo extends React.Component {
              <Icon type='upload'/>上传
            </Button>
           }
+          <br/>
+          <br/>
+            <Button type='primary' size='large' onClick={this.rotate.bind(this, -90)}>
+              <Icon type='reload'/>
+              左旋90度
+            </Button>
+            <Button type='primary' size='large' onClick={this.rotate.bind(this, 90)}>
+              <Icon type='reload'/>
+              右旋90度
+            </Button>
         </div>
       } else {
         return <div className='btn-photo'>
@@ -187,6 +199,7 @@ class Photo extends React.Component {
       }
       return ret
     })()
+
     return <div>
       <Banner title='化验单识别' backUrl={util.getUrlByHash(this.props.params.userId)}/>
       {btn}
@@ -195,8 +208,11 @@ class Photo extends React.Component {
           ? <Cropper
            ref="cropper"
            src={this.state.imgDataURL} style={{height: 400, width: '100%'}}
-           crop={::this.onCrop}
-           guides={false} preview='.img-preview'/>
+           // crop={::this.onCrop}
+           viewMode={2}
+           guides={false}
+           checkOrientation={false}
+           preview='.img-preview'/>
           : null}
       </div>
       {imageBlocks}
