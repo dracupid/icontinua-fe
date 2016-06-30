@@ -211,8 +211,10 @@ class Photo extends React.Component {
            // crop={::this.onCrop}
            viewMode={2}
            guides={false}
+           dragMode="move"
            checkOrientation={false}
-           preview='.img-preview'/>
+           // preview='.img-preview'
+         />
           : null}
       </div>
       {imageBlocks}
