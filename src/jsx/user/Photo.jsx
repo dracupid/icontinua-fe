@@ -5,8 +5,10 @@ let {Icon, Button, message, Upload, Spin} = ANTD
 import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'
 import API from '../API/user.jsx'
-import Cropper from 'react-cropper'
+import Cropper from '../../react-cropper.js'
 import 'blueimp-canvas-to-blob'
+
+Object.assign = _.assign
 
 function fileToBase64 (file) {
   return new Promise((resolve) => {
@@ -120,7 +122,7 @@ class Photo extends React.Component {
   }
 
   onUploadImage ({file}) {
-    this.refs.cropper && this.refs.cropper.reset()
+    // this.refs.cropper && this.refs.cropper.reset()
     fileToBase64(file.originFileObj)
       .then((res) => {
         this.setState({
@@ -128,15 +130,23 @@ class Photo extends React.Component {
           imgDataURL: res
         })
       })
-
   }
 
   onCrop () {
     // this.cropper = this.refs.cropper.getCroppedCanvas()
   }
 
-  rotate(degree) {
+  rotate (degree) {
     this.refs.cropper.rotate(degree)
+  }
+
+  adjustImg () {
+    let data = this.cropper.getImageData()
+    if (data.width < data.height) {
+      // this.cropper.rotate(-90)
+    }
+    // alert(JSON.stringify(data))
+    // alert(JSON.stringify(this.cropper.getCanvasData()))
   }
 
   render () {
@@ -158,14 +168,14 @@ class Photo extends React.Component {
           }
           <br/>
           <br/>
-            <Button type='primary' size='large' onClick={this.rotate.bind(this, -90)}>
-              <Icon type='reload'/>
-              左旋90度
-            </Button>
-            <Button type='primary' size='large' onClick={this.rotate.bind(this, 90)}>
-              <Icon type='reload'/>
-              右旋90度
-            </Button>
+          <Button type='primary' size='large' onClick={this.rotate.bind(this, -90)}>
+            <Icon type='reload'/>
+            左旋90度
+          </Button>
+          <Button type='primary' size='large' onClick={this.rotate.bind(this, 90)}>
+            <Icon type='reload'/>
+            右旋90度
+          </Button>
         </div>
       } else {
         return <div className='btn-photo'>
@@ -200,6 +210,7 @@ class Photo extends React.Component {
       return ret
     })()
 
+
     return <div>
       <Banner title='化验单识别' backUrl={util.getUrlByHash(this.props.params.userId)}/>
       {btn}
@@ -212,7 +223,8 @@ class Photo extends React.Component {
            viewMode={2}
            guides={false}
            dragMode="move"
-           checkOrientation={false}
+           // checkOrientation={false}
+           built={this.adjustImg}
            // preview='.img-preview'
          />
           : null}
