@@ -2,16 +2,19 @@
  * 某类化验单的项目列表页
  */
 import BannerBlock from '../Components/BannerBlock.jsx'
-// import API from '../API/libsheet.jsx'
 import API2 from '../API/user.jsx'
 import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'
-let {message} = ANTD
+// import API from '../API/libsheet.jsx'
+let {Steps, Alert, Spin} = ANTD
+let Step = Steps.Step
 
 class List extends React.Component {
   state = {
     name: '',
-    data: []
+    data: [],
+    state: 'WAITING',
+    errText: '',
   };
 
   // getData () {
@@ -20,18 +23,35 @@ class List extends React.Component {
   //       this.setState({data, name: this.props.params.name})
   //     })
   // }
-
-  getData() {
-    let hide = message.loading('正在识别化验单中...', 0)
-    API2.recognize(this.props.params.name)
+  polling (imgName, interval) {
+    API2.pollingState(imgName)
       .then((data) => {
-        console.log(data)
-        this.setState({data, name: this.props.params.name})
-        hide()
+        this.setState({state: data.state, data: data.items})
+        if (data.state === 'FINISHED') {
+          interval && clearInterval(interval)
+        } else if (data.state === 'ERROR') {
+          interval && clearInterval(interval)
+          this.setState({state: 'ERROR', errText: "无法识别化验单，请重新上传图片。请保证图片清晰，无明显倾斜和扭曲"})
+        }
       })
       .catch((e) => {
-        hide()
-        message.error('无法识别化验单')
+        this.setState({state: 'ERROR', errText: "化验单识别服务故障中，请稍后再试"})
+        interval && clearInterval(interval)
+        throw e
+      })
+  }
+
+  getData () {
+    let imgName = this.props.params.name.replace('.jpg', '');
+    API2.sendRecognize(imgName)
+      .then(()=> {
+        this.polling(imgName)
+        let interval = setInterval(() => {
+          this.polling(imgName, interval)
+        }, 3000)
+      })
+      .catch((e) => {
+        this.setState({state: 'ERROR', errText: "化验单识别服务故障中，请稍后再试"})
         throw e
       })
   }
@@ -42,7 +62,7 @@ class List extends React.Component {
   }
 
   render () {
-    let curName = this.props.params.name
+    // let curName = this.props.params.name
     // let hasName = !!curName
     // if (this.state.name !== curName) {
     //   this.getData()
@@ -59,12 +79,31 @@ class List extends React.Component {
     //
     //   return false
     // }
+    let states
+    if (this.state.state == 'ERROR') {
+      states = <Alert
+        message={this.state.errText}
+        type="error"
+        showIcon
+      />
+    } else {
+      let stateName = ["排队中", "开始识别", "图片预处理", "识别中", "智能纠错", "已完成"]
+      let current = ['WAITING', 'STARTED', 'PRE_PROCESSING', 'RECOGNIZING', 'FORMATTING', 'FINISHED'].indexOf(this.state.state)
+      stateName[current] = <div><Spin /> {stateName[current]}</div>
+      let status = ['process', 'process', 'process', 'process', 'process', 'finish'][current]
+      states = <Steps direction="vertical" current={current} status={status} style={{padding: '20px'}}>{
+        stateName.map((i) => <Step key={i} title={i}/>)
+      }
+      </Steps>
+    }
 
     return <div>
       <Banner title='化验单解读'/>
+      {this.state.state === 'FINISHED' ? null : states}
       {this.state.data.map((item) => {
         return <BannerBlock
-          text={`${item.key} (${item.value})`} key={item.key} url={util.getUrlByHash(`item/${encodeURIComponent(item.key)}`)} />
+          text={`${item.name} (${item.numberValue})`} key={item.name}
+          url={util.getUrlByHash(`item/${encodeURIComponent(item.name)}`)}/>
       })}
     </div>
   }

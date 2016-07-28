@@ -17,5 +17,6 @@ window.ANTD = {
   Carousel: require('../node_modules/antd/lib/carousel'),
   Rate: require('../node_modules/antd/lib/rate'),
   Upload: require('../node_modules/antd/lib/upload'),
-  Card: require('../node_modules/antd/lib/card')
+  Card: require('../node_modules/antd/lib/card'),
+  Steps: require('../node_modules/antd/lib/steps')
 }
