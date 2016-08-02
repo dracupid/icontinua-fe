@@ -102,7 +102,7 @@ class List extends React.Component {
       {this.state.state === 'FINISHED' ? null : states}
       {this.state.data.map((item) => {
         return <BannerBlock
-          text={`${item.name} (${item.numberValue})`} key={item.name}
+          text={`${item.name} (${item.numberValue || item.stringValue || ''})`} key={item.name}
           url={util.getUrlByHash(`item/${encodeURIComponent(item.name)}`)}/>
       })}
     </div>
