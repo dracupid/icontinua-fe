@@ -78,7 +78,7 @@ class Photo extends React.Component {
   recognizePhoto (img) {
     return (e) => {
       e.stopPropagation()
-      location.href = `/html/libsheet.html#/${img}`
+      util.toUrl(`/html/libsheet.html#/${img}`)
     }
   }
 

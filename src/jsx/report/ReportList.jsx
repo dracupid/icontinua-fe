@@ -4,6 +4,7 @@
 import Loading from './../Components/Loading.jsx'
 import Ad from './../Components/Ad.jsx'
 import reportUtil from './util.jsx'
+import util from '../util.jsx'
 let {Alert, Pagination, message} = ANTD
 
 const itemPerPage = 10
@@ -32,7 +33,8 @@ class ReportList extends React.Component {
     // }
     let {userId} = this.props
     if (!userId) return
-    window.location.href = `/reports#/${userId}/${reportId}`
+
+    util.toUrl(`/reports#/${userId}/${reportId}`)
   }
 
   onChangePage (pageNum) {

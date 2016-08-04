@@ -4,9 +4,20 @@
  * @returns {string} URL
  */
 function getUrlByHash (hash) {
-  return location.pathname + '#/' + (hash[0] === '/' ? hash.slice(1) : hash)
+  return location.pathname + location.search + '#/' + (hash[0] === '/' ? hash.slice(1) : hash)
 }
 
+function getUrl(url) {
+  return url.replace("#/", location.search + "#/")
+}
+
+function toUrl (url) {
+  location.href = getUrl(url)
+}
+
+function toHash (hash) {
+  location.href = location.pathname + location.search + '#/' + (hash[0] === '/' ? hash.slice(1) : hash)
+}
 /**
  * 生成url跳转函数
  * @param url URL
@@ -14,7 +25,7 @@ function getUrlByHash (hash) {
  */
 function toUrlFun (url) {
   return function () {
-    location.href = url
+    toUrl(url)
   }
 }
 
@@ -33,6 +44,8 @@ export default {
 
   getUrlByHash,
   toUrlFun,
+  toUrl,
+  getUrl,
 
   /**
    * 生成带hash的url的跳转函数
@@ -41,5 +54,16 @@ export default {
    */
   toHashUrlFun (hash) {
     return toUrlFun(getUrlByHash(hash))
+  },
+
+  getParam (name) {
+    let qs = location.search
+    if (qs[0] == '?') qs = qs.slice(1)
+    for (let kv of qs.split('&')) {
+      if (kv.indexOf(name + '=') == 0) {
+        return kv.slice(name.length + 1)
+      }
+    }
+    return null;
   }
 }

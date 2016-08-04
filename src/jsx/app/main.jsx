@@ -6,6 +6,7 @@ import CatalogList from './Components/CatalogList.jsx'
 import Banner from './Components/Banner.jsx'
 import AppList from './AppList.jsx'
 import API from '../API/app.jsx'
+import util from '../util.jsx'
 
 let {Tabs} = ANTD
 let TabPane = Tabs.TabPane
@@ -27,7 +28,8 @@ class MainApps extends React.Component {
     if (e === (this.props.params.tag || '热门')) {
       return
     }
-    location.href = '/apps#/tag/' + e
+
+    util.toUrl('/apps#/tag/' + e)
   }
 
   renderList () {

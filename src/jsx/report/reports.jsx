@@ -5,7 +5,8 @@ import Banner from './../Components/Banner.jsx'
 import ReportList from './ReportList.jsx'
 import ReportTrade from './ReportTrade.jsx'
 import API from '../API/report.jsx'
-import Footer from './../Components/Footer.jsx'
+import Footer from '../Components/Footer.jsx'
+import util from '../util.jsx'
 let {Tabs} = ANTD
 let TabPane = Tabs.TabPane
 
@@ -53,7 +54,7 @@ class Reports extends React.Component {
 
     if (this.state.avatar) {
       avatar = <div className='header-right' onClick={() => {
-        location.href = '/html/user.html#/' + this.props.params.userId
+        util.toUrl('/html/user.html#/' + this.props.params.userId)
       }}>
         <img src={this.state.avatar} alt=''/>
       </div>

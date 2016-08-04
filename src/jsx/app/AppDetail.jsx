@@ -6,6 +6,8 @@ import Banner from './Components/Banner.jsx'
 import appUtil from './util.jsx'
 import Img from '../Components/Image.jsx'
 import API from '../API/app.jsx'
+import util from '../util.jsx'
+
 let {Button, Carousel} = ANTD
 
 /**
@@ -49,7 +51,7 @@ class AppDetail extends React.Component {
     API.appInfo(this.props.params.uid)
       .then((res) => {
         if (_.isEmpty(res)) {
-          location.href = '/apps'
+          util.toUrl('/apps')
           return
         }
         this.setState({data: res, title: res.name})

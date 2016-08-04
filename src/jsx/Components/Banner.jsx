@@ -1,12 +1,14 @@
 /**
  * 头部组件
  */
+import util from '../util.jsx'
+
 let {Icon} = ANTD
 
 function Banner (props) {
   let left = (() => {
     if (props.backUrl) {
-      return <a href={props.backUrl}><i className='anticon anticon-left left-icon'/></a>
+      return <a href={util.getUrl(props.backUrl)}><i className='anticon anticon-left left-icon'/></a>
     } else if (props.goBack) {
       return <a onClick={() => { window.history.back() }}><i className='anticon anticon-left left-icon'/></a>
     } else {
