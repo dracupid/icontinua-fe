@@ -7,7 +7,7 @@ function getUrlByHash (hash) {
   return location.pathname + location.search + '#/' + (hash[0] === '/' ? hash.slice(1) : hash)
 }
 
-function getUrl(url) {
+function getUrl (url) {
   return url.replace("#/", location.search + "#/")
 }
 
@@ -58,8 +58,10 @@ export default {
 
   getParam (name) {
     let qs = location.search
-    if (qs[0] == '?') qs = qs.slice(1)
-    for (let kv of qs.split('&')) {
+    if (qs[0] === '?') qs = qs.slice(1)
+    qs = qs.split('&')
+    for (let i = 0; i < qs.length; i++) {
+      let kv = qs[i]
       if (kv.indexOf(name + '=') == 0) {
         return kv.slice(name.length + 1)
       }
