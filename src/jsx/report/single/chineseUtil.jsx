@@ -36,7 +36,7 @@ let formatZangfu = function (items, balance) {
 
   for (let i = 0, curItem; i < children.length; i++) {
     curItem = children[i]
-    if (curItem.value > balance) {
+    if (parseFloat(curItem.value) > parseFloat(balance)) {
       itemArr.push({
         name: curItem.name,
         intro: curItem.rptStr_1 ? curItem.rptStr_1.split(/\n/) : '',
@@ -45,6 +45,7 @@ let formatZangfu = function (items, balance) {
       })
     }
   }
+  console.log(itemArr)
 
   return {
     items: itemArr.slice(0, limit),
@@ -65,7 +66,7 @@ let formatJizhui = function (items, balance) {
 
   for (let i = 0, curItem; i < children.length; i++) {
     curItem = children[i]
-    if (curItem.value > balance) {
+    if (parseFloat(curItem.value) > parseFloat(balance)) {
       itemArr.push({
         name: curItem.name,
         itemId: curItem.itemid.toUpperCase(),
