@@ -43,7 +43,7 @@ class Main extends React.Component {
         <UserInfo {...this.state.data} id={this.props.params.userId}/>
         <div className='block-wrapper'>
           <BannerBlock text='查看体检报告' icon='file-text' url={'/reports#/' + this.props.params.userId}/>
-          <BannerBlock style={{display: util.getParam('channel') !== 'HuiLianHuZhou' ? 'block': 'none'}} text='化验单拍照识别' icon='camera-o' url={util.getUrlByHash('/photo/' + this.props.params.userId)}/>
+          <BannerBlock style={{display: util.getParam('channel') !== 'HuiLianHuZhou' ? 'flex': 'none'}} text='化验单拍照识别' icon='camera-o' url={util.getUrlByHash('/photo/' + this.props.params.userId)}/>
         </div>
       </div>
       }
