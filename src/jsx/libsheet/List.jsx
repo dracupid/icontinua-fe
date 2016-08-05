@@ -45,13 +45,19 @@ class ListSheet extends React.Component {
   };
 
   updateData () {
+    for (let i = 0; i < this.state.data.length; i++) {
+      let d = this.state.data[i]
+      if (d.valueType === 'NUMBER') {
+        let float = parseFloat(d.numberValue)
+        d.numberValue = _.isNaN(float) ? 0 : float
+      }
+    }
     if (!arrayEqual(this.state.data, this.state.originData)) {
       console.log('update')
     }
     return new Promise((res) => {
       setTimeout(() => res(), 3000)
     })
-
   }
 
   // getData () {
@@ -85,7 +91,7 @@ class ListSheet extends React.Component {
         this.polling(imgName)
         let interval = setInterval(() => {
           this.polling(imgName, interval)
-        }, 3000)
+        }, 2000)
       })
       .catch((e) => {
         this.setState({state: 'ERROR', errText: "化验单识别服务故障中，请稍后再试"})
@@ -98,11 +104,8 @@ class ListSheet extends React.Component {
       let data = this.state.data;
       if (data[index].valueType === 'NUMBER') {
         if (/^[\-0-9.]*$/.test(value)) {
-          let float = parseFloat(value)
-          if (!_.isNaN(float)) {
-            data[index].numberValue = float
-            data[index].valueEdited = float !== this.state.originData[index].numberValue;
-          }
+          data[index].numberValue = value
+          data[index].valueEdited = true;
         }
       }
       this.setState({data})
@@ -114,7 +117,7 @@ class ListSheet extends React.Component {
     return (value) => {
       let data = this.state.data;
       data[index].name = value
-      data[index].nameEdited = value != this.state.originData[index].name;
+      data[index].nameEdited = true;
       this.setState({data})
     }
   }
@@ -151,14 +154,16 @@ class ListSheet extends React.Component {
       stateName[current] = <div> {stateName[current]}</div>
       let status = ['process', 'process', 'process', 'process', 'process', 'finish'][current]
       states = <Steps direction="vertical" size="mini" current={current} status={status} style={{padding: '20px'}}>{
-        stateName.map((i, index) => <Step key={i} title={i} icon={(current === index &&  current != status.length - 1)? 'loading' : null}/>)
+        stateName.map((i, index) => <Step key={i} title={i}
+                                          icon={(current === index && current != status.length - 1) ? 'loading'
+                                            : null}/>)
       }
       </Steps>
     }
 
     let editBtn = <div onClick={() => {this.setState({editing: true})}}>编辑</div>
     let confirmBtn = <div onClick={() => {
-      Toast.loading('加载中...',);
+      Toast.loading('正在提交...',);
       this.updateData()
         .then(() => {
           Toast.success("修改成功", 2)
