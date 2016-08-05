@@ -50,7 +50,7 @@ class ReportList extends React.Component {
     } else if (Object.keys(data).length === 0) {
       timeline = (
         <Alert
-          message='你还没有体检过，体验一下爱康体吧！'
+          message='你还没有体检过，快来体验一下吧！'
           type='info' showIcon/>
       )
     } else {
@@ -111,7 +111,12 @@ class ReportList extends React.Component {
     return (
       <div id='list-timeline'>
         {ad}
-        <div style={{textAlign: 'center', fontSize: '19px', padding: '5px 0', color: '#E9642B'}}>您的爱康体体检报告，请点击查看</div>
+        {
+          util.getParam('channel') !== 'HuiLianHuZhou'
+          ? <div style={{textAlign: 'center', fontSize: '19px', padding: '5px 0', color: '#E9642B'}}>您的爱康体体检报告，请点击查看</div>
+          : <div style={{textAlign: 'center', fontSize: '17px', padding: '5px 0', color: '#E9642B'}}>您的惠联大健康体检报告，请点击查看</div>
+        }
+
         {timeline}
       </div>
     )

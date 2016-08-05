@@ -8,7 +8,8 @@ function getUrlByHash (hash) {
 }
 
 function getUrl (url) {
-  return url.replace("#/", location.search + "#/")
+  if (url.indexOf(location.search) < 0) return url.replace("#/", location.search + "#/")
+  else return url
 }
 
 function toUrl (url) {
