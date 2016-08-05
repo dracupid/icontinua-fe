@@ -4,7 +4,8 @@
 import API from '../API/libsheet.jsx'
 import 'antd-mobile/lib/nav-bar/style/css.web.js'
 import NavBar from 'antd-mobile/lib/nav-bar/index.web.js'
-let {Card} = ANTD
+import Card from 'antd/lib/card'
+import 'antd/lib/card/style/index.css'
 
 class Item extends React.Component {
   state = {
@@ -14,7 +15,19 @@ class Item extends React.Component {
 
   static formatRefVal (refVal) {
     if (!refVal) return '暂无'
-    return `${refVal[0]} - ${refVal[1]} ${refVal[2]}`
+    if (_.isArray(refVal)) return `${refVal[0]} - ${refVal[1]} (${refVal[2]})`
+
+    let text = []
+
+    if (refVal.male) {
+      text.push(<div key="1">{`男性：${refVal.male[0]} - ${refVal.male[1]} (${refVal.male[2]})`}</div>)
+    }
+    if (refVal.female) {
+      text.push(<div key="2">{`女性：${refVal.female[0]} - ${refVal.female[1]} (${refVal.female[2]})`}</div>)
+    }
+
+    return text
+
   }
 
   static formatSubResult (res) {
