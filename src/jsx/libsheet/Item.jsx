@@ -2,8 +2,8 @@
  * 化验单具体项目解读页面
  */
 import API from '../API/libsheet.jsx'
-import Banner from '../Components/Banner.jsx'
-import util from '../util.jsx'
+import 'antd-mobile/lib/nav-bar/style/css.web.js'
+import NavBar from 'antd-mobile/lib/nav-bar/index.web.js'
 let {Card} = ANTD
 
 class Item extends React.Component {
@@ -17,7 +17,7 @@ class Item extends React.Component {
     return `${refVal[0]} - ${refVal[1]} ${refVal[2]}`
   }
 
-  static formatSubResult(res) {
+  static formatSubResult (res) {
     let ret = []
     if (_.isArray(res)) {
       for (let i of res) {
@@ -60,7 +60,7 @@ class Item extends React.Component {
   }
 
   render () {
-    let {name: curName, catalog} = this.props.params
+    let {name: curName} = this.props.params
     // if (this.state.name !== curName) {
     //   this.getData()
     // }
@@ -69,7 +69,7 @@ class Item extends React.Component {
     let data = this.state.data || {}
 
     return <div className='libsheet-item'>
-      <Banner title={curName} backUrl={catalog ? util.getUrlByHash(catalog) : null}/>
+      <NavBar className="navbar" iconName="">{curName}</NavBar>
       <Card loading={loading} title="名称" className="card with-margin">
         {this.state.name + (data.abbr ? ` (${data.abbr})` : "")}
       </Card>
@@ -81,18 +81,6 @@ class Item extends React.Component {
       </Card>
     </div>
   }
-
-  /*
-   <!-- <Tips title='描述'>
-   <div dangerouslySetInnerHTML={{__html: this.state.data.item_description}}/>
-   </Tips>
-   <Tips title='测量值解读'>
-   <div dangerouslySetInnerHTML={{__html: this.state.data.item_value}}/>
-   </Tips>
-   <Tips title='参考值'>
-   <div dangerouslySetInnerHTML={{__html: this.state.data.item_reference}}/>
-   </Tips> -->
-   */
 }
 
 export default Item

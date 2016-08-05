@@ -1,21 +1,58 @@
 /**
  * 某类化验单的项目列表页
  */
-import BannerBlock from '../Components/BannerBlock.jsx'
 import API2 from '../API/user.jsx'
-import Banner from '../Components/Banner.jsx'
+import 'antd-mobile/lib/list/style/css.web.js'
+import 'antd-mobile/lib/activity-indicator/style/css.web.js'
+import 'antd-mobile/lib/nav-bar/style/css.web.js'
+import 'antd-mobile/lib/top-notice/style/css.web.js'
+import 'antd-mobile/lib/input-item/style/css.web.js'
+import 'antd-mobile/lib/toast/style/css.web.js'
+import 'antd-mobile/lib/steps/style/css.web.js'
+import List from 'antd-mobile/lib/list/index.web.js'
+import ActivityIndicator from 'antd-mobile/lib/activity-indicator/index.web.js'
+import NavBar from 'antd-mobile/lib/nav-bar/index.web.js'
+import TopNotice from 'antd-mobile/lib/top-notice/index.web.js'
+import InputItem from 'antd-mobile/lib/input-item/index.web.js'
+import Toast from 'antd-mobile/lib/toast/index.web.js'
+import Steps from 'antd-mobile/lib/steps/index.web.js'
 import util from '../util.jsx'
-// import API from '../API/libsheet.jsx'
-let {Steps, Alert, Spin} = ANTD
 let Step = Steps.Step
 
-class List extends React.Component {
+function arrayEqual (a, b) {
+  if (a.length == b.length) {
+    for (let i = 0; i < a.length; i++) {
+      if (!_.isEqual(a[i], b[i])) {
+        return false
+      }
+    }
+    return true
+
+  } else {
+    return false
+  }
+
+}
+
+class ListSheet extends React.Component {
   state = {
     name: '',
     data: [],
-    state: 'WAITING',
+    originData: [],
+    state: null,
     errText: '',
+    editing: false
   };
+
+  updateData () {
+    if (!arrayEqual(this.state.data, this.state.originData)) {
+      console.log('update')
+    }
+    return new Promise((res) => {
+      setTimeout(() => res(), 3000)
+    })
+
+  }
 
   // getData () {
   //   return API.fetchList(this.props.params.name)
@@ -26,7 +63,7 @@ class List extends React.Component {
   polling (imgName, interval) {
     API2.pollingState(imgName)
       .then((data) => {
-        this.setState({state: data.state, data: data.items})
+        this.setState({state: data.state, data: data.items, originData: _.clone(data.items, true)})
         if (data.state === 'FINISHED') {
           interval && clearInterval(interval)
         } else if (data.state === 'ERROR') {
@@ -56,6 +93,32 @@ class List extends React.Component {
       })
   }
 
+  onValueChangeFun (index) {
+    return (value) => {
+      let data = this.state.data;
+      if (data[index].valueType === 'NUMBER') {
+        if (/^[\-0-9.]*$/.test(value)) {
+          let float = parseFloat(value)
+          if (!_.isNaN(float)) {
+            data[index].numberValue = float
+            data[index].valueEdited = float !== this.state.originData[index].numberValue;
+          }
+        }
+      }
+      this.setState({data})
+
+    }
+  }
+
+  onKeyChangeFun (index) {
+    return (value) => {
+      let data = this.state.data;
+      data[index].name = value
+      data[index].nameEdited = value != this.state.originData[index].name;
+      this.setState({data})
+    }
+  }
+
 
   componentDidMount () {
     this.getData()
@@ -81,32 +144,75 @@ class List extends React.Component {
     // }
     let states
     if (this.state.state == 'ERROR') {
-      states = <Alert
-        message={this.state.errText}
-        type="error"
-        showIcon
-      />
+      states = <TopNotice type="error">{this.state.errText}</TopNotice>
     } else {
       let stateName = ["排队中", "开始识别", "图片预处理", "识别中", "智能纠错", "已完成"]
       let current = ['WAITING', 'STARTED', 'PRE_PROCESSING', 'RECOGNIZING', 'FORMATTING', 'FINISHED'].indexOf(this.state.state)
-      stateName[current] = <div><Spin /> {stateName[current]}</div>
+      stateName[current] = <div> {stateName[current]}</div>
       let status = ['process', 'process', 'process', 'process', 'process', 'finish'][current]
-      states = <Steps direction="vertical" current={current} status={status} style={{padding: '20px'}}>{
-        stateName.map((i) => <Step key={i} title={i}/>)
+      states = <Steps direction="vertical" size="mini" current={current} status={status} style={{padding: '20px'}}>{
+        stateName.map((i, index) => <Step key={i} title={i} icon={(current === index &&  current != status.length - 1)? 'loading' : null}/>)
       }
       </Steps>
     }
 
+    let editBtn = <div onClick={() => {this.setState({editing: true})}}>编辑</div>
+    let confirmBtn = <div onClick={() => {
+      Toast.loading('加载中...',);
+      this.updateData()
+        .then(() => {
+          Toast.success("修改成功", 2)
+          this.setState({editing: false, originData: _.clone(this.state.data)})
+        }).catch(() => {
+        Toast.fail("修改失败", 2)
+      })
+    }
+    }>确定</div>
+
     return <div>
-      <Banner title='化验单解读'/>
-      {this.state.state === 'FINISHED' ? null : states}
-      {this.state.data.map((item) => {
-        return <BannerBlock
-          text={`${item.name} (${item.numberValue || item.stringValue || ''})`} key={item.name}
-          url={util.getUrlByHash(`item/${encodeURIComponent(item.name)}`)}/>
-      })}
+      <NavBar className="navbar" iconName="" rightContent={this.state.editing ? confirmBtn : editBtn}>化验单解读</NavBar>
+      {(() => {
+        switch (this.state.state) {
+          case null:
+            return <ActivityIndicator text="正在加载识别结果..."/>
+          case 'FINISHED':
+            return null
+          default:
+            return states
+        }
+      })()}
+
+      {this.state.data.length !== 0
+        ? <List style={{padding: 0}}>
+         <List.Body>
+           {this.state.data.map((item, i) => {
+             return this.state.editing
+               ? <div className="flex-name" key={'name' + i}>
+                      <InputItem
+                        className={item.nameEdited ? "edited" : ""}
+                        value={item.name || ''}
+                        onChange={::this.onKeyChangeFun(i)}
+                      />
+                      <InputItem
+                        className={item.valueEdited ? "edited" : ""}
+                        value={item.numberValue || item.stringValue || ''}
+                        onChange={::this.onValueChangeFun(i)}
+                      />
+                    </div>
+               : <List.Item
+                      className={item.nameEdited || item.valueEdited ? "edited" : ""}
+                      key={'value' + i}
+                      arrow="horizontal"
+                      extra={item.numberValue || item.stringValue || ''}
+                      onClick={util.toHashUrlFun(`item/${encodeURIComponent(item.name)}`)}
+                    >{item.name}</List.Item>
+           })}
+         </List.Body>
+       </List>
+        : null
+      }
     </div>
   }
 }
 
-export default List
+export default ListSheet

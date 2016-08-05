@@ -23,6 +23,7 @@ autoPrefixConfig =
 # 使用webpack编译jsx
 gulp.task 'jsx', (cb) ->
     webpack = require 'webpack'
+    autoprefixer = require 'autoprefixer'
 
     plugins = [
         new webpack.ProvidePlugin({
@@ -47,12 +48,18 @@ gulp.task 'jsx', (cb) ->
         module:
             loaders: [
                 {
-                    test: /\.jsx?$/, loader: 'babel',
+                    test: /\.css$/,
+                    loader: 'style-loader!css-loader?minimize!postcss-loader!'
+                },
+                {
+                    test: /\.jsx?$/,
+                    loader: 'babel',
                     query: {
                         cacheDirectory: '.cache',
                     }
                 }
             ]
+        postcss: -> [autoprefixer(autoPrefixConfig)]
         plugins: plugins
         externals:
             jquery: 'window.$'
