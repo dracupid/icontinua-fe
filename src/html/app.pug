@@ -3,9 +3,9 @@ doctype html
 
 html(lang="zh-cmn-Hans")
     head
-        mixin head()
-        mixin css("/css/user")
-        title 用户中心
+        +head()
+        +css("/css/app")
+        title 应用市场
         style.
             .pre-tip {
                 width: 100%;
@@ -16,9 +16,8 @@ html(lang="zh-cmn-Hans")
 
     body
         #main
-            .pre-tip 正在加载用户中心,请稍候...
+            .pre-tip 正在加载应用市场,请稍候...
 
-        mixin foot()
-        script(src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js")
-        script(src="/js/user.js?t=_TIMESTAMP_")
+        +foot()
+        script(src="/js/app.js?t=_TIMESTAMP_")
 

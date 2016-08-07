@@ -125,12 +125,12 @@ gulp.task 'lib_js', ['_antd_css'], (cb) ->
 
 # 编译html
 gulp.task 'html', ->
-    jade = require 'gulp-jade'
+    pug = require 'gulp-pug'
     replace = require 'gulp-replace'
     gulpif = require 'gulp-if'
 
-    gulp.src [cfg.src + 'html/*.jade'], base: cfg.src + 'html'
-    .pipe jade pretty: '    ', compileDebug: true
+    gulp.src [cfg.src + 'html/*.pug'], base: cfg.src + 'html'
+    .pipe pug pretty: '    ', compileDebug: true
     .pipe gulpif isProduction, replace("_TIMESTAMP_", +new Date())
     .pipe gulpif isProduction, replace /((src|href|url)\s*=?\s*('|"|\()(\/)?((js)|(css)|(img)))\S*/g, (match)->
         match.replace(/\/?js/, cfg.CDN + '/js')

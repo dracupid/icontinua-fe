@@ -3,9 +3,9 @@ doctype html
 
 html(lang="zh-cmn-Hans")
     head
-        mixin head()
-        mixin css("/css/report")
-        title 体检报告
+        +head()
+        +css("/css/user")
+        title 用户中心
         style.
             .pre-tip {
                 width: 100%;
@@ -16,8 +16,9 @@ html(lang="zh-cmn-Hans")
 
     body
         #main
-            .pre-tip 正在获取体检报告,请稍候...
+            .pre-tip 正在加载用户中心,请稍候...
 
-        mixin foot()
+        +foot()
         script(src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js")
-        script(src="/js/report.js?t=_TIMESTAMP_")
+        script(src="/js/user.js?t=_TIMESTAMP_")
+
