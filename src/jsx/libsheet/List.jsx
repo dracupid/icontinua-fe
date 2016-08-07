@@ -88,10 +88,11 @@ class ListSheet extends React.Component {
     let imgName = this.props.params.name.replace('.jpg', '');
     API2.sendRecognize(imgName)
       .then(()=> {
-        this.polling(imgName)
         let interval = setInterval(() => {
           this.polling(imgName, interval)
         }, 2000)
+        this.polling(imgName, interval)
+
       })
       .catch((e) => {
         this.setState({state: 'ERROR', errText: "化验单识别服务故障中，请稍后再试"})
