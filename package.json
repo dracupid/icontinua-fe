@@ -44,7 +44,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "antd": "1.7.0",
+    "antd": "1.8.0",
     "antd-mobile": "^0.7.2",
     "blueimp-canvas-to-blob": "^3.3.0",
     "cropperjs": "^0.7.2",
