@@ -30,15 +30,5 @@ export default {
    * @param userId 用户ID
    * @param img 图片名称
    */
-  deletePhoto: (userId, img) => API(`/api/user/photo/delete?id=${userId}&imgId=${img}`),
-  /**
-   * 化验单识别
-   * @param imgName 图片名称
-   */
-  sendRecognize: (imgName) => API(`http://icontinua.com/recognize/libsheet?url=http://cdn-img.icontinua.com/photo/${imgName}.jpg&id=${imgName}&async=true`),
-  /**
-   * 轮训化验单识别状态
-   * @param imgName 图片名称
-   */
-  pollingState: (imgName) => API(`http://icontinua.com/recognize/find?id=${imgName}`, {noCache: true})
+  deletePhoto: (userId, img) => API(`/api/user/photo/delete?id=${userId}&imgId=${img}`)
 }

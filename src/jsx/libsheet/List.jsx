@@ -1,7 +1,7 @@
 /**
  * 某类化验单的项目列表页
  */
-import API2 from '../API/user.jsx'
+import API from '../API/libsheet.jsx'
 import 'antd-mobile/lib/list/style/css.web.js'
 import 'antd-mobile/lib/activity-indicator/style/css.web.js'
 import 'antd-mobile/lib/nav-bar/style/css.web.js'
@@ -53,11 +53,13 @@ class ListSheet extends React.Component {
       }
     }
     if (!arrayEqual(this.state.data, this.state.originData)) {
-      console.log('update')
+      return API.update(this.props.params.name.replace('.jpg', ''), this.state.data)
+    } else {
+      return new Promise.resolve();
     }
-    return new Promise((res) => {
-      setTimeout(() => res(), 3000)
-    })
+    // return new Promise((res) => {
+    //   setTimeout(() => res(), 3000)
+    // })
   }
 
   // getData () {
@@ -67,7 +69,7 @@ class ListSheet extends React.Component {
   //     })
   // }
   polling (imgName, interval) {
-    API2.pollingState(imgName)
+    API.pollingState(imgName)
       .then((data) => {
         this.setState({state: data.state, data: data.items, originData: _.clone(data.items, true)})
         if (data.state === 'FINISHED') {
@@ -86,7 +88,7 @@ class ListSheet extends React.Component {
 
   getData () {
     let imgName = this.props.params.name.replace('.jpg', '');
-    API2.sendRecognize(imgName)
+    API.sendRecognize(imgName)
       .then(()=> {
         let interval = setInterval(() => {
           this.polling(imgName, interval)
