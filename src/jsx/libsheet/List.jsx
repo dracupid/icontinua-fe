@@ -55,7 +55,7 @@ class ListSheet extends React.Component {
     if (!arrayEqual(this.state.data, this.state.originData)) {
       return API.update(this.props.params.name.replace('.jpg', ''), this.state.data)
     } else {
-      return new Promise.resolve();
+      return Promise.resolve();
     }
     // return new Promise((res) => {
     //   setTimeout(() => res(), 3000)
@@ -169,9 +169,11 @@ class ListSheet extends React.Component {
       Toast.loading('正在提交...',);
       this.updateData()
         .then(() => {
+          Toast.hide()
           Toast.success("修改成功", 2)
           this.setState({editing: false, originData: _.clone(this.state.data)})
         }).catch(() => {
+        Toast.hide()
         Toast.fail("修改失败", 2)
       })
     }
