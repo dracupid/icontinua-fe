@@ -87,7 +87,7 @@ class ListSheet extends React.Component {
           interval && clearInterval(interval)
         } else if (data.state === 'ERROR') {
           interval && clearInterval(interval)
-          this.setState({state: 'ERROR', errText: "无法识别化验单，请重新上传图片。请保证图片清晰，无明显倾斜和扭曲"})
+          this.setState({state: 'ERROR', errText: "无法识别化验单，请重新上传图片并保证图片质量"})
         }
       })
       .catch((e) => {
@@ -171,7 +171,7 @@ class ListSheet extends React.Component {
     if (this.state.state == 'ERROR') {
       states = <TopNotice type="error">{this.state.errText}</TopNotice>
     } else {
-      let stateName = ["排队中", "开始识别", "图片预处理", "化验项目识别", "病人信息识别", "已完成"]
+      let stateName = ["排队中", "开始识别", "图片预处理", "识别化验项目", "识别病人信息", "已完成"]
       let current = ['WAITING', 'STARTED', 'PRE_PROCESSING', 'RECOGNIZING', 'RECOGNIZING_INFO', 'FINISHED'].indexOf(this.state.state)
       stateName[current] = <div> {stateName[current]}</div>
       let status = ['process', 'process', 'process', 'process', 'process', 'finish'][current]
