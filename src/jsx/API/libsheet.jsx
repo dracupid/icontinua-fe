@@ -22,10 +22,12 @@ export default {
    */
   pollingState: (imgName) => API(`http://icontinua.com/recognize/find?id=${imgName}`, {noCache: true}),
 
-  update: (id, obj) => {
+  update: (id, arr, info) => {
+    if (arr === null && info === null) return Promise.resolve()
     let data = new FormData()
     data.append('id', id)
-    data.append('jsonData', JSON.stringify(obj))
+    if (arr != null) data.append('jsonData', JSON.stringify(arr))
+    if (info != null) data.append('jsonInfo', JSON.stringify(info))
     return API('http://icontinua.com/recognize/update', {method: 'POST', body: data, noCache: true})
   }
 }

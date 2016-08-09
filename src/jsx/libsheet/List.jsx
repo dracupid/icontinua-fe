@@ -17,6 +17,7 @@ import InputItem from 'antd-mobile/lib/input-item/index.web.js'
 import Toast from 'antd-mobile/lib/toast/index.web.js'
 import Steps from 'antd-mobile/lib/steps/index.web.js'
 import util from '../util.jsx'
+import Card from 'antd/lib/card'
 let Step = Steps.Step
 
 function arrayEqual (a, b) {
@@ -41,7 +42,9 @@ class ListSheet extends React.Component {
     originData: [],
     state: null,
     errText: '',
-    editing: false
+    editing: false,
+    info: null,
+    originInfo: null
   };
 
   updateData () {
@@ -52,14 +55,16 @@ class ListSheet extends React.Component {
         d.numberValue = _.isNaN(float) ? 0 : float
       }
     }
+
+    let arr = null, info = null;
     if (!arrayEqual(this.state.data, this.state.originData)) {
-      return API.update(this.props.params.name.replace('.jpg', ''), this.state.data)
-    } else {
-      return Promise.resolve();
+      arr = this.state.data
     }
-    // return new Promise((res) => {
-    //   setTimeout(() => res(), 3000)
-    // })
+    if (!_.isEqual(this.state.info, this.state.originInfo)) {
+      info = this.state.info
+    }
+
+    return API.update(this.props.params.name.replace('.jpg', ''), arr, info)
   }
 
   // getData () {
@@ -71,7 +76,13 @@ class ListSheet extends React.Component {
   polling (imgName, interval) {
     API.pollingState(imgName)
       .then((data) => {
-        this.setState({state: data.state, data: data.items, originData: _.clone(data.items, true)})
+        this.setState({
+          state: data.state,
+          data: data.items,
+          info: data.info,
+          originInfo: _.clone(data.info, true),
+          originData: _.clone(data.items, true)
+        })
         if (data.state === 'FINISHED') {
           interval && clearInterval(interval)
         } else if (data.state === 'ERROR') {
@@ -125,6 +136,14 @@ class ListSheet extends React.Component {
     }
   }
 
+  onInfoChangeFun (name) {
+    return (value) => {
+      let info = this.state.info
+      this.state.info[name] = value
+      this.setState({info})
+    }
+  }
+
 
   componentDidMount () {
     this.getData()
@@ -152,8 +171,8 @@ class ListSheet extends React.Component {
     if (this.state.state == 'ERROR') {
       states = <TopNotice type="error">{this.state.errText}</TopNotice>
     } else {
-      let stateName = ["排队中", "开始识别", "图片预处理", "识别中", "智能纠错", "已完成"]
-      let current = ['WAITING', 'STARTED', 'PRE_PROCESSING', 'RECOGNIZING', 'FORMATTING', 'FINISHED'].indexOf(this.state.state)
+      let stateName = ["排队中", "开始识别", "图片预处理", "化验项目识别", "病人信息识别", "已完成"]
+      let current = ['WAITING', 'STARTED', 'PRE_PROCESSING', 'RECOGNIZING', 'RECOGNIZING_INFO', 'FINISHED'].indexOf(this.state.state)
       stateName[current] = <div> {stateName[current]}</div>
       let status = ['process', 'process', 'process', 'process', 'process', 'finish'][current]
       states = <Steps direction="vertical" size="mini" current={current} status={status} style={{padding: '20px'}}>{
@@ -171,7 +190,7 @@ class ListSheet extends React.Component {
         .then(() => {
           Toast.hide()
           Toast.success("修改成功", 2)
-          this.setState({editing: false, originData: _.clone(this.state.data)})
+          this.setState({editing: false, originData: _.clone(this.state.data), originInfo: _.clone(this.state.info)})
         }).catch(() => {
         Toast.hide()
         Toast.fail("修改失败", 2)
@@ -191,6 +210,35 @@ class ListSheet extends React.Component {
             return states
         }
       })()}
+
+      {
+        this.state.info
+          ? <Card title="病人信息" className="card">
+          <div>性别：{this.state.editing
+            ? <InputItem
+                     style={{display: 'inline-block'}}
+                     value={this.state.info.sex || ''}
+                     onChange={::this.onInfoChangeFun('sex')}
+                   />
+            : this.state.info.sex || '未知'}</div>
+          <div>年龄：{this.state.editing
+            ? <InputItem
+                     style={{display: 'inline-block'}}
+                     value={this.state.info.age || ''}
+                     onChange={::this.onInfoChangeFun('age')}
+                   />
+            : this.state.info.age || '未知'}</div>
+          <div>诊断：{this.state.editing
+            ? <InputItem
+                     style={{display: 'inline-block'}}
+                     value={this.state.info.diagnose || ''}
+                     onChange={::this.onInfoChangeFun('diagnose')}
+                   />
+            : this.state.info.diagnose || '未知'}</div>
+        </Card>
+          : null
+      }
+
 
       {this.state.data.length !== 0
         ? <List style={{padding: 0}}>
