@@ -45,7 +45,6 @@ let formatZangfu = function (items, balance) {
       })
     }
   }
-  console.log(itemArr)
 
   return {
     items: itemArr.slice(0, limit),
