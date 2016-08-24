@@ -63,7 +63,7 @@ class O2 extends React.Component {
   render () {
     return (
       <div>
-        <Echarts option={this.getOption()} height='300' width='100%'/>
+        <Echarts option={this.getOption()} height='300' width='100%' />
       </div>
     )
   }

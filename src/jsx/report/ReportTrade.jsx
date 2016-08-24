@@ -29,8 +29,8 @@ class ReportTrade extends React.Component {
     let {data} = this.props
     if (data !== null) {
       return hasItem(data, 'height')
-        ? <HeightWeight data={data}/>
-        : <Alert message='您还没有测量过身体数据' type='info' showIcon/>
+        ? <HeightWeight data={data} />
+        : <Alert message='您还没有测量过身体数据' type='info' showIcon />
     } else {
       return <Loading />
     }
@@ -40,8 +40,8 @@ class ReportTrade extends React.Component {
     let {data} = this.props
     if (data !== null) {
       return hasItem(data, 'sbp')
-        ? <Blood data={data}/>
-        : <Alert message='您还没有测量过血压' type='info' showIcon/>
+        ? <Blood data={data} />
+        : <Alert message='您还没有测量过血压' type='info' showIcon />
     } else {
       return <Loading />
     }
@@ -51,8 +51,8 @@ class ReportTrade extends React.Component {
     let {data} = this.props
     if (data !== null) {
       return hasItem(data, 'spo2h')
-        ? <O2 data={data}/>
-        : <Alert message='您还没有测量过血氧' type='info' showIcon/>
+        ? <O2 data={data} />
+        : <Alert message='您还没有测量过血氧' type='info' showIcon />
     } else {
       return <Loading />
     }
@@ -62,8 +62,8 @@ class ReportTrade extends React.Component {
     let {data} = this.props
     if (data !== null) {
       return hasItem(data, 'cacheId')
-        ? <Chinese data={data}/>
-        : <Alert message='您还没有进行过生物电检测' type='info' showIcon/>
+        ? <Chinese data={data} />
+        : <Alert message='您还没有进行过生物电检测' type='info' showIcon />
     } else {
       return <Loading />
     }

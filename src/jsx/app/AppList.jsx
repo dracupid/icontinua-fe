@@ -55,7 +55,7 @@ class AppList extends React.Component {
     } else {
       let apps = _.isEmpty(data)
         ? <h3 className='not-found'>没有找到相关应用</h3>
-        : data.map((v) => { return <AppListItem {...v} key={v.uid}/> })
+        : data.map((v) => { return <AppListItem {...v} key={v.uid} /> })
       return <div>
         {apps}
         {this.state.hasMore

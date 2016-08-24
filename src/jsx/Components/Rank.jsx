@@ -60,14 +60,14 @@ function Rank (props) {
   })
 
   if (!_.isEmpty(_.compact(refBlock))) {
-    text.push(<br/>, <br/>, '根据统计数据，同性别同年龄段人群中：')
+    text.push(<br />, <br />, '根据统计数据，同性别同年龄段人群中：')
     text = text.concat(refBlock)
   }
 
   return <Tips text={<div>
     {`在${ageGroup(props.user.age)}的${parseInt(props.user.sex, 10) === 1 ? '男' : '女'}性用户中：`}
     {text}
-  </div>} title='排名情况'/>
+  </div>} title='排名情况' />
 }
 
 Rank.propTypes = {

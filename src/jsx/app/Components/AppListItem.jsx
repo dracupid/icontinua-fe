@@ -7,7 +7,7 @@ import Image from '../../Components/Image.jsx'
 
 function AppListItem ({uid, imgUrl, name, downloadNum, slogan, shortDesc}) {
   return <div className='app-list-item' onClick={util.toHashUrlFun('item/' + uid)}>
-    <Image src={imgUrl} className='info-icon'/>
+    <Image src={imgUrl} className='info-icon' />
     <div className='info-text-wrapper'>
       <h3>{name}</h3>
       <span>{name === '爱康体' ? null : (appUtil.formatDownload(downloadNum) + '人在用')}</span>

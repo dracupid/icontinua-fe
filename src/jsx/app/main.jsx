@@ -38,10 +38,10 @@ class MainApps extends React.Component {
     } else {
       let curTab = this.props.params.tag || '热门'
       let panels = this.state.data.topTags.map((v) => {
-        return <TabPane tab={v} key={v}>{<AppList keyword={v}/>}</TabPane>
+        return <TabPane tab={v} key={v}>{<AppList keyword={v} />}</TabPane>
       })
       return <Tabs onChange={::this.changeTab} size='small' activeKey={curTab} animation={null}>
-        <TabPane tab='热门' key='热门'><CatalogList data={this.state.data}/></TabPane>
+        <TabPane tab='热门' key='热门'><CatalogList data={this.state.data} /></TabPane>
         {panels}
       </Tabs>
     }

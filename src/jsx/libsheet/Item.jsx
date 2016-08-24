@@ -20,14 +20,13 @@ class Item extends React.Component {
     let text = []
 
     if (refVal.male) {
-      text.push(<div key="1">{`男性：${refVal.male[0]} - ${refVal.male[1]} (${refVal.male[2]})`}</div>)
+      text.push(<div key='1'>{`男性：${refVal.male[0]} - ${refVal.male[1]} (${refVal.male[2]})`}</div>)
     }
     if (refVal.female) {
-      text.push(<div key="2">{`女性：${refVal.female[0]} - ${refVal.female[1]} (${refVal.female[2]})`}</div>)
+      text.push(<div key='2'>{`女性：${refVal.female[0]} - ${refVal.female[1]} (${refVal.female[2]})`}</div>)
     }
 
     return text
-
   }
 
   static formatSubResult (res) {
@@ -82,14 +81,14 @@ class Item extends React.Component {
     let data = this.state.data || {}
 
     return <div className='libsheet-item'>
-      <NavBar className="navbar" iconName="">{curName}</NavBar>
-      <Card loading={loading} title="名称" className="card with-margin">
-        {this.state.name + (data.abbr ? ` (${data.abbr})` : "")}
+      <NavBar className='navbar' iconName=''>{curName}</NavBar>
+      <Card loading={loading} title='名称' className='card with-margin'>
+        {this.state.name + (data.abbr ? ` (${data.abbr})` : '')}
       </Card>
-      <Card loading={loading} title="测量值解读" className="card with-margin">
+      <Card loading={loading} title='测量值解读' className='card with-margin'>
         {Item.formatResult(data.result)}
       </Card>
-      <Card loading={loading} title="参考值" className="card with-margin">
+      <Card loading={loading} title='参考值' className='card with-margin'>
         {Item.formatRefVal(data.refVal)}
       </Card>
     </div>

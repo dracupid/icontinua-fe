@@ -19,7 +19,7 @@ let TabPane = Tabs.TabPane
  * 无数据的组件
  */
 function NoDataBLock ({loading, noDataText}) {
-  return loading ? <Loading /> : <Alert message={noDataText} type='info' showIcon/>
+  return loading ? <Loading /> : <Alert message={noDataText} type='info' showIcon />
 }
 
 NoDataBLock.propTypes = {
@@ -71,29 +71,29 @@ class Report extends React.Component {
   getHeightWeight () {
     let {height, weight} = this.state.report
     return (height && weight)
-      ? <HeightWeight {...this.state.report}/>
-      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量身体数据'/>
+      ? <HeightWeight {...this.state.report} />
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量身体数据' />
   }
 
   getBlood () {
     let {sbp, dbp, heartRate, bp, user} = this.state.report
     return (sbp && dbp)
-      ? <Blood high={sbp} low={dbp} beat={heartRate} bp={bp} user={user}/>
-      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血压'/>
+      ? <Blood high={sbp} low={dbp} beat={heartRate} bp={bp} user={user} />
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血压' />
   }
 
   getO2 () {
     let {spo2h, user} = this.state.report
     return (spo2h)
-      ? <O2 data={spo2h} user={user}/>
-      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血氧'/>
+      ? <O2 data={spo2h} user={user} />
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血氧' />
   }
 
   getChinese () {
     let {cacheId} = this.state.report
     return (cacheId)
-      ? <Chinese {...this.state.report}/>
-      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量生物电'/>
+      ? <Chinese {...this.state.report} />
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量生物电' />
   }
 
   render () {
@@ -101,7 +101,7 @@ class Report extends React.Component {
     let {userId} = this.props.params
     return (
       <div id='report' className='top-tab-wrapper'>
-        <Banner title={this.state.title} backUrl={userId ? '/reports#/' + userId : null}/>
+        <Banner title={this.state.title} backUrl={userId ? '/reports#/' + userId : null} />
         <Tabs animation={null} size='mini'>
           <TabPane tab='身体' key='1'>{this.getHeightWeight()}</TabPane>
           <TabPane tab='血压' key='2'>{this.getBlood()}</TabPane>

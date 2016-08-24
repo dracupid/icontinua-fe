@@ -78,9 +78,9 @@ class Echarts extends React.Component {
     if (this.state.loaded) {
       return <div
         ref='echarts' className={'echarts ' + (this.props.className || '')}
-        style={{height: this.props.height + 'px', width: this.props.width}}/>
+        style={{height: this.props.height + 'px', width: this.props.width}} />
     } else {
-      return <Loading text='正在生成图表...'/>
+      return <Loading text='正在生成图表...' />
     }
   }
 }

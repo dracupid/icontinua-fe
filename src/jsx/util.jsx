@@ -8,7 +8,7 @@ function getUrlByHash (hash) {
 }
 
 function getUrl (url) {
-  if (url.indexOf(location.search) < 0) return url.replace("#/", location.search + "#/")
+  if (url.indexOf(location.search) < 0) return url.replace('#/', location.search + '#/')
   else return url
 }
 
@@ -47,6 +47,7 @@ export default {
   toUrlFun,
   toUrl,
   getUrl,
+  toHash,
 
   /**
    * 生成带hash的url的跳转函数
@@ -63,10 +64,10 @@ export default {
     qs = qs.split('&')
     for (let i = 0; i < qs.length; i++) {
       let kv = qs[i]
-      if (kv.indexOf(name + '=') == 0) {
+      if (kv.indexOf(name + '=') === 0) {
         return kv.slice(name.length + 1)
       }
     }
-    return null;
+    return null
   }
 }

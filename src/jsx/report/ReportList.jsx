@@ -5,7 +5,7 @@ import Loading from './../Components/Loading.jsx'
 import Ad from './../Components/Ad.jsx'
 import reportUtil from './util.jsx'
 import util from '../util.jsx'
-let {Alert, Pagination, message} = ANTD
+let {Alert, Pagination} = ANTD
 
 const itemPerPage = 10
 // const currentActivitys = {
@@ -46,12 +46,12 @@ class ReportList extends React.Component {
     let {data} = this.props
 
     if (data === null) {
-      timeline = <Loading text='正在加载你的体检记录...'/>
+      timeline = <Loading text='正在加载你的体检记录...' />
     } else if (Object.keys(data).length === 0) {
       timeline = (
         <Alert
           message='你还没有体检过，快来体验一下吧！'
-          type='info' showIcon/>
+          type='info' showIcon />
       )
     } else {
       let index = 0
@@ -68,14 +68,14 @@ class ReportList extends React.Component {
                 key={item.timestamp}>
                 <p className='timestamp'>
                   {reportUtil.formatDateTime(item.timestamp, true)}
-                  <span className='arrow2'/>
+                  <span className='arrow2' />
                 </p>
                 <div className='timeline-item-middle'>
-                  <div className='timeline-item-tail'/>
+                  <div className='timeline-item-tail' />
                   <div className='timeline-item-id'>{index}</div>
                 </div>
                 <div className='timeline-item-content'>
-                  <span className='arrow1'/>
+                  <span className='arrow1' />
                   {item.location || '未知'}
                 </div>
               </li>
@@ -83,7 +83,7 @@ class ReportList extends React.Component {
           </ul>
           <Pagination
             size='small' current={this.state.curPage + 1} total={total} pageSize={itemPerPage}
-            onChange={::this.onChangePage}/>
+            onChange={::this.onChangePage} />
 
         </div>
       )
@@ -92,7 +92,7 @@ class ReportList extends React.Component {
     let defaultAd = <Ad
       title='一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！'
       text={<div>皮皮夺宝（<a href='http://www.ppduobao.com'>www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
-      img='http://cdnst.icontinua.com/img/res/pipi.jpg'/>
+      img='http://cdnst.icontinua.com/img/res/pipi.jpg' />
 
     let ad
 

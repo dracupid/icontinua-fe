@@ -28,16 +28,16 @@ class Banner extends React.Component {
     let {title, back} = this.props
 
     let middle = searching
-      ? <SearchInput placeholder='请输入应用名称' onSearch={Banner.onSearch}/>
+      ? <SearchInput placeholder='请输入应用名称' onSearch={Banner.onSearch} />
       : <h2>{title}</h2>
 
     let right = searching
-      ? <Icon type='cross' onClick={::this.toggleSearch}/>
-      : <Icon type='search' onClick={::this.toggleSearch}/>
+      ? <Icon type='cross' onClick={::this.toggleSearch} />
+      : <Icon type='search' onClick={::this.toggleSearch} />
 
     let left = back
-      ? <Icon type='left' onClick={() => { window.history.back() }}/>
-      : <Icon/>
+      ? <Icon type='left' onClick={() => { window.history.back() }} />
+      : <Icon />
 
     return <div>
       <div className='header'>

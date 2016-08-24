@@ -63,7 +63,7 @@ class Blood extends React.Component {
               <Echarts
                 option={this._getOpt(getValue(high), '收缩压', 'mmHg', high.bounds, 60, 160, true)}
                 height={height}
-                width={width} className='mini top-left'/>
+                width={width} className='mini top-left' />
             </div>
           </div>
 
@@ -72,15 +72,15 @@ class Blood extends React.Component {
               <Echarts
                 option={this._getOpt(getValue(low), '舒张压', 'mmHg', low.bounds, 40, 120, true)}
                 height={height}
-                width={width} className='mini top-right'/>
+                width={width} className='mini top-right' />
             </div>
           </div>
         </div>
         <Echarts
           option={this._getOpt(getValue(beat), '心率', 'bpm', [60, 100, 120], 40, 140)} height='300'
-          className='bottom-echart'/>
-        <Tips text={bp.advice} fix/>
-        <Rank obj={{收缩压: high, 舒张压: low}} user={user}/>
+          className='bottom-echart' />
+        <Tips text={bp.advice} fix />
+        <Rank obj={{收缩压: high, 舒张压: low}} user={user} />
       </div>
     )
   }

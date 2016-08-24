@@ -73,16 +73,21 @@ class HeightWeight extends React.Component {
     return (
       <div>
         <div className='height-wrapper'>
-          <img src='http://cdnst.icontinua.com/img/body.png'/>
-          <div className='line'></div>
-          <div className='text'>身高<br/>{height.value}CM</div>
-          <KVMap obj={{BMI: getValue(bmi).toFixed(1), 脂肪率: getStringValue(bodyFat, ' %'),
-            肌肉量: getStringValue(bodyMuscle, ' %'), BMR: getStringValue(bodyKcal, ' kcal'),
-            水分: getStringValue(bodyWater, ' %'), 内脏脂肪: getStringValue(bodyViscera, '')}}/>
+          <img src='http://cdnst.icontinua.com/img/body.png' />
+          <div className='line' / >
+          <div className='text'>身高<br />{height.value}CM</div>
+          <KVMap
+            obj={{
+              BMI: getValue(bmi).toFixed(1),
+              脂肪率: getStringValue(bodyFat, ' %'),
+              肌肉量: getStringValue(bodyMuscle, ' %'),
+              BMR: getStringValue(bodyKcal, ' kcal'),
+              水分: getStringValue(bodyWater, ' %'),
+              内脏脂肪: getStringValue(bodyViscera, '')}} />
         </div>
-        <Echarts option={this.getWeightOpt()} height='300' width='100%'/>
-        <Tips text={bmi.advice} fix/>
-        <Rank obj={{身高: height, 体重: weight}} user={user}/>
+        <Echarts option={this.getWeightOpt()} height='300' width='100%' />
+        <Tips text={bmi.advice} fix />
+        <Rank obj={{身高: height, 体重: weight}} user={user} />
       </div>
     )
   }

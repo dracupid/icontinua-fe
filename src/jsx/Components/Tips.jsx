@@ -5,9 +5,9 @@ let {Card} = ANTD
 
 function Tips (props) {
   return (
-  <Card loading={props.loading} title={props.title || '建议'} className={'card' + (props.fix ? ' fix' : '')}>
-    {props.text || props.children}
-  </Card>
+    <Card loading={props.loading} title={props.title || '建议'} className={'card' + (props.fix ? ' fix' : '')}>
+      {props.text || props.children}
+    </Card>
   )
 }
 

@@ -14,7 +14,7 @@ function AppBlock ({appData: {apkUrl, name, imgUrl, uid}}) {
     : <Button type='primary' size='small' onClick={appUtil.toApkUrlFun(apkUrl)}>下载</Button>
 
   return <div className='app-block'>
-    <Image src={imgUrl} className='app-img-wrapper' onClick={util.toHashUrlFun(`item/${uid}`)}/>
+    <Image src={imgUrl} className='app-img-wrapper' onClick={util.toHashUrlFun(`item/${uid}`)} />
     <span className='app-block-name'>{name}</span>
     {downLoadBtn}
   </div>

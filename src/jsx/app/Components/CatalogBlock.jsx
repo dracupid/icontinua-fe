@@ -5,7 +5,7 @@ import AppBlock from './AppBlock.jsx'
 
 function CatalogBlock ({apps, name}) {
   let appBlocks = apps.map((app) => {
-    return <AppBlock appData={app} key={app.uid}/>
+    return <AppBlock appData={app} key={app.uid} />
   })
 
   return <div>

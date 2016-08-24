@@ -30,7 +30,7 @@ class EditBlock extends React.Component {
             return <input
               type='text'
               className='ant-input' value={value}
-              onChange={::this.onChange}/>
+              onChange={::this.onChange} />
           case 'radio': // 单选
             return <Radio.Group onChange={::this.onChange} value={defaultValue}>
               {_.map(this.props.data, (v, k) => {
@@ -40,7 +40,7 @@ class EditBlock extends React.Component {
           case 'number': // 数字
             return <InputNumber
               size='large' min={this.props.min} max={this.props.max} defaultValue={value}
-              onChange={::this.onChange}/>
+              onChange={::this.onChange} />
         }
       } else {
         if (defaultValue && this.props.data) {
@@ -51,7 +51,7 @@ class EditBlock extends React.Component {
     })()
 
     let rightIcon = (!noedit && editing)
-      ? <div className='block-icon block-icon-right'><Icon type='edit' style={{color: 'green'}}/></div>
+      ? <div className='block-icon block-icon-right'><Icon type='edit' style={{color: 'green'}} /></div>
       : null
 
     return <div className='btn-block block edit-block'>

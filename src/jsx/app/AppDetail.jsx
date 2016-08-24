@@ -19,7 +19,7 @@ function formatDesc (text) {
   if (text == null) return ''
 
   return _.flatten(text.trim().split(/\s\s+/).map((part) => {
-    return [part, <br/>, <br/>]
+    return [part, <br />, <br />]
   }))
 }
 
@@ -27,7 +27,7 @@ function AppInfo (props) {
   let {imgUrl, name, score, downloadNum, apkUrl, shortDesc} = props.app
   return <div className='app-detail-info'>
     <div className='app-detail-top'>
-      <Img src={imgUrl} className='info-icon'/>
+      <Img src={imgUrl} className='info-icon' />
       <div className='info-text-wrapper'>
         <h3>{name}</h3>
         <span>{score}<strong>分</strong></span>
@@ -67,10 +67,10 @@ class AppDetail extends React.Component {
       // 应用快照
       let snapshots = _.isEmpty(snapshot)
         ? null
-        : <Carousel dots='false' autoplay>{snapshot.map((imgUrl) => <div><Img src={imgUrl} className='snapshot-img'/></div>)}</Carousel>
+        : <Carousel dots='false' autoplay>{snapshot.map((imgUrl) => <div><Img src={imgUrl} className='snapshot-img' /></div>)}</Carousel>
 
       return <div>
-        <AppInfo app={this.state.data}/>
+        <AppInfo app={this.state.data} />
         {snapshots}
         <div className='app-desc'>
           {formatDesc(description)}
@@ -81,7 +81,7 @@ class AppDetail extends React.Component {
 
   render () {
     return <div>
-      <Banner title={this.state.title} back/>
+      <Banner title={this.state.title} back />
       {this.renderInfo()}
     </div>
   }

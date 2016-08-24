@@ -12,11 +12,11 @@ Object.assign = _.assign
 
 function fileToBase64 (file) {
   return new Promise((resolve) => {
-    const reader = new FileReader();
+    const reader = new FileReader()
     reader.onloadend = () => {
-      resolve(reader.result);
-    };
-    reader.readAsDataURL(file);
+      resolve(reader.result)
+    }
+    reader.readAsDataURL(file)
   })
 }
 
@@ -31,7 +31,7 @@ function ImgBlock (props) {
     </div>
 
     <div className='btn-delete' onClick={props.onDelete}>
-      <Button type='ghost' shape='circle-outline' size='small'><Icon type='cross'/></Button>
+      <Button type='ghost' shape='circle-outline' size='small'><Icon type='cross' /></Button>
     </div>
   </div>
 }
@@ -87,7 +87,7 @@ class Photo extends React.Component {
    */
   upload () {
     this.setState({uploading: true})
-    this.refs.cropper.getCroppedCanvas({fillColor: "white"}).toBlob((blob) => {
+    this.refs.cropper.getCroppedCanvas({fillColor: 'white'}).toBlob((blob) => {
       API.uploadPhoto(this.props.params.userId, blob)
         .then((url) => {
           message.info('照片上传成功')
@@ -104,7 +104,7 @@ class Photo extends React.Component {
           this.setState({uploading: false})
           throw e
         })
-    }, "image/jpeg")
+    }, 'image/jpeg')
   }
 
   componentDidMount () {
@@ -155,33 +155,33 @@ class Photo extends React.Component {
       if (this.state.imgDataURL) {
         return <div className='btn-photo btn-photo-two'>
           <Button type='primary' size='large' onClick={() => this.setState({imgDataURL: null})}>
-            <Icon type='reload'/>
+            <Icon type='reload' />
             重新拍照
           </Button>
           {this.state.uploading
             ? <Button type='primary' size='large'>
-             <Spin /> 上传中
-           </Button>
+              <Spin /> 上传中
+            </Button>
             : <Button type='primary' size='large' onClick={::this.upload}>
-             <Icon type='upload'/>上传
-           </Button>
+              <Icon type='upload' />上传
+            </Button>
           }
-          <br/>
-          <br/>
+          <br />
+          <br />
           <Button type='primary' size='large' onClick={this.rotate.bind(this, -90)}>
-            <Icon type='reload'/>
+            <Icon type='reload' />
             左旋90度
           </Button>
           <Button type='primary' size='large' onClick={this.rotate.bind(this, 90)}>
-            <Icon type='reload'/>
+            <Icon type='reload' />
             右旋90度
           </Button>
         </div>
       } else {
         return <div className='btn-photo'>
-          <Upload action="//" accept='image/*' onChange={::this.onUploadImage} showUploadList={false}>
-            <Button type='primary' size='large' className="needsclick">
-              <Icon className="needsclick" type='camera'/><span className="needsclick">拍照上传</span>
+          <Upload action='//' accept='image/*' onChange={::this.onUploadImage} showUploadList={false}>
+            <Button type='primary' size='large' className='needsclick'>
+              <Icon className='needsclick' type='camera' /><span className='needsclick'>拍照上传</span>
             </Button>
           </Upload>
         </div>
@@ -193,7 +193,7 @@ class Photo extends React.Component {
       return <ImgBlock
         url={i} key={index} onClick={this.triggerFullScreen.bind(this, i)}
         onDelete={this.deletePhoto(i)}
-        onRecognize={this.recognizePhoto(i)}/>
+        onRecognize={this.recognizePhoto(i)} />
     })
 
     // 图片流,每行显示三张图片
@@ -210,21 +210,20 @@ class Photo extends React.Component {
       return ret
     })()
 
-
     return <div>
-      <Banner title='化验单识别' backUrl={util.getUrlByHash(this.props.params.userId)}/>
+      <Banner title='化验单识别' backUrl={util.getUrlByHash(this.props.params.userId)} />
       {btn}
       <div>
         {this.state.imgDataURL
           ? <Cropper
-           ref="cropper"
-           src={this.state.imgDataURL} style={{height: 400, width: '100%'}}
+            ref='cropper'
+            src={this.state.imgDataURL} style={{height: 400, width: '100%'}}
            // crop={::this.onCrop}
-           viewMode={2}
-           guides={false}
-           dragMode="move"
+            viewMode={2}
+            guides={false}
+            dragMode='move'
            // checkOrientation={false}
-           built={this.adjustImg}
+            built={this.adjustImg}
            // preview='.img-preview'
          />
           : null}
@@ -233,7 +232,7 @@ class Photo extends React.Component {
       <div
         className='pop-image' style={{display: this.state.fullScreen ? 'block' : 'none'}}
         onClick={this.triggerFullScreen.bind(this, null)}>
-        <img src={'http://cdn.icontinua.com/photo/' + this.state.curImg}/>
+        <img src={'http://cdn.icontinua.com/photo/' + this.state.curImg} />
       </div>
     </div>
   }
