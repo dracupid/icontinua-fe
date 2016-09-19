@@ -119,6 +119,9 @@ class ListSheet extends React.Component {
           data[index].numberValue = value
           data[index].valueEdited = true
         }
+      } else {
+        data[index].stringValue = value
+        data[index].valueEdited = true
       }
       this.setState({data})
     }
