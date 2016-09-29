@@ -5,13 +5,22 @@ html(lang="zh-cmn-Hans")
     head
         +pureHead()
         title 爱康体产品介绍
+
         style.
             body {
                 font-family: -apple-system, "Helvetica Neue", "Arial", "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "WenQuanYi Micro Hei", SimSun, sans-serif;
                 font-weight: 300;
                 font-size: 14px;
                 background: #fff;
-                color: #333
+                color: #333;
+
+            }
+
+            @media (min-width: 600px) {
+                body {
+                    max-width: 600px;
+                    margin: auto;
+                }
             }
 
             h1, h2 {
