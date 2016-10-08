@@ -74,7 +74,7 @@ class HeightWeight extends React.Component {
       <div>
         <div className='height-wrapper'>
           <img src='http://cdnst.icontinua.com/img/body.png' />
-          <div className='line' / >
+          <div className='line' />
           <div className='text'>身高<br />{height.value}CM</div>
           <KVMap
             obj={{
@@ -86,7 +86,7 @@ class HeightWeight extends React.Component {
               内脏脂肪: getStringValue(bodyViscera, '')}} />
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%' />
-        <Tips text={bmi.advice} fix />
+        <Tips text={bmi.advice} fix={true} />
         <Rank obj={{身高: height, 体重: weight}} user={user} />
       </div>
     )

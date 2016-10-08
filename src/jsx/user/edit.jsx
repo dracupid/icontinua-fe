@@ -33,7 +33,7 @@ class Edit extends React.Component {
           message.info('更新个人资料成功')
           this.setState({editing: false, data})
         }, () => {
-          message.error('更新个人资料失败, 请重试')
+          message.error('更新个人资料失败, 请重试!')
         })
     } else {
       this.setState({editing: true})
@@ -67,7 +67,8 @@ class Edit extends React.Component {
           tag='年龄' type='number' min={1} max={130}
           value={age} editing={this.state.editing} onChange={this.onChangeBuilder('age')} />
         <EditBlock
-          tag='联系电话' type='text' pattern={/^\d*$/}
+          tag='联系电话' type='phone' pattern={/^\d*$/}
+          userId={this.props.params.userId}
           value={phone} editing={this.state.editing} onChange={this.onChangeBuilder('phone')} />
         <EditBlock
           tag='社保卡号' type='text' pattern={/^\d*$/}

@@ -1,16 +1,29 @@
 /**
  * 可编辑条目块
  */
-let {Icon, Radio, InputNumber} = ANTD
+let {Icon, Radio, InputNumber, Button, Modal} = ANTD
+import BindPhone from './bindPhone.jsx'
 
 class EditBlock extends React.Component {
   state = {
     inputValue: null, // 输入值
-    confirmedValue: null // 修改后的保存值
+    confirmedValue: null, // 修改后的保存值
+    binding: false
   };
 
+  showBindingModal () {
+    this.setState({binding: true});
+  }
+
+  hideBindingModal () {
+    this.setState({binding: false});
+  }
+
   onChange (v) {
-    v = (v.target && v.target.value) || v
+    if (v.target && typeof v.target.value !== 'undefined') {
+      v = v.target.value
+    }
+
     if (this.props.pattern && !this.props.pattern.test(v)) {
       return
     }
@@ -30,7 +43,7 @@ class EditBlock extends React.Component {
             return <input
               type='text'
               className='ant-input' value={value}
-              onChange={::this.onChange} />
+              onChange={::this.onChange}/>
           case 'radio': // 单选
             return <Radio.Group onChange={::this.onChange} value={defaultValue}>
               {_.map(this.props.data, (v, k) => {
@@ -40,7 +53,13 @@ class EditBlock extends React.Component {
           case 'number': // 数字
             return <InputNumber
               size='large' min={this.props.min} max={this.props.max} defaultValue={value}
-              onChange={::this.onChange} />
+              onChange={::this.onChange}/>
+          case 'phone': // 手机号码
+            return <div>
+              <span style={{fontSize: '12px'}}>{value}</span>
+              <Button type="ghost" onClick={::this.showBindingModal} style={{marginLeft: '8px'}}>{value ? '更换'
+                : '绑定手机'}</Button>
+            </div>
         }
       } else {
         if (defaultValue && this.props.data) {
@@ -51,7 +70,7 @@ class EditBlock extends React.Component {
     })()
 
     let rightIcon = (!noedit && editing)
-      ? <div className='block-icon block-icon-right'><Icon type='edit' style={{color: 'green'}} /></div>
+      ? <div className='block-icon block-icon-right'><Icon type='edit' style={{color: 'green'}}/></div>
       : null
 
     return <div className='btn-block block edit-block'>
@@ -60,6 +79,13 @@ class EditBlock extends React.Component {
       </div>
       {<div className='block-text text-value'>{middle}</div>}
       {rightIcon}
+
+      <BindPhone
+        userId={this.props.userId}
+        visible={this.state.binding}
+        onCancel={::this.hideBindingModal}
+        onSuccess={::this.onChange}
+      />
     </div>
   }
 }
