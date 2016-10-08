@@ -21,8 +21,8 @@ class BindPhoneModal extends React.Component {
   };
 
   state = {
-    phone: "", // 输入值
-    code: "", // 修改后的保存值
+    phone: '', // 输入值
+    code: '', // 修改后的保存值
     phoneValid: false,
     codeValid: false,
     sendTime: null,
@@ -32,8 +32,8 @@ class BindPhoneModal extends React.Component {
 
   onCancel () {
     this.setState({
-      phone: "",
-      code: "",
+      phone: '',
+      code: '',
       phoneValid: false,
       codeValid: false,
       sending: false
@@ -45,12 +45,12 @@ class BindPhoneModal extends React.Component {
     this.setState({sending: true})
     API.updatePhone(this.props.userId, this.state.phone, this.state.code)
       .then(() => {
-        message.success('手机绑定成功', 2);
+        message.success('手机绑定成功', 2)
         this.props.onSuccess(this.state.phone)
-        this.onCancel();
+        this.onCancel()
       })
       .catch(() => {
-        message.error('验证码错误，请重试', 2);
+        message.error('验证码错误，请重试', 2)
       })
   }
 
@@ -77,7 +77,7 @@ class BindPhoneModal extends React.Component {
         this.timeout(timer)
       })
       .catch(() => {
-        message.error('验证码发送失败，请重试', 2);
+        message.error('验证码发送失败，请重试', 2)
       })
   }
 
@@ -100,13 +100,13 @@ class BindPhoneModal extends React.Component {
   render () {
     return <Modal
       visible={this.props.visible}
-      title="绑定手机"
+      title='绑定手机'
       onCancel={this.props.onCancel}
       footer={[
-        <Button key="ok" type="ghost" size="large" onClick={::this.onSubmit}
-                loading={this.state.sending}
-                disabled={!(this.state.phoneValid && this.state.codeValid)}>确定</Button>,
-        <Button key="cancel" type="ghost" size="large" onClick={::this.onCancel}>取消</Button>
+        <Button key='ok' type='ghost' size='large' onClick={::this.onSubmit}
+          loading={this.state.sending}
+          disabled={!(this.state.phoneValid && this.state.codeValid)}>确定</Button>,
+        <Button key='cancel' type='ghost' size='large' onClick={::this.onCancel}>取消</Button>
       ]}
     >
       <div className='phone-block block'>
@@ -116,7 +116,7 @@ class BindPhoneModal extends React.Component {
         <input
           type='text'
           className='ant-input block-text text-value' value={this.state.phone}
-          onChange={::this.onChangePhone}/>
+          onChange={::this.onChangePhone} />
       </div>
 
       <div className='phone-block block'>
@@ -126,9 +126,9 @@ class BindPhoneModal extends React.Component {
         <input
           type='text'
           className='ant-input block-text text-value' value={this.state.code}
-          onChange={::this.onChangeCode}/>
-        <Button type="primary" style={{marginLeft: '5px'}} onClick={::this.onSend}
-                disabled={!this.state.phoneValid || this.state.timeText}>
+          onChange={::this.onChangeCode} />
+        <Button type='primary' style={{marginLeft: '5px'}} onClick={::this.onSend}
+          disabled={!this.state.phoneValid || this.state.timeText}>
           {this.state.timeText || '发送'}
         </Button>
       </div>

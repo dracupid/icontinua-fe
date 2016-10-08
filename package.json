@@ -68,7 +68,9 @@
       "wx",
       "fetch",
       "location",
-      "ReactRouter"
+      "ReactRouter",
+      "FileReader",
+      "FormData"
     ]
   },
   "babel": {

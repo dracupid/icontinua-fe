@@ -86,7 +86,7 @@ class HeightWeight extends React.Component {
               内脏脂肪: getStringValue(bodyViscera, '')}} />
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%' />
-        <Tips text={bmi.advice} fix={true} />
+        <Tips text={bmi.advice} fix />
         <Rank obj={{身高: height, 体重: weight}} user={user} />
       </div>
     )

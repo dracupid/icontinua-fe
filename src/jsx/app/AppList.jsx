@@ -60,7 +60,7 @@ class AppList extends React.Component {
         {apps}
         {this.state.hasMore
           ? <h3 className='btn-load-more' size='large' loading={loading} onClick={::this.onChangePage}>
-           {loading ? <div>加载中</div> : '加载更多'}</h3>
+            {loading ? <div>加载中</div> : '加载更多'}</h3>
           : null}
       </div>
     }
