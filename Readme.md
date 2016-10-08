@@ -6,7 +6,7 @@
     + ant.design: React组件库
     + react-router: 页面路由
 - webpack: 编译打包工具
-- npm: nodejs保管理
+- npm: nodejs包管理
 - stylus: CSS预编译
 - jade: HTML模板
 - ECMASCRIPT 2015 / ECMASCRIPT 7, babeljs
