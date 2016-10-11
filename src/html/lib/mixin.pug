@@ -7,7 +7,7 @@ mixin js(name)
 mixin pureHead()
     meta(charset='UTF-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-    meta(name='viewport', content='width=device-width,minimum-scale=1.0,maximum-scale=2.0,user-scalable=yes')
+    meta(name='viewport', content='width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes')
     meta(http-equiv='Cache-Control', content='no-siteapp')
     meta(name='renderer', content='webkit')
     meta(name='screen-orientation', content='portrait')
@@ -20,7 +20,7 @@ mixin head()
     +css("/css/antd.min")
 
 mixin foot(withoutAntd)
-    script(src="http://cdn.bootcss.com/react/15.3.0/react.js")
+    script(src="http://cdn.bootcss.com/react/15.3.2/react.js")
     script.
         !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e(require("react"));else if("function"==typeof define&&define.amd)define(["react"],e);else{var f;f="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,f.ReactDOM=e(f.React)}}(function(e){return e.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED});
     script(src='http://cdn.bootcss.com/react-router/2.6.1/ReactRouter.min.js')

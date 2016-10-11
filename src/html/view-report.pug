@@ -1,0 +1,13 @@
+include lib/mixin
+doctype html
+
+html(lang="zh-cmn-Hans")
+    head
+        +head()
+        +css("/css/viewReport")
+        title 查看设备报告
+    body
+        #main
+        +foot(true)
+        script(src="/js/viewReport.js?t=_TIMESTAMP_")
+
