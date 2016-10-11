@@ -45,19 +45,21 @@ class BindPhoneModal extends React.Component {
     this.setState({sending: true})
     API.updatePhone(this.props.userId, this.state.phone, this.state.code)
       .then(() => {
+        this.setState({sending: false})
         message.success('手机绑定成功', 2)
         this.props.onSuccess(this.state.phone)
         this.onCancel()
       })
       .catch(() => {
+        this.setState({sending: false})
         message.error('验证码错误，请重试', 2)
       })
   }
 
   timeout (timer) {
     let interval = +new Date() - this.state.sendTime
-    if (interval < 60000) {
-      this.setState({timeText: `${60 - Math.round(interval / 1000)}s后重试`})
+    if (interval < 120000) {
+      this.setState({timeText: `${120 - Math.round(interval / 1000)}s后重试`})
     } else {
       this.setState({timeText: null})
       clearInterval(timer)
