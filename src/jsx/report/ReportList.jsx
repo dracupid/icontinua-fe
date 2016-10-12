@@ -11,7 +11,7 @@ const itemPerPage = 10
 // const currentActivitys = {
 //   zhongfangHz: (sid) => <Ad
 //     title={<div>先扫码关注透明售房网湖州站，才能查看完整体检报告</div>}
-//     img='http://cdnst.icontinua.com/img/res/zhongfangHz.jpg'/>
+//     img='//cdnst.icontinua.com/img/res/zhongfangHz.jpg'/>
 // }
 
 const currentActivitys = {}
@@ -92,7 +92,7 @@ class ReportList extends React.Component {
     let defaultAd = <Ad
       title='一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！'
       text={<div>皮皮夺宝（<a href='http://www.ppduobao.com'>www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
-      img='http://cdnst.icontinua.com/img/res/pipi.jpg' />
+      img='//cdnst.icontinua.com/img/res/pipi.jpg' />
 
     let ad
 

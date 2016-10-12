@@ -7,22 +7,22 @@ let ready = false // 微信是否已加载完成
 let cache = null  // 微信未加载成功时缓存设置的报告ID
 
 let {hostname, pathname, href} = window.location
-let pageUrl = 'http://' + hostname + pathname
+let pageUrl = 'https://' + hostname + pathname
 
 let isWeixin = /MicroMessenger/i.test(navigator.userAgent)
 
 let shareData = {
   title: '我的体检报告 @爱康体',
   desc: '查看我的"爱康体"体检报告',
-  imgUrl: 'http://icontinua.com/img/logo.png',
+  imgUrl: 'http://cdnst.icontinua.com/img/logo.png',
   link: 'http://icontinua.com'
 }
 
 let defaultShareData = {
   title: '快来体验爱康体吧',
   desc: '体验"爱康体"，读懂你自己',
-  link: 'http://icontinua.com/html/intro.html',
-  imgUrl: 'http://icontinua.com/img/logo.png'
+  link: 'http://cdnst.icontinua.com/html/intro.html',
+  imgUrl: 'http://cdnst.icontinua.com/img/logo.png'
 }
 
 // 配置微信

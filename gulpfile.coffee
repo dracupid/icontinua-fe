@@ -7,7 +7,7 @@ path = require 'path'
 cfg =
     src: './src/'
     dist: './dist/'
-    CDN: 'http://cdnst.icontinua.com'
+    CDN: '//cdnst.icontinua.com'
 
 # clean-css 配置
 cssminConfig =

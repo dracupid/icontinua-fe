@@ -24,7 +24,7 @@ function fileToBase64 (file) {
  * 用户拍照的图片组件
  */
 function ImgBlock (props) {
-  let thumbUrl = 'http://cdn-img.icontinua.com/photo/' + props.url + '@0o_0l_60Q_400w.src'
+  let thumbUrl = '//cdn-img.icontinua.com/photo/' + props.url + '@0o_0l_60Q_400w.src'
   return <div style={{backgroundImage: `url(${thumbUrl})`}} className='img-item' {...props}>
     <div className='btn-recognize' onClick={props.onRecognize}>
       <Button className='btn-recognize'>识别</Button>
@@ -232,7 +232,7 @@ class Photo extends React.Component {
       <div
         className='pop-image' style={{display: this.state.fullScreen ? 'block' : 'none'}}
         onClick={this.triggerFullScreen.bind(this, null)}>
-        <img src={'http://cdn.icontinua.com/photo/' + this.state.curImg} />
+        <img src={'//cdn.icontinua.com/photo/' + this.state.curImg} />
       </div>
     </div>
   }

@@ -73,7 +73,7 @@ class HeightWeight extends React.Component {
     return (
       <div>
         <div className='height-wrapper'>
-          <img src='http://cdnst.icontinua.com/img/body.png' />
+          <img src='//cdnst.icontinua.com/img/body.png' />
           <div className='line' />
           <div className='text'>身高<br />{height.value}CM</div>
           <KVMap
