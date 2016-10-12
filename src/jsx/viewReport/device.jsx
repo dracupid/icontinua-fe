@@ -33,7 +33,7 @@ class ReportList extends React.Component {
         i.zangfu,
         i.jizhui,
         i.xiaohua,
-        i.miniao,
+        i.miniao
       ].map((i) => _.isUndefined(i) ? '' : i)
     })
   }
@@ -41,63 +41,63 @@ class ReportList extends React.Component {
   columns = [{
     title: '用户',
     dataIndex: 'nickname',
-    key: 'nickname',
+    key: 'nickname'
   }, {
     title: '性别',
     dataIndex: 'sex',
-    key: 'sex',
+    key: 'sex'
   }, {
     title: '年龄',
     dataIndex: 'age',
-    key: 'age',
+    key: 'age'
   }, {
     title: '时间',
     dataIndex: 'timestamp',
-    key: 'timestamp',
+    key: 'timestamp'
   }, {
     title: '地点',
     dataIndex: 'location',
-    key: 'location',
+    key: 'location'
   }, {
     title: '身高',
     dataIndex: 'height',
-    key: 'height',
+    key: 'height'
   }, {
     title: '体重',
     dataIndex: 'weight',
-    key: 'weight',
+    key: 'weight'
   }, {
     title: '体脂',
     dataIndex: 'bodyFat',
-    key: 'bodyFat',
+    key: 'bodyFat'
   }, {
     title: '血压',
     dataIndex: 'bp',
-    key: 'bp',
+    key: 'bp'
   }, {
     title: '心率',
     dataIndex: 'heartRate',
-    key: 'heartRate',
+    key: 'heartRate'
   }, {
     title: '血氧',
     dataIndex: 'spo2h',
-    key: 'spo2h',
+    key: 'spo2h'
   }, {
     title: '脏腑',
     dataIndex: 'zangfu',
-    key: 'zangfu',
+    key: 'zangfu'
   }, {
     title: '脊椎',
     dataIndex: 'jizhui',
-    key: 'jizhui',
+    key: 'jizhui'
   }, {
     title: '消化',
     dataIndex: 'xiaohua',
-    key: 'xiaohua',
+    key: 'xiaohua'
   }, {
     title: '泌尿',
     dataIndex: 'miniao',
-    key: 'miniao',
+    key: 'miniao'
   }];
 
   state = {
@@ -131,13 +131,13 @@ class ReportList extends React.Component {
 
   render () {
     return <div>
-      <div className="title">{`设备ID：${this.props.did}，共${this.state.data ? this.state.data.length : 0}条`}
-        <DownloadCSV data={ReportList.formatForCSV(this.state.data)} name="aaa"
-                     header={_.pluck(this.columns, 'title')}/>
+      <div className='title'>{`设备ID：${this.props.did}，共${this.state.data ? this.state.data.length : 0}条`}
+        <DownloadCSV data={ReportList.formatForCSV(this.state.data)} name='aaa'
+          header={_.pluck(this.columns, 'title')} />
       </div>
       {this.state.loading
-        ? <Table columns={this.columns} loading={this.state.loading}/>
-        : <Table dataSource={this.state.data} columns={this.columns}/>}
+        ? <Table columns={this.columns} loading={this.state.loading} />
+        : <Table dataSource={this.state.data} columns={this.columns} />}
     </div>
   }
 }

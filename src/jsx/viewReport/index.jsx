@@ -8,9 +8,9 @@ import Footer from '../Components/Footer.jsx'
 ReactDOM.render((
   <div>
     <Router history={hashHistory}>
-      <Route path='/' component={DeviceReport}/>
-      <Route path='/device/:deviceId' component={DeviceReport}/>
+      <Route path='/' component={DeviceReport} />
+      <Route path='/device/:deviceId' component={DeviceReport} />
     </Router>
-    <Footer.InlineFooter/>
+    <Footer.InlineFooter />
   </div>
 ), document.getElementById('main'))
