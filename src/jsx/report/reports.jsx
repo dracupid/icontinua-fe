@@ -56,7 +56,7 @@ class Reports extends React.Component {
       avatar = <div className='header-right' onClick={() => {
         util.toUrl('/html/user.html#/' + this.props.params.userId)
       }}>
-        <img src={this.state.avatar} alt='' />
+        <img src={util.removeProtocol(this.state.avatar)} alt='' />
       </div>
     }
     return (

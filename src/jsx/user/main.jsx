@@ -12,7 +12,7 @@ import API from '../API/user.jsx'
  */
 function UserInfo ({avatar, nickname, sex, age, id}) {
   return <div className='user-info-banner block'>
-    <img src={avatar} className='avatar' />
+    <img src={util.removeProtocol(avatar)} className='avatar' />
     <div className='user-info-wrapper'>
       <div>{nickname}</div>
       <div>{'性别：' + (sex == null ? '未知' : util.parseSex(sex))}</div>

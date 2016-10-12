@@ -69,5 +69,13 @@ export default {
       }
     }
     return null
+  },
+
+  removeProtocol (url) {
+    if(url) {
+      return url.replace('http://', '//')
+    } else {
+      return ''
+    }
   }
 }

@@ -56,7 +56,7 @@ class Edit extends React.Component {
         title='我的资料' backUrl={util.getUrlByHash(`/${this.props.params.userId}`)}
         rightComponent={<div className='user-edit-save' onClick={::this.onSubmit}>{this.state.editing ? '保存' : '编辑'}</div>} />
       <div className='block-wrapper' style={{marginTop: 0}}>
-        <EditBlock tag='头像' value={<img src={avatar} className='avatar' />} noedit />
+        <EditBlock tag='头像' value={<img src={util.removeProtocol(avatar)} className='avatar' />} noedit />
         <EditBlock
           tag='用户名' type='text' value={nickname} editing={this.state.editing}
           onChange={this.onChangeBuilder('nickname')} />
