@@ -1,10 +1,19 @@
 import Table from 'antd/lib/table/index.js'
+import Button from 'antd/lib/button/index.js'
 import API from '../API/viewReport.jsx'
-import DownloadCSV from './csv.jsx'
+import CSV from 'comma-separated-values'
+import {saveAs} from 'file-saver'
+
+function DownloadCSV (props) {
+  return <Button type='primary' style={{marginLeft: '10px'}} onClick={() => {
+    let csv = new CSV(props.data, {header: props.header}).encode()
+    saveAs(new Blob([csv], {type: 'text/plain;charset=utf-8'}), props.name + '.csv')
+  }}>下载数据</Button>
+}
 
 class ReportList extends React.Component {
   static defaultProps = {
-    did: '00:00:46:81:27:01'
+    did: '74:23:44:BF:36:DC'
   }
 
   static formatDateTime (t) {
@@ -17,11 +26,11 @@ class ReportList extends React.Component {
     if (!data) return []
 
     return data.map((i) => {
-      console.log(i)
       return [
         i.nickname,
         i.sex,
         i.age,
+        i.phone,
         i.timestamp,
         i.location,
         i.height,
@@ -34,7 +43,7 @@ class ReportList extends React.Component {
         i.jizhui,
         i.xiaohua,
         i.miniao
-      ].map((i) => _.isUndefined(i) ? '' : i)
+      ].map((i) => _.isEmpty(i) ? '' : i)
     })
   }
 
@@ -50,6 +59,10 @@ class ReportList extends React.Component {
     title: '年龄',
     dataIndex: 'age',
     key: 'age'
+  }, {
+    title: '手机号码',
+    dataIndex: 'phone',
+    key: 'phone'
   }, {
     title: '时间',
     dataIndex: 'timestamp',
@@ -112,6 +125,7 @@ class ReportList extends React.Component {
         data.forEach((item, index) => {
           item.key = index
           item.nickname = item.user.nickname
+          item.phone = item.user.phone
           item.sex = item.user.sex === '1' ? '男' : '女'
           item.age = item.user.age
           item.timestamp = ReportList.formatDateTime(item.timestamp)
@@ -132,12 +146,12 @@ class ReportList extends React.Component {
   render () {
     return <div>
       <div className='title'>{`设备ID：${this.props.did}，共${this.state.data ? this.state.data.length : 0}条`}
-        <DownloadCSV data={ReportList.formatForCSV(this.state.data)} name='aaa'
-          header={_.pluck(this.columns, 'title')} />
+        <DownloadCSV data={ReportList.formatForCSV(this.state.data)} name={`${this.props.did}-${+new Date()}`}
+                     header={_.pluck(this.columns, 'title')}/>
       </div>
       {this.state.loading
-        ? <Table columns={this.columns} loading={this.state.loading} />
-        : <Table dataSource={this.state.data} columns={this.columns} />}
+        ? <Table columns={this.columns} loading={this.state.loading}/>
+        : <Table dataSource={this.state.data} columns={this.columns}/>}
     </div>
   }
 }
