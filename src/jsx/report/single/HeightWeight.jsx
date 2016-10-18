@@ -78,10 +78,10 @@ class HeightWeight extends React.Component {
           <div className='text'>身高<br />{height.value}CM</div>
           <KVMap
             obj={{
-              BMI: getValue(bmi).toFixed(1),
+              BMI指数: getValue(bmi).toFixed(1),
               脂肪率: getStringValue(bodyFat, ' %'),
               肌肉量: getStringValue(bodyMuscle, ' %'),
-              BMR: getStringValue(bodyKcal, ' kcal'),
+              基础代谢率: getStringValue(bodyKcal, ' kcal'),
               水分: getStringValue(bodyWater, ' %'),
               内脏脂肪: getStringValue(bodyViscera, '')}} />
         </div>

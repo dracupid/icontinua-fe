@@ -43,7 +43,7 @@ class ReportList extends React.Component {
         i.jizhui,
         i.xiaohua,
         i.miniao
-      ].map((i) => _.isEmpty(i) ? '' : i)
+      ].map((i) => i == null ? '' : i)
     })
   }
 
