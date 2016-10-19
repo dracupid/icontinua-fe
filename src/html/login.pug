@@ -1,0 +1,14 @@
+include lib/mixin
+doctype html
+
+html(lang="zh-cmn-Hans")
+    head
+        +head()
+        +css("/css/login")
+        title 登陆爱康体
+    body
+        #main
+
+        +foot()
+        script(src="/js/login.js?t=_TIMESTAMP_")
+
