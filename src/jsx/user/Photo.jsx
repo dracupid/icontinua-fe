@@ -25,7 +25,7 @@ function fileToBase64 (file) {
  */
 function ImgBlock (props) {
   let thumbUrl = '//cdn-img.icontinua.com/photo/' + props.url + '@0o_0l_60Q_400w.src'
-  return <div style={{backgroundImage: `url(${thumbUrl})`}} className='img-item' {...props}>
+  return <div style={{backgroundImage: `url(${thumbUrl})`}} className='img-item' onClick={props.onClick}>
     <div className='btn-recognize' onClick={props.onRecognize}>
       <Button className='btn-recognize'>识别</Button>
     </div>
@@ -53,7 +53,7 @@ class Photo extends React.Component {
   deletePhoto (img) {
     return (e) => {
       e.stopPropagation()
-      API.deletePhoto(this.props.params.userId, img)
+      API.deletePhoto(img)
         .then(() => {
           message.info('照片删除成功')
           let data = this.state.data
@@ -88,7 +88,7 @@ class Photo extends React.Component {
   upload () {
     this.setState({uploading: true})
     this.refs.cropper.getCroppedCanvas({fillColor: 'white'}).toBlob((blob) => {
-      API.uploadPhoto(this.props.params.userId, blob)
+      API.uploadPhoto(blob)
         .then((url) => {
           message.info('照片上传成功')
           let data = this.state.data
@@ -108,7 +108,7 @@ class Photo extends React.Component {
   }
 
   componentDidMount () {
-    API.getUserInfo(this.props.params.userId)
+    API.getUserInfo()
       .then((data) => {
         this.setState({data})
       })
@@ -211,7 +211,7 @@ class Photo extends React.Component {
     })()
 
     return <div>
-      <Banner title='化验单识别' backUrl={util.getUrlByHash(this.props.params.userId)} />
+      <Banner title='化验单识别' backUrl={util.getUrlByHash('')} />
       {btn}
       <div>
         {this.state.imgDataURL

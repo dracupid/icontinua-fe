@@ -81,7 +81,6 @@ class EditBlock extends React.Component {
       {rightIcon}
 
       <BindPhone
-        userId={this.props.userId}
         visible={this.state.binding}
         onCancel={::this.hideBindingModal}
         onSuccess={::this.onChange}

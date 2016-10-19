@@ -31,7 +31,7 @@ class Reports extends React.Component {
   }
 
   componentDidMount () {
-    API.reportList(this.props.params.userId)
+    API.reportList()
       .then((res) => {
         res.data = this.formatData(res.data)
         this.setState(res)
@@ -54,7 +54,7 @@ class Reports extends React.Component {
 
     if (this.state.avatar) {
       avatar = <div className='header-right' onClick={() => {
-        util.toUrl('/html/user.html#/' + this.props.params.userId)
+        util.toUrl('/html/user.html#/')
       }}>
         <img src={util.removeProtocol(this.state.avatar)} alt='' />
       </div>
@@ -66,11 +66,11 @@ class Reports extends React.Component {
         <div className='bottom-tab-wrapper'>
           <Tabs onChange={::this.changeHandler} activeKey={this.state.currentTab + ''} animation={null}>
             <TabPane tab={<div><i className='bg-record' /><p>{this.state.tabTitles[0]}</p></div>} key='0'>
-              <ReportList userId={this.props.params.userId} data={this.state.data} />
+              <ReportList data={this.state.data} />
               <Footer style={{marginBottom: '52px'}} />
             </TabPane>
             <TabPane tab={<div><i className='bg-trade' /><p>{this.state.tabTitles[1]}</p></div>} key='1'>
-              <ReportTrade userId={this.props.params.userId} data={this.state.data} />
+              <ReportTrade data={this.state.data} />
               <Footer />
             </TabPane>
           </Tabs>

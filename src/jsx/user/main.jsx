@@ -10,7 +10,7 @@ import API from '../API/user.jsx'
 /**
  * 用户信息组件
  */
-function UserInfo ({avatar, nickname, sex, age, id}) {
+function UserInfo ({avatar, nickname, sex, age}) {
   return <div className='user-info-banner block'>
     <img src={util.removeProtocol(avatar)} className='avatar' />
     <div className='user-info-wrapper'>
@@ -18,7 +18,7 @@ function UserInfo ({avatar, nickname, sex, age, id}) {
       <div>{'性别：' + (sex == null ? '未知' : util.parseSex(sex))}</div>
       <div>{'年龄：' + (age || '未知')}</div>
     </div>
-    <div className='user-info-edit' onClick={() => { location.hash = '#/edit/' + id }}>
+    <div className='user-info-edit' onClick={() => { location.hash = '#/edit' }}>
       <Icon type='edit' />
     </div>
   </div>
@@ -30,7 +30,7 @@ class Main extends React.Component {
   };
 
   componentDidMount () {
-    API.getUserInfo(this.props.params.userId)
+    API.getUserInfo()
       .then((data) => {
         this.setState({data})
       })
@@ -40,11 +40,12 @@ class Main extends React.Component {
     return <div>
       <Banner title='个人中心' />
       {this.state.data == null ? null : <div>
-        <UserInfo {...this.state.data} id={this.props.params.userId} />
+        <UserInfo {...this.state.data} />
         <div className='block-wrapper'>
-          <BannerBlock text='查看体检报告' icon='file-text' url={'/reports#/' + this.props.params.userId} />
+          <BannerBlock text='查看体检报告' icon='file-text' url='/reports#/' />
           <BannerBlock style={{display: util.getParam('channel') !== 'HuiLianHuZhou' ? 'flex' : 'none'}}
-            text={<span>化验单拍照识别<span className='beta'>测试版</span></span>} icon='camera-o' url={util.getUrlByHash('/photo/' + this.props.params.userId)} />
+            text={<span>化验单拍照识别<span className='beta'>测试版</span></span>} icon='camera-o'
+            url={util.getUrlByHash('/photo/')} />
         </div>
       </div>
       }

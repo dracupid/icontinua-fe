@@ -15,7 +15,7 @@ class Edit extends React.Component {
   };
 
   componentDidMount () {
-    API.getUserInfo(this.props.params.userId)
+    API.getUserInfo()
       .then((data) => {
         this.setState({data})
       })
@@ -28,7 +28,7 @@ class Edit extends React.Component {
     if (this.state.editing) {
       let data = _.merge(this.state.data, this.state.newData)
 
-      API.updateUserInfo(this.props.params.userId, data)
+      API.updateUserInfo(data)
         .then(() => {
           message.info('更新个人资料成功')
           this.setState({editing: false, data})
@@ -53,7 +53,7 @@ class Edit extends React.Component {
     let {avatar, nickname, sex, age, phone, ssid} = this.state.data
     return <div>
       <Banner
-        title='我的资料' backUrl={util.getUrlByHash(`/${this.props.params.userId}`)}
+        title='我的资料' backUrl={util.getUrlByHash(`/`)}
         rightComponent={<div className='user-edit-save' onClick={::this.onSubmit}>{this.state.editing ? '保存' : '编辑'}</div>} />
       <div className='block-wrapper' style={{marginTop: 0}}>
         <EditBlock tag='头像' value={<img src={util.removeProtocol(avatar)} className='avatar' />} noedit />
@@ -68,7 +68,6 @@ class Edit extends React.Component {
           value={age} editing={this.state.editing} onChange={this.onChangeBuilder('age')} />
         <EditBlock
           tag='联系电话' type='phone' pattern={/^\d*$/}
-          userId={this.props.params.userId}
           value={phone} editing={this.state.editing} onChange={this.onChangeBuilder('phone')} />
         <EditBlock
           tag='社保卡号' type='text' pattern={/^\d*$/}

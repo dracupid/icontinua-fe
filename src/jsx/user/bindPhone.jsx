@@ -16,8 +16,7 @@ class BindPhoneModal extends React.Component {
   static propTypes = {
     visible: React.PropTypes.bool.isRequired,
     onCancel: React.PropTypes.func.isRequired,
-    onSuccess: React.PropTypes.func.isRequired,
-    userId: React.PropTypes.string
+    onSuccess: React.PropTypes.func.isRequired
   };
 
   state = {
@@ -43,7 +42,7 @@ class BindPhoneModal extends React.Component {
 
   onSubmit () {
     this.setState({sending: true})
-    API.updatePhone(this.props.userId, this.state.phone, this.state.code)
+    API.updatePhone(this.state.phone, this.state.code)
       .then(() => {
         this.setState({sending: false})
         message.success('手机绑定成功', 2)

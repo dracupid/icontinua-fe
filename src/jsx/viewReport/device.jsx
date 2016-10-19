@@ -147,11 +147,11 @@ class ReportList extends React.Component {
     return <div>
       <div className='title'>{`设备ID：${this.props.did}，共${this.state.data ? this.state.data.length : 0}条`}
         <DownloadCSV data={ReportList.formatForCSV(this.state.data)} name={`${this.props.did}-${+new Date()}`}
-                     header={_.pluck(this.columns, 'title')}/>
+          header={_.pluck(this.columns, 'title')} />
       </div>
       {this.state.loading
-        ? <Table columns={this.columns} loading={this.state.loading}/>
-        : <Table dataSource={this.state.data} columns={this.columns}/>}
+        ? <Table columns={this.columns} loading={this.state.loading} />
+        : <Table dataSource={this.state.data} columns={this.columns} />}
     </div>
   }
 }

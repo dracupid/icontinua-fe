@@ -21,13 +21,9 @@ export default {
   },
   /**
    * 获取报告列表
-   * @param userId 用户UUID
    */
-  reportList: (userId) => {
-    if (!userId) {
-      return Promise.reject('userId not provided.')
-    }
-    return API('/api/report/list?id=' + userId)
+  reportList: () => {
+    return API('/api/s/report/list')
   },
   /**
    * 获取中医报告

@@ -20,9 +20,8 @@ cacheImg('//cdnst.icontinua.com/img/wave.png')
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path='/' component={reports} />
-    <Route path='/:userId' component={reports} />
+    <Route path='/:reportId' component={report} />
     <Route path='/s/:sid' component={report} />
     <Route path='/share/:reportId' component={report} />
-    <Route path='/:userId/:reportId' component={report} />
   </Router>
 ), document.getElementById('main'))

@@ -72,7 +72,7 @@ export default {
   },
 
   removeProtocol (url) {
-    if(url) {
+    if (url) {
       return url.replace('http://', '//')
     } else {
       return ''

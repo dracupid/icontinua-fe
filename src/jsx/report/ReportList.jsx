@@ -18,7 +18,6 @@ const currentActivitys = {}
 
 class ReportList extends React.Component {
   static propTypes = {
-    userId: React.PropTypes.string,
     data: React.PropTypes.object
   };
 
@@ -31,10 +30,8 @@ class ReportList extends React.Component {
     //   message.info('请按提示查看最新报告')
     //   return
     // }
-    let {userId} = this.props
-    if (!userId) return
 
-    util.toUrl(`/reports#/${userId}/${reportId}`)
+    util.toUrl(`/reports#/${reportId}`)
   }
 
   onChangePage (pageNum) {

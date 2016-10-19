@@ -11,9 +11,8 @@ ReactDOM.render((
   <div>
     <Router history={hashHistory}>
       <Route path='/' component={main} />
-      <Route path='/edit/:userId' component={edit} />
-      <Route path='/photo/:userId' component={Photo} />
-      <Route path='/:userId' component={main} />
+      <Route path='/edit' component={edit} />
+      <Route path='/photo' component={Photo} />
     </Router>
     <Footer />
   </div>
