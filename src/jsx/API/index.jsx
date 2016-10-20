@@ -45,7 +45,7 @@ export default function (url, opt = {}) {
       }
     })
     .then((json) => {
-      let data = opt.raw ? json : (json.data || {})
+      let data = opt.raw ? json : (json.data == null ? {} : json.data)
       if (!opt.noCache) _cache[url] = data
       return data
     })
