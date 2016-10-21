@@ -10,7 +10,7 @@ export default {
    * 获取化验单项目解读
    * @param name
    */
-  fetchItem: (name) => API('/api/libsheet/item?name=' + name),
+  fetchItem: (name) => API('/api/libsheet/item?name=' + encodeURIComponent(name).replace(/\(/g, '%28').replace(/\)/g, '%29')),
   /**
    * 化验单识别
    * @param imgName 图片名称

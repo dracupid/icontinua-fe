@@ -6,6 +6,7 @@ import Tips from '../../Components/Tips.jsx'
 import Rank from '../../Components/Rank.jsx'
 import reportUtil from '../util.jsx'
 import {baseGaugeOpt} from '../../report/option.jsx'
+import Util from '../../util.jsx'
 let {getValue} = reportUtil
 
 class Blood extends React.Component {
@@ -55,6 +56,11 @@ class Blood extends React.Component {
     let {high, low, bp, beat, user} = this.props
     let width = '200%'
     let height = '300'
+
+    if (bp.result.indexOf('HIGH') >= 0 && Util.getParam("channel") === 'Huzhou') {
+      bp.advice = bp.advice.replace('保持心理平衡。', '保持心理平衡，可增加物理理疗，经络推拿，艾灸等调理。')
+    }
+
     return (
       <div className='blood-tab'>
         <div className='flex-box'>

@@ -62,7 +62,8 @@ $red = #DF5353
 
 // 底部tab覆盖样式
 .bottom-tab-wrapper > .ant-tabs > .ant-tabs-bar
-    margin-bottom 0
+    //    margin-bottom 0
+    border-bottom none
     .ant-tabs-nav-container
         position fixed
         bottom 0
@@ -70,17 +71,15 @@ $red = #DF5353
         width 100%
     .ant-tabs-tab
         background-color #fff
+        font-weight bold
+        font-size 11px
+        padding 0
+        padding-top 5px
+        &:hover
+            color inherit
         .tab-icon
             top 0
             margin auto !important
-        .ant-tabs-tab-inner
-            height 50px
-            font-weight bold
-            font-size 11px
-            padding 0
-            padding-top 5px
-            &:hover
-                color inherit
         p
             margin-top -3px
             margin-bottom 1px
@@ -102,6 +101,10 @@ $red = #DF5353
         font-size 15px
         border 1px solid $green
         border-right none
+        color $green !important
+        padding 0
+        text-align center
+        line-height 30px
         &:nth-child(2)
             border-top-left-radius 4px
             border-bottom-left-radius 4px
@@ -109,15 +112,11 @@ $red = #DF5353
             border-right 1px solid $green
             border-top-right-radius 4px
             border-bottom-right-radius 4px
-        .ant-tabs-tab-inner
-            color $green !important
-            padding 0
-            text-align center
-            middle(30px)
+        //.ant-tabs-tab-inner
+
         &.ant-tabs-tab-active
-            .ant-tabs-tab-inner
-                color #fff !important
-                background-color $green
+            color #fff !important
+            background-color $green
 
     .ant-tabs-bar
         border-bottom none !important
@@ -125,10 +124,9 @@ $red = #DF5353
 #report-list
     #list-timeline
         padding-top 20px
-        padding-left 5px
+        //padding-left 5px
         margin-bottom 30px
         .timeline-wrapper
-            padding-left 0
             list-style-type none
         .timeline-item
             display block
@@ -140,7 +138,7 @@ $red = #DF5353
             margin auto
             width 100%
             .timeline-item-middle
-                absolute top 10px left 33%
+                absolute top 10px left 36%
                 size 14px 100%
                 .timeline-item-id
                     border-radius 50%
@@ -156,7 +154,7 @@ $red = #DF5353
                     border-left: 2px solid #bebebe;
                     z-index -1
             .timeline-item-content
-                absolute top 25px left 40%
+                absolute top 25px right 2%
                 width 55%
                 line-height 21px
                 min-height 21px
@@ -170,7 +168,7 @@ $red = #DF5353
                     border-bottom 5px solid transparent
                     absolute top 7px left -9px
             .timestamp
-                absolute top 0 right 70%
+                absolute top 0 left 2%
                 border-radius 3px
                 background-color $green_dark
                 size 97px 32px
@@ -210,11 +208,11 @@ $red = #DF5353
         img
             height 100%
         .line
-            size(10px, 100%)
+            size(6px, 100%)
             border 2px #80cbc4 solid
             border-left none
         .text
-            padding-left 10px
+            padding-left 6px
             font-size 1.2em
             font-weight bold
     .kv-map-wrapper
