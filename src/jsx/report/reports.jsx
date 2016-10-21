@@ -64,7 +64,7 @@ class Reports extends React.Component {
         <Banner title={this.state.tabTitles[this.state.currentTab]} rightComponent={avatar} />
 
         <div className='bottom-tab-wrapper'>
-          <Tabs onChange={::this.changeHandler} activeKey={this.state.currentTab + ''} animation={null}>
+          <Tabs onChange={::this.changeHandler} activeKey={this.state.currentTab + ''} tabPosition="bottom" animated={false}>
             <TabPane tab={<div><i className='bg-record' /><p>{this.state.tabTitles[0]}</p></div>} key='0'>
               <ReportList userId={this.props.params.userId} data={this.state.data} />
               <Footer style={{marginBottom: '52px'}} />

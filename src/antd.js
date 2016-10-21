@@ -1,4 +1,5 @@
 'use strict'
+import Upload from 'antd/lib/upload'
 
 window.ANTD = {
   Tabs: require('antd/lib/tabs'),
@@ -16,7 +17,7 @@ window.ANTD = {
   notification: require('antd/lib/notification'),
   Carousel: require('antd/lib/carousel'),
   Rate: require('antd/lib/rate'),
-  Upload: require('antd/lib/upload'),
+  Upload,
   Card: require('antd/lib/card'),
   Steps: require('antd/lib/steps')
 }
