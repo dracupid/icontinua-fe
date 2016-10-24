@@ -31,8 +31,10 @@ export default {
   /**
    * 发送验证码
    * @param phone 手机号码
+   * @param ensureExist 是否验证手机号码存在
+
    */
-  sendCode: (phone) => API(`/api/user/phone/send_code?phone=${phone}`),
+  sendCode: (phone, ensureExist = false) => API(`/api/user/phone/send_code?phone=${phone}&ensureExist=${ensureExist}`),
 
   /**
    * 绑定手机号码
