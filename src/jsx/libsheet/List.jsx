@@ -82,7 +82,7 @@ class ListSheet extends React.Component {
           originInfo: _.clone(data.info, true),
           originData: _.clone(data.items, true)
         })
-        if (data.state === 'FINISHED') {
+        if (data.state === 'FINISHED' || data.state === 'CONFIRMED') {
           interval && clearInterval(interval)
         } else if (data.state === 'ERROR') {
           interval && clearInterval(interval)
