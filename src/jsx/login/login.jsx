@@ -8,14 +8,13 @@ function redirect () {
 }
 const formItemLayout = {
   labelCol: {span: 6},
-  wrapperCol: {span: 14},
-};
-
+  wrapperCol: {span: 14}
+}
 
 class WechatLogin extends React.Component {
   state = {
     qrcode: '',
-    id: null,
+    id: null
   };
 
   componentDidMount () {
@@ -35,10 +34,9 @@ class WechatLogin extends React.Component {
   }
 
   render () {
-    return <img src={this.state.qrcode} style={{width: '200px'}}/>
+    return <img src={this.state.qrcode} style={{width: '200px'}} />
   }
 }
-
 
 class SSIDLogin extends React.Component {
   onSubmit (e) {
@@ -53,12 +51,12 @@ class SSIDLogin extends React.Component {
   }
 
   render () {
-    const {getFieldDecorator} = this.props.form;
+    const {getFieldDecorator} = this.props.form
 
     return <Form method='post' onSubmit={::this.onSubmit}>
       <FormItem label='社保卡号' {...formItemLayout}>
         {getFieldDecorator('username')(
-          <Input placeholder='请输入社保卡号'/>
+          <Input placeholder='请输入社保卡号' />
         )}
       </FormItem>
       <FormItem wrapperCol={{span: 16, offset: 6}} style={{marginTop: 24}}>
@@ -88,20 +86,20 @@ class PhoneLogin extends React.Component {
   }
 
   render () {
-    const {getFieldDecorator} = this.props.form;
+    const {getFieldDecorator} = this.props.form
 
     return <Form horizontal method='post' onSubmit={::this.onSubmit}>
       <FormItem label='手机号码' {...formItemLayout}>
         {getFieldDecorator('phone')(
-          <div className="flex-inline">
-            <Input placeholder='请输入手机号码'/>
+          <div className='flex-inline'>
+            <Input placeholder='请输入手机号码' />
             <Button type='primary' onClick={::this.onSend}>发送验证码</Button>
           </div>
         )}
       </FormItem>
       <FormItem label='验证码' {...formItemLayout}>
         {getFieldDecorator('code')(
-          <Input placeholder='请输入验证码'/>
+          <Input placeholder='请输入验证码' />
         )}
       </FormItem>
       <FormItem wrapperCol={{span: 16, offset: 6}} style={{marginTop: 24}}>
@@ -116,21 +114,20 @@ SSIDLogin = Form.create()(SSIDLogin)
 class Login extends React.Component {
   render () {
     return (
-      <Tabs defaultActiveKey="1" animated={false}>
-        <Tabs.TabPane tab={<span><Icon type="phone"/>手机登录</span>} key="1">
+      <Tabs defaultActiveKey='1' animated={false}>
+        <Tabs.TabPane tab={<span><Icon type='phone' />手机登录</span>} key='1'>
           <PhoneLogin />
         </Tabs.TabPane>
-        <Tabs.TabPane tab={<span><Icon type="qrcode"/>微信登录</span>} key="2">
+        <Tabs.TabPane tab={<span><Icon type='qrcode' />微信登录</span>} key='2'>
           <WechatLogin />
         </Tabs.TabPane>
-        <Tabs.TabPane tab={<span><Icon type="credit-card"/>社保登录</span>} key="3">
+        <Tabs.TabPane tab={<span><Icon type='credit-card' />社保登录</span>} key='3'>
           <SSIDLogin />
         </Tabs.TabPane>
       </Tabs>
     )
   }
 }
-
 
 ReactDOM.render((
   <Login />

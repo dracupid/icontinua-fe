@@ -57,7 +57,7 @@ class Blood extends React.Component {
     let width = '200%'
     let height = '300'
 
-    if (bp.result.indexOf('HIGH') >= 0 && Util.getParam("channel") === 'DeYuan') {
+    if (bp.result.indexOf('HIGH') >= 0 && Util.getParam('channel') === 'DeYuan') {
       bp.advice = bp.advice.replace('保持心理平衡。', '保持心理平衡，可增加物理理疗，经络推拿，艾灸等调理。')
     }
 
