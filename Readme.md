@@ -15,6 +15,8 @@
 ## 相关脚本
 - 编译(除三方库): `gulp build`
 - 完整编译: `gulp`
+- 实时预览: `gulp watch`
 - 代码审查: `npm run lint`
+- 自动修正代码样式: `npm run fix`
 - 部署到苏州开发机: `./deploy-dev.sh`
 - 部署到阿里云: `./deploy-production.sh`
