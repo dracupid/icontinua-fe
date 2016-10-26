@@ -71,7 +71,7 @@ class PhoneLogin extends React.Component {
   onSend () {
     let {phone} = this.props.form.getFieldsValue()
     console.log(phone)
-    // APIU.sendCode(phone, true)
+    APIU.sendCode(phone, true)
   }
 
   onSubmit (e) {
