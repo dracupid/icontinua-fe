@@ -1,23 +1,41 @@
 'use strict'
+
 import Upload from 'antd/lib/upload'
+import Radio from 'antd/lib/radio'
+import Tabs from 'antd/lib/tabs'
+import Modal from 'antd/lib/modal'
+import message from 'antd/lib/message'
+import Alert from 'antd/lib/alert'
+import Spin from 'antd/lib/spin'
+import Icon from 'antd/lib/icon'
+import Button from 'antd/lib/button'
+import Form from 'antd/lib/form'
+import InputNumber from 'antd/lib/input-number'
+import Pagination from 'antd/lib/pagination'
+import Input from 'antd/lib/input'
+import notification from 'antd/lib/notification'
+import Carousel from 'antd/lib/carousel'
+import Rate from 'antd/lib/rate'
+import Card from 'antd/lib/card'
+import Steps from 'antd/lib/steps'
 
 window.ANTD = {
-  Tabs: require('antd/lib/tabs'),
-  Modal: require('antd/lib/modal'),
-  message: require('antd/lib/message'),
-  Alert: require('antd/lib/alert'),
-  Spin: require('antd/lib/spin'),
-  Icon: require('antd/lib/icon'),
-  Button: require('antd/lib/button'),
-  Form: require('antd/lib/form'),
-  InputNumber: require('antd/lib/input-number'),
-  Radio: require('antd/lib/radio'),
-  Pagination: require('antd/lib/pagination'),
-  Input: require('antd/lib/input'),
-  notification: require('antd/lib/notification'),
-  Carousel: require('antd/lib/carousel'),
-  Rate: require('antd/lib/rate'),
+  Tabs,
+  Modal,
+  message,
+  Alert,
+  Spin,
+  Icon,
+  Button,
+  Form,
+  InputNumber,
+  Radio,
+  Pagination,
+  Input,
+  notification,
+  Carousel,
+  Rate,
   Upload,
-  Card: require('antd/lib/card'),
-  Steps: require('antd/lib/steps')
+  Card,
+  Steps
 }
