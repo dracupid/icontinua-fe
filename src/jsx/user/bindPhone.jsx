@@ -45,7 +45,7 @@ class BindPhoneModal extends React.Component {
     API.updatePhone(this.state.phone, this.state.code)
       .then(() => {
         this.setState({sending: false})
-        message.success('手机绑定成功', 2)
+        message.success('会员验证成功', 2)
         this.props.onSuccess(this.state.phone)
         this.onCancel()
       })
@@ -101,7 +101,7 @@ class BindPhoneModal extends React.Component {
   render () {
     return <Modal
       visible={this.props.visible}
-      title='绑定手机'
+      title='会员验证'
       onCancel={this.props.onCancel}
       footer={[
         <Button key='ok' type='ghost' size='large' onClick={::this.onSubmit}
