@@ -24,3 +24,5 @@ temp
 
 dist
 .cache
+
+*.lock
