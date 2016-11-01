@@ -58,7 +58,7 @@ class EditBlock extends React.Component {
             return <div>
               <span style={{fontSize: '12px'}}>{value}</span>
               <Button type='ghost' onClick={::this.showBindingModal} style={{marginLeft: '8px'}}>{value ? '更换'
-                : '绑定手机'}</Button>
+                : '会员验证'}</Button>
             </div>
         }
       } else {

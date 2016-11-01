@@ -107,7 +107,7 @@ class ReportList extends React.Component {
 
     return (
       <div id='list-timeline'>
-        {ad}
+        {/*{ad}*/}
         {
           util.getParam('channel') !== 'HuiLianHuZhou'
           ? <div style={{textAlign: 'center', fontSize: '19px', padding: '5px 0', color: '#E9642B'}}>您的爱康体体检报告，请点击查看</div>
