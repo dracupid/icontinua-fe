@@ -9,7 +9,7 @@ function isValidPhone (phone) {
 }
 
 function isValidCode (phone) {
-  return /^\d{4}$/.test(phone)
+  return /^\d{6}$/.test(phone)
 }
 
 class BindPhoneModal extends React.Component {
