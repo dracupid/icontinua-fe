@@ -9,6 +9,7 @@ ReactDOM.render((
   <div>
     <Router history={hashHistory}>
       <Route path='/' component={DeviceReport} />
+      <Route path='/:channel' component={DeviceReport} />
       <Route path='/device/:deviceId' component={DeviceReport} />
     </Router>
     <Footer.InlineFooter />

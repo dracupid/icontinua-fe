@@ -1,8 +1,11 @@
 import Table from 'antd/lib/table/index.js'
 import Button from 'antd/lib/button/index.js'
+import DatePicker from 'antd/lib/date-picker/index.js'
 import API from '../API/viewReport.jsx'
 import CSV from 'comma-separated-values'
 import {saveAs} from 'file-saver'
+import moment from 'moment'
+window.moment = moment
 
 function DownloadCSV (props) {
   return <Button type='primary' style={{marginLeft: '10px'}} onClick={() => {
@@ -115,11 +118,25 @@ class ReportList extends React.Component {
 
   state = {
     loading: true,
-    _data: null
+    _data: null,
+    data: null,
+    startDate: null,
+    endDate: null,
+    endOpen: false
   };
 
+  resolveDid () {
+    if (this.props.params.deviceId != null) {
+      return this.props.params.deviceId
+    } else if (this.props.params.channel == 'deyuan') {
+      return '74:23:44:BF:46:AB'
+    } else {
+      return this.props.did
+    }
+  }
+
   loadData () {
-    API.fetchData(this.props.did)
+    API.fetchData(this.resolveDid())
       .then((data) => {
         let _data = _.clone(data, true)
         data.forEach((item, index) => {
@@ -128,10 +145,11 @@ class ReportList extends React.Component {
           item.phone = item.user.phone
           item.sex = item.user.sex === '1' ? '男' : '女'
           item.age = item.user.age
+          item._timestamp = item.timestamp
           item.timestamp = ReportList.formatDateTime(item.timestamp)
           item.bp = _.isUndefined(item.dbp) ? '' : `${item.dbp}/${item.sbp}`
         })
-        this.setState({loading: false, _data, data})
+        this.setState({loading: false, _data, data, dataSource: data})
       })
       .catch((e) => {
         this.setState({loading: false})
@@ -143,15 +161,79 @@ class ReportList extends React.Component {
     this.loadData()
   }
 
+  filterDate () {
+    let {data} = this.state
+    let dataSource = _.filter(data, (item) => {
+      return moment(item._timestamp).isBetween(
+        this.state.startDate || moment('2000-01-01'),
+        this.state.endDate || moment('2099-01-01'))
+    })
+    this.setState({dataSource})
+  }
+
+  disabledStartDate (startDate) {
+    if (!startDate || !this.state.endDate) {
+      return false;
+    }
+    return startDate.valueOf() > this.state.endDate.valueOf();
+  }
+
+  disabledEndDate (endDate) {
+    if (!endDate || !this.state.startDate) {
+      return false;
+    }
+    return endDate.valueOf() <= this.state.startDate.valueOf();
+  }
+
+  onStartChange (value) {
+    this.setState({startDate: value}, ::this.filterDate);
+  }
+
+  onEndChange (value) {
+    this.setState({endDate: value}, ::this.filterDate);
+  }
+
+  handleStartOpenChange (open) {
+    if (!open) {
+      this.setState({endOpen: true});
+    }
+  }
+
+  handleEndOpenChange (open) {
+    this.setState({endOpen: open});
+  }
+
   render () {
     return <div>
-      <div className='title'>{`设备ID：${this.props.did}，共${this.state.data ? this.state.data.length : 0}条`}
-        <DownloadCSV data={ReportList.formatForCSV(this.state.data)} name={`${this.props.did}-${+new Date()}`}
-          header={_.pluck(this.columns, 'title')} />
+      <div className='title'>{`设备ID：${this.resolveDid()}，共${this.state.dataSource ? this.state.dataSource.length : 0}条, 来自${
+        this.state.dataSource ? _(this.state.dataSource).pluck('nickname').uniq().run().length : 0
+        }名用户`}
+        <DownloadCSV data={ReportList.formatForCSV(this.state.dataSource)} name={`${this.resolveDid()}-${+new Date()}`}
+                     header={_.pluck(this.columns, 'title')}/>
+      </div>
+      <div>
+        从
+        <DatePicker
+          disabledDate={::this.disabledStartDate}
+          value={this.state.startDate}
+          placeholder="开始日期"
+          onChange={::this.onStartChange}
+          onOpenChange={::this.handleStartOpenChange}
+        />
+        到
+        <DatePicker
+          disabledDate={::this.disabledEndDate}
+          value={this.state.endDate}
+          placeholder="结束日期"
+          onChange={::this.onEndChange}
+          open={this.state.endOpen}
+          onOpenChange={::this.handleEndOpenChange}
+        />
       </div>
       {this.state.loading
-        ? <Table columns={this.columns} loading={this.state.loading} />
-        : <Table dataSource={this.state.data} columns={this.columns} />}
+        ? <Table columns={this.columns} loading={this.state.loading}/>
+        : <Table dataSource={this.state.dataSource} columns={this.columns}
+                 pagination={{total: this.state.dataSource.length, pageSize: 15}}/>}
     </div>
   }
 }
