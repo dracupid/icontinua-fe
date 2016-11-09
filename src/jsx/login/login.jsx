@@ -4,7 +4,7 @@ import API from '../API/login.jsx'
 import APIU from '../API/user.jsx'
 import Util from '../util.jsx'
 function redirect () {
-  location.href = decodeURIComponent(Util.getParam('url') || '/reports')
+  location.href = decodeURIComponent(Util.getParam('url') || '/reports').replace(/^\/?cloudhealth/, '')
 }
 const formItemLayout = {
   labelCol: {span: 6},
