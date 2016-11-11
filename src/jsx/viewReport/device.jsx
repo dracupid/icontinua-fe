@@ -175,27 +175,29 @@ class ReportList extends React.Component {
     if (!startDate || !this.state.endDate) {
       return false;
     }
-    return startDate.valueOf() > this.state.endDate.valueOf();
+    return startDate.valueOf() > this.state.endDate.valueOf()
   }
 
   disabledEndDate (endDate) {
     if (!endDate || !this.state.startDate) {
       return false;
     }
-    return endDate.valueOf() <= this.state.startDate.valueOf();
+    return endDate.valueOf() <= this.state.startDate.valueOf()
   }
 
   onStartChange (value) {
-    this.setState({startDate: value}, ::this.filterDate);
+    value.second(0).minute(0).hour(0)
+    this.setState({startDate: value}, ::this.filterDate)
   }
 
   onEndChange (value) {
-    this.setState({endDate: value}, ::this.filterDate);
+    value.second(0).minute(0).hour(0)
+    this.setState({endDate: value}, ::this.filterDate)
   }
 
   handleStartOpenChange (open) {
     if (!open) {
-      this.setState({endOpen: true});
+      this.setState({endOpen: true})
     }
   }
 
