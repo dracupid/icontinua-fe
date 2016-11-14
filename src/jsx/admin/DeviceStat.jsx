@@ -29,7 +29,7 @@ export default class Channel extends React.Component {
             <div style={{margin: 5}}>
               {`总关注：${user_num_subscribe}人，关注${total_subscribe}次；总测量：${user_num_reports}人，测量${total_reports}次`}
             </div>
-            <BasicStat dataScan={{arr: this.state.data.report || [], name: '测量', uniqKey: 'userId'}}
+            <BasicStat dataScan={{arr: this.state.data.reports || [], name: '测量', uniqKey: 'userId'}}
               dataSubscribe={{arr: this.state.data.subscribe || [], name: '关注', uniqKey: 'uid'}} />
           </div>
         }

@@ -11,7 +11,10 @@ export default function () {
     <SubMenu key='m1' title={<span><Icon type='mobile' />设备管理</span>}>
       <Item key='1-1'><a href='#/device/stat'>推广统计</a></Item>
     </SubMenu>
-    <Item key='2'><span><Icon type='qrcode' /><a href='#/channel'>渠道二维码管理</a></span></Item>
+    <SubMenu key='2' title={<span><Icon type='qrcode' />渠道二维码管理</span>}>
+      <Item key='2-1'><a href='#/channel/create'>生成二维码</a></Item>
+      <Item key='2-2'><a href='#/channel'>推广统计</a></Item>
+    </SubMenu>
 
   </Menu>
 }

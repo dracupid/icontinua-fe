@@ -26,21 +26,21 @@ export default class Stat extends React.Component {
     dataIndex: 'time',
     key: 'time'
   }, {
-    title: this.props.dataSubscribe.name + '次数',
-    key: 'subscribe',
-    dataIndex: 'subscribe'
-  }, {
     title: this.props.dataSubscribe.name + '人数',
     key: 'subscribe_u',
     dataIndex: 'subscribe_u'
   }, {
-    title: this.props.dataScan.name + '次数',
-    key: 'scan',
-    dataIndex: 'scan'
+    title: this.props.dataSubscribe.name + '次数',
+    key: 'subscribe',
+    dataIndex: 'subscribe'
   }, {
     title: this.props.dataScan.name + '人数',
     key: 'scan_u',
     dataIndex: 'scan_u'
+  }, {
+    title: this.props.dataScan.name + '次数',
+    key: 'scan',
+    dataIndex: 'scan'
   }];
 
   componentWillMount () {

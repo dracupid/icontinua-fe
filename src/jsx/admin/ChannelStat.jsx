@@ -22,6 +22,7 @@ export default class Device extends React.Component {
         <Breadcrumb.Item>{this.props.params.name}</Breadcrumb.Item>
       </Breadcrumb>
       <br />
+
       {(() => {
         if (this.state.data) {
           let {total_subscribe, total_scan, user_num_subscribe, user_num_scan} = this.state.data
