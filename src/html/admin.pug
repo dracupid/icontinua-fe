@@ -1,0 +1,14 @@
+include lib/mixin
+doctype html
+
+html(lang="zh-cmn-Hans")
+    head
+        +head()
+        +css("/css/admin")
+        title 爱康体数据管理平台
+    body
+        #main
+
+        +foot()
+        script(src="/js/admin.js?t=_TIMESTAMP_")
+

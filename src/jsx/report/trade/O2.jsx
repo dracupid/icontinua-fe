@@ -21,7 +21,7 @@ class O2 extends React.Component {
     for (let k in data) {
       v = data[k]
       if (v.spo2h) {
-        res.xs.unshift(reportUtil.formatTime(v.timestamp))
+        res.xs.unshift(reportUtil.formatDate(v.timestamp))
         res.O2.unshift(parseFloat(v.spo2h))
       }
     }

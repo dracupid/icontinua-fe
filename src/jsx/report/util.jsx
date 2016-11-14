@@ -46,7 +46,7 @@ export default {
    * @param t 时间字符串
    * @returns {string}
      */
-  formatTime (t) {
+  formatDate (t) {
     t = new Date(parseInt(t, 10))
     return `${t.getFullYear()}/${t.getMonth() + 1}/${t.getDate()}`
   },

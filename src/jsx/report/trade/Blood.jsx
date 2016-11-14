@@ -23,7 +23,7 @@ class Blood extends React.Component {
     for (let k in data) {
       v = data[k]
       if (v.sbp) {
-        res.xs.unshift(reportUtil.formatTime(v.timestamp))
+        res.xs.unshift(reportUtil.formatDate(v.timestamp))
         res.high.unshift(~~v.sbp)
         res.low.unshift(~~v.dbp)
         res.beat.unshift(~~v.heartRate)

@@ -173,14 +173,14 @@ class ReportList extends React.Component {
 
   disabledStartDate (startDate) {
     if (!startDate || !this.state.endDate) {
-      return false;
+      return false
     }
     return startDate.valueOf() > this.state.endDate.valueOf()
   }
 
   disabledEndDate (endDate) {
     if (!endDate || !this.state.startDate) {
-      return false;
+      return false
     }
     return endDate.valueOf() <= this.state.startDate.valueOf()
   }
@@ -202,7 +202,7 @@ class ReportList extends React.Component {
   }
 
   handleEndOpenChange (open) {
-    this.setState({endOpen: open});
+    this.setState({endOpen: open})
   }
 
   render () {
@@ -211,14 +211,14 @@ class ReportList extends React.Component {
         this.state.dataSource ? _(this.state.dataSource).pluck('nickname').uniq().run().length : 0
         }名用户`}
         <DownloadCSV data={ReportList.formatForCSV(this.state.dataSource)} name={`${this.resolveDid()}-${+new Date()}`}
-                     header={_.pluck(this.columns, 'title')}/>
+          header={_.pluck(this.columns, 'title')} />
       </div>
       <div>
         从
         <DatePicker
           disabledDate={::this.disabledStartDate}
           value={this.state.startDate}
-          placeholder="开始日期"
+          placeholder='开始日期'
           onChange={::this.onStartChange}
           onOpenChange={::this.handleStartOpenChange}
         />
@@ -226,16 +226,16 @@ class ReportList extends React.Component {
         <DatePicker
           disabledDate={::this.disabledEndDate}
           value={this.state.endDate}
-          placeholder="结束日期"
+          placeholder='结束日期'
           onChange={::this.onEndChange}
           open={this.state.endOpen}
           onOpenChange={::this.handleEndOpenChange}
         />
       </div>
       {this.state.loading
-        ? <Table columns={this.columns} loading={this.state.loading}/>
+        ? <Table columns={this.columns} loading={this.state.loading} />
         : <Table dataSource={this.state.dataSource} columns={this.columns}
-                 pagination={{total: this.state.dataSource.length, pageSize: 15}}/>}
+          pagination={{total: this.state.dataSource.length, pageSize: 15}} />}
     </div>
   }
 }

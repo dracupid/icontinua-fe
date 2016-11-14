@@ -45,6 +45,7 @@ gulp.task 'jsx', (cb) ->
             libsheet: cfg.src + "jsx/libsheet/index.jsx"
             viewReport: cfg.src + "jsx/viewReport/index.jsx"
             login: cfg.src + "jsx/login/login.jsx"
+            admin: cfg.src + "jsx/admin/index.jsx"
         output:
             filename: cfg.dist + 'js/[name].js'
         module:

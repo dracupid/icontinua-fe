@@ -1,0 +1,36 @@
+@import "./mixin.styl"
+
+$bannerColor = #09C
+header
+    .logo
+        width 35px
+        border-radius 5px
+        margin-right 10px
+
+    display flex
+    align-items center
+    justify-content flex-start
+    padding 4px 10px
+    background-color $bannerColor
+    height $bannerHeight
+    color #eee
+    font-size 16px
+
+    h1, h2
+        text-align center
+        font-size inherit
+        middle($bannerHeight)
+        overflow hidden
+
+li, header
+    a
+        color inherit
+
+.container
+    display flex
+    > div
+        flex 1
+        margin 10px
+
+.ant-calendar-picker
+    margin 5px

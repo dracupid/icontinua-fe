@@ -22,7 +22,7 @@ class HeightWeight extends React.Component {
     for (let k in data) {
       v = data[k]
       if (v.height) {
-        res.xs.unshift(reportUtil.formatTime(v.timestamp))
+        res.xs.unshift(reportUtil.formatDate(v.timestamp))
         res.height.unshift(parseFloat(v.height))
         res.weight.unshift(parseFloat(v.weight))
       }

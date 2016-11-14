@@ -25,7 +25,7 @@ class Chinese extends React.Component {
     for (let k in data) {
       v = data[k]
       if (v.cacheId) {
-        res.xs.unshift(reportUtil.formatTime(v.timestamp))
+        res.xs.unshift(reportUtil.formatDate(v.timestamp))
         res.score.unshift(parseFloat(v.cacheScore))
         res.jizhui.unshift(parseFloat(v.jizhui))
         res.zangfu.unshift(parseFloat(v.zangfu))

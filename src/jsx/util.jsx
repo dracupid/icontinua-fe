@@ -77,5 +77,27 @@ export default {
     } else {
       return ''
     }
+  },
+
+  /**
+   * 格式化日期时间字符串
+   * @param t 时间字符串
+   * @param breakLine
+   * @returns {string}
+   */
+  formatDateTime (t, breakLine = false) {
+    t = new Date(parseInt(t, 10))
+    return `${t.getFullYear()}年${t.getMonth() + 1}月${t.getDate()}日 ${breakLine ? '\n' : ''}` +
+      `${_.padLeft(t.getHours(), 2, 0)}:${_.padLeft(t.getMinutes(), 2, 0)}`
+  },
+
+  /**
+   * 格式化日期字符串
+   * @param t 时间字符串
+   * @returns {string}
+   */
+  formatDate (t) {
+    t = new Date(parseInt(t, 10))
+    return `${t.getFullYear()}/${t.getMonth() + 1}/${t.getDate()}`
   }
 }

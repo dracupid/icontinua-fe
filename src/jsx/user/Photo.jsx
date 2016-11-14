@@ -160,7 +160,7 @@ class Photo extends React.Component {
           </Button>
           {this.state.uploading
             ? <Button type='primary' size='large'>
-             <Icon type='loading' /> 上传中
+              <Icon type='loading' /> 上传中
             </Button>
             : <Button type='primary' size='large' onClick={::this.upload}>
               <Icon type='upload' />上传
