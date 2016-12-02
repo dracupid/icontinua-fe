@@ -26,7 +26,7 @@ export default class Device extends React.Component {
     API.listDevice()
       .then((data) => {
         data = _(data).sortBy('timestamp').reverse().run()
-        data.forEach((item) => item._timestamp = Util.formatDateTime(item.timestamp))
+        data.forEach((item) => { item._timestamp = Util.formatDateTime(item.timestamp) })
         this.setState({dataSource: data})
       })
   }

@@ -44,7 +44,7 @@ export default class Channel extends React.Component {
         this.setState({dataSource: data})
       })
       .catch(() => {
-        alert('删除失败')
+        window.alert('删除失败')
       })
   }
 

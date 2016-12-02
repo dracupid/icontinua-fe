@@ -25,12 +25,18 @@ export default class Device extends React.Component {
 
       {(() => {
         if (this.state.data) {
-          let {total_subscribe, total_scan, user_num_subscribe, user_num_scan} = this.state.data
+          let {
+            total_subscribe: totalSubscribe,
+            total_scan: totalScan,
+            user_num_subscribe: userNumSubscribe,
+            user_num_scan: userNumScan
+          } = this.state.data
           return <div>
             <div style={{margin: 5}}>
-              {`总关注：${user_num_subscribe}人，关注${total_subscribe}次；总扫码：${user_num_scan}人，扫码${total_scan}次`}
+              {`总关注：${userNumSubscribe}人，关注${totalSubscribe}次；总扫码：${userNumScan}人，扫码${totalScan}次`}
             </div>
-            <BasicStat dataScan={{arr: this.state.data.scan || [], name: '扫码', uniqKey: 'uid'}}
+            <BasicStat
+              dataScan={{arr: this.state.data.scan || [], name: '扫码', uniqKey: 'uid'}}
               dataSubscribe={{arr: this.state.data.subscribe || [], name: '关注', uniqKey: 'uid'}} />
           </div>
         }

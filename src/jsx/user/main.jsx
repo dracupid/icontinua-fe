@@ -44,7 +44,7 @@ class Main extends React.Component {
         <div className='block-wrapper'>
           <BannerBlock text='查看体检报告' icon='file-text' url='/reports#/' />
           <BannerBlock style={{display: util.getParam('channel') !== 'HuiLianHuZhou' ? 'flex' : 'none'}}
-            text={<span>化验单拍照识别<span className='beta'>测试版</span></span>} icon='camera-o'
+            text={<span>化验单拍照识别<span className='beta'>内测版</span></span>} icon='camera-o'
             url={util.getUrlByHash('/photo/')} />
         </div>
       </div>

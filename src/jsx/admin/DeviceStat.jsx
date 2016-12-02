@@ -24,10 +24,15 @@ export default class Channel extends React.Component {
       <br />
       {(() => {
         if (this.state.data) {
-          let {total_subscribe, total_reports, user_num_subscribe, user_num_reports} = this.state.data
+          let {
+            total_subscribe: totalSubscribe,
+            total_reports: totalReports,
+            user_num_subscribe: userNumSubscribe,
+            user_num_reports: userNumReports
+          } = this.state.data
           return <div>
             <div style={{margin: 5}}>
-              {`总关注：${user_num_subscribe}人，关注${total_subscribe}次；总测量：${user_num_reports}人，测量${total_reports}次`}
+              {`总关注：${userNumSubscribe}人，关注${totalSubscribe}次；总测量：${userNumReports}人，测量${totalReports}次`}
             </div>
             <BasicStat dataScan={{arr: this.state.data.reports || [], name: '测量', uniqKey: 'userId'}}
               dataSubscribe={{arr: this.state.data.subscribe || [], name: '关注', uniqKey: 'uid'}} />

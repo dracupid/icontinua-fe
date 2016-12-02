@@ -128,7 +128,7 @@ class ReportList extends React.Component {
   resolveDid () {
     if (this.props.params.deviceId != null) {
       return this.props.params.deviceId
-    } else if (this.props.params.channel == 'deyuan') {
+    } else if (this.props.params.channel === 'deyuan') {
       return '74:23:44:BF:46:AB'
     } else {
       return this.props.did

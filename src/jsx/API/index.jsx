@@ -39,7 +39,7 @@ export default function (url, opt = {}) {
             })
         } catch (e) {
         }
-        var error = new Error(res.statusText)
+        let error = new Error(res.statusText)
         error.res = res
         throw error
       }
