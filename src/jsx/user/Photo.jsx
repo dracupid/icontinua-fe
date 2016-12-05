@@ -189,7 +189,7 @@ class Photo extends React.Component {
     })()
 
     // 图片列表
-    let imgs = _.map(this.state.data.photos, (i, index) => {
+    let imgs = _.map(this.state.data.photos ? this.state.data.photos.reverse() : [], (i, index) => {
       return <ImgBlock
         url={i} key={index} onClick={this.triggerFullScreen.bind(this, i)}
         onDelete={this.deletePhoto(i)}
