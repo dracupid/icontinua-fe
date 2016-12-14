@@ -24,7 +24,7 @@ function fileToBase64 (file) {
  * 用户拍照的图片组件
  */
 function ImgBlock (props) {
-  let thumbUrl = '//cdn-img.icontinua.com/photo/' + props.url + '@0o_0l_60Q_400w.src'
+  let thumbUrl = '//cdn-img.icontinua.com/photo/' + props.imageId + '.jpg@0o_0l_60Q_400w.src'
   return <div style={{backgroundImage: `url(${thumbUrl})`}} className='img-item' onClick={props.onClick}>
     <div className='btn-recognize' onClick={props.onRecognize}>
       <Button className='btn-recognize'>识别</Button>
@@ -59,6 +59,7 @@ class Photo extends React.Component {
           let data = this.state.data
           // 去除本地照片显示
           if (data.photos) {
+            data.photos = data.photos.reverse()
             _.remove(data.photos, (item) => {
               return item === img
             })
@@ -93,7 +94,7 @@ class Photo extends React.Component {
           message.info('照片上传成功')
           let data = this.state.data
           if (data.photos) {
-            data.photos.push(url)
+            data.photos.unshift(url)
           } else {
             data.photos = [url]
           }
@@ -189,9 +190,9 @@ class Photo extends React.Component {
     })()
 
     // 图片列表
-    let imgs = _.map(this.state.data.photos ? this.state.data.photos.reverse() : [], (i, index) => {
+    let imgs = _.map(this.state.data.photos, (i, index) => {
       return <ImgBlock
-        url={i} key={index} onClick={this.triggerFullScreen.bind(this, i)}
+        imageId={i} key={index} onClick={this.triggerFullScreen.bind(this, i)}
         onDelete={this.deletePhoto(i)}
         onRecognize={this.recognizePhoto(i)} />
     })
@@ -232,7 +233,7 @@ class Photo extends React.Component {
       <div
         className='pop-image' style={{display: this.state.fullScreen ? 'block' : 'none'}}
         onClick={this.triggerFullScreen.bind(this, null)}>
-        <img src={'//cdn.icontinua.com/photo/' + this.state.curImg} />
+        <img src={'//cdn.icontinua.com/photo/' + this.state.curImg + ".jpg"} />
       </div>
     </div>
   }
