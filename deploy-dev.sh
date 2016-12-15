@@ -9,7 +9,7 @@ if [ $1 ]; then
     export NODE_ENV="production"
     host=$1
 else
-    host=wcm@172.18.9.7
+    host=wcm@172.18.9.254
 fi
 
 echo -e "\033[0;32mDeploy to ${host}\033[0m"
