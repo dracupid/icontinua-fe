@@ -15,7 +15,8 @@ export default class extends React.Component {
     type: 'male',
     startDate: moment('2016-11-01'),
     endDate: moment(Date.now()),
-    hideWinner: true
+    hideWinner: true,
+    onlyVIP: true
   }
 
   columns = [{
@@ -114,11 +115,18 @@ export default class extends React.Component {
     this.setState({hideWinner: v})
   }
 
+  onChangeOnlyVIP(v) {
+    this.setState({onlyVIP: v})
+  }
   render () {
     let dataSource = this.state.type == 'male' ? this.state.dataSourceMale : this.state.dataSourceFeMale
 
     if (this.state.hideWinner && dataSource != null) {
       dataSource = dataSource.filter((item) => item.winDate == null)
+    }
+
+    if (this.state.onlyVIP && dataSource != null) {
+      dataSource = dataSource.filter((item) => !!item.phone)
     }
 
     return <div>
@@ -132,6 +140,8 @@ export default class extends React.Component {
       <br/>
       <div style={{float: 'right', marginRight: '10px'}}>隐藏已中奖用户 <Switch defaultChecked={this.state.hideWinner}
                                                                          onChange={::this.onChangeHide}/></div>
+      <div style={{float: 'right', marginRight: '10px'}}>只显示会员 <Switch defaultChecked={this.state.onlyVIP}
+                                                                         onChange={::this.onChangeOnlyVIP}/></div>
       <br/>
 
       <RadioGroup defaultValue={this.state.type} size='large' onChange={::this.onTypeChange} style={{marginBottom: 10}}>

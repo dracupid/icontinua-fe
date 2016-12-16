@@ -21,7 +21,8 @@ export default {
    * 增加图片
    * @param blob 图片二进制对象
    */
-  uploadPhoto: (blob) => API(`/api/user/photo`, {method: 'POST', body: blob, noCache: true}),
+  uploadPhoto: (blob) => API(`/api/user/photo/upload
+`, {method: 'POST', body: blob, noCache: true}),
   /**
    * 删除照片
    * @param img 图片名称

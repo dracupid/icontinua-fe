@@ -12,7 +12,7 @@ export default {
     }
     return API('/api/admin/channel/create?name=' + name)
   },
-  rank201612: () => API("/api/rank/201612", {noCache: true}),
+  rank201612: () => API("/api/rank/201612?needPhone=false", {noCache: true}),
 
   winPrize201612: (userId, date) => {
     let dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
