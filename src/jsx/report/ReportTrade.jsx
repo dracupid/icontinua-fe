@@ -72,7 +72,7 @@ class ReportTrade extends React.Component {
   render () {
     return (
       <div id='report-trade' className='top-tab-wrapper'>
-        <Tabs size='mini' animation={null}>
+        <Tabs size='mini' animated={false}>
           <TabPane tab='身体' key='1'>{this.getHeightWeight()}</TabPane>
           <TabPane tab='血压' key='2'>{this.getBlood()}</TabPane>
           <TabPane tab='血氧' key='3'>{this.getO2()}</TabPane>

@@ -20,9 +20,8 @@ mixin head()
     +css("/css/antd.min")
 
 mixin foot(withoutAntd)
-    script(src="//cdn.bootcss.com/react/15.3.2/react.js")
-    script.
-        !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e(require("react"));else if("function"==typeof define&&define.amd)define(["react"],e);else{var f;f="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,f.ReactDOM=e(f.React)}}(function(e){return e.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED});
+    script(src="//cdn.bootcss.com/react/15.4.1/react.js")
+    script(src="//cdn.bootcss.com/react/15.4.1/react-dom.js")
     script(src='//cdn.bootcss.com/react-router/2.8.1/ReactRouter.min.js')
     script(src="//cdn.bootcss.com/lodash.js/3.10.1/lodash.min.js")
     if (!withoutAntd)
