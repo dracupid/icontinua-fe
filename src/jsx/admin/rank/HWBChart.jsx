@@ -18,10 +18,10 @@ export default class extends React.Component {
       bmi: []
     }
     _.forEach(this.props.data, (v) => {
-      res.xs.unshift(reportUtil.formatDate(v.timestamp))
-      res.height.unshift(v.h)
-      res.weight.unshift(v.w)
-      res.bmi.unshift(v.bmi.toFixed(2))
+      res.xs.push(reportUtil.formatDate(v.timestamp))
+      res.height.push(v.h)
+      res.weight.push(v.w)
+      res.bmi.push(v.bmi.toFixed(2))
     })
 
     return res
