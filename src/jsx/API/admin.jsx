@@ -1,5 +1,9 @@
 import API from './index.jsx'
 
+function dateString (date) {
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+}
+
 export default {
   listChannel: () => API('/api/admin/channel/list', {noCache: true}),
   listDevice: () => API('/api/admin/device/list', {noCache: true}),
@@ -12,10 +16,10 @@ export default {
     }
     return API('/api/admin/channel/create?name=' + name)
   },
-  rank201612: () => API("/api/rank/201612?needPhone=false", {noCache: true}),
+  rank201612: (from, to) => API(`/api/rank/201612?needPhone=false&from=${dateString(from)}&to=${dateString(to)}`, {noCache: true}),
 
   winPrize201612: (userId, date) => {
-    let dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    let dateStr = dateString(date)
     return API(`/api/prize/201612/win?userId=${userId}&date=${dateStr}`)
   },
   losePrize201612: (userId) => API("/api/prize/201612/lose?userId=" + userId),

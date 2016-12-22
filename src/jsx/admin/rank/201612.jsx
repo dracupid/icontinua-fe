@@ -7,6 +7,7 @@ import DatePicker from 'antd/lib/date-picker/index.js'
 import Switch from 'antd/lib/switch/index.js'
 import moment from 'moment'
 let {Button: RadioButton, Group: RadioGroup} = Radio
+import HWBChart from './HWBChart.jsx'
 
 export default class extends React.Component {
   state = {
@@ -96,7 +97,7 @@ export default class extends React.Component {
   }
 
   componentDidMount () {
-    API.rank201612()
+    API.rank201612(this.state.startDate.toDate(), this.state.endDate.toDate())
       .then((dataSource) => {
         this.setState({dataSourceMale: dataSource.male, dataSourceFeMale: dataSource.female})
       })
@@ -108,7 +109,9 @@ export default class extends React.Component {
 
   onDateChange (dates) {
     let [startDate, endDate] = dates
-    this.setState({startDate, endDate})
+    this.setState({startDate, endDate}, () => {
+      this.componentDidMount();
+    })
   }
 
   onChangeHide (v) {
@@ -118,6 +121,15 @@ export default class extends React.Component {
   onChangeOnlyVIP(v) {
     this.setState({onlyVIP: v})
   }
+
+  formatData(id, v) {
+    let data = _.map(v, (item, i) => {
+      return <div key={id + i}>{`${(item.h).toFixed(1)} / ${(item.w).toFixed(1)} => ${(item.bmi).toFixed(2)}`}</div>
+    })
+
+    return <div>{data}</div>
+  }
+
   render () {
     let dataSource = this.state.type == 'male' ? this.state.dataSourceMale : this.state.dataSourceFeMale
 
@@ -149,9 +161,13 @@ export default class extends React.Component {
         <RadioButton value='female'>女性</RadioButton>
       </RadioGroup>
 
-      <Table dataSource={dataSource} columns={this.columns} bordered pagination={false} loading={dataSource == null}/>
+      <Table rowKey="id" dataSource={dataSource} columns={this.columns} bordered pagination={false}
+             loading={dataSource == null}
+             expandedRowRender={record => <HWBChart data={record.data}/>} />
 
     </div>
   }
+  //              {/*expandedRowRender={record => <div>{this.formatData(record.id, record.data)}</div>}/>*/}
+
 }
 
