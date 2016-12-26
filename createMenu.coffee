@@ -31,6 +31,10 @@ createMenu = (appId, appSecret, host)->
                     type: 'view',
                     name: '药品查询',
                     url: "http://wapypk.39.net/index.aspx"
+                }, {
+                    type: 'view',
+                    name: '连接设备',
+                    url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=device'}&response_type=code&scope=snsapi_base"
                 }]
             }, {
                 name: '更多服务',
