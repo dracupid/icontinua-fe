@@ -233,7 +233,7 @@ class Photo extends React.Component {
       <div
         className='pop-image' style={{display: this.state.fullScreen ? 'block' : 'none'}}
         onClick={this.triggerFullScreen.bind(this, null)}>
-        <img src={'//cdn.icontinua.com/photo/' + this.state.curImg + ".jpg"} />
+        <img src={'//cdn.icontinua.com/photo/' + this.state.curImg + '.jpg'} />
       </div>
     </div>
   }

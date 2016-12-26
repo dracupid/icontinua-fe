@@ -72,7 +72,8 @@
       "ReactRouter",
       "FileReader",
       "FormData",
-      "Blob"
+      "Blob",
+      "alert"
     ]
   },
   "babel": {

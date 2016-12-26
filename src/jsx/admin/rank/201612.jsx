@@ -69,10 +69,10 @@ export default class extends React.Component {
     render: (text, record) => {
       if (text) {
         return (<span>
-            {util.formatDate(text)}
-          <span className="ant-divider"/>
-            <a onClick={this.losePrize.bind(this, record.id, record)}>取消中奖</a>
-          </span>)
+          {util.formatDate(text)}
+          <span className='ant-divider' />
+          <a onClick={this.losePrize.bind(this, record.id, record)}>取消中奖</a>
+        </span>)
       } else {
         return <a onClick={this.winPrize.bind(this, record.id, record)}>设为中奖</a>
       }
@@ -82,18 +82,18 @@ export default class extends React.Component {
   winPrize (uid, record) {
     API.winPrize201612(uid, this.state.endDate.toDate())
       .then(() => {
-        record.winDate = this.state.endDate.toDate().valueOf();
+        record.winDate = this.state.endDate.toDate().valueOf()
         this.setState({})
       })
-      .catch((e) => alert("设置中奖失败" + e))
+      .catch((e) => alert('设置中奖失败' + e))
   }
 
   losePrize (uid, record) {
     API.losePrize201612(uid)
       .then(() => {
-        record.winDate = null;
+        record.winDate = null
         this.setState({})
-      }).catch((e) => alert("取消中奖失败" + e))
+      }).catch((e) => alert('取消中奖失败' + e))
   }
 
   componentDidMount () {
@@ -110,7 +110,7 @@ export default class extends React.Component {
   onDateChange (dates) {
     let [startDate, endDate] = dates
     this.setState({startDate, endDate}, () => {
-      this.componentDidMount();
+      this.componentDidMount()
     })
   }
 
@@ -118,11 +118,11 @@ export default class extends React.Component {
     this.setState({hideWinner: v})
   }
 
-  onChangeOnlyVIP(v) {
+  onChangeOnlyVIP (v) {
     this.setState({onlyVIP: v})
   }
 
-  formatData(id, v) {
+  formatData (id, v) {
     let data = _.map(v, (item, i) => {
       return <div key={id + i}>{`${(item.h).toFixed(1)} / ${(item.w).toFixed(1)} => ${(item.bmi).toFixed(2)}`}</div>
     })
@@ -131,7 +131,7 @@ export default class extends React.Component {
   }
 
   render () {
-    let dataSource = this.state.type == 'male' ? this.state.dataSourceMale : this.state.dataSourceFeMale
+    let dataSource = this.state.type === 'male' ? this.state.dataSourceMale : this.state.dataSourceFeMale
 
     if (this.state.hideWinner && dataSource != null) {
       dataSource = dataSource.filter((item) => item.winDate == null)
@@ -148,22 +148,22 @@ export default class extends React.Component {
       </Breadcrumb>
       <br />
       <DatePicker.RangePicker placeholder={['开始日期', '结束日期']} onChange={::this.onDateChange}
-                              defaultValue={[this.state.startDate, this.state.endDate]}/>
-      <br/>
+        defaultValue={[this.state.startDate, this.state.endDate]} />
+      <br />
       <div style={{float: 'right', marginRight: '10px'}}>隐藏已中奖用户 <Switch defaultChecked={this.state.hideWinner}
-                                                                         onChange={::this.onChangeHide}/></div>
+        onChange={::this.onChangeHide} /></div>
       <div style={{float: 'right', marginRight: '10px'}}>只显示会员 <Switch defaultChecked={this.state.onlyVIP}
-                                                                         onChange={::this.onChangeOnlyVIP}/></div>
-      <br/>
+        onChange={::this.onChangeOnlyVIP} /></div>
+      <br />
 
       <RadioGroup defaultValue={this.state.type} size='large' onChange={::this.onTypeChange} style={{marginBottom: 10}}>
         <RadioButton value='male'>男性</RadioButton>
         <RadioButton value='female'>女性</RadioButton>
       </RadioGroup>
 
-      <Table rowKey="id" dataSource={dataSource} columns={this.columns} bordered pagination={false}
-             loading={dataSource == null}
-             expandedRowRender={record => <HWBChart data={record.data}/>} />
+      <Table rowKey='id' dataSource={dataSource} columns={this.columns} bordered pagination={false}
+        loading={dataSource == null}
+        expandedRowRender={record => <HWBChart data={record.data} />} />
 
     </div>
   }

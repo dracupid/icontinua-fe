@@ -67,22 +67,22 @@ class Reports extends React.Component {
       avatar = <div className='header-right' onClick={() => {
         util.toUrl('/html/user.html#/')
       }}>
-        <img src={util.removeProtocol(this.state.avatar)} alt=''/>
+        <img src={util.removeProtocol(this.state.avatar)} alt='' />
       </div>
     }
     return (
       <div id='report-list'>
-        <Banner title={this.state.tabTitles[this.state.currentTab]} rightComponent={avatar}/>
+        <Banner title={this.state.tabTitles[this.state.currentTab]} rightComponent={avatar} />
 
         <div className='bottom-tab-wrapper'>
           <Tabs onChange={::this.changeHandler} activeKey={this.state.currentTab + ''} tabPosition='bottom'
-                animated={false}>
+            animated={false}>
             <TabPane tab={<div><i className='bg-record' /><p>{this.state.tabTitles[0]}</p></div>} key='0'>
-              <ReportList data={this.state.data}/>
-              <Footer style={{marginBottom: '52px'}}/>
+              <ReportList data={this.state.data} />
+              <Footer style={{marginBottom: '52px'}} />
             </TabPane>
             <TabPane tab={<div><i className='bg-trade' /><p>{this.state.tabTitles[1]}</p></div>} key='1'>
-              <ReportTrade data={this.state.data}/>
+              <ReportTrade data={this.state.data} />
               <Footer />
             </TabPane>
           </Tabs>

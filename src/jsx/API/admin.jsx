@@ -22,6 +22,6 @@ export default {
     let dateStr = dateString(date)
     return API(`/api/prize/201612/win?userId=${userId}&date=${dateStr}`)
   },
-  losePrize201612: (userId) => API("/api/prize/201612/lose?userId=" + userId),
-  listPrize201612: () => API("/api/prize/201612/list", {noCache: true})
+  losePrize201612: (userId) => API('/api/prize/201612/lose?userId=' + userId),
+  listPrize201612: () => API('/api/prize/201612/list', {noCache: true})
 }

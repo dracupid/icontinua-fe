@@ -115,7 +115,7 @@ class ListSheet extends React.Component {
     return (value) => {
       let data = this.state.data
       if (data[index].valueType === 'NUMBER') {
-        if (/^[\-0-9.]*$/.test(value)) {
+        if (/^[-0-9.]*$/.test(value)) {
           data[index].numberValue = value
           data[index].valueEdited = true
         }

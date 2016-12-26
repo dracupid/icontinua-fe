@@ -16,9 +16,9 @@ export default function () {
       <Item key='2-2'><a href='#/channel'>推广统计</a></Item>
     </SubMenu>
     <SubMenu key='3' title={<span><Icon type='area-chart' />活动管理</span>}>
-      <ItemGroup title="2016-12 杭州">
-        <Item key="3-1"><a href='#/rank/201612'>中奖用户管理</a></Item>
-        <Item key="3-2"><a href='#/rank/201612/list'>获奖名单</a></Item>
+      <ItemGroup title='2016-12 杭州'>
+        <Item key='3-1'><a href='#/rank/201612'>中奖用户管理</a></Item>
+        <Item key='3-2'><a href='#/rank/201612/list'>获奖名单</a></Item>
       </ItemGroup>
     </SubMenu>
 

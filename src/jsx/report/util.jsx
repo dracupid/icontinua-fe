@@ -14,8 +14,7 @@ function setValue (t, v) {
   if (t != null && _.isObject(t)) {
     t.value = v
     return t
-  }
-  else {
+  } else {
     return v
   }
 }
