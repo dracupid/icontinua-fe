@@ -76,26 +76,26 @@ class HeightWeight extends React.Component {
     }, baseGaugeOpt)
   }
 
-  static getBodyImgName (bmr, sex) {
+  static getBodyImgName (bodyFat, sex) {
     let name = ''
     if (sex === '1') {
       name += 'male_'
-      if (bmr <= 8) name += '8'
-      else if (bmr > 8 && bmr <= 12) name += '12'
-      else if (bmr > 12 && bmr <= 15) name += '15'
-      else if (bmr > 15 && bmr <= 20) name += '20'
-      else if (bmr > 20 && bmr <= 25) name += '25'
-      else if (bmr > 25 && bmr <= 30) name += '30'
+      if (bodyFat <= 8) name += '8'
+      else if (bodyFat > 8 && bodyFat <= 12) name += '12'
+      else if (bodyFat > 12 && bodyFat <= 15) name += '15'
+      else if (bodyFat > 15 && bodyFat <= 20) name += '20'
+      else if (bodyFat > 20 && bodyFat <= 25) name += '25'
+      else if (bodyFat > 25 && bodyFat <= 30) name += '30'
       else name += '35'
     } else {
       // female
       name += 'female_'
-      if (bmr <= 15) name += '15'
-      else if (bmr > 15 && bmr <= 20) name += '20'
-      else if (bmr > 20 && bmr <= 25) name += '25'
-      else if (bmr > 25 && bmr <= 30) name += '30'
-      else if (bmr > 30 && bmr <= 35) name += '35'
-      else if (bmr > 35 && bmr <= 40) name += '40'
+      if (bodyFat <= 15) name += '15'
+      else if (bodyFat > 15 && bodyFat <= 20) name += '20'
+      else if (bodyFat > 20 && bodyFat <= 25) name += '25'
+      else if (bodyFat > 25 && bodyFat <= 30) name += '30'
+      else if (bodyFat > 30 && bodyFat <= 35) name += '35'
+      else if (bodyFat > 35 && bodyFat <= 40) name += '40'
       else name += '45'
     }
     return name
@@ -106,7 +106,7 @@ class HeightWeight extends React.Component {
     bodyFat = setValue(bodyFat, getValue(bodyFat) || calFat(user.sex, user.age, getValue(bmi)))
     bodyKcal = setValue(bodyFat, getValue(bodyKcal) || calBMR(bodyFat, getValue(weight)))
 
-    let bodyImage = `//cdnst.icontinua.com/img/body/${HeightWeight.getBodyImgName(bodyKcal, user.sex)}.png`
+    let bodyImage = `//cdnst.icontinua.com/img/body/${HeightWeight.getBodyImgName(bodyFat, user.sex)}.png`
 
     console.log(bodyImage)
 
