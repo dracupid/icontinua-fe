@@ -121,13 +121,13 @@ class Login extends React.Component {
         <Tabs.TabPane tab={<span><Icon type='qrcode' />微信登录</span>} key='2'>
           <WechatLogin />
         </Tabs.TabPane>
-        <Tabs.TabPane tab={<span><Icon type='credit-card' />社保登录</span>} key='3'>
-          <SSIDLogin />
-        </Tabs.TabPane>
       </Tabs>
     )
   }
 }
+// <Tabs.TabPane tab={<span><Icon type='credit-card' />社保登录</span>} key='3'>
+//  <SSIDLogin />
+// </Tabs.TabPane>
 
 ReactDOM.render((
   <Login />
