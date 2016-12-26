@@ -10,6 +10,16 @@ function getValue (t) {
   return _.isObject(t) ? t.value : t
 }
 
+function setValue (t, v) {
+  if (t != null && _.isObject(t)) {
+    t.value = v
+    return t
+  }
+  else {
+    return v
+  }
+}
+
 export default {
   /**
    * 获取最小值
@@ -45,7 +55,7 @@ export default {
    * 格式化日期字符串
    * @param t 时间字符串
    * @returns {string}
-     */
+   */
   formatDate (t) {
     t = new Date(parseInt(t, 10))
     return `${t.getFullYear()}/${t.getMonth() + 1}/${t.getDate()}`
@@ -56,7 +66,7 @@ export default {
    * @param t 时间字符串
    * @param breakLine
    * @returns {string}
-     */
+   */
   formatDateTime (t, breakLine = false) {
     t = new Date(parseInt(t, 10))
     return `${t.getFullYear()}年${t.getMonth() + 1}月${t.getDate()}日 ${breakLine ? '\n' : ''}` +
@@ -64,13 +74,14 @@ export default {
   },
 
   getValue,
+  setValue,
 
   /**
    * 获取带suffix的value字符串
    * @param t 测量项
    * @param suffix 后缀
    * @returns {string}
-     */
+   */
   getStringValue (t, suffix = '') {
     let value = getValue(t)
     return value && value + suffix

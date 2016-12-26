@@ -8,7 +8,16 @@ import KVMap from '../../Components/KVmap.jsx'
 import {baseGaugeOpt} from '../option.jsx'
 import reportUtil from '../util.jsx'
 
-let {getValue, getStringValue} = reportUtil
+let {getValue, getStringValue, setValue} = reportUtil
+
+function calFat (sex, age, bmi) {
+  let fat = (1.2 * bmi) + 0.23 * age - 5.4 - 10.8 * (sex == "1" ? 1 : 0)
+  return fat.toFixed(1)
+}
+
+function calBMR (fat, weight) {
+  return Math.round(370 + (21.6 * (100 - fat) * weight) / 100)
+}
 
 class HeightWeight extends React.Component {
   static propTypes = {
@@ -67,14 +76,47 @@ class HeightWeight extends React.Component {
     }, baseGaugeOpt)
   }
 
+
+  static getBodyImgName (bmr, sex) {
+    let name = ""
+    if (sex == "1") {
+      name += "male_"
+      if (bmr <= 8) name += "8"
+      else if (bmr > 8 && bmr <= 12) name += "12"
+      else if (bmr > 12 && bmr <= 15) name += "15"
+      else if (bmr > 15 && bmr <= 20) name += "20"
+      else if (bmr > 20 && bmr <= 25) name += "25"
+      else if (bmr > 25 && bmr <= 30) name += "30"
+      else name += "35"
+
+    } else {
+      //female
+      name += "female_"
+      if (bmr <= 15) name += "15"
+      else if (bmr > 15 && bmr <= 20) name += "20"
+      else if (bmr > 20 && bmr <= 25) name += "25"
+      else if (bmr > 25 && bmr <= 30) name += "30"
+      else if (bmr > 30 && bmr <= 35) name += "35"
+      else if (bmr > 35 && bmr <= 40) name += "40"
+      else name += "45"
+    }
+    return name
+  }
+
   render () {
     let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, bmi, height, weight, user} = this.props
+    bodyFat = setValue(bodyFat, getValue(bodyFat) || calFat(user.sex, user.age, getValue(bmi)))
+    bodyKcal = setValue(bodyFat, getValue(bodyKcal) || calBMR(bodyFat, getValue(weight)))
+
+    let bodyImage = `//cdnst.icontinua.com/img/body/${HeightWeight.getBodyImgName(bodyKcal, user.sex)}.png`
+
+    console.log(bodyImage)
 
     return (
       <div>
         <div className='height-wrapper'>
-          <img src='//cdnst.icontinua.com/img/body.png' />
-          <div className='line' />
+          <img src={bodyImage}/>
+          <div className='line'/>
           <div className='text'>身高<br />{_.round(height.value, 1)}CM</div>
           <KVMap
             obj={{
@@ -83,11 +125,11 @@ class HeightWeight extends React.Component {
               肌肉量: getStringValue(bodyMuscle, ' %'),
               基础代谢率: getStringValue(bodyKcal, ' kcal'),
               水分: getStringValue(bodyWater, ' %'),
-              内脏脂肪: getStringValue(bodyViscera, '')}} />
+              内脏脂肪: getStringValue(bodyViscera, '')}}/>
         </div>
-        <Echarts option={this.getWeightOpt()} height='300' width='100%' />
-        <Tips text={bmi.advice} fix />
-        <Rank obj={{身高: height, 体重: weight}} user={user} />
+        <Echarts option={this.getWeightOpt()} height='300' width='100%'/>
+        <Tips text={bmi.advice} fix/>
+        <Rank obj={{身高: height, 体重: weight}} user={user}/>
       </div>
     )
   }
