@@ -111,7 +111,7 @@ class ReportList extends React.Component {
         {(() => {
           switch (util.getParam('channel')){
             case 'HuiLianHuZhou': return <div style={{textAlign: 'center', fontSize: '17px', padding: '5px 0', color: '#E9642B'}}>您的惠联大健康体检报告，请点击查看</div>
-            case 'zsf': return <div></div>
+            case '3rd': return <div></div>
             default: return <div style={{textAlign: 'center', fontSize: '19px', padding: '5px 0', color: '#E9642B'}}>您的爱康体体检报告，请点击查看</div>
           }
         })()
