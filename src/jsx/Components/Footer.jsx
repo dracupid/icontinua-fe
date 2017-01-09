@@ -13,7 +13,7 @@ function Footer (props) {
     case '3rd':
       return <div></div>
     default:
-      return <footer {...props}><p>© 2016 杭州佑唐信息科技有限公司</p><p>浙ICP备16007076号 </p>
+      return <footer {...props}><p>© 2016-2017 杭州佑唐信息科技有限公司</p><p>浙ICP备16007076号 </p>
         <p>
 
           <a style={{color: 'inherit'}}
@@ -30,7 +30,7 @@ Footer.propTypes = {
 }
 
 function InlineFooter (props) {
-  return <footer {...props}>© 2016 杭州佑唐信息科技有限公司 | 浙ICP备16007076号
+  return <footer {...props}>© 2016-2017 杭州佑唐信息科技有限公司 | 浙ICP备16007076号
     <p>
       <a style={{color: 'inherit'}} href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602005949'>
         <span>浙公网安备 33010602005949号</span></a>
