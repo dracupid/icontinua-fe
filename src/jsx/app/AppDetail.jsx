@@ -31,7 +31,7 @@ function AppInfo (props) {
       <div className='info-text-wrapper'>
         <h3>{name}</h3>
         <span>{score}<strong>分</strong></span>
-        <span>{name === '爱康体' ? null : (appUtil.formatDownload(downloadNum) + '人在用')}</span>
+        <span>{name.indexOf('爱康体') >= 0 ? null : (appUtil.formatDownload(downloadNum) + '人在用')}</span>
       </div>
       <Button type='primary' size='small' onClick={appUtil.toApkUrlFun(apkUrl)}>下载</Button>
     </div>
