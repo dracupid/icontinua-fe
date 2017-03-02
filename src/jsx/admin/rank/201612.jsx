@@ -168,6 +168,4 @@ export default class extends React.Component {
     </div>
   }
   //              {/*expandedRowRender={record => <div>{this.formatData(record.id, record.data)}</div>}/>*/}
-
 }
-

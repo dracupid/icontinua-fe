@@ -11,12 +11,12 @@ import reportUtil from '../util.jsx'
 let {getValue, getStringValue, setValue} = reportUtil
 
 function calFat (sex, age, bmi) {
-  let fat = (1.2 * bmi) + 0.23 * age - 5.4 - 10.8 * (sex === '1' ? 1 : 0)
+  let fat = (1.2 * bmi) + (0.23 * age) - 5.4 - (10.8 * (sex === '1' ? 1 : 0))
   return fat.toFixed(1)
 }
 
 function calBMR (fat, weight) {
-  return Math.round(370 + (21.6 * (100 - fat) * weight) / 100)
+  return Math.round(370 + ((21.6 * (100 - fat) * weight) / 100))
 }
 
 class HeightWeight extends React.Component {

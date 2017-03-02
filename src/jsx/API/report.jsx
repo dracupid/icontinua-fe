@@ -31,4 +31,3 @@ export default {
    */
   falthReport: (id) => API('/api/falthReport?id=' + id, {raw: true})
 }
-

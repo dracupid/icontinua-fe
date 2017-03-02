@@ -44,4 +44,3 @@ export default class Device extends React.Component {
     </div>
   }
 }
-

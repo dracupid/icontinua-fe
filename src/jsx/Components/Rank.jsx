@@ -17,12 +17,12 @@ function Low (props) {
 
 function ageGroup (age) {
   if (age < 20) {
-    let lowAge = age - age % 5
+    let lowAge = age - (age % 5)
     return `${lowAge} - ${lowAge + 5}岁`
   } else if (age >= 100) {
     return '100岁以上'
   } else {
-    let lowAge = age - age % 10
+    let lowAge = age - (age % 10)
     return `${lowAge} - ${lowAge + 10}岁`
   }
 }

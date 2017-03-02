@@ -136,4 +136,3 @@ export default class Stat extends React.Component {
     </div>
   }
 }
-
