@@ -8,6 +8,7 @@
 - 身体基础数据、血压、血氧、生物电详细测量结果、分析建议、用户排名
 - 个人信息的编辑与修改
 - 化验单上传识别
+- 健康APP商店: http://icontinua.com/apps
 
 ## 相关内容
 - gulp: javascript项目管理工具
@@ -33,20 +34,41 @@
 
 ## 页面示例
 - 体检报告列表
-<img src="imgs/1.png" style="width:400px;display:block"/>
+
+![](imgs/1.png)
+
 - 身体基础数据报告
-<img src="imgs/2.png" style="width:400px;display:block" />
+
+![](imgs/2.png)
+
 - 血压报告
-<img src="imgs/3.png" style="width:400px;display:block" />
+
+![](imgs/3.png)
+
 - 血氧报告
-<img src="imgs/4.png" style="width:400px;display:block" />
+
+![](imgs/4.png)
+
 - 生物电报告
-<img src="imgs/5.png" style="width:400px;display:block" />
+
+![](imgs/5.png)
+
 - 趋势分析
-<img src="imgs/6.png" style="width:400px;display:block" />
+
+![](imgs/6.png)
+
 - 个人中心
-<img src="imgs/7.png" style="width:400px;display:block" />
+
+![](imgs/7.png)
+
 - 化验单上传
-<img src="imgs/8.png" style="width:400px;display:block" />
+
+![](imgs/8.png)
+
 - 化验单解读
-<img src="imgs/9.png" style="width:400px;display:block" />
+
+![](imgs/9.png)
+
+- 应用商店
+
+![](imgs/10.png)
