@@ -33,20 +33,20 @@
 
 ## 页面示例
 - 体检报告列表
-<img src="imgs/1.png" width="400px"/>
+<img src="imgs/1.png" style="width:400px;display:block"/>
 - 身体基础数据报告
-<img src="imgs/2.png" width="400px"/>
+<img src="imgs/2.png" style="width:400px;display:block" />
 - 血压报告
-<img src="imgs/3.png" width="400px"/>
+<img src="imgs/3.png" style="width:400px;display:block" />
 - 血氧报告
-<img src="imgs/4.png" width="400px"/>
+<img src="imgs/4.png" style="width:400px;display:block" />
 - 生物电报告
-<img src="imgs/5.png" width="400px"/>
+<img src="imgs/5.png" style="width:400px;display:block" />
 - 趋势分析
-<img src="imgs/6.png" width="400px"/>
+<img src="imgs/6.png" style="width:400px;display:block" />
 - 个人中心
-<img src="imgs/7.png" width="400px"/>
+<img src="imgs/7.png" style="width:400px;display:block" />
 - 化验单上传
-<img src="imgs/8.png" width="400px"/>
+<img src="imgs/8.png" style="width:400px;display:block" />
 - 化验单解读
-<img src="imgs/9.png" width="400px"/>
+<img src="imgs/9.png" style="width:400px;display:block" />
