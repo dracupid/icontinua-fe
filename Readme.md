@@ -1,4 +1,4 @@
-健康云服务前端（静态资源）
+健康云服务前端（移动端）
 ===========
 
 [爱康体项目介绍](http://cdnst.icontinua.com/html/intro.html)
@@ -18,9 +18,17 @@
 - webpack: 编译打包工具
 - npm: nodejs包管理
 - stylus: CSS预编译
-- jade: HTML模板
+- pug(jade): HTML模板
 - ECMASCRIPT 2015 / ECMASCRIPT 7, babeljs
+    - fetch API
+    - Promise API 
 - echarts: 图表绘制
+- standard: 代码检查工具
+- uglifyjs, cleancss: 代码混淆和压缩 
+
+## 兼容性
+- Android 4.0+
+- iOS 6.0+
 
 ## 相关脚本
 - 编译(除三方库): `gulp build`
