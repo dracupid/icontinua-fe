@@ -48,7 +48,7 @@ function _getOpt (val, text, unit, lines, _min, _max, step) {
 class BloodTabBlock extends React.Component {
   render () {
     return <div>
-      <Echarts option={_getOpt(this.props.data.value, this.props.title, this.props.unit, this.props.data.normal, this.props.min, this.props.max, this.props.step || 2)} height='300' width='100%' />
+      <Echarts option={_getOpt(this.props.data.value.toFixed(2), this.props.title, this.props.unit, this.props.data.normal, this.props.min, this.props.max, this.props.step || 2)} height='300' width='100%' />
       <Tips text={this.props.data.advice} fix />
       <Rank obj={{[this.props.title]: this.props.data}} user={this.props.user} />
     </div>
@@ -66,7 +66,7 @@ function getGLU (props) {
 function getUA (props) {
   let {ua, user} = props
   return (ua)
-    ? <BloodTabBlock title='尿酸' data={ua} user={user} unit='μmol/L' min={1000} max={5000} step={200} />
+    ? <BloodTabBlock title='尿酸' data={ua} user={user} unit='μmol/L' min={100} max={500} step={20} />
     : <Alert message={'你本次没有测量尿酸'} type='info' showIcon />
 }
 
