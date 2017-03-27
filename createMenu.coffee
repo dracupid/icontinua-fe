@@ -10,9 +10,16 @@ createMenu = (appId, appSecret, host)->
     menuStr =
         button: [
             {
-                type: 'view',
-                name: '体检报告',
-                url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=report'}&response_type=code&scope=snsapi_base"
+                name: '体测&报告',
+                sub_button: [{
+                    type: 'view',
+                    name: '体型评估',
+                    url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=device'}&response_type=code&scope=snsapi_base"
+                }, {
+                    type: 'view',
+                    name: '体检报告',
+                    url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=report'}&response_type=code&scope=snsapi_base"
+                }]
             }, {
                 name: '咨询医生',
                 sub_button: [{
@@ -31,10 +38,6 @@ createMenu = (appId, appSecret, host)->
                     type: 'view',
                     name: '药品查询',
                     url: "http://wapypk.39.net/index.aspx"
-                }, {
-                    type: 'view',
-                    name: '连接设备',
-                    url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=device'}&response_type=code&scope=snsapi_base"
                 }]
             }, {
                 name: '更多服务',
