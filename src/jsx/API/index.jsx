@@ -11,7 +11,7 @@ export default function (url, opt = {}) {
     raw: false,
     credentials: 'include',
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json'
     }
   })
 
