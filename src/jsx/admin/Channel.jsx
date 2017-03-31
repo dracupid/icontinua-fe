@@ -7,12 +7,12 @@ export default class Channel extends React.Component {
   columns = [{
     title: '渠道名称',
     dataIndex: 'sceneStr',
-    key: 'sceneStr',
+    key: 'sceneStr'
   }, {
     title: '二维码',
     key: 'url',
     dataIndex: 'url',
-    render: (text) => <img src={text} style={{width: 80}}/>
+    render: (text) => <img src={text} style={{width: 80}} />
   }, {
     title: '管理',
     key: 'manage',
@@ -23,7 +23,7 @@ export default class Channel extends React.Component {
       }
       return <span>
         <a href={'#/channel/s/' + sceneStr}>查看统计</a>
-        <span className='ant-divider'/>
+        <span className='ant-divider' />
         <Popconfirm title='确定要删除这个二维码?' onConfirm={::this.deleteChannel.bind(this, scene)}>
           <a>删除</a>
         </Popconfirm>
@@ -41,9 +41,9 @@ export default class Channel extends React.Component {
           dataSource: _.sortBy(data, 'sceneStr')
             .map((item) => {
               if (item.sceneStr.indexOf('mac') === 0) {
-                item.sceneStr = [item.appid, <br/>, item.sceneStr.slice(3)]
+                item.sceneStr = [item.appid, <br />, item.sceneStr.slice(3)]
               }
-              return item;
+              return item
             })
         })
       })
@@ -73,7 +73,7 @@ export default class Channel extends React.Component {
         <Breadcrumb.Item>渠道二维码管理</Breadcrumb.Item>
       </Breadcrumb>
       <Table dataSource={this.state.dataSource} columns={this.columns} bordered
-             pagination={{total: this.state.dataSource.length, pageSize: 10}}/>
+        pagination={{total: this.state.dataSource.length, pageSize: 10}} />
     </div>
   }
 }

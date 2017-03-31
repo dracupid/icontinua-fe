@@ -103,7 +103,7 @@ class HeightWeight extends React.Component {
 
   render () {
     let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, bmi, height, weight, user} = this.props
-    if (user.age){
+    if (user.age) {
       bodyFat = setValue(bodyFat, getValue(bodyFat) || calFat(user.sex, user.age, getValue(bmi)))
       bodyKcal = setValue(bodyFat, getValue(bodyKcal) || calBMR(bodyFat, getValue(weight)))
     }
