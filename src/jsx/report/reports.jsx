@@ -7,19 +7,20 @@ import ReportTrade from './ReportTrade.jsx'
 import API from '../API/report.jsx'
 import Footer from '../Components/Footer.jsx'
 import util from '../util.jsx'
+import Ztgbox from '../Components/Ztgbox.jsx'
 let {Tabs} = ANTD
 let TabPane = Tabs.TabPane
 
 class Reports extends React.Component {
   static propTypes = {
     params: React.PropTypes.object.isRequired
-  };
+  }
 
   state = {
     tabTitles: ['体检记录', '变化趋势'],
     currentTab: 0,
     data: null
-  };
+  }
 
   // 将数据按时间排序,并格式化为一个对象
   formatData (list) {
@@ -70,10 +71,20 @@ class Reports extends React.Component {
         <img src={util.removeProtocol(this.state.avatar)} alt='' />
       </div>
     }
+
+    let ad
+    if (!util.getParam('channel')) {
+      let width = window.outerWidth
+      ad = <div>
+        <Ztgbox data-type='0' data-promote='INST170342363016' data-size={`${width}*60`} />
+        <a className='gg-text'>方便保（不需体检），保得起（112元起／年），用得上（意外或疾病），保障好（最高理赔100万，肿瘤200万），有奖励（5元起／单）</a>
+      </div>
+    }
+
     return (
       <div id='report-list'>
         <Banner title={this.state.tabTitles[this.state.currentTab]} rightComponent={avatar} />
-
+        {ad}
         <div className='bottom-tab-wrapper'>
           <Tabs onChange={::this.changeHandler} activeKey={this.state.currentTab + ''} tabPosition='bottom'
             animated={false}>

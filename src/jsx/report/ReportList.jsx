@@ -2,7 +2,6 @@
  * 报告列表页面组件
  */
 import Loading from './../Components/Loading.jsx'
-import Ad from './../Components/Ad.jsx'
 import reportUtil from './util.jsx'
 import util from '../util.jsx'
 let {Alert, Pagination} = ANTD
@@ -19,11 +18,11 @@ const currentActivitys = {}
 class ReportList extends React.Component {
   static propTypes = {
     data: React.PropTypes.object
-  };
+  }
 
   state = {
     curPage: 0
-  };
+  }
 
   clickItem (reportId, channel) {
     // if (currentActivitys[channel]) {
@@ -86,33 +85,38 @@ class ReportList extends React.Component {
       )
     }
 
-    let defaultAd = <Ad
-      title='一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！'
-      text={<div>皮皮夺宝（<a href='http://www.ppduobao.com'>www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
-      img='//cdnst.icontinua.com/img/res/pipi.jpg' />
+    /*    let defaultAd = <Ad
+     title='一元就能中iphone 可别错过好运气！注册送钱！ 免费试玩！'
+     text={<div>皮皮夺宝（<a href='http://www.ppduobao.com'>www.ppduobao.com</a>）是一种时尚新奇的购物体验方式，能满足年轻消费者的购物需求的新型购物网。</div>}
+     img='//cdnst.icontinua.com/img/res/pipi.jpg' />
 
-    let ad
+     let ad
 
-    if (this.props.data != null) {
-      if (Object.keys(this.props.data).length) {
-        let base = this.props.data[Object.keys(this.props.data)[0]]
-        if (base && base.channel) {
-          if (currentActivitys[base.channel]) {
-            ad = currentActivitys[base.channel](base.sid)
-          }
-        }
-      }
-      ad = ad || defaultAd
-    }
+     if (this.props.data != null) {
+     if (Object.keys(this.props.data).length) {
+     let base = this.props.data[Object.keys(this.props.data)[0]]
+     if (base && base.channel) {
+     if (currentActivitys[base.channel]) {
+     ad = currentActivitys[base.channel](base.sid)
+     }
+     }
+     }
+     ad = ad || defaultAd
+     } */
 
     return (
       <div id='list-timeline'>
         {/* {ad} */}
         {(() => {
           switch (util.getParam('channel')) {
-            case 'HuiLianHuZhou': return <div style={{textAlign: 'center', fontSize: '17px', padding: '5px 0', color: '#E9642B'}}>您的惠联大健康体检报告，请点击查看</div>
-            case '3rd': return <div />
-            default: return <div style={{textAlign: 'center', fontSize: '19px', padding: '5px 0', color: '#E9642B'}}>您的爱康体体检报告，请点击查看</div>
+            case 'HuiLianHuZhou':
+              return <div style={{textAlign: 'center', fontSize: '17px', padding: '5px 0', color: '#E9642B'}}>
+                您的惠联大健康体检报告，请点击查看</div>
+            case '3rd':
+              return <div />
+            default:
+              return <div style={{textAlign: 'center', fontSize: '19px', padding: '5px 0', color: '#E9642B'}}>
+                您的爱康体体检报告，请点击查看</div>
           }
         })()
         }

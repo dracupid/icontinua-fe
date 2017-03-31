@@ -2,32 +2,7 @@
  * Echarts 组件
  */
 import Loading from './Loading.jsx'
-
-function getScript (url) {
-  return new Promise(function (resolve, reject) {
-    let s = document.createElement('script')
-    s.async = 'async'
-    s.src = url
-    let h = document.getElementsByTagName('head')[0]
-    s.onload = s.onreadystatechange = function (__, isAbort) {
-      if (isAbort || !s.readyState || /loaded|complete/.test(s.readyState)) {
-        s.onload = s.onreadystatechange = null
-        if (h && s.parentNode) {
-          h.removeChild(s)
-        }
-        s = undefined
-        if (isAbort) {
-          reject('Load Abort')
-        } else {
-          resolve()
-        }
-      } else {
-        reject('Load Failed')
-      }
-    }
-    h.insertBefore(s, h.firstChild)
-  })
-}
+import Util from '../util.jsx'
 
 class Echarts extends React.Component {
   static propTypes = {
@@ -47,7 +22,7 @@ class Echarts extends React.Component {
 
   constructor (props) {
     super(props)
-    getScript(`${location.host.indexOf('icontinua') >= 0 ? '//cdnst.icontinua.com' : ''}/js/lib/echarts.min.js`)
+    Util.getScript(`${location.host.indexOf('icontinua') >= 0 ? '//cdnst.icontinua.com' : ''}/js/lib/echarts.min.js`)
       .then(() => {
         this.setState({loaded: true})
         this.forceUpdate(::this.initEcharts)

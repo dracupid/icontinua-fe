@@ -99,5 +99,31 @@ export default {
   formatDate (t) {
     t = new Date(parseInt(t, 10))
     return `${t.getFullYear()}/${t.getMonth() + 1}/${t.getDate()}`
+  },
+
+  getScript (url) {
+    return new Promise(function (resolve, reject) {
+      let s = document.createElement('script')
+      s.async = 'async'
+      s.src = url
+      let h = document.getElementsByTagName('head')[0]
+      s.onload = s.onreadystatechange = function (__, isAbort) {
+        if (isAbort || !s.readyState || /loaded|complete/.test(s.readyState)) {
+          s.onload = s.onreadystatechange = null
+          if (h && s.parentNode) {
+            h.removeChild(s)
+          }
+          s = undefined
+          if (isAbort) {
+            reject('Load Abort')
+          } else {
+            resolve()
+          }
+        } else {
+          reject('Load Failed')
+        }
+      }
+      h.insertBefore(s, h.firstChild)
+    })
   }
 }
