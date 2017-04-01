@@ -74,10 +74,9 @@ class Reports extends React.Component {
 
     let ad
     if (!util.getParam('channel')) {
-      let width = window.outerWidth
       ad = <div>
-        <Ztgbox data-type='0' data-promote='INST170342363016' data-size={`${width}*60`} />
-        <a className='gg-text'>方便保（不需体检），保得起（112元起／年），用得上（意外或疾病），保障好（最高理赔100万，肿瘤200万），有奖励（5元起／单）</a>
+        <Ztgbox id='INST170342363016' />
+        <a className='gg-text'>方便保（不需体检，点击上面立办理），保得起（112元起／年），用得上（意外或疾病），保障好（最高理赔100万，肿瘤200万），有奖励（5元起／单）</a>
       </div>
     }
 

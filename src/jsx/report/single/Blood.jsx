@@ -8,6 +8,7 @@ import reportUtil from '../util.jsx'
 import {baseGaugeOpt} from '../../report/option.jsx'
 import Util from '../../util.jsx'
 let {getValue} = reportUtil
+import Ztgbox from '../../Components/Ztgbox.jsx'
 
 class Blood extends React.Component {
   static propTypes = {
@@ -63,6 +64,7 @@ class Blood extends React.Component {
 
     return (
       <div className='blood-tab'>
+        <Ztgbox id='INST170467684006' style={{marginLeft: '-10px', marginTop: '-20px'}} />
         <div className='flex-box'>
           <div className='echart-mini-wrapper'>
             <div style={{position: 'relative'}}>

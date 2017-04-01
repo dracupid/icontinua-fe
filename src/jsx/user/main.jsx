@@ -6,6 +6,7 @@ import util from '../util.jsx'
 import BannerBlock from './../Components/BannerBlock.jsx'
 import Banner from '../Components/Banner.jsx'
 import API from '../API/user.jsx'
+import Ztgbox from '../Components/Ztgbox.jsx'
 
 /**
  * 用户信息组件
@@ -39,6 +40,7 @@ class Main extends React.Component {
   render () {
     return <div>
       <Banner title='个人中心' />
+      <Ztgbox id='INST170454405010' />
       {this.state.data == null ? null : <div>
         <UserInfo {...this.state.data} />
         <div className='block-wrapper'>
