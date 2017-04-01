@@ -6,12 +6,13 @@ import Blood from './single/Blood.jsx'
 import O2 from './single/O2.jsx'
 import Bloods from './single/Bloods.jsx'
 import Chinese from './single/Chinese.jsx'
-import Loading from './../Components/Loading.jsx'
-import Banner from './../Components/Banner.jsx'
+import Loading from '../Components/Loading.jsx'
+import Banner from '../Components/Banner.jsx'
 import {setReport} from './../wechat.jsx'
 import Footer from './../Components/Footer.jsx'
 import API from '../API/report.jsx'
 import reportUtil from './util.jsx'
+import Ztgbox from '../Components/Ztgbox.jsx'
 
 let {Tabs, Alert} = ANTD
 let TabPane = Tabs.TabPane
@@ -78,9 +79,12 @@ class Report extends React.Component {
 
   getBlood () {
     let {sbp, dbp, heartRate, bp, user} = this.state.report
-    return (sbp && dbp)
+    return <div>
+      <Ztgbox id='INST170467684006' style={{marginLeft: '-10px', marginTop: '-20px'}} />
+      {(sbp && dbp)
       ? <Blood high={sbp} low={dbp} beat={heartRate} bp={bp} user={user} />
-      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血压' />
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血压' />}
+    </div>
   }
 
   getO2 () {
