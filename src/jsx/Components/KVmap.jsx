@@ -2,7 +2,7 @@
  * K-V对组件
  */
 let {info} = ANTD.Modal
-let _advice = require('json!../../data/advice.json')
+let _advice = require('../../data/advice.json')
 
 class KVMap extends React.Component {
   static defaultProps = {

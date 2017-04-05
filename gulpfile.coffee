@@ -27,17 +27,21 @@ gulp.task 'jsx', (cb) ->
 
     plugins = [
         new webpack.ProvidePlugin({
-            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+            'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
             'Promise': 'yaku'
         })
     ]
 
     if isProduction
         plugins = plugins.concat [
-            new webpack.optimize.UglifyJsPlugin(), # uglify
+            new webpack.optimize.UglifyJsPlugin()
         ]
 
     webpack
+        resolve: {
+            modules: ['node_modules', path.join(__dirname, '../node_modules')],
+            extensions: ['.web.js', '.js', '.json'],
+        }
         entry:
             report: cfg.src + "jsx/report/index.jsx"
             app: cfg.src + "jsx/app/index.jsx"
@@ -49,20 +53,31 @@ gulp.task 'jsx', (cb) ->
         output:
             filename: cfg.dist + 'js/[name].js'
         module:
-            loaders: [
+            rules: [
                 {
                     test: /\.css$/,
-                    loader: 'style-loader!css-loader?minimize!postcss-loader!'
-                },
-                {
+                    use: [
+                        {
+                            loader: 'style-loader'
+                        }, {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: true
+                            }
+                        }, {
+                            loader: 'postcss-loader',
+                            options:
+                                plugins: -> [autoprefixer(autoPrefixConfig)]
+                        }
+                    ]
+                }, {
                     test: /\.jsx?$/,
-                    loader: 'babel',
-                    query: {
-                        cacheDirectory: '.cache',
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: '.cache'
                     }
                 }
             ]
-        postcss: -> [autoprefixer(autoPrefixConfig)]
         plugins: plugins
         externals:
             jquery: 'window.$'
@@ -112,9 +127,16 @@ gulp.task 'lib_js', ['_antd_css'], (cb) ->
         output:
             filename: cfg.dist + 'js/lib/[name].min.js'
         module:
-            loaders: [{
-                test: /\.js$/, loader: 'babel'
-            }]
+            rules:[
+                {
+                    test: /\.js$/,
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: '.cache'
+                    }
+                }
+            ]
+
         plugins: do ->
             [new webpack.optimize.UglifyJsPlugin()]
         externals:
