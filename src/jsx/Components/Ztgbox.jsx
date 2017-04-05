@@ -5,10 +5,6 @@ export default class extends React.Component {
     loaded: false
   }
 
-  constructor (props) {
-    super(props)
-  }
-
   renderAd () {
     Util.getScript('//static.zhongan.com/website/open/assets/js/public/ztg/1.0.0/ztgapi.js')
       .then(() => {

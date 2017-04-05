@@ -1,10 +1,10 @@
 /**
  * 应用icon块
  */
-let {Button} = ANTD
 import appUtil from './../util.jsx'
 import Image from '../../Components/Image.jsx'
 import util from '../../util.jsx'
+let {Button} = ANTD
 
 let disabledBtn = <Button type='primary' size='small' disabled>不支持下载</Button>
 

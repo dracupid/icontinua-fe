@@ -16,7 +16,7 @@ export default {
       // }
       return API('/api/report-sid?sid=' + sid)
     } else {
-      return Promise.reject('reportId not provided.')
+      return Promise.reject(new Error('reportId not provided.'))
     }
   },
   /**

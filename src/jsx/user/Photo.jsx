@@ -1,12 +1,12 @@
 /**
  * 化验单识别页面
  */
-let {Icon, Button, message, Upload} = ANTD
 import Banner from '../Components/Banner.jsx'
 import util from '../util.jsx'
 import API from '../API/user.jsx'
 import Cropper from '../../react-cropper.js'
 import 'blueimp-canvas-to-blob'
+let {Icon, Button, message, Upload} = ANTD
 
 Object.assign = _.assign
 

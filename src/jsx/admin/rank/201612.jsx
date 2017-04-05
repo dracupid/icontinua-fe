@@ -6,8 +6,9 @@ import Radio from 'antd/lib/radio/index.js'
 import DatePicker from 'antd/lib/date-picker/index.js'
 import Switch from 'antd/lib/switch/index.js'
 import moment from 'moment'
-let {Button: RadioButton, Group: RadioGroup} = Radio
 import HWBChart from './HWBChart.jsx'
+
+let {Button: RadioButton, Group: RadioGroup} = Radio
 
 export default class extends React.Component {
   state = {

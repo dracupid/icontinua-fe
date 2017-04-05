@@ -1,10 +1,10 @@
 /**
  * 化验单页面路由
  */
-let {Route, Router, hashHistory} = ReactRouter
 import Footer from '../Components/Footer.jsx'
 import List from './List.jsx'
 import Item from './Item.jsx'
+let {Route, Router, hashHistory} = ReactRouter
 
 ReactDOM.render((
   <div>

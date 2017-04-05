@@ -12,7 +12,7 @@ export default {
   deleteChannel: (name, appid) => API(`/api/admin/channel/delete?name=${name}&appid=${appid || ''}`),
   createChannel: (name) => {
     if (!name) {
-      return Promise.reject()
+      return Promise.reject(new Error('channel name cannot be null'))
     }
     return API('/api/admin/channel/create?name=' + name)
   },

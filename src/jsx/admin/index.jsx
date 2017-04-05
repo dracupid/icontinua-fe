@@ -1,7 +1,6 @@
 /**
  * 管理平台路由
  */
-let {Route, Router, hashHistory} = ReactRouter
 import Channel from './Channel.jsx'
 import Device from './Device.jsx'
 import DeviceStat from './DeviceStat.jsx'
@@ -12,6 +11,7 @@ import Rank201612List from './rank/201612_list.jsx'
 import Footer from '../Components/Footer.jsx'
 import Header from './Header.jsx'
 import Menu from './LeftMenu.jsx'
+let {Route, Router, hashHistory} = ReactRouter
 
 ReactDOM.render((
   <div>

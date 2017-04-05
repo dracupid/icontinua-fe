@@ -23,6 +23,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "coffee-script": "^1.12.4",
     "css-loader": "^0.28.0",
+    "eslint-plugin-standard": "^2.2.0",
     "exports-loader": "^0.6.4",
     "got": "^6.7.1",
     "gulp": "^3.9.1",

@@ -1,12 +1,12 @@
 /**
  * 用户中心主页
  */
-let {Icon} = ANTD
 import util from '../util.jsx'
 import BannerBlock from './../Components/BannerBlock.jsx'
 import Banner from '../Components/Banner.jsx'
 import API from '../API/user.jsx'
 import Ztgbox from '../Components/Ztgbox.jsx'
+let {Icon} = ANTD
 
 /**
  * 用户信息组件

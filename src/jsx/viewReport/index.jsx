@@ -1,9 +1,9 @@
 /**
  * 应用商城路由
  */
-let {Route, Router, hashHistory} = ReactRouter
 import DeviceReport from './device.jsx'
 import Footer from '../Components/Footer.jsx'
+let {Route, Router, hashHistory} = ReactRouter
 
 ReactDOM.render((
   <div>

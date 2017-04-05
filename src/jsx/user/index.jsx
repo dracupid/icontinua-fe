@@ -1,11 +1,11 @@
 /**
  * 用户中心路由
  */
-let {Route, Router, hashHistory} = ReactRouter
 import Footer from '../Components/Footer.jsx'
 import main from './main.jsx'
 import edit from './edit.jsx'
 import Photo from './Photo.jsx'
+let {Route, Router, hashHistory} = ReactRouter
 
 ReactDOM.render((
   <div>

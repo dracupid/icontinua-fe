@@ -1,8 +1,8 @@
 /**
  * 可编辑条目块
  */
-let {Icon, Radio, InputNumber, Button} = ANTD
 import BindPhone from './bindPhone.jsx'
+let {Icon, Radio, InputNumber, Button} = ANTD
 
 class EditBlock extends React.Component {
   state = {

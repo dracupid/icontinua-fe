@@ -115,12 +115,12 @@ export default {
           }
           s = undefined
           if (isAbort) {
-            reject('Load Abort')
+            reject(new Error('Load Abort'))
           } else {
             resolve()
           }
         } else {
-          reject('Load Failed')
+          reject(new Error('Load Failed'))
         }
       }
       h.insertBefore(s, h.firstChild)

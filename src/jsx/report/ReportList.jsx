@@ -13,7 +13,7 @@ const itemPerPage = 10
 //     img='//cdnst.icontinua.com/img/res/zhongfangHz.jpg'/>
 // }
 
-const currentActivitys = {}
+// const currentActivitys = {}
 
 class ReportList extends React.Component {
   static propTypes = {

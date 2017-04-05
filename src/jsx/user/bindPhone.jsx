@@ -1,8 +1,8 @@
 /**
  * 绑定手机号码弹层
  */
-let {Button, Modal, message} = ANTD
 import API from '../API/user.jsx'
+let {Button, Modal, message} = ANTD
 
 function isValidPhone (phone) {
   return /^\d{11}$/.test(phone)

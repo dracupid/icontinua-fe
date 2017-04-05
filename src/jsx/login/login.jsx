@@ -1,8 +1,9 @@
-let {Form, Input, Button, Tabs, Icon} = ANTD
-const FormItem = Form.Item
 import API from '../API/login.jsx'
 import APIU from '../API/user.jsx'
 import Util from '../util.jsx'
+let {Form, Input, Button, Tabs, Icon} = ANTD
+const FormItem = Form.Item
+
 function redirect () {
   location.href = decodeURIComponent(Util.getParam('url') || '/reports').replace(/^\/?cloudhealth/, '')
 }
