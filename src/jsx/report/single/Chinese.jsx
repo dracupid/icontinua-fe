@@ -1,7 +1,7 @@
 /**
  * 中医报告页面
  */
-import {filter, getStarLevel, getLevelText} from './chineseUtil.jsx'
+import { filter, getLevelText, getStarLevel } from './chineseUtil.jsx'
 import Loading from '../../Components/Loading.jsx'
 import Tips from '../../Components/Tips.jsx'
 import API from '../../API/report.jsx'
@@ -9,12 +9,18 @@ import Rank from '../../Components/Rank.jsx'
 
 let {Alert, Rate} = ANTD
 
+function ScoreTab ({score}) {
+  if (score === 10) score = 9.9
+  let scale = 10 * (10 - score)
+  return <div className='color-tab' style={{width: `${scale}%`, backgroundSize: `${10000 / (scale)}%`}} />
+}
+
 class ReportBlock extends React.Component {
   static propTypes = {
     title: React.PropTypes.string.isRequired,
     level: React.PropTypes.number.isRequired,
     items: React.PropTypes.array.isRequired
-  };
+  }
 
   render () {
     let {title, level, items} = this.props
@@ -91,7 +97,7 @@ class Scores extends React.Component {
     jizhui: React.PropTypes.number.isRequired,
     xiaohua: React.PropTypes.number.isRequired,
     miniao: React.PropTypes.number.isRequired
-  };
+  }
 
   render () {
     let {zangfu, jizhui, xiaohua, miniao} = this.props
@@ -101,26 +107,41 @@ class Scores extends React.Component {
       消化: xiaohua,
       泌尿: miniao
     }
+// res = _.map(data, (v, k) => {
+//   return <div className='kv' key={k}>
+//     <span className='key'>{k}</span>
+//     <span className='value'>{parseFloat(v).toFixed(1)}</span>
+//   </div>
+
     let res = _.map(data, (v, k) => {
       return <div className='kv' key={k}>
         <span className='key'>{k}</span>
-        <span className='value'>{parseFloat(v).toFixed(1)}</span>
+        {(() => {
+          return <ScoreTab score={parseFloat(v)} />
+        })()}
       </div>
     })
 
-    return <div className='c-kv-map'>{res}</div>
+    return <div>
+      <div className='legend'>
+        <div><span>正常</span><span style={{marginLeft: '40%'}}>一般</span><span
+          style={{right: '20px', position: 'absolute'}}>警告</span></div>
+        <div className='color-tab' style={{width: '100%', backgroundSize: '100%'}} />
+      </div>
+      <div className='c-kv-map'>{res}</div>
+    </div>
   }
 }
 
 class Chinese extends React.Component {
   static propTypes = {
     cacheId: React.PropTypes.string.isRequired
-  };
+  }
 
   state = {
     data: null,
     loaded: false
-  };
+  }
 
   componentDidMount () {
     API.falthReport(this.props.cacheId)
