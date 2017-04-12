@@ -40,7 +40,7 @@ gulp.task 'jsx', (cb) ->
     webpack
         resolve: {
             modules: ['node_modules', path.join(__dirname, '../node_modules')],
-            extensions: ['.web.js', '.js', '.json'],
+            extensions: ['.web.js', '.js', '.jsx', '.json'],
         }
         entry:
             report: cfg.src + "jsx/report/index.jsx"
@@ -75,7 +75,7 @@ gulp.task 'jsx', (cb) ->
                     exclude: /(node_modules|bower_components)/
                     loader: 'babel-loader',
                     options: {
-                        cacheDirectory: '.cache'
+                        cacheDirectory: true
                     }
                 }
             ]
