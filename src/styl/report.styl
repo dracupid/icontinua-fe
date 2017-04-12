@@ -245,8 +245,7 @@ $red = #DF5353
         font-size 1.4em
         color: $green
         font-weight bold
-        width 40px
-        margin-right 10px
+
     .value
         font-size 1.2em
         margin-bottom 8px
@@ -259,6 +258,9 @@ $red = #DF5353
         flex-direction column
         align-items flex-start
         padding 0 10px
+        .key
+            width 40px
+            margin-right 10px
         &.direction-row
             flex-direction row
             align-items center
@@ -422,8 +424,9 @@ $red = #DF5353
 .ad-region
     margin-top -18px
 
-.ant-rate-star-full:before
-    color #c82121 !important
+.ant-rate-star-full
+    .anticon-star:before
+        color #c82121 !important
 
 .color-tab
     background linear-gradient(90deg, #55BF3B 0%, #fff556 55%, #ff081f 100%)

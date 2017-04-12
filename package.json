@@ -46,7 +46,7 @@
     "webpack": "^2.3.3"
   },
   "dependencies": {
-    "antd": "^2.5.3",
+    "antd": "2.9.1",
     "antd-mobile": "0.7.8",
     "blueimp-canvas-to-blob": "^3.7.0",
     "comma-separated-values": "^3.6.4",
