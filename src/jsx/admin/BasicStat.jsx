@@ -80,10 +80,10 @@ export default class Stat extends React.Component {
       scan = this.filter(dataScan.arr)
       subscribe = this.filter(dataSubscribe.arr)
       let dataSource = [{
-        scan: dataScan.arr.length,
-        scan_u: _.uniq(dataScan.arr, dataScan.uniqKey).length,
-        subscribe: dataSubscribe.arr.length,
-        subscribe_u: _.uniq(dataSubscribe.arr, dataSubscribe.uniqKey).length,
+        scan: scan.length,
+        scan_u: _.uniq(scan, dataScan.uniqKey).length,
+        subscribe: subscribe.length,
+        subscribe_u: _.uniq(subscribe, dataSubscribe.uniqKey).length,
         time: (this.state.startDate ? Util.formatDate(this.state.startDate.valueOf()) : '') +
         '-' +
         (this.state.endDate ? Util.formatDate(this.state.endDate.valueOf()) : '')
@@ -116,9 +116,11 @@ export default class Stat extends React.Component {
       v.time = type === 'week'
         ? `${Util.formatDate(k)}-${Util.formatDate(moment(parseInt(k)).add(6, 'days').valueOf())}`
         : Util.formatDate(k)
+      v.timestamp = k
       return v
     })
 
+    dataSource = _.sortBy(dataSource, 'timestamp').reverse()
     this.setState({type, dataSource})
   }
 
