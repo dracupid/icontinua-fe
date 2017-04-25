@@ -5,6 +5,7 @@ import HeightWeight from './single/HeightWeight.jsx'
 import Blood from './single/Blood.jsx'
 import O2 from './single/O2.jsx'
 import Bloods from './single/Bloods.jsx'
+import ElseBlock from './single/else.jsx'
 import Chinese from './single/Chinese.jsx'
 import Loading from '../Components/Loading.jsx'
 import Banner from '../Components/Banner.jsx'
@@ -102,11 +103,17 @@ class Report extends React.Component {
   }
 
   getBloods () {
-    console.log(this.state.report)
     let {glu, ua, chol, hb} = this.state.report
     return (glu || ua || chol || hb)
       ? <Bloods {...this.state.report} />
       : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量血液指标' />
+  }
+
+  getElse () {
+    let {text16D} = this.state.report
+    return (text16D)
+      ? <ElseBlock {...this.state.report} />
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量其他项目' />
   }
 
   render () {
@@ -120,6 +127,7 @@ class Report extends React.Component {
           <TabPane tab='血氧' key='3'>{this.getO2()}</TabPane>
           <TabPane tab='生物电' key='4'>{this.getChinese()}</TabPane>
           <TabPane tab='血液' key='5'>{this.getBloods()}</TabPane>
+          <TabPane tab='其他' key='6'>{this.getElse()}</TabPane>
         </Tabs>
 
         <Footer />
