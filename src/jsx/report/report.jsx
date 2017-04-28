@@ -127,7 +127,7 @@ class Report extends React.Component {
           <TabPane tab='血氧' key='3'>{this.getO2()}</TabPane>
           <TabPane tab='生物电' key='4'>{this.getChinese()}</TabPane>
           <TabPane tab='血液' key='5'>{this.getBloods()}</TabPane>
-          <TabPane tab='其他' key='6'>{this.getElse()}</TabPane>
+          <TabPane tab='健康评估' key='6'>{this.getElse()}</TabPane>
         </Tabs>
 
         <Footer />
