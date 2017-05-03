@@ -113,7 +113,7 @@ class Report extends React.Component {
     let {text16D} = this.state.report
     return (text16D)
       ? <ElseBlock {...this.state.report} />
-      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有测量其他项目' />
+      : <NoDataBLock loading={!this.state.loaded} noDataText='你本次没有进行健康评估' />
   }
 
   render () {
