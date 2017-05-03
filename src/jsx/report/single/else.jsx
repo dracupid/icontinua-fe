@@ -15,9 +15,9 @@ function get16D (props) {
 function ElseBlock (props) {
   return (
     <div>
-      {/*<Tabs animated={false} size='mini' style={{marginTop: '-20px'}}>*/}
-      {/*<TabPane tab='健康评估' key='1'>{get16D(props)}</TabPane>*/}
-      {/*</Tabs>*/}
+      {/* <Tabs animated={false} size='mini' style={{marginTop: '-20px'}}> */}
+      {/* <TabPane tab='健康评估' key='1'>{get16D(props)}</TabPane> */}
+      {/* </Tabs> */}
       {get16D(props)}
     </div>
   )
