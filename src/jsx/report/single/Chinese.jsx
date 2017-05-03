@@ -10,8 +10,8 @@ import Rank from '../../Components/Rank.jsx'
 let {Alert, Rate} = ANTD
 
 function ScoreTab ({score}) {
-  if (score === 10) score = 9.9
-  let scale = 10 * (10 - score)
+  if (score === 0) score = 0.1
+  let scale = 10 * score
   return <div className='color-tab' style={{width: `${scale}%`, backgroundSize: `${10000 / (scale)}%`}} />
 }
 
@@ -124,8 +124,8 @@ class Scores extends React.Component {
 
     return <div>
       <div className='legend'>
-        <div><span>正常</span><span style={{marginLeft: '40%'}}>一般</span><span
-          style={{right: '20px', position: 'absolute'}}>警告</span></div>
+        <div><span>警告</span><span style={{marginLeft: '40%'}}>一般</span><span
+          style={{right: '20px', position: 'absolute'}}>正常</span></div>
         <div className='color-tab' style={{width: '100%', backgroundSize: '100%'}} />
       </div>
       <div className='c-kv-map'>{res}</div>
