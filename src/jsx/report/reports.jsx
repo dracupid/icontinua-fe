@@ -2,6 +2,7 @@
  * 报告历史页面主页
  */
 import Banner from './../Components/Banner.jsx'
+import AdBanner from '../Components/AdBanner'
 import ReportList from './ReportList.jsx'
 import ReportTrade from './ReportTrade.jsx'
 import API from '../API/report.jsx'
@@ -78,6 +79,8 @@ class Reports extends React.Component {
         <Ztgbox id='INST170342363016' />
         <p className='gg-text'>方便保（不需体检，点击上面立办理），保得起（112元起／年），用得上（意外或疾病），保障好（最高理赔100万，肿瘤200万），有奖励（5元起／单）</p>
       </div>
+    } else if (util.getParam('channel') === '3rd') {
+      ad = <AdBanner channel="zsf" positionKey="main"/>
     }
 
     return (

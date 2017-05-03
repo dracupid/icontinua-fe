@@ -28,7 +28,7 @@ export default class AdBanner extends React.Component {
   }
 
   render () {
-    if (this.state.data && this.state.data.imgFile) {
+    if (_.get(this.state, 'data.imgFile.filename')) {
       let {text, url, imgFile} = this.state.data
       let imgUrl = '//cdnst.icontinua.com/upload/' + imgFile.filename
       if (url.indexOf('http' !== 0)) url = '//' + url
