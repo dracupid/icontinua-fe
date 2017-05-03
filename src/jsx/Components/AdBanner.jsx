@@ -2,16 +2,42 @@
  * 广告横幅组件
  */
 
-export default function AdBanner (props) {
-  let {text, url, imgUrl} = props
-  return <div className='banner-img-wrapper'>
-    <a href={url}><img src={imgUrl} /></a>
-    <p className='gg-text'>{text || ''}</p>
-  </div>
-}
+import API from '../API/ad'
 
-AdBanner.propTypes = {
-  text: React.PropTypes.string,
-  url: React.PropTypes.string,
-  imgUrl: React.PropTypes.string
+export default class AdBanner extends React.Component {
+  static propTypes = {
+    channel: React.PropTypes.string,
+    positionKey: React.PropTypes.string,
+  }
+
+  state = {
+    data: null
+  }
+
+  componentDidMount () {
+    switch (this.props.channel) {
+      case 'zsf':
+        API.zsf()
+          .then((res) => {
+            _.forEach(res, (r) => {
+              if (r.key === this.props.positionKey)
+                this.setState({data: r})
+            })
+          })
+    }
+  }
+
+  render () {
+    if (this.state.data && this.state.data.imgFile) {
+      let {text, url, imgFile} = this.state.data
+      let imgUrl = '//cdnst.icontinua.com/upload/' + imgFile.filename
+      if (url.indexOf('http' !== 0)) url = '//' + url
+      return <div className='banner-img-wrapper'>
+        <a href={url}><img src={imgUrl}/></a>
+        <p className='gg-text'>{text || ''}</p>
+      </div>
+    } else {
+      return null
+    }
+  }
 }
