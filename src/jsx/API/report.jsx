@@ -22,9 +22,11 @@ export default {
 
     return promise.then((data) => {
       // channel 包含 only-chinese，只显示生物电结果
-      if (data.channel.indexOf('only-chinese') >= 0) {
+      if (data.channel && data.channel.indexOf('only-chinese') >= 0) {
         let {id, location, channel, sid, timestamp, cacheId, user, jizhui, zangfu, xiaohua, miniao} = data
         return {id, location, channel, sid, timestamp, cacheId, user, jizhui, zangfu, xiaohua, miniao}
+      } else {
+        return data
       }
     })
   },
