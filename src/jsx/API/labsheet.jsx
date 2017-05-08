@@ -5,7 +5,7 @@ export default {
    * 获取化验项目列表
    * @param name
    */
-  // fetchList: (name) => API(`/api/libsheet/list?${name ? `name=${name}` : ''}`),
+  // fetchList: (name) => API(`/recognize/labsheet/list?${name ? `name=${name}` : ''}`),
   /**
    * 获取化验单项目解读
    * @param name

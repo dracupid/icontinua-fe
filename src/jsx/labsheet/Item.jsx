@@ -1,7 +1,7 @@
 /**
  * 化验单具体项目解读页面
  */
-import API from '../API/libsheet.jsx'
+import API from '../API/labsheet.jsx'
 import 'antd-mobile/lib/nav-bar/style/css.web.js'
 import NavBar from 'antd-mobile/lib/nav-bar/index.web.js'
 import Card from 'antd/lib/card'
@@ -64,7 +64,7 @@ class Item extends React.Component {
     let loading = (this.state.data === null)
     let data = this.state.data || {}
 
-    return <div className='libsheet-item'>
+    return <div className='labsheet-item'>
       <NavBar className='navbar' iconName=''>{curName}</NavBar>
       <Card loading={loading} title='名称' className='card with-margin'>
         {this.state.name + (data.abbr ? ` (${data.abbr})` : '')}

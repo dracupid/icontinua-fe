@@ -1,7 +1,7 @@
 /**
  * 某类化验单的项目列表页
  */
-import API from '../API/libsheet.jsx'
+import API from '../API/labsheet.jsx'
 import 'antd-mobile/lib/list/style/css.web.js'
 import 'antd-mobile/lib/activity-indicator/style/css.web.js'
 import 'antd-mobile/lib/nav-bar/style/css.web.js'
