@@ -5,15 +5,17 @@ import Footer from '../Components/Footer.jsx'
 import main from './main.jsx'
 import edit from './edit.jsx'
 import Photo from './Photo.jsx'
-let {Route, Router, hashHistory} = ReactRouter
+let {Route, HashRouter} = ReactRouter
 
 ReactDOM.render((
   <div>
-    <Router history={hashHistory}>
-      <Route path='/' component={main} />
+    <HashRouter>
+      <div>
+      <Route exact path='/' component={main} />
       <Route path='/edit' component={edit} />
       <Route path='/photo' component={Photo} />
-    </Router>
+      </div>
+    </HashRouter>
     <Footer />
   </div>
 ), document.getElementById('main'))

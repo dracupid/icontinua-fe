@@ -22,7 +22,7 @@ function hasItem (data, name) {
 
 class ReportTrade extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object
+    data: PropTypes.object
   };
 
   getHeightWeight () {

@@ -71,7 +71,7 @@ function Rank (props) {
 }
 
 Rank.propTypes = {
-  obj: React.PropTypes.object.isRequired,
-  user: React.PropTypes.object.isRequired
+  obj: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 }
 export default Rank

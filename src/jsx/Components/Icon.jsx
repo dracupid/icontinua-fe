@@ -6,6 +6,6 @@ function Icon (props) {
 }
 
 Icon.propTypes = {
-  src: React.PropTypes.string.isRequired
+  src: PropTypes.string.isRequired
 }
 export default Icon

@@ -7,7 +7,7 @@ import reportUtil from '../../report/util.jsx'
 
 export default class extends React.Component {
   static propTypes = {
-    data: React.PropTypes.array.isRequired
+    data: PropTypes.array.isRequired
   };
 
   formattedData () {

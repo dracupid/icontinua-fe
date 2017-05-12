@@ -10,8 +10,8 @@ window.moment = moment
 
 export default class Stat extends React.Component {
   static propTypes = {
-    dataScan: React.PropTypes.object.isRequired, // { arr, name, uniqKey}
-    dataSubscribe: React.PropTypes.object.isRequired
+    dataScan: PropTypes.object.isRequired, // { arr, name, uniqKey}
+    dataSubscribe: PropTypes.object.isRequired
   };
 
   state = {

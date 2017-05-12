@@ -5,16 +5,18 @@ import main from './main.jsx'
 import AppDetail from './AppDetail.jsx'
 import Search from './Components/SearchResult.jsx'
 import Footer from '../Components/Footer.jsx'
-let {Route, Router, hashHistory} = ReactRouter
+let {Route, HashRouter} = ReactRouter
 
 ReactDOM.render((
   <div>
-    <Router history={hashHistory}>
-      <Route path='/' component={main} />
+    <HashRouter>
+      <div>
+      <Route exact path='/' component={main} />
       <Route path='/tag/:tag' component={main} />
       <Route path='/s/:keyword' component={Search} />
       <Route path='/item/:uid' component={AppDetail} />
-    </Router>
+      </div>
+    </HashRouter>
     <Footer />
   </div>
 ), document.getElementById('main'))

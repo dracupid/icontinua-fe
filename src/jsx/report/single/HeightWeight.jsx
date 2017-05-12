@@ -21,13 +21,13 @@ function calBMR (fat, weight) {
 
 class HeightWeight extends React.Component {
   static propTypes = {
-    height: React.PropTypes.any.isRequired,
-    weight: React.PropTypes.any.isRequired,
-    bodyFat: React.PropTypes.any,
-    bodyMuscle: React.PropTypes.any,
-    bodyKcal: React.PropTypes.any,
-    bodyWater: React.PropTypes.any,
-    bodyViscera: React.PropTypes.any
+    height: PropTypes.any.isRequired,
+    weight: PropTypes.any.isRequired,
+    bodyFat: PropTypes.any,
+    bodyMuscle: PropTypes.any,
+    bodyKcal: PropTypes.any,
+    bodyWater: PropTypes.any,
+    bodyViscera: PropTypes.any
   };
 
   /**

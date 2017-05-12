@@ -28,9 +28,9 @@ function Banner (props) {
 }
 
 Banner.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  backUrl: React.PropTypes.string,
-  rightComponent: React.PropTypes.object
+  title: PropTypes.string.isRequired,
+  backUrl: PropTypes.string,
+  rightComponent: PropTypes.object
 }
 
 export default Banner

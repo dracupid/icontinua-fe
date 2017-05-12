@@ -123,7 +123,7 @@ gulp.task 'lib_js', ['_antd_css'], (cb) ->
     webpack = require 'webpack'
     webpack
         entry:
-            antd: cfg.src + "antd.js"
+            libs: cfg.src + "libs.js"
             echarts: cfg.src + "echarts.js"
         output:
             filename: cfg.dist + 'js/lib/[name].min.js'

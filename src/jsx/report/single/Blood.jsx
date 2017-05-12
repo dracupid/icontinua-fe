@@ -11,9 +11,9 @@ let {getValue} = reportUtil
 
 class Blood extends React.Component {
   static propTypes = {
-    high: React.PropTypes.object.isRequired,
-    low: React.PropTypes.object.isRequired,
-    beat: React.PropTypes.number.isRequired
+    high: PropTypes.object.isRequired,
+    low: PropTypes.object.isRequired,
+    beat: PropTypes.number.isRequired
   };
 
   /**

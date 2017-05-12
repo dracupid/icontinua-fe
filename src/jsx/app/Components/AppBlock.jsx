@@ -21,7 +21,7 @@ function AppBlock ({appData: {apkUrl, name, imgUrl, uid}}) {
 }
 
 AppBlock.propTypes = {
-  appData: React.PropTypes.object.isRequired
+  appData: PropTypes.object.isRequired
 }
 
 export default AppBlock

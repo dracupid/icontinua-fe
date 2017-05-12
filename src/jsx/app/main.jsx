@@ -25,7 +25,7 @@ class MainApps extends React.Component {
   }
 
   changeTab (e) {
-    if (e === (this.props.params.tag || '热门')) {
+    if (e === (this.props.match.params.tag || '热门')) {
       return
     }
 
@@ -36,7 +36,7 @@ class MainApps extends React.Component {
     if (this.state.data == null) {
       return <Loading />
     } else {
-      let curTab = this.props.params.tag || '热门'
+      let curTab = this.props.match.params.tag || '热门'
       let panels = this.state.data.topTags.map((v) => {
         return <TabPane tab={v} key={v}>{<AppList keyword={v} />}</TabPane>
       })

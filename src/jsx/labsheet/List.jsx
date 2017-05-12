@@ -63,15 +63,9 @@ class ListSheet extends React.Component {
       info = this.state.info
     }
 
-    return API.update(this.props.params.name.replace('.jpg', ''), arr, info)
+    return API.update(this.props.match.params.name.replace('.jpg', ''), arr, info)
   }
 
-  // getData () {
-  //   return API.fetchList(this.props.params.name)
-  //     .then((data) => {
-  //       this.setState({data, name: this.props.params.name})
-  //     })
-  // }
   polling (imgName, interval) {
     API.pollingState(imgName)
       .then((data) => {
@@ -97,7 +91,7 @@ class ListSheet extends React.Component {
   }
 
   getData () {
-    let imgName = this.props.params.name.replace('.jpg', '')
+    let imgName = this.props.match.params.name.replace('.jpg', '')
     API.sendRecognize(imgName)
       .then(() => {
         let interval = setInterval(() => {

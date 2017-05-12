@@ -8,7 +8,7 @@ export default class Device extends React.Component {
   }
 
   componentDidMount () {
-    API.statChannel(this.props.params.name)
+    API.statChannel(this.props.match.params.name)
       .then((data) => {
         this.setState({data})
       })
@@ -19,7 +19,7 @@ export default class Device extends React.Component {
       <Breadcrumb>
         <Breadcrumb.Item>渠道二维码管理</Breadcrumb.Item>
         <Breadcrumb.Item>推广统计</Breadcrumb.Item>
-        <Breadcrumb.Item>{this.props.params.name}</Breadcrumb.Item>
+        <Breadcrumb.Item>{this.props.match.params.name}</Breadcrumb.Item>
       </Breadcrumb>
       <br />
 

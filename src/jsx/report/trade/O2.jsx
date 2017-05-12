@@ -7,7 +7,7 @@ import reportUtil from '../util.jsx'
 
 class O2 extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object.isRequired
+    data: PropTypes.object.isRequired
   };
 
   formattedData () {

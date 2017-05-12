@@ -6,8 +6,8 @@ import API from '../API/ad'
 
 export default class AdBanner extends React.Component {
   static propTypes = {
-    channel: React.PropTypes.string,
-    positionKey: React.PropTypes.string,
+    channel: PropTypes.string,
+    positionKey: PropTypes.string,
   }
 
   state = {

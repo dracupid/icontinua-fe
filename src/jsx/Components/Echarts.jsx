@@ -6,10 +6,10 @@ import Util from '../util.jsx'
 
 class Echarts extends React.Component {
   static propTypes = {
-    option: React.PropTypes.object.isRequired,
-    width: React.PropTypes.any.isRequired,
-    height: React.PropTypes.string.isRequired,
-    className: React.PropTypes.string
+    option: PropTypes.object.isRequired,
+    width: PropTypes.any.isRequired,
+    height: PropTypes.string.isRequired,
+    className: PropTypes.string
   };
   static defaultProps = {
     width: '100%',

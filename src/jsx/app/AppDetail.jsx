@@ -48,7 +48,7 @@ class AppDetail extends React.Component {
   };
 
   componentDidMount () {
-    API.appInfo(this.props.params.uid)
+    API.appInfo(this.props.match.params.uid)
       .then((res) => {
         if (_.isEmpty(res)) {
           util.toUrl('/apps')

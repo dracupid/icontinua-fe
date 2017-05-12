@@ -14,9 +14,9 @@ function isValidCode (phone) {
 
 class BindPhoneModal extends React.Component {
   static propTypes = {
-    visible: React.PropTypes.bool.isRequired,
-    onCancel: React.PropTypes.func.isRequired,
-    onSuccess: React.PropTypes.func.isRequired
+    visible: PropTypes.bool.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onSuccess: PropTypes.func.isRequired
   };
 
   state = {

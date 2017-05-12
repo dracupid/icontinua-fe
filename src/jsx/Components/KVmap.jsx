@@ -10,7 +10,7 @@ class KVMap extends React.Component {
   };
 
   static propTypes = {
-    obj: React.PropTypes.object
+    obj: PropTypes.object
   };
 
   static info (title, content) {

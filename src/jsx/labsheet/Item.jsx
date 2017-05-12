@@ -44,7 +44,7 @@ class Item extends React.Component {
   }
 
   getData () {
-    let {name} = this.props.params
+    let {name} = this.props.match.params
     return API.fetchItem(name)
       .then((data) => {
         this.setState({data, name})
@@ -56,7 +56,7 @@ class Item extends React.Component {
   }
 
   render () {
-    let {name: curName} = this.props.params
+    let {name: curName} = this.props.match.params
     // if (this.state.name !== curName) {
     //   this.getData()
     // }

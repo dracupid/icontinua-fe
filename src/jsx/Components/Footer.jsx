@@ -25,8 +25,8 @@ function Footer (props) {
 }
 
 Footer.propTypes = {
-  inline: React.PropTypes.bool,
-  style: React.PropTypes.object
+  inline: PropTypes.bool,
+  style: PropTypes.object
 }
 
 function InlineFooter (props) {

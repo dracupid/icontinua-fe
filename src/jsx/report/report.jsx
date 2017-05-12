@@ -26,15 +26,11 @@ function NoDataBLock ({loading, noDataText}) {
 }
 
 NoDataBLock.propTypes = {
-  loading: React.PropTypes.bool,
-  noDataText: React.PropTypes.string
+  loading: PropTypes.bool,
+  noDataText: PropTypes.string
 }
 
 class Report extends React.Component {
-  static propTypes = {
-    params: React.PropTypes.object.isRequired
-  };
-
   state = {
     title: '体检报告',
     report: {},
@@ -60,7 +56,7 @@ class Report extends React.Component {
   }
 
   componentDidMount () {
-    API.report(this.props.params.reportId, this.props.params.sid)
+    API.report(this.props.match.params.reportId, this.props.match.params.sid)
       .then(::this.formatAndSetState)
       .catch((e) => {
         this.setState({
@@ -117,7 +113,7 @@ class Report extends React.Component {
   }
 
   render () {
-    setReport(this.props.params.reportId, this.state.report.user)
+    setReport(this.props.match.params.reportId, this.state.report.user)
     return (
       <div id='report' className='top-tab-wrapper'>
         <Banner title={this.state.title} backUrl='/reports#/' />

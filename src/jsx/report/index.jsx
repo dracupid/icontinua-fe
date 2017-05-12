@@ -4,7 +4,7 @@
 import report from './report.jsx'
 import reports from './reports.jsx'
 import '../wechat.jsx'
-let {Route, Router, hashHistory} = ReactRouter
+let {Route, HashRouter} = ReactRouter
 
 /**
  * 图片预加载
@@ -18,10 +18,14 @@ cacheImg('//cdnst.icontinua.com/img/body.png')
 cacheImg('//cdnst.icontinua.com/img/wave.png')
 
 ReactDOM.render((
-  <Router history={hashHistory}>
-    <Route path='/' component={reports} />
-    <Route path='/:reportId' component={report} />
-    <Route path='/s/:sid' component={report} />
-    <Route path='/share/:reportId' component={report} />
-  </Router>
+  <HashRouter>
+    <div>
+      <div>
+      <Route exact path='/' component={reports}/>
+      <Route path='/:reportId' component={report}/>
+      <Route path='/s/:sid' component={report}/>
+      <Route path='/share/:reportId' component={report}/>
+      </div>
+    </div>
+  </HashRouter>
 ), document.getElementById('main'))

@@ -24,7 +24,7 @@ function O2 (props) {
 }
 
 O2.propTypes = {
-  data: React.PropTypes.object.isRequired
+  data: PropTypes.object.isRequired
 }
 
 export default O2

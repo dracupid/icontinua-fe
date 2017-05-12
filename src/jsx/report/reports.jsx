@@ -13,10 +13,6 @@ let {Tabs} = ANTD
 let TabPane = Tabs.TabPane
 
 class Reports extends React.Component {
-  static propTypes = {
-    params: React.PropTypes.object.isRequired
-  }
-
   state = {
     tabTitles: ['体检记录', '变化趋势'],
     currentTab: 0,

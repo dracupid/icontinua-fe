@@ -19,9 +19,9 @@ function ScoreTab ({score}) {
 
 class ReportBlock extends React.Component {
   static propTypes = {
-    title: React.PropTypes.string.isRequired,
-    level: React.PropTypes.number.isRequired,
-    items: React.PropTypes.array.isRequired
+    title: PropTypes.string.isRequired,
+    level: PropTypes.number.isRequired,
+    items: PropTypes.array.isRequired
   }
 
   render () {
@@ -95,10 +95,10 @@ class ReportBlock extends React.Component {
 
 class Scores extends React.Component {
   static propTypes = {
-    zangfu: React.PropTypes.number.isRequired,
-    jizhui: React.PropTypes.number.isRequired,
-    xiaohua: React.PropTypes.number.isRequired,
-    miniao: React.PropTypes.number.isRequired
+    zangfu: PropTypes.number.isRequired,
+    jizhui: PropTypes.number.isRequired,
+    xiaohua: PropTypes.number.isRequired,
+    miniao: PropTypes.number.isRequired
   }
 
   render () {
@@ -137,7 +137,7 @@ class Scores extends React.Component {
 
 class Chinese extends React.Component {
   static propTypes = {
-    cacheId: React.PropTypes.string.isRequired
+    cacheId: PropTypes.string.isRequired
   }
 
   state = {

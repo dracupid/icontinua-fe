@@ -13,7 +13,7 @@ function Loading ({text}) {
 }
 
 Loading.propTypes = {
-  text: React.PropTypes.string
+  text: PropTypes.string
 }
 
 export default Loading

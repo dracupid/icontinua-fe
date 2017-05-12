@@ -39,3 +39,6 @@ window.ANTD = {
   Card,
   Steps
 }
+
+window.ReactRouter = require('react-router-dom')
+window.PropTypes = require('prop-types')

@@ -17,7 +17,7 @@ const itemPerPage = 10
 
 class ReportList extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object
+    data: PropTypes.object
   }
 
   state = {

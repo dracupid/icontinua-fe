@@ -20,8 +20,8 @@ function CatalogBlock ({apps, name}) {
 }
 
 CatalogBlock.propTypes = {
-  apps: React.PropTypes.array.isRequired,
-  name: React.PropTypes.string.isRequired
+  apps: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired
 }
 
 export default CatalogBlock
