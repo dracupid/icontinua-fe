@@ -9,9 +9,9 @@ ReactDOM.render((
   <div>
     <HashRouter >
       <div>
-      <Route exact path='/' component={DeviceReport} />
-      <Route path='/:channel' component={DeviceReport} />
-      <Route path='/device/:deviceId' component={DeviceReport} />
+        <Route exact path='/' component={DeviceReport} />
+        <Route path='/:channel' component={DeviceReport} />
+        <Route path='/device/:deviceId' component={DeviceReport} />
       </div>
     </HashRouter>
     <Footer.InlineFooter />

@@ -20,14 +20,14 @@ ReactDOM.render((
       <Menu />
       <HashRouter>
         <div>
-        <Route exact path='/' />
-        <Route exact path='/channel' component={Channel} />
-        <Route path='/device/stat' component={Device} />
-        <Route path='/device/s/:id' component={DeviceStat} />
-        <Route path='/channel/s/:name' component={ChannelStat} />
-        <Route path='/channel/create' component={ChannelCreate} />
-        <Route exact path='/rank/201612' component={Rank201612} />
-        <Route path='/rank/201612/list' component={Rank201612List} />
+          <Route exact path='/' />
+          <Route exact path='/channel' component={Channel} />
+          <Route path='/device/stat' component={Device} />
+          <Route path='/device/s/:id' component={DeviceStat} />
+          <Route path='/channel/s/:name' component={ChannelStat} />
+          <Route path='/channel/create' component={ChannelCreate} />
+          <Route exact path='/rank/201612' component={Rank201612} />
+          <Route path='/rank/201612/list' component={Rank201612List} />
         </div>
       </HashRouter>
     </div>

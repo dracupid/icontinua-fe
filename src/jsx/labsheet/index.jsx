@@ -10,15 +10,15 @@ ReactDOM.render((
   <div>
     <HashRouter>
       <div>
-      <Route exact path='/' component={List}/>
-      <Route exact path='/:name' component={List}/>
-      <Route path='/:name/-/:items' component={List}/>
-      <Route path='/:name/-/' component={List}/>
-      <Route exact path='/item/:name' component={Item}/>
-      <Route path='/item/:catalog/:name' component={Item}/>
+        <Route exact path='/' component={List} />
+        <Route exact path='/:name' component={List} />
+        <Route path='/:name/-/:items' component={List} />
+        <Route path='/:name/-/' component={List} />
+        <Route exact path='/item/:name' component={Item} />
+        <Route path='/item/:catalog/:name' component={Item} />
       </div>
     </HashRouter>
-    <Footer/>
+    <Footer />
   </div>
 
 ), document.getElementById('main'))

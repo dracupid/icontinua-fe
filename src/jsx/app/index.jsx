@@ -11,10 +11,10 @@ ReactDOM.render((
   <div>
     <HashRouter>
       <div>
-      <Route exact path='/' component={main} />
-      <Route path='/tag/:tag' component={main} />
-      <Route path='/s/:keyword' component={Search} />
-      <Route path='/item/:uid' component={AppDetail} />
+        <Route exact path='/' component={main} />
+        <Route path='/tag/:tag' component={main} />
+        <Route path='/s/:keyword' component={Search} />
+        <Route path='/item/:uid' component={AppDetail} />
       </div>
     </HashRouter>
     <Footer />

@@ -11,9 +11,9 @@ ReactDOM.render((
   <div>
     <HashRouter>
       <div>
-      <Route exact path='/' component={main} />
-      <Route path='/edit' component={edit} />
-      <Route path='/photo' component={Photo} />
+        <Route exact path='/' component={main} />
+        <Route path='/edit' component={edit} />
+        <Route path='/photo' component={Photo} />
       </div>
     </HashRouter>
     <Footer />

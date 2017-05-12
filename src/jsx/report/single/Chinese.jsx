@@ -164,11 +164,11 @@ class Chinese extends React.Component {
     let adJz, adZf
 
     if (util.getParam('channel') === '3rd') {
-      adJz = <AdBanner channel="zsf" positionKey="jz-1"/>
+      adJz = <AdBanner channel='zsf' positionKey='jz-1' />
     }
 
     if (util.getParam('channel') === '3rd') {
-      adZf = <AdBanner channel="zsf" positionKey="zf-1"/>
+      adZf = <AdBanner channel='zsf' positionKey='zf-1' />
     }
 
     let {jizhui, zangfu, xiaohua, miniao, user} = this.props

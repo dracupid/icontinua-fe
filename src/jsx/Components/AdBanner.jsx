@@ -7,7 +7,7 @@ import API from '../API/ad'
 export default class AdBanner extends React.Component {
   static propTypes = {
     channel: PropTypes.string,
-    positionKey: PropTypes.string,
+    positionKey: PropTypes.string
   }
 
   state = {
@@ -20,8 +20,7 @@ export default class AdBanner extends React.Component {
         API.zsf()
           .then((res) => {
             _.forEach(res, (r) => {
-              if (r.key === this.props.positionKey)
-                this.setState({data: r})
+              if (r.key === this.props.positionKey) { this.setState({data: r}) }
             })
           })
     }
@@ -33,7 +32,7 @@ export default class AdBanner extends React.Component {
       let imgUrl = '//cdnst.icontinua.com/upload/' + imgFile.filename
       if (url.indexOf('http' !== 0)) url = '//' + url
       return <div className='banner-img-wrapper'>
-        <a href={url}><img src={imgUrl}/></a>
+        <a href={url}><img src={imgUrl} /></a>
         <p className='gg-text'>{text || ''}</p>
       </div>
     } else {

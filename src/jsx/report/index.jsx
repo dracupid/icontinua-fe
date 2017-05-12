@@ -21,10 +21,10 @@ ReactDOM.render((
   <HashRouter>
     <div>
       <div>
-      <Route exact path='/' component={reports}/>
-      <Route path='/:reportId' component={report}/>
-      <Route path='/s/:sid' component={report}/>
-      <Route path='/share/:reportId' component={report}/>
+        <Route exact path='/' component={reports} />
+        <Route path='/:reportId' component={report} />
+        <Route path='/s/:sid' component={report} />
+        <Route path='/share/:reportId' component={report} />
       </div>
     </div>
   </HashRouter>
