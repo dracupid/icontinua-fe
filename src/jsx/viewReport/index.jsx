@@ -3,17 +3,17 @@
  */
 import DeviceReport from './device.jsx'
 import Footer from '../Components/Footer.jsx'
-let {Route, HashRouter} = ReactRouter
-
 ReactDOM.render((
   <div>
-    <HashRouter >
+    <HashRouter>
       <div>
         <Route exact path='/' component={DeviceReport} />
-        <Route path='/:channel' component={DeviceReport} />
+        <Route exact path='/:channel' component={DeviceReport} />
         <Route path='/device/:deviceId' component={DeviceReport} />
       </div>
     </HashRouter>
     <Footer.InlineFooter />
   </div>
 ), document.getElementById('main'))
+
+let {Route, HashRouter} = ReactRouter
