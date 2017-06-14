@@ -44,6 +44,7 @@ gulp.task 'jsx', (cb) ->
         }
         entry:
             report: cfg.src + "jsx/report/index.jsx"
+            tableReport: cfg.src + "jsx/tableReport.jsx"
             app: cfg.src + "jsx/app/index.jsx"
             user: cfg.src + "jsx/user/index.jsx"
             labsheet: cfg.src + "jsx/labsheet/index.jsx"

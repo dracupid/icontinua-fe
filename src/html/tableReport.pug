@@ -1,0 +1,22 @@
+include lib/mixin
+doctype html
+
+html(lang="zh-cmn-Hans")
+    head
+        +head()
+        +css("/css/tableReport")
+        title 健康检测报告单
+        style.
+            .pre-tip {
+                width: 100%;
+                text-align: center;
+                margin-top: 10%;
+                font-size: 22px;
+            }
+
+    body
+        #main
+            .pre-tip 正在生成健康检测报告单,请稍候...
+
+        +foot()
+        script(src="/js/tableReport.js?t=_TIMESTAMP_")

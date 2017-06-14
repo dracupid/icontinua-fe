@@ -3,6 +3,8 @@
  */
 import DeviceReport from './device.jsx'
 import Footer from '../Components/Footer.jsx'
+let {Route, HashRouter} = ReactRouter
+
 ReactDOM.render((
   <div>
     <HashRouter>
@@ -15,5 +17,3 @@ ReactDOM.render((
     <Footer.InlineFooter />
   </div>
 ), document.getElementById('main'))
-
-let {Route, HashRouter} = ReactRouter

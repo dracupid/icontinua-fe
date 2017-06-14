@@ -116,7 +116,9 @@ class Report extends React.Component {
     setReport(this.props.match.params.reportId, this.state.report.user)
     return (
       <div id='report' className='top-tab-wrapper'>
-        <Banner title={this.state.title} backUrl='/reports#/' />
+        <Banner title={this.state.title} backUrl='/reports#/' rightComponent={
+          <a className='btn-table-report' href={'/html/tableReport.html#/' + this.props.match.params.reportId}>综合报告</a>
+        } />
         <Tabs animated={false} size='mini'>
           <TabPane tab='身体' key='1'>{this.getHeightWeight()}</TabPane>
           <TabPane tab='血压' key='2'>{this.getBlood()}</TabPane>
