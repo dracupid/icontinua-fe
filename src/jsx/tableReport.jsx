@@ -41,18 +41,34 @@ class TableReport extends React.Component {
     }
   }
 
+  static getBMIResultText (str) {
+    switch (str) {
+      case 'LOW' :
+        return '偏瘦'
+      case 'HIGH':
+        return '偏胖'
+      case 'TOO_HIGH':
+        return '超重'
+      case 'NORMAL':
+        return '正常'
+      default:
+        return ''
+    }
+  }
+
   formatData () {
     let result = []
     let data = this.state.report
 
     if (data.height && data.weight) {
-      result.push(['身高', data.height.value + ' cm', ''])
-      result.push(['体重', data.weight.value + ' kg', ''])
-      result.push(['BMI指数', data.bmi.value.toFixed(1), TableReport.parseNormalValue(data.bmi.normal, '')])
-      if (data.bodyFat) result.push(['体脂率', data.bodyFat + ' %', ''])
-      else result.push(['体脂率', reportUtil.calFat(data.user.sex, data.user.age, data.bmi.value) + ' %', ''])
+      result.push(['身高', data.height.value + ' cm', '', '体型', 4])
+      result.push(['体重', data.weight.value + ' kg', '', null, -1])
+      result.push(['BMI指数', data.bmi.value.toFixed(1) + ' ' + TableReport.getBMIResultText(data.bmi.result), TableReport.parseNormalValue(data.bmi.normal, ''), null, -1])
+      if (data.bodyFat) result.push(['体脂率', data.bodyFat + ' %', '', null, -1])
+      else result.push(['体脂率', reportUtil.calFat(data.user.sex, data.user.age, data.bmi.value) + ' %', '', null, -1])
 
     }
+    console.log(result)
     if (data.sbp) {
       result.push(['收缩压', data.sbp.value, TableReport.parseNormalValue(data.sbp.normal, 'mmHg'), '血压', 2])
       result.push(['舒张压', data.dbp.value, TableReport.parseNormalValue(data.dbp.normal, 'mmHg'), null, -1])

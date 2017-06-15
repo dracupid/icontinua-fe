@@ -120,7 +120,7 @@ class Report extends React.Component {
           <a className='btn-table-report' href={'/html/tableReport.html#/' + this.props.match.params.reportId}>综合报告</a>
         } />
         <Tabs animated={false} size='mini'>
-          <TabPane tab='身体' key='1'>{this.getHeightWeight()}</TabPane>
+          <TabPane tab='体型' key='1'>{this.getHeightWeight()}</TabPane>
           <TabPane tab='血压' key='2'>{this.getBlood()}</TabPane>
           <TabPane tab='血氧' key='3'>{this.getO2()}</TabPane>
           <TabPane tab='生物电' key='4'>{this.getChinese()}</TabPane>
