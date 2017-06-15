@@ -8,7 +8,7 @@ let TabPane = Tabs.TabPane
 function get16D (props) {
   let {text16D} = props
   return (text16D)
-    ? <Card title={''} className={'card' + (props.fix ? ' fix' : '')}>{text16D}</Card>
+    ? <Card title={''} className={'card' + (props.fix ? ' fix' : '')}><pre>{text16D}</pre></Card>
     : null
 }
 
