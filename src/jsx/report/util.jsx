@@ -84,5 +84,15 @@ export default {
   getStringValue (t, suffix = '') {
     let value = getValue(t)
     return value && value + suffix
+  },
+
+  calFat (sex, age, bmi) {
+    let fat = (1.2 * bmi) + (0.23 * (age || 20)) - 5.4 - (10.8 * (sex === '1' ? 1 : 0))
+    return fat.toFixed(1)
+  },
+
+  calBMR (fat, weight) {
+    return Math.round(370 + ((21.6 * (100 - fat) * weight) / 100))
   }
+
 }
