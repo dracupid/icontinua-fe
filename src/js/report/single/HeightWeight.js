@@ -10,7 +10,6 @@ import reportUtil from '../util'
 
 let {getValue, getStringValue, setValue} = reportUtil
 
-
 class HeightWeight extends React.Component {
   static propTypes = {
     height: PropTypes.any.isRequired,

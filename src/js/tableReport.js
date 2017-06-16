@@ -65,7 +65,6 @@ class TableReport extends React.Component {
       result.push(['BMI指数', data.bmi.value.toFixed(1) + ' ' + TableReport.getBMIResultText(data.bmi.result), TableReport.parseNormalValue(data.bmi.normal, ''), null, -1])
       if (data.bodyFat) result.push(['体脂率', data.bodyFat + ' %', '', null, -1])
       else result.push(['体脂率', reportUtil.calFat(data.user.sex, data.user.age, data.bmi.value) + ' %', '', null, -1])
-
     }
 
     if (data.sbp) {
@@ -93,14 +92,13 @@ class TableReport extends React.Component {
     let result = []
 
     if (data.jizhui) {
-      result.push(`您的脊椎状态：${TableReport.parseChinese(data.jizhui)}`, <br/>)
-      result.push(`您的脏腑状态：${TableReport.parseChinese(data.zangfu)}`, <br/>)
-      result.push(`您的消化状态：${TableReport.parseChinese(data.xiaohua)}`, <br/>)
-      result.push(`您的泌尿状态：${TableReport.parseChinese(data.miniao)}`, <br/>)
+      result.push(`您的脊椎状态：${TableReport.parseChinese(data.jizhui)}`, <br />)
+      result.push(`您的脏腑状态：${TableReport.parseChinese(data.zangfu)}`, <br />)
+      result.push(`您的消化状态：${TableReport.parseChinese(data.xiaohua)}`, <br />)
+      result.push(`您的泌尿状态：${TableReport.parseChinese(data.miniao)}`, <br />)
     }
 
-    if (data.text16D)
-      result.push(<pre style={{wordBreak: 'break-word'}}>{data.text16D}</pre>)
+    if (data.text16D) { result.push(<pre style={{wordBreak: 'break-word'}}>{data.text16D}</pre>) }
 
     return result
   }
@@ -117,14 +115,14 @@ class TableReport extends React.Component {
         <h1>健康检测报告单</h1>
         <table>
           <thead>
-          <td />
-          <td />
-          <td />
-          <td>{'11111'}</td>
-          <td />
-          <td />
-          <td />
-          <td />
+            <td />
+            <td />
+            <td />
+            <td>{'11111'}</td>
+            <td />
+            <td />
+            <td />
+            <td />
           </thead>
           <tr>
             <td className='title'>姓名</td>
@@ -148,10 +146,12 @@ class TableReport extends React.Component {
                 <td className='item-title' colSpan='2'>检测结果</td>
                 <td colSpan='3' className='item-title'>参考标准</td>
               </tr>
-            } else return <tr>
-              <td className='title' style={{width: '34px'}}>生命体征检测</td>
-              <td colSpan='7'>未检测</td>
-            </tr>
+            } else {
+              return <tr>
+                <td className='title' style={{width: '34px'}}>生命体征检测</td>
+                <td colSpan='7'>未检测</td>
+              </tr>
+            }
           })()}
 
           {(() => {
@@ -172,7 +172,6 @@ class TableReport extends React.Component {
                   <td colSpan='3'>{item[2]}</td>
                 </tr>)
               }
-
             }
 
             return doms
@@ -198,7 +197,7 @@ ReactDOM.render((
   <div>
     <HashRouter>
       <div>
-        <Route path='/:id' component={TableReport}/>
+        <Route path='/:id' component={TableReport} />
       </div>
     </HashRouter>
     <Footer.InlineFooter />
