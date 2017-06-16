@@ -8,7 +8,6 @@ let {Route, HashRouter} = ReactRouter
 
 class TableReport extends React.Component {
   state = {
-    title: '体检报告',
     report: {},
     loaded: false
   }
@@ -68,18 +67,18 @@ class TableReport extends React.Component {
       else result.push(['体脂率', reportUtil.calFat(data.user.sex, data.user.age, data.bmi.value) + ' %', '', null, -1])
 
     }
-    console.log(result)
+
     if (data.sbp) {
-      result.push(['收缩压', data.sbp.value, TableReport.parseNormalValue(data.sbp.normal, 'mmHg'), '血压', 2])
-      result.push(['舒张压', data.dbp.value, TableReport.parseNormalValue(data.dbp.normal, 'mmHg'), null, -1])
+      result.push(['收缩压', data.sbp.value, '90 ~ 139 mmHg', '血压', 2])
+      result.push(['舒张压', data.dbp.value, '60 ~ 89 mmHg', null, -1])
     }
 
     if (data.heartRate) result.push(['心率', data.heartRate, ''])
     if (data.spo2h) result.push(['血氧', data.spo2h.value, TableReport.parseNormalValue(data.spo2h.normal, '%')])
 
     if (data.glu) {
-      result.push(['餐前', data.glu.value, '<5.6mmol/L', '血糖', 2])
-      result.push(['餐后2小时', '', '<7.8mmol/L', null, -1])
+      result.push(['餐前', data.glu.value, '<5.6 mmol/L', '血糖', 2])
+      result.push(['餐后2小时', '', '<7.8 mmol/L', null, -1])
     }
 
     if (data.ua) result.push(['尿酸', data.ua.value, TableReport.parseNormalValue(data.ua.normal, 'μmol/L')])
