@@ -20,8 +20,9 @@ autoPrefixConfig =
     browsers: ['android > 2', 'ios >= 6']
     cascade: true
 
-# 使用webpack编译jsx
-gulp.task 'jsx', (cb) ->
+isWatching = false
+
+compileJS = (isWatching, cb) ->
     webpack = require 'webpack'
     autoprefixer = require 'autoprefixer'
 
@@ -85,10 +86,15 @@ gulp.task 'jsx', (cb) ->
             jquery: 'window.$'
             react: 'window.React'
             'react-dom': 'window.ReactDOM'
+        watch: isWatching
     , (err, stats) ->
         if err then throw err
         if not isProduction then console.log stats.toString colors: yes, chunks: no
-        cb()
+        if not isWatching then cb()
+
+# 使用webpack编译jsx
+gulp.task 'jsx', (cb) ->
+    compileJS(false, cb)
 
 # 编译stylus, 压缩
 gulp.task 'css', ->
@@ -174,6 +180,9 @@ gulp.task 'build', ['jsx', 'css', 'html', 'copy']
 gulp.task 'default', ['build', 'lib_js']
 
 gulp.task 'watch', ['build'], ->
-    gulp.watch "./src/jsx/**", ["jsx"]
+    isWatching = true
+#    gulp.watch "./src/jsx/**", ["jsx"]
     gulp.watch "./src/styl/**", ["css"]
     gulp.watch "./src/html/**", ["html"]
+    compileJS(true)
+
