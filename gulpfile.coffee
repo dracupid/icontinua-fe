@@ -44,14 +44,14 @@ compileJS = (isWatching, cb) ->
             extensions: ['.web.js', '.js', '.jsx', '.json'],
         }
         entry:
-            report: cfg.src + "jsx/report/index.js"
-            tableReport: cfg.src + "jsx/tableReport.js"
-            app: cfg.src + "jsx/app/index.js"
-            user: cfg.src + "jsx/user/index.js"
-            labsheet: cfg.src + "jsx/labsheet/index.js"
-            viewReport: cfg.src + "jsx/viewReport/index.js"
-            login: cfg.src + "jsx/login/login.js"
-            admin: cfg.src + "jsx/admin/index.js"
+            report: cfg.src + "js/report/index.js"
+            tableReport: cfg.src + "js/tableReport.js"
+            app: cfg.src + "js/app/index.js"
+            user: cfg.src + "js/user/index.js"
+            labsheet: cfg.src + "js/labsheet/index.js"
+            viewReport: cfg.src + "js/viewReport/index.js"
+            login: cfg.src + "js/login/login.js"
+            admin: cfg.src + "js/admin/index.js"
         output:
             filename: cfg.dist + 'js/[name].js'
         module:

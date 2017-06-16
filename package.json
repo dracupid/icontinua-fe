@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "standard 'src/jsx/**/*.jsx' | snazzy",
-    "fix": "standard 'src/jsx/**/*.jsx' --fix",
+    "lint": "standard 'src/js/**/*.js' | snazzy",
+    "fix": "standard 'src/js/**/*.js' --fix",
     "build": "gulp build"
   },
   "author": "dracupid <dracupid@gmail.com>",
