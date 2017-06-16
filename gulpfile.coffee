@@ -44,14 +44,14 @@ compileJS = (isWatching, cb) ->
             extensions: ['.web.js', '.js', '.jsx', '.json'],
         }
         entry:
-            report: cfg.src + "jsx/report/index.jsx"
-            tableReport: cfg.src + "jsx/tableReport.jsx"
-            app: cfg.src + "jsx/app/index.jsx"
-            user: cfg.src + "jsx/user/index.jsx"
-            labsheet: cfg.src + "jsx/labsheet/index.jsx"
-            viewReport: cfg.src + "jsx/viewReport/index.jsx"
-            login: cfg.src + "jsx/login/login.jsx"
-            admin: cfg.src + "jsx/admin/index.jsx"
+            report: cfg.src + "jsx/report/index.js"
+            tableReport: cfg.src + "jsx/tableReport.js"
+            app: cfg.src + "jsx/app/index.js"
+            user: cfg.src + "jsx/user/index.js"
+            labsheet: cfg.src + "jsx/labsheet/index.js"
+            viewReport: cfg.src + "jsx/viewReport/index.js"
+            login: cfg.src + "jsx/login/login.js"
+            admin: cfg.src + "jsx/admin/index.js"
         output:
             filename: cfg.dist + 'js/[name].js'
         module:
@@ -92,8 +92,8 @@ compileJS = (isWatching, cb) ->
         if not isProduction then console.log stats.toString colors: yes, chunks: no
         if not isWatching then cb()
 
-# 使用webpack编译jsx
-gulp.task 'jsx', (cb) ->
+# 使用webpack编译js
+gulp.task 'js', (cb) ->
     compileJS(false, cb)
 
 # 编译stylus, 压缩
@@ -176,12 +176,11 @@ gulp.task 'copy', ->
     gulp.src [cfg.src + 'img/**', cfg.src + 'html/*.html'], base: cfg.src
     .pipe gulp.dest cfg.dist
 
-gulp.task 'build', ['jsx', 'css', 'html', 'copy']
+gulp.task 'build', ['js', 'css', 'html', 'copy']
 gulp.task 'default', ['build', 'lib_js']
 
 gulp.task 'watch', ['build'], ->
     isWatching = true
-#    gulp.watch "./src/jsx/**", ["jsx"]
     gulp.watch "./src/styl/**", ["css"]
     gulp.watch "./src/html/**", ["html"]
     compileJS(true)
