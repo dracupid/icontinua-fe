@@ -18,6 +18,7 @@ import Carousel from 'antd/lib/carousel'
 import Rate from 'antd/lib/rate'
 import Card from 'antd/lib/card'
 import Steps from 'antd/lib/steps'
+import Tree from 'antd/lib/tree'
 
 window.ANTD = {
   Tabs,
@@ -37,7 +38,8 @@ window.ANTD = {
   Rate,
   Upload,
   Card,
-  Steps
+  Steps,
+  Tree
 }
 
 window.ReactRouter = require('react-router-dom')

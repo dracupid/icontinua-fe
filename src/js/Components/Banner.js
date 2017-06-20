@@ -11,6 +11,8 @@ function Banner (props) {
       return <a href={util.getUrl(props.backUrl)}><i className='anticon anticon-left left-icon' /></a>
     } else if (props.goBack) {
       return <a onClick={() => { window.history.back() }}><i className='anticon anticon-left left-icon' /></a>
+    } else if (props.onBack) {
+      return <a onClick={props.onBack}><i className='anticon anticon-left left-icon' /></a>
     } else {
       return <Icon />
     }

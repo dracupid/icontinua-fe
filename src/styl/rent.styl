@@ -1,0 +1,156 @@
+@import "./mixin.styl"
+#main
+    padding-bottom 50px
+
+.ant-tree
+    padding 0
+    li
+        background-color white
+        white-space normal
+        &:last-child
+            padding-bottom 0
+
+    > li
+        padding-top 7px !important
+        > .ant-tree-node-content-wrapper
+            font-size 1.2em
+
+    .ant-tree-child-tree
+        padding 0 !important
+        margin-top 7px
+        li
+            background-color whitesmoke
+    .ant-tree-switcher
+        display none !important
+    .ant-tree-node-content-wrapper
+        padding 0 !important
+        margin-left 10px !important
+        &.ant-tree-node-selected
+            background-color inherit !important
+        &:hover
+            background-color inherit !important
+    .ant-tree-child-tree
+        .ant-tree-node-content-wrapper
+            width 100%
+    .ant-tree-title
+        height 20px
+        line-height 20px
+
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner:after
+    left 7px !important
+    top 3px !important
+    height 11px !important
+    transition none !important
+
+//display none !important
+
+.ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner:after
+    left 5px !important
+    top 7px !important
+    transition none !important
+
+ul.ant-tree-child-tree
+    li
+        display flex
+        align-items center
+        border-bottom 1px solid white
+    li:last-child
+        border-bottom none
+
+.ant-tree-checkbox-inner
+    border-radius 50%
+    height 20px
+    width 20px
+    margin-left 10px
+
+.item-block
+    padding 10px 0
+    display flex
+    align-items flex-end
+    justify-content space-between
+    width 100%
+    .item-info
+        flex 1
+        display flex
+        flex-direction column
+        margin-left 10px
+    .item-name
+        font-size 1.2em
+    .item-intro
+        color #969292
+    .item-img
+        width 80px
+        height 80px
+
+.header a
+    &.btn-history
+        font-size 16px
+        width auto
+        color white
+
+.btn-submit
+    width 30%
+    position absolute
+    right 0
+    bottom 0
+    height 100%
+    border-radius 0
+    font-size 1.4em
+
+.bottom-banner
+    background-color white
+    border-top 1px solid #ccc
+    position fixed
+    bottom 0
+    width 100%
+    height 50px
+    .total-info
+        display flex
+        align-items center
+        margin-left 10%
+        height 100%
+        font-size 1.1em
+
+.submitted
+    .item-block
+        background-color white
+        padding 10px 20px
+        border-bottom 1px solid #eee
+
+.delivery-info-wrapper
+    display flex
+    align-items center
+    justify-content space-between
+    background-color white
+    padding 10px
+    margin-bottom 15px
+
+.delivery-info
+    flex 1
+    display flex
+    flex-direction column
+    font-size 1.1em
+    .d-user-info
+        display flex
+        justify-content space-between
+        margin-bottom 8px
+.d-icon
+    font-weight bold
+    font-size 1.2em
+    width 20px
+
+.number-selector
+    display flex
+    align-items center
+    justify-content space-around
+    font-size 1.2em
+    margin-right 10px
+    border 1px solid #bbb5b5
+    border-radius 2px
+    width 25%
+    .num
+        border-left 1px solid #bbb5b5
+        border-right 1px solid #bbb5b5
+        width 50%
+        text-align center
+

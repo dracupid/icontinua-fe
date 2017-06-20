@@ -1,0 +1,23 @@
+include lib/mixin
+doctype html
+
+html(lang="zh-cmn-Hans")
+    head
+        +head()
+        +css("/css/rent")
+        title 共享健康
+        style.
+            .pre-tip {
+                width: 100%;
+                text-align: center;
+                margin-top: 10%;
+                font-size: 22px;
+            }
+
+    body
+        #main
+            .pre-tip 正在获取设备列表,请稍候...
+
+        +foot()
+        script(src="//res.wx.qq.com/open/js/jweixin-1.2.0.js")
+        script(src="/js/rent.js?t=_TIMESTAMP_")

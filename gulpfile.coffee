@@ -52,6 +52,7 @@ compileJS = (isWatching, cb) ->
             viewReport: cfg.src + "js/viewReport/index.js"
             login: cfg.src + "js/login/login.js"
             admin: cfg.src + "js/admin/index.js"
+            rent: cfg.src + "js/rent/index.js"
         output:
             filename: cfg.dist + 'js/[name].js'
         module:
@@ -170,6 +171,7 @@ gulp.task 'html', ->
         .replace(/\/?css/, cfg.CDN + '/css')
         .replace(/\/?img/, cfg.CDN + '/img')
     .pipe gulpif isProduction, replace("react.js", "react.min.js")
+    .pipe gulpif isProduction, replace("react-dom.js", "react-dom.min.js")
     .pipe gulp.dest cfg.dist + 'html'
 
 gulp.task 'copy', ->
@@ -179,7 +181,7 @@ gulp.task 'copy', ->
 gulp.task 'build', ['js', 'css', 'html', 'copy']
 gulp.task 'default', ['build', 'lib_js']
 
-gulp.task 'watch', ['build'], ->
+gulp.task 'watch', ['css', 'html'], ->
     isWatching = true
     gulp.watch "./src/styl/**", ["css"]
     gulp.watch "./src/html/**", ["html"]

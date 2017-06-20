@@ -29,7 +29,7 @@ let defaultShareData = {
 if (isWeixin) {
   API('/wechat/config?url=' + encodeURIComponent(href.split('#')[0])).then((data) => {
     wx.config(_.assign({
-      debug: false,
+      debug: true,
       jsApiList: [
         'checkJsApi',
         'onMenuShareTimeline',
@@ -38,7 +38,8 @@ if (isWeixin) {
         'onMenuShareWeibo',
         'onMenuShareQZone',
         'chooseImage',
-        'uploadImage'
+        'uploadImage',
+        'openAddress'
       ]
     }, data))
 
@@ -135,6 +136,22 @@ export function uploadPhoto (id) {
       fail (res) {
         return reject(res)
       }
+    })
+  })
+}
+
+/**
+ * 填写收获地址
+ * @returns {Promise}
+ */
+export function openAddress () {
+  if (!isWeixin) {
+    alert('请在微信内打开此页面')
+  }
+  return new Promise((res, rej) => {
+    wx.openAddress({
+      success: res,
+      cancel: rej
     })
   })
 }
