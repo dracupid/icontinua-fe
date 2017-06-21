@@ -148,10 +148,10 @@ export function openAddress () {
   if (!isWeixin) {
     alert('请在微信内打开此页面')
   }
-  return new Promise((res, rej) => {
+  return new Promise((resolve, reject) => {
     wx.openAddress({
-      success: res,
-      cancel: rej
+      success: resolve,
+      cancel: reject
     })
   })
 }

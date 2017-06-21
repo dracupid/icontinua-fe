@@ -17,25 +17,24 @@ function repayOrder (id) {
 
 function Order (props) {
   let btns = []
-  if (props.state === 'CREATED')
-    btns.push(<Button key="pay" onClick={repayOrder.bind(this, props.orderId)}>去支付</Button>)
+  if (props.state === 'CREATED') { btns.push(<Button key='pay' onClick={repayOrder.bind(this, props.orderId)}>去支付</Button>) }
 
   let totalCount = props.devices.reduce((prev, cur) => {
     return prev + cur.count
   }, 0)
-  return <div className="history-item" onClick={util.toHash.bind(this, 'order/' + props.orderId)}>
-    <div className="h-item-title">
+  return <div className='history-item' onClick={util.toHash.bind(this, 'order/' + props.orderId)}>
+    <div className='h-item-title'>
       <div>{util.formatDateTime(props.timestamp)}</div>
       <div style={{color: '#ff5000'}}>{formatState(props.state)}</div>
     </div>
-    <div className="h-item-content">
-      {props.devices.map(i => <PlainDeviceItem {...i.device} count={i.count} key={i.did} tenancy={props.tenancy}/>)}
+    <div className='h-item-content'>
+      {props.devices.map(i => <PlainDeviceItem {...i.device} count={i.count} key={i.did} tenancy={props.tenancy} />)}
     </div>
-    <div className="h-item-price">
-      <p>共{totalCount}件商品，合计<span className="value">{' ¥ ' + (props.totalRentFen + props.totalDepositFen) / 100}</span>
-        （含押金<span className="value">{' ¥ ' + props.totalDepositFen / 100}</span>）</p>
+    <div className='h-item-price'>
+      <p>共{totalCount}件商品，合计<span className='value'>{' ¥ ' + (props.totalRentFen + props.totalDepositFen) / 100}</span>
+        （含押金<span className='value'>{' ¥ ' + props.totalDepositFen / 100}</span>）</p>
     </div>
-    {btns.length > 0 ? <div className="h-item-btns">{btns}</div> : null}
+    {btns.length > 0 ? <div className='h-item-btns'>{btns}</div> : null}
 
   </div>
 }
@@ -58,12 +57,10 @@ export default class History extends React.Component {
 
   render () {
     return <div>
-      <Banner title="历史订单" goBack/>
+      <Banner title='历史订单' goBack />
       <div>
-        {this.state.data.map(item => <Order {...item} key={item.orderId}/>)}
+        {this.state.data.map(item => <Order {...item} key={item.orderId} />)}
       </div>
     </div>
   }
 }
-
-

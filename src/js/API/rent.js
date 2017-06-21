@@ -15,7 +15,7 @@ export default {
     data.append('tenancy', tenancy)
     data.append('totalRent', totalRent)
     data.append('totalDeposit', totalDeposit)
-    data.append('type', "JS")
+    data.append('type', 'JS')
     data.append('test', true)
 
     return API('/api/rent/s/take_order', {method: 'POST', body: data, noCache: true})

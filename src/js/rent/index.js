@@ -11,11 +11,11 @@ ReactDOM.render((
   <div>
     <HashRouter>
       <div>
-        <Route exact path='/' component={RentDevicePage}/>
-        <Route exact path='/history' component={History}/>
-        <Route exact path='/order/:id' component={OrderDetail}/>
+        <Route exact path='/' component={RentDevicePage} />
+        <Route exact path='/history' component={History} />
+        <Route exact path='/order/:id' component={OrderDetail} />
       </div>
     </HashRouter>
-    {/*<Footer />*/}
+    {/* <Footer /> */}
   </div>
 ), document.getElementById('main'))

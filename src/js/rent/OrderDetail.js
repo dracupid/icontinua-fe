@@ -26,19 +26,19 @@ export default class OrderDetail extends React.Component {
 
   render () {
     let data = this.state.data
-    return <div className="order-info">
-      <Banner title="订单详情" goBack/>
+    return <div className='order-info'>
+      <Banner title='订单详情' goBack />
       {this.state.loaded ? <div>
-        <ItemBlock title='订单状态' content={formatState(data.state)}/>
-        <DeliveryInfo realName={data.realName} phone={data.phone} address={data.address}/>
+        <ItemBlock title='订单状态' content={formatState(data.state)} />
+        <DeliveryInfo realName={data.realName} phone={data.phone} address={data.address} />
         <div style={{marginBottom: '20px'}}>
-          <ItemBlock title='下单时间' content={util.formatDateTime(data.timestamp)}/>
-          <ItemBlock title='快递单号' content={data.deliveryNo || '暂无'}/>
-          <ItemBlock title='订单号' content={data.orderId}/>
-          <ItemBlock title='租用时间' content={data.tenancy + '天'}/>
-          <BottomBanner totalRent={data.totalRentFen / 100} totalDeposit={data.totalDepositFen / 100} showTotal/>
+          <ItemBlock title='下单时间' content={util.formatDateTime(data.timestamp)} />
+          <ItemBlock title='快递单号' content={data.deliveryNo || '暂无'} />
+          <ItemBlock title='订单号' content={data.orderId} />
+          <ItemBlock title='租用时间' content={data.tenancy + '天'} />
+          <BottomBanner totalRent={data.totalRentFen / 100} totalDeposit={data.totalDepositFen / 100} showTotal />
         </div>
-        {data.devices.map(i => <PlainDeviceItem {...i.device} count={i.count} key={i.did} tenancy={data.tenancy}/>)}
+        {data.devices.map(i => <PlainDeviceItem {...i.device} count={i.count} key={i.did} tenancy={data.tenancy} />)}
       </div>
         : null
       }
