@@ -1,4 +1,7 @@
 @import "./mixin.styl"
+
+$t_red = #ff5000
+
 #main
     padding-bottom 50px
 
@@ -79,8 +82,11 @@ ul.ant-tree-child-tree
     .item-intro
         color #969292
     .item-img
-        width 80px
-        height 80px
+        width 70px
+        height 70px
+    .item-count
+        font-size 1.2em
+        margin-right 10px
 
 .header a
     &.btn-history
@@ -147,10 +153,53 @@ ul.ant-tree-child-tree
     margin-right 10px
     border 1px solid #bbb5b5
     border-radius 2px
-    width 25%
+    width 23%
     .num
         border-left 1px solid #bbb5b5
         border-right 1px solid #bbb5b5
         width 50%
         text-align center
+
+.history-item
+    background-color #fff
+    border-bottom 1px solid #eee
+    flex-direction column
+    align-items flex-start
+    padding 0
+    margin-bottom 15px
+    .item-block
+        padding 10px 10px
+        border-bottom 1px solid white
+        background-color #eee
+
+    .h-item-title
+        padding 5px 15px
+        display flex
+        align-items center
+        justify-content space-between
+        width 100%
+        border-bottom 1px solid #eee
+
+    .h-item-content
+        display flex
+        align-items center
+        flex-direction column
+        justify-content space-between
+        width 100%
+    .h-item-price
+        width 100%
+        display flex
+        justify-content flex-end
+        align-items center
+        height 30px
+        font-size 1.1em
+
+    .h-item-btns
+        border-top 1px solid #eee
+        padding 5px 15px
+        display flex
+        width 100%
+        align-content center
+        justify-content flex-end
+
 

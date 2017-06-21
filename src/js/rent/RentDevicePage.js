@@ -1,6 +1,7 @@
 import { openAddress } from '../wechat'
 import API from '../API/rent'
 import Banner from '../Components/Banner'
+import PlainDeviceItem from './PlainDeviceItem'
 let {Tree, Button, Icon} = ANTD
 const TreeNode = Tree.TreeNode
 
@@ -17,17 +18,7 @@ function DeviceItem (props) {
   </div>
 }
 
-function ConfirmDeviceItem (props) {
-  return <div className="item-block">
-    <img className="item-img" src={props.imgURL}/>
-    <div className="item-info">
-      <span className="item-name">{props.name}</span>
-      <span className="item-intro">{props.intro}</span>
-      <span className="item-rent">租金：¥{(props.rentYuan * props.count).toFixed(1)}</span>
-      <span className="item-deposit">押金：¥{(props.depositYuan * props.count).toFixed(1)}</span>
-    </div>
-  </div>
-}
+
 
 class NumberSelector extends React.Component {
   state = {
@@ -53,7 +44,6 @@ class NumberSelector extends React.Component {
       <Icon type="minus" onClick={::this.minusOne}/>
       <div className="num">{this.state.value}</div>
       <Icon type="plus" onClick={::this.addOne}/>
-
     </div>
   }
 }
@@ -211,7 +201,7 @@ export default class RentDevicePage extends React.Component {
 
       return <div>
         <Banner title="设备列表" rightComponent={
-          <a className='btn-history' href={'/html/rent.html#/'}>订单历史</a>
+          <a className='btn-history' href={'/html/rent.html#/history'}>订单历史</a>
         }/>
         <Tree checkable
               defaultExpandedAll
@@ -234,7 +224,7 @@ export default class RentDevicePage extends React.Component {
       let {totalRent, totalDeposit} = this.calMoney(true)
 
       const loopNodes = _.map(this.state.deviceCount, (count, id) => {
-        return <ConfirmDeviceItem {...this.state.deviceMap[id]} key={id} count={count}/>
+        return <PlainDeviceItem {...this.state.deviceMap[id]} key={id} count={count} tenancy={this.state.tenancy}/>
       })
 
       return <div className="submitted">
