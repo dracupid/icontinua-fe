@@ -41,10 +41,12 @@ class NumberSelector extends React.Component {
   }
 
   render () {
-    return <div className={'number-selector ' + (this.props.size || '')}>
-      <Icon type="minus" onClick={::this.minusOne}/>
-      <div className="num">{this.state.value}</div>
-      <Icon type="plus" onClick={::this.addOne}/>
+    return <div className="number-selector-wrapper" onClick={(e) => {e.stopPropagation()}}>
+      <div className={'number-selector ' + (this.props.size || '')}>
+        <Icon type="minus" onClick={::this.minusOne}/>
+        <div className="num">{this.state.value}</div>
+        <Icon type="plus" onClick={::this.addOne}/>
+      </div>
     </div>
   }
 }
@@ -184,7 +186,7 @@ export default class RentDevicePage extends React.Component {
 
       return <div>
         <Banner title="设备列表" rightComponent={
-          <a className='btn-history' href={'/html/rent.html#/history'}>订单历史</a>
+          <a className='btn-history' href={'/html/rent.html#/history'}>历史订单</a>
         }/>
         <Tree checkable
               defaultExpandedAll
@@ -211,12 +213,13 @@ export default class RentDevicePage extends React.Component {
 
         <div className="delivery-info-wrapper">
           <div>租用时间（天）</div>
-          <NumberSelector initialValue={this.state.tenancy} onChange={::this.changeTenancy} min={15} max={1000}
+          <NumberSelector initialValue={this.state.tenancy} onChange={::this.changeTenancy} min={15} max={999}
                           step={15} size="large"/>
         </div>
 
         <div>{loopNodes}</div>
-        <BottomBanner totalRent={totalRent} totalDeposit={totalDeposit} onClick={::this.pay} btnContent='微信支付'/>
+        <BottomBanner totalRent={totalRent} totalDeposit={totalDeposit} onClick={::this.pay} btnContent='微信支付'
+                      showTotal/>
       </div>
     }
 
