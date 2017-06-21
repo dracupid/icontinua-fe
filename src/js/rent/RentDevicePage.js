@@ -183,7 +183,7 @@ export default class RentDevicePage extends React.Component {
       }))(this.state.devices)
 
       return <div>
-        <Banner title='设备列表' rightComponent={
+        <Banner title='设备列表' goBack rightComponent={
           <a className='btn-history' href={'/html/rent.html#/history'}>历史订单</a>
         } />
         <Tree checkable
