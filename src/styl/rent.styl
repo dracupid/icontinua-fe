@@ -1,6 +1,8 @@
 @import "./mixin.styl"
 
 $t_red = #ff5000
+$grey_border = 1px solid #eee
+$shallow_grey = #f5f5f5
 
 #main
     padding-bottom 50px
@@ -45,8 +47,6 @@ $t_red = #ff5000
     height 11px !important
     transition none !important
 
-//display none !important
-
 .ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner:after
     left 5px !important
     top 7px !important
@@ -66,28 +66,6 @@ ul.ant-tree-child-tree
     width 20px
     margin-left 10px
 
-.item-block
-    padding 10px 0
-    display flex
-    align-items flex-end
-    justify-content space-between
-    width 100%
-    .item-info
-        flex 1
-        display flex
-        flex-direction column
-        margin-left 10px
-    .item-name
-        font-size 1.2em
-    .item-intro
-        color #969292
-    .item-img
-        width 70px
-        height 70px
-    .item-count
-        font-size 1.2em
-        margin-right 10px
-
 .header a
     &.btn-history
         font-size 16px
@@ -102,6 +80,8 @@ ul.ant-tree-child-tree
     height 100%
     border-radius 0
     font-size 1.4em
+    //background-color $t_red
+    //border-color $t_red
 
 .bottom-banner
     background-color white
@@ -116,30 +96,30 @@ ul.ant-tree-child-tree
         margin-left 10%
         height 100%
         font-size 1.1em
+.value
+    color $t_red
 
-.submitted
-    .item-block
-        background-color white
-        padding 10px 20px
-        border-bottom 1px solid #eee
+.order-info .item-block
+    font-size 1.1em
 
 .delivery-info-wrapper
     display flex
     align-items center
     justify-content space-between
     background-color white
-    padding 10px
+    padding 10px 15px
     margin-bottom 15px
+    font-size 1.2em
 
 .delivery-info
     flex 1
     display flex
     flex-direction column
-    font-size 1.1em
     .d-user-info
         display flex
         justify-content space-between
         margin-bottom 8px
+
 .d-icon
     font-weight bold
     font-size 1.2em
@@ -154,52 +134,104 @@ ul.ant-tree-child-tree
     border 1px solid #bbb5b5
     border-radius 2px
     width 23%
+    height 25px
+    &.large
+        width 40%
+        height 35px
+        .num
+            height 35px
+            line-height 35px
     .num
         border-left 1px solid #bbb5b5
         border-right 1px solid #bbb5b5
         width 50%
         text-align center
+        height 25px
+        line-height 25px
+
+@media (min-width: 350px)
+    .number-selector
+        width 28%
+        height 30px
+        .num
+            height 30px
+            line-height 30px
+
+c-item-block()
+    display flex
+    align-items center
+    justify-content space-between
+    font-size 1.15em
+    min-height 40px
+    background-color white
+    padding 10px 15px
+    border-bottom $grey_border
+    width 100%
+
+.c-item-block
+    c-item-block()
+
+.item-block
+    c-item-block()
+    font-size 1em
+    .item-info
+        flex 1
+        display flex
+        flex-direction column
+        margin-left 10px
+    .item-name
+        font-size 1.1em
+    .item-intro
+        color #969292
+    .item-img
+        width 70px
+        height 70px
+    .item-count
+        font-size 1.1em
+        margin-right 10px
+
+.ant-tree-title
+    .item-block
+        background-color $shallow_grey
+        padding-left 0
+        padding-right 0
+        border none
 
 .history-item
     background-color #fff
-    border-bottom 1px solid #eee
+    border-bottom $grey_border
     flex-direction column
     align-items flex-start
-    padding 0
+    padding-left 0
+    padding-right 0
     margin-bottom 15px
-    .item-block
-        padding 10px 10px
-        border-bottom 1px solid white
-        background-color #eee
 
     .h-item-title
-        padding 5px 15px
         display flex
         align-items center
         justify-content space-between
-        width 100%
-        border-bottom 1px solid #eee
+        border-bottom $grey_border
+        height 40px
+        font-size 1.1em
+        padding 0 15px
 
     .h-item-content
-        display flex
-        align-items center
-        flex-direction column
-        justify-content space-between
         width 100%
+        .item-block
+            background-color $shallow_grey
+            border-color white
+
     .h-item-price
-        width 100%
         display flex
         justify-content flex-end
         align-items center
-        height 30px
         font-size 1.1em
+        height 40px
+        padding 0 15px
 
     .h-item-btns
-        border-top 1px solid #eee
+        border-top $grey_border
         padding 5px 15px
         display flex
-        width 100%
         align-content center
         justify-content flex-end
-
-

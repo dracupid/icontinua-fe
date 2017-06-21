@@ -2,31 +2,28 @@ import API from '../API/rent'
 import Banner from '../Components/Banner'
 import util from '../util'
 import PlainDeviceItem from './PlainDeviceItem'
-let {Button, Icon} = ANTD
+import { formatState } from './rentUtil'
+let {Button} = ANTD
 
-function formatState (state) {
-  switch (state) {
-    case 'CREATED':
-      return '待支付'
-    case 'PAID':
-      return '待发货'
-    case 'DELIVERED':
-      return '已发货'
-    case 'RETURNED':
-      return '已归还'
-  }
-
+function repayOrder (id) {
+  API.rePay(id)
+    .then(() => {
+      alert('支付成功')
+    })
+    .catch(() => {
+      alert('支付失败')
+    })
 }
 
 function Order (props) {
   let btns = []
   if (props.state === 'CREATED')
-    btns.push(<Button key="pay">去支付</Button>)
+    btns.push(<Button key="pay" onClick={repayOrder.bind(this, props.orderId)}>去支付</Button>)
 
   let totalCount = props.devices.reduce((prev, cur) => {
     return prev + cur.count
   }, 0)
-  return <div className="item-block history-item">
+  return <div className="history-item" onClick={util.toHash.bind(this, 'order/' + props.orderId)}>
     <div className="h-item-title">
       <div>{util.formatDateTime(props.timestamp)}</div>
       <div style={{color: '#ff5000'}}>{formatState(props.state)}</div>
@@ -35,7 +32,8 @@ function Order (props) {
       {props.devices.map(i => <PlainDeviceItem {...i.device} count={i.count} key={i.did} tenancy={props.tenancy}/>)}
     </div>
     <div className="h-item-price">
-      <p>共{totalCount}件商品，合计¥{(props.totalRentFen + props.totalDepositFen) / 100}（含押金¥{props.totalDepositFen / 100}）</p>
+      <p>共{totalCount}件商品，合计<span className="value">{' ¥ ' + (props.totalRentFen + props.totalDepositFen) / 100}</span>
+        （含押金<span className="value">{' ¥ ' + props.totalDepositFen / 100}</span>）</p>
     </div>
     {btns.length > 0 ? <div className="h-item-btns">{btns}</div> : null}
 

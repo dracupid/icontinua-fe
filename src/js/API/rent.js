@@ -2,7 +2,8 @@ import API from './index'
 
 export default {
   listRentDevices: () => API('/api/rent/listDevice'),
-  rentHistory: () => API('/api/rent/s/history'),
+  rentHistory: (noCache = true) => API('/api/rent/s/history', {noCache}),
+  orderInfo: (id) => API('/api/rent/orderInfo?orderId=' + id),
   payOrder: (devices, realName, address, phone, tenancy, totalRent, totalDeposit) => {
     if (devices.length === 0) return Promise.reject('no device found')
 

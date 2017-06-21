@@ -2,6 +2,9 @@ import { openAddress } from '../wechat'
 import API from '../API/rent'
 import Banner from '../Components/Banner'
 import PlainDeviceItem from './PlainDeviceItem'
+import DeliveryInfo from './DeliveryInfo'
+import BottomBanner from './BottomBanner'
+import util from '../util'
 let {Tree, Button, Icon} = ANTD
 const TreeNode = Tree.TreeNode
 
@@ -17,8 +20,6 @@ function DeviceItem (props) {
     {props.selected ? <NumberSelector initialValue={1} onChange={props.onNumChange} min={1} max={100}/> : null}
   </div>
 }
-
-
 
 class NumberSelector extends React.Component {
   state = {
@@ -40,31 +41,12 @@ class NumberSelector extends React.Component {
   }
 
   render () {
-    return <div className="number-selector">
+    return <div className={'number-selector ' + (this.props.size || '')}>
       <Icon type="minus" onClick={::this.minusOne}/>
       <div className="num">{this.state.value}</div>
       <Icon type="plus" onClick={::this.addOne}/>
     </div>
   }
-}
-
-function DeliveryInfo (props) {
-  return <div className="delivery-info-wrapper" onClick={props.onClick}>
-    {(() => {
-      if (props.realName) {
-        return <div className="delivery-info">
-          <div className="d-user-info">
-            <span>收货人：{props.realName}</span><span>{props.phone}</span>
-          </div>
-          <div>收货地址：{props.address}</div>
-        </div>
-      } else {
-        return <div>请填写收货信息</div>
-      }
-    })()}
-
-    <Icon type="right" className="d-icon"/>
-  </div>
 }
 
 export default class RentDevicePage extends React.Component {
@@ -165,11 +147,12 @@ export default class RentDevicePage extends React.Component {
     API.payOrder(devices, realName, address, phone, this.state.tenancy, totalRent, totalDeposit)
       .then((res) => {
         alert('测试支付成功')
-        console.log(res)
-      }).catch((e) => {
-      console.log(e)
-      alert('支付失败')
-    })
+        util.toHash('history')
+      })
+      .catch((e) => {
+        console.log(e)
+        alert('支付失败')
+      })
   }
 
   changeNum (id, value) {
@@ -211,14 +194,8 @@ export default class RentDevicePage extends React.Component {
               onCheck={::this.onCheck}>
           {loopNodes}
         </Tree>
-        <div className="bottom-banner">
-          <div className="total-info">
-            <span>租金：¥{totalRent.toFixed(1)}/天</span>
-            <span style={{marginLeft: '15px'}}>押金：¥{totalDeposit.toFixed(1)}</span>
-          </div>
-          <Button type="primary" className="btn-submit" onClick={::this.submit}>结算({totalCount || 0})</Button>
-        </div>
-
+        <BottomBanner dayRent={totalRent} totalDeposit={totalDeposit} onClick={::this.submit}
+                      btnContent={'结算(' + (totalCount || 0) + ')'}/>
       </div>
     } else {
       let {totalRent, totalDeposit} = this.calMoney(true)
@@ -235,18 +212,11 @@ export default class RentDevicePage extends React.Component {
         <div className="delivery-info-wrapper">
           <div>租用时间（天）</div>
           <NumberSelector initialValue={this.state.tenancy} onChange={::this.changeTenancy} min={15} max={1000}
-                          step={15}/>
+                          step={15} size="large"/>
         </div>
 
         <div>{loopNodes}</div>
-        <div className="bottom-banner">
-          <div className="total-info">
-            <span>租金：¥{totalRent.toFixed(1)}</span>
-            <span style={{marginLeft: '15px'}}>押金：¥{totalDeposit.toFixed(1)}</span>
-          </div>
-          <Button type="primary" className="btn-submit" onClick={::this.pay}>微信支付</Button>
-        </div>
-
+        <BottomBanner totalRent={totalRent} totalDeposit={totalDeposit} onClick={::this.pay} btnContent='微信支付'/>
       </div>
     }
 
