@@ -145,7 +145,11 @@ export default class RentDevicePage extends React.Component {
     let {totalRent, totalDeposit} = this.calMoney(true)
     let devices = _.map(this.state.deviceCount, (v, k) => { return {did: k, count: v} })
     API.payOrder(devices, realName, address, phone, this.state.tenancy, totalRent, totalDeposit)
-      .then((res) => {
+      .then(({timeStamp, nonceStr, _package, signType, paySign}) => {
+        // return tenPay(timeStamp, nonceStr, _package, signType, paySign)
+        return Promise.resolve()
+      })
+      .then(() => {
         alert('测试支付成功')
         util.toHash('history')
       })
