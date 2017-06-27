@@ -49,7 +49,7 @@ class Main extends React.Component {
             text={<span>化验单拍照识别<span className='beta'>内测版</span></span>} icon='camera-o'
             url={util.getUrlByHash('/photo/')} />
           <BannerBlock style={{display: !util.getParam('channel') ? 'flex' : 'none'}}
-            text={<span>共享</span>} icon='shop'
+            text={<span>共享健康设备</span>} icon='shop'
             url={util.getUrl('/html/rent.html#')} />
           <BannerBlock style={{display: !util.getParam('channel') ? 'flex' : 'none'}}
             text={<span>查看历史订单</span>} icon='database'
