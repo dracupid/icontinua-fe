@@ -4,7 +4,7 @@ export default {
   listRentDevices: () => API('/api/rent/listDevice'),
   rentHistory: (noCache = true) => API('/api/rent/s/history', {noCache}),
   orderInfo: (id) => API('/api/rent/orderInfo?orderId=' + id),
-  payOrder: (devices, realName, address, phone, tenancy, totalRent, totalDeposit) => {
+  payOrder: (devices, realName, address, phone, tenancy, totalRent, totalDeposit, test=false) => {
     if (devices.length === 0) return Promise.reject('no device found')
 
     let data = new FormData()
@@ -16,9 +16,11 @@ export default {
     data.append('totalRent', totalRent)
     data.append('totalDeposit', totalDeposit)
     data.append('type', 'JS')
-    data.append('test', true)
+    data.append('test', test)
 
     return API('/api/rent/s/take_order', {method: 'POST', body: data, noCache: true})
   },
-  rePay: (orderId) => API('/api/rent/repay?orderId=' + orderId)
+  rePay: (orderId) => API('/api/rent/repay?type=JS&orderId=' + orderId),
+  query: (orderId) => API('/api/pay/query?orderId=' + orderId)
+
 }

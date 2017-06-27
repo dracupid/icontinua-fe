@@ -29,7 +29,7 @@ let defaultShareData = {
 if (isWeixin) {
   API('/wechat/config?url=' + encodeURIComponent(href.split('#')[0])).then((data) => {
     wx.config(_.assign({
-      debug: true,
+      debug: false,
       jsApiList: [
         'checkJsApi',
         'onMenuShareTimeline',
