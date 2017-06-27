@@ -38,11 +38,11 @@ function Order (props) {
       <div style={{color: '#ff5000'}}>{formatState(props.state)}</div>
     </div>
     <div className='h-item-content'>
-      {props.devices.map(i => <PlainDeviceItem {...i.device} count={i.count} key={i.did} tenancy={props.tenancy}/>)}
+      {props.devices.map(i => <PlainDeviceItem {...i.device} count={i.count} key={i.did} tenancy={props.tenancy} />)}
     </div>
     <div className='h-item-price'>
-      <p>共{totalCount}件商品，{props.discountFen ?
-                           <span><span>已优惠</span><span className='value'>{' ¥ ' + props.discountFen / 100}</span>&nbsp;</span>
+      <p>共{totalCount}件商品，{props.discountFen
+                           ? <span><span>已优惠</span><span className='value'>{' ¥ ' + props.discountFen / 100}</span>&nbsp;</span>
         : ''}
         合计<span className='value'>{' ¥ ' + (props.totalRentFen + props.totalDepositFen - (props.discountFen || 0)) / 100}</span>
         （含押金<span className='value'>{' ¥ ' + props.totalDepositFen / 100}</span>）</p>
@@ -70,9 +70,9 @@ export default class History extends React.Component {
 
   render () {
     return <div>
-      <Banner title='历史订单' goBack/>
+      <Banner title='历史订单' goBack />
       <div>
-        {this.state.data.map(item => <Order {...item} key={item.orderId}/>)}
+        {this.state.data.map(item => <Order {...item} key={item.orderId} />)}
       </div>
     </div>
   }

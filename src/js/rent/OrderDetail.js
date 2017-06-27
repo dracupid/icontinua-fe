@@ -39,7 +39,7 @@ export default class OrderDetail extends React.Component {
           <ItemBlock title='快递单号' content={data.deliveryNo || '暂无'} />
           <ItemBlock title='订单号' content={data.orderId} />
           <ItemBlock title='租用时间' content={data.tenancy + '天'} />
-          <BottomBanner totalRent={data.totalRentFen / 100} totalDeposit={data.totalDepositFen / 100} discount = {data.discountFen / 100} showTotal />
+          <BottomBanner totalRent={data.totalRentFen / 100} totalDeposit={data.totalDepositFen / 100} discount={data.discountFen / 100} showTotal />
         </div>
         {data.devices.map(i => <PlainDeviceItem {...i.device} count={i.count} key={i.did} tenancy={data.tenancy} />)}
       </div>

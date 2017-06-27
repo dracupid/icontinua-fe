@@ -4,7 +4,7 @@ export default {
   listRentDevices: () => API('/api/rent/listDevice'),
   rentHistory: (noCache = true) => API('/api/rent/s/history', {noCache}),
   orderInfo: (id) => API('/api/rent/orderInfo?orderId=' + id),
-  payOrder: (devices, realName, address, phone, tenancy, totalRent, totalDeposit, test=false) => {
+  payOrder: (devices, realName, address, phone, tenancy, totalRent, totalDeposit, test = false) => {
     if (devices.length === 0) return Promise.reject('no device found')
 
     let data = new FormData()

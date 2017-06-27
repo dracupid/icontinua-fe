@@ -12,14 +12,14 @@ const TEST_PAY = false
 
 function DeviceItem (props) {
   return <div className='item-block'>
-    <img className='item-img' src={props.imgURL}/>
+    <img className='item-img' src={props.imgURL} />
     <div className='item-info'>
       <span className='item-name'>{props.name}</span>
       <span className='item-intro'>{props.intro}</span>
       <span className='item-rent'>租金（天／台）：¥{props.rentYuan.toFixed(2)}</span>
       <span className='item-deposit'>押金（台）：¥{props.depositYuan.toFixed(2)}</span>
     </div>
-    {props.selected ? <NumberSelector initialValue={1} onChange={props.onNumChange} min={1} max={100}/> : null}
+    {props.selected ? <NumberSelector initialValue={1} onChange={props.onNumChange} min={1} max={100} /> : null}
   </div>
 }
 
@@ -43,9 +43,9 @@ class NumberSelector extends React.Component {
   render () {
     return <div className='number-selector-wrapper' onClick={(e) => { e.stopPropagation() }}>
       <div className={'number-selector ' + (this.props.size || '')}>
-        <Icon type='minus' onClick={::this.minusOne}/>
+        <Icon type='minus' onClick={::this.minusOne} />
         <div className='num'>{this.state.value}</div>
-        <Icon type='plus' onClick={::this.addOne}/>
+        <Icon type='plus' onClick={::this.addOne} />
       </div>
     </div>
   }
@@ -161,7 +161,6 @@ export default class RentDevicePage extends React.Component {
         console.log(e)
         alert('支付已取消')
         util.toHash('history')
-
       })
   }
 
@@ -187,7 +186,7 @@ export default class RentDevicePage extends React.Component {
           return <TreeNode title={item.type} key={cKey} style={{fontSize: '1.2em'}}>
             {item.items.map(device => <TreeNode
               title={<DeviceItem {...device} selected={!!this.state.deviceCount[device.did]}
-                                 onNumChange={this.changeNum.bind(this, device.did)}/>} key={device.did}/>)}
+                onNumChange={this.changeNum.bind(this, device.did)} />} key={device.did} />)}
           </TreeNode>
         }
       }))(this.state.devices)
@@ -195,39 +194,39 @@ export default class RentDevicePage extends React.Component {
       return <div>
         <Banner title='设备列表' goBack rightComponent={
           <a className='btn-history' href={'/html/rent.html#/history'}>历史订单</a>
-        }/>
+        } />
         <Tree checkable
-              defaultExpandedAll
-              expandedKeys={expandedKeys}
-              checkedKeys={_.keys(this.state.deviceCount)}
-              onSelect={::this.onSelect}
-              onCheck={::this.onCheck}>
+          defaultExpandedAll
+          expandedKeys={expandedKeys}
+          checkedKeys={_.keys(this.state.deviceCount)}
+          onSelect={::this.onSelect}
+          onCheck={::this.onCheck}>
           {loopNodes}
         </Tree>
         <BottomBanner dayRent={totalRent} totalDeposit={totalDeposit} onClick={::this.submit}
-                      btnContent={'结算(' + (totalCount || 0) + ')'}/>
+          btnContent={'结算(' + (totalCount || 0) + ')'} />
       </div>
     } else {
       let {totalRent, totalDeposit} = this.calMoney(true)
 
       const loopNodes = _.map(this.state.deviceCount, (count, id) => {
-        return <PlainDeviceItem {...this.state.deviceMap[id]} key={id} count={count} tenancy={this.state.tenancy}/>
+        return <PlainDeviceItem {...this.state.deviceMap[id]} key={id} count={count} tenancy={this.state.tenancy} />
       })
 
       return <div className='submitted'>
-        <Banner title='确认订单' onBack={() => this.setState({submitted: false})}/>
+        <Banner title='确认订单' onBack={() => this.setState({submitted: false})} />
         <DeliveryInfo realName={this.state.realName} phone={this.state.phone} address={this.state.address}
-                      onClick={::this.openAddress}/>
+          onClick={::this.openAddress} />
 
         <div className='delivery-info-wrapper'>
           <div>租用时间（天）</div>
           <NumberSelector initialValue={this.state.tenancy} onChange={::this.changeTenancy} min={15} max={999}
-                          step={15} size='large'/>
+            step={15} size='large' />
         </div>
 
         <div>{loopNodes}</div>
         <BottomBanner totalRent={totalRent} totalDeposit={totalDeposit} onClick={::this.pay} btnContent='微信支付'
-                      showTotal/>
+          showTotal />
       </div>
     }
   }
