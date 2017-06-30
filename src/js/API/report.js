@@ -40,5 +40,7 @@ export default {
    * 获取中医报告
    * @param id
    */
-  falthReport: (id) => API('/api/falthReport?id=' + id, {raw: true})
+  falthReport: (id) => API('/api/falthReport?id=' + id, {raw: true}),
+
+  gluBeforeMale: (id, isBeforeMale) => API(`/api/report/glu/beforeMeal?reportId=${id}&isBeforeMeal=${isBeforeMale}`, {noCache: true})
 }
