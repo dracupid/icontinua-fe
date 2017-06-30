@@ -5,7 +5,7 @@ import Echarts from '../../Components/Echarts'
 import Tips from '../../Components/Tips'
 import Rank from '../../Components/Rank'
 import reportUtil from '../util'
-import {baseGaugeOpt} from '../../report/option'
+import { baseGaugeOpt } from '../../report/option'
 import Util from '../../util'
 let {getValue} = reportUtil
 
@@ -14,7 +14,7 @@ class Blood extends React.Component {
     high: PropTypes.object.isRequired,
     low: PropTypes.object.isRequired,
     beat: PropTypes.number.isRequired
-  };
+  }
 
   /**
    * 获取图表参数

@@ -60,7 +60,7 @@ function Rank (props) {
   })
 
   if (!_.isEmpty(_.compact(refBlock))) {
-    text.push(<br />, <br />, '根据统计数据，同性别同年龄段人群中：')
+    text.push(<br key='br1' />, <br key='br2' />, '根据统计数据，同性别同年龄段人群中：')
     text = text.concat(refBlock)
   }
 

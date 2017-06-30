@@ -11,7 +11,7 @@ import API from '../../API/report'
 let {Tabs, Alert, Radio} = ANTD
 let TabPane = Tabs.TabPane
 
-const {Button: RadioButton, Group: RadioGroup} = Radio
+const {Group: RadioGroup} = Radio
 /**
  * 获取图表参数
  */
@@ -53,8 +53,8 @@ class BloodTabBlock extends React.Component {
       {this.props.title === '血糖' ? <div style={{marginTop: 16, textAlign: 'right'}}>
         <RadioGroup defaultValue={this.props.isGLUBeforeMeal} size='large'
           onChange={this.props.cb}>
-          <RadioButton value>餐前</RadioButton>
-          <RadioButton value={false}>餐后</RadioButton>
+          <Radio value>餐前</Radio>
+          <Radio value={false}>餐后</Radio>
         </RadioGroup>
       </div> : null}
       <Echarts key={this.props.chartKey || undefined}
@@ -74,15 +74,10 @@ class GLU extends React.Component {
   render () {
     let {glu, gluBeforeMeal, gluAfterMeal, user, isGLUBeforeMeal, id} = this.props
     if (this.state.isGLUBeforeMeal === null) {
-      console.log('no state')
       isGLUBeforeMeal = (isGLUBeforeMeal == null) ? true : isGLUBeforeMeal
     } else {
-      console.log('use state', this.state.isGLUBeforeMeal)
-
       isGLUBeforeMeal = this.state.isGLUBeforeMeal
     }
-
-    console.log('use', isGLUBeforeMeal)
 
     return (glu)
       ? <BloodTabBlock title='血糖' data={isGLUBeforeMeal ? gluBeforeMeal : gluAfterMeal}

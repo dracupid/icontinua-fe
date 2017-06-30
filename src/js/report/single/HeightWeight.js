@@ -5,7 +5,7 @@ import Echarts from '../../Components/Echarts'
 import Tips from '../../Components/Tips'
 import Rank from '../../Components/Rank'
 import KVMap from '../../Components/KVmap'
-import {baseGaugeOpt} from '../option'
+import { baseGaugeOpt } from '../option'
 import reportUtil from '../util'
 
 let {getValue, getStringValue, setValue} = reportUtil
@@ -100,8 +100,6 @@ class HeightWeight extends React.Component {
     }
 
     let bodyImage = `//cdnst.icontinua.com/img/body/${HeightWeight.getBodyImgName(bodyFat, user.sex)}.png`
-
-    console.log(bodyImage)
 
     return (
       <div>
