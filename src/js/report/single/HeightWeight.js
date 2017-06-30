@@ -7,6 +7,7 @@ import Rank from '../../Components/Rank'
 import KVMap from '../../Components/KVmap'
 import { baseGaugeOpt } from '../option'
 import reportUtil from '../util'
+import Targets from '../../Components/Targets'
 
 let {getValue, getStringValue, setValue} = reportUtil
 
@@ -118,6 +119,7 @@ class HeightWeight extends React.Component {
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%' />
         <Tips text={bmi.advice} fix />
+        <Targets type='体型' />
         <Rank obj={{身高: height, 体重: weight}} user={user} />
       </div>
     )

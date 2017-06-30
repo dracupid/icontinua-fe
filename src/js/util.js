@@ -125,5 +125,13 @@ export default {
       }
       h.insertBefore(s, h.firstChild)
     })
+  },
+
+  formatArgs (obj) {
+    let args = []
+    for (let key in obj) {
+      args.push(`${key}=${obj[key]}`)
+    }
+    return args.join('&')
   }
 }

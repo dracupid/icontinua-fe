@@ -7,6 +7,7 @@ import Echarts from '../../Components/Echarts'
 import { baseGaugeOpt } from '../../report/option'
 import reportUtil from '../util'
 import API from '../../API/report'
+import Targets from '../../Components/Targets'
 
 let {Tabs, Alert, Radio} = ANTD
 let TabPane = Tabs.TabPane
@@ -61,6 +62,7 @@ class BloodTabBlock extends React.Component {
         option={_getOpt(this.props.data.value.toFixed(2), this.props.title, this.props.unit, this.props.data.normal, this.props.min, this.props.max, this.props.step || 2)}
         height='300' width='100%' />
       <Tips text={this.props.data.advice} fix />
+      <Targets type={this.props.title} />
       <Rank obj={{[this.props.title]: this.props.data}} user={this.props.user} />
     </div>
   }

@@ -8,6 +8,7 @@ import API from '../../API/report'
 import Rank from '../../Components/Rank'
 import util from '../../util'
 import AdBanner from '../../Components/AdBanner'
+import Targets from '../../Components/Targets'
 
 let {Alert, Rate} = ANTD
 
@@ -185,6 +186,7 @@ class Chinese extends React.Component {
               text={'基于生物电技术，通过智能电子感知设备，持续诱导人体手掌皮肤生物电刺激，在人体组织内转化为离子流，依据离子流在阴、阳极间的极化运动。测量人体组织的生物电能及细胞膜的动作电位，通过3-5分钟扫描，根据应激反应数据评估全身各大组织器官的生物活性和功能状况，预测潜在的亚健康趋势，对疾病风险做出早期预警。'}
               title='简介' />
             <Scores {...data.scores} />
+            <Targets type='生物电' />
             <ReportBlock title='脏腑' {...data.zangfu} />{adZf}
             <ReportBlock title='脊椎' {...data.jizhui} />{adJz}
             <Rank obj={{脏腑: zangfu, 脊椎: jizhui, 消化: xiaohua, 泌尿: miniao}}

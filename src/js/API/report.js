@@ -1,4 +1,5 @@
 import API from './index'
+import util from '../util'
 
 export default {
   /**
@@ -42,5 +43,8 @@ export default {
    */
   falthReport: (id) => API('/api/falthReport?id=' + id, {raw: true}),
 
-  gluBeforeMale: (id, isBeforeMale) => API(`/api/report/glu/beforeMeal?reportId=${id}&isBeforeMeal=${isBeforeMale}`, {noCache: true})
+  gluBeforeMale: (id, isBeforeMale) => API(`/api/report/glu/beforeMeal?reportId=${id}&isBeforeMeal=${isBeforeMale}`, {noCache: true}),
+
+  getTargets: () => API('/api/user/targets'),
+  setTargets: (args) => API('/api/user/targets/set?' + util.formatArgs(args))
 }
