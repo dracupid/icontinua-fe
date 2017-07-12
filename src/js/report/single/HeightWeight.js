@@ -94,7 +94,7 @@ class HeightWeight extends React.Component {
   }
 
   render () {
-    let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, bmi, height, weight, user} = this.props
+    let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, boneWeight, tissueFluid, cellWater, potassium, bmi, height, weight, user} = this.props
     if (user.age) {
       bodyFat = setValue(bodyFat, getValue(bodyFat) || reportUtil.calFat(user.sex, user.age, getValue(bmi)))
       bodyKcal = setValue(bodyFat, getValue(bodyKcal) || reportUtil.calBMR(bodyFat, getValue(weight)))
@@ -114,8 +114,13 @@ class HeightWeight extends React.Component {
               脂肪率: getStringValue(bodyFat, ' %'),
               肌肉量: getStringValue(bodyMuscle, ' %'),
               基础代谢率: getStringValue(bodyKcal, ' kcal'),
-              水分: getStringValue(bodyWater, ' %'),
-              内脏脂肪: getStringValue(bodyViscera, '')}} />
+              人体水含量: getStringValue(bodyWater, ' %'),
+              内脏脂肪: getStringValue(bodyViscera, '%'),
+              骨重量: getStringValue(boneWeight, 'kg'),
+              细胞间液含量: getStringValue(tissueFluid, '%'),
+              细胞水含量: getStringValue(cellWater, '%'),
+              钾含量: getStringValue(potassium, 'mol')
+            }} />
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%' />
         <Tips text={bmi.advice} fix />
