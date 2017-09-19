@@ -16,6 +16,12 @@ createMenu = (appId, appSecret, host)->
                     name: '体型评估',
                     url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=device'}&response_type=code&scope=snsapi_base"
                 }, {
+                    type: 'miniprogram',
+                    name: '小程序评估',
+                    appid: 'wx70a4543756de613b',
+                    pagepath: 'pages/user/user',
+                    url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=device'}&response_type=code&scope=snsapi_base"
+                }, {
                     type: 'view',
                     name: '体检报告',
                     url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appId}&redirect_uri=#{encodeURIComponent host + '/wechat/auth?target=report'}&response_type=code&scope=snsapi_base"
@@ -96,5 +102,5 @@ appSecret1 = '7b3eb61c4a25a4bcd4b4f3766fd34ed3'
 host1 = 'http://icontinua.com'
 
 
-createMenu appId, appSecret, host
+# createMenu appId, appSecret, host
 createMenu appId1, appSecret1, host1
