@@ -47,7 +47,7 @@ class KVMap extends React.Component {
         <div key={i} className={'kv-map flex-' + (i + 1)}>{items.slice(i * 6, (i + 1) * 6)}</div>
       )
     }
-    return <div className='kv-map-wrapper'>{ret}</div>
+    return <div className='kv-map-wrapper' style={{fontSize: '0.9em'}}>{ret}</div>
   }
 }
 

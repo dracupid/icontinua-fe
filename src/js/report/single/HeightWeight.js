@@ -94,7 +94,7 @@ class HeightWeight extends React.Component {
   }
 
   render () {
-    let {bodyFat, bodyMuscle, bodyKcal, bodyWater, bodyViscera, boneWeight, tissueFluid, cellWater, potassium, bmi, height, weight, user} = this.props
+    let {bodyFat, bodyMuscle, bodyKcal, bodyWeight, bodyWater, bodyViscera, boneWeight, tissueFluid, potassium, bmi, height, weight, user, cellWeight, proteinWeight} = this.props
     if (user.age) {
       bodyFat = setValue(bodyFat, getValue(bodyFat) || reportUtil.calFat(user.sex, user.age, getValue(bmi)))
       bodyKcal = setValue(bodyFat, getValue(bodyKcal) || reportUtil.calBMR(bodyFat, getValue(weight)))
@@ -110,16 +110,17 @@ class HeightWeight extends React.Component {
           <div className='text'>身高<br />{_.round(height.value, 1)}CM</div>
           <KVMap
             obj={{
-              BMI指数: getValue(bmi).toFixed(1),
+              BMI指数: getValue(bodyWeight || bmi).toFixed(1),
               脂肪率: getStringValue(bodyFat, ' %'),
               肌肉量: getStringValue(bodyMuscle, ' %'),
               基础代谢率: getStringValue(bodyKcal, ' kcal'),
               人体水含量: getStringValue(bodyWater, ' %'),
               内脏脂肪: getStringValue(bodyViscera, '%'),
               骨重量: getStringValue(boneWeight, 'kg'),
+              体细胞重量: getStringValue(cellWeight, '%'),
               细胞间液含量: getStringValue(tissueFluid, '%'),
-              细胞水含量: getStringValue(cellWater, '%'),
-              钾含量: getStringValue(potassium, 'mol')
+              钾含量: getStringValue(potassium, 'mol'),
+              蛋白质含量: getStringValue(proteinWeight, 'kg')
             }} />
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%' />
