@@ -62,7 +62,7 @@ class BloodTabBlock extends React.Component {
         option={_getOpt(this.props.data.value.toFixed(2), this.props.title, this.props.unit, this.props.data.normal, this.props.min, this.props.max, this.props.step || 2)}
         height='300' width='100%' />
       <Tips text={this.props.data.advice} fix />
-      <Targets type={this.props.title} />
+      <Targets type={this.props.title} data={this.props} />
       <Rank obj={{[this.props.title]: this.props.data}} user={this.props.user} />
     </div>
   }

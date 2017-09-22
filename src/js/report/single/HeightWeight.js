@@ -125,7 +125,7 @@ class HeightWeight extends React.Component {
         </div>
         <Echarts option={this.getWeightOpt()} height='300' width='100%' />
         <Tips text={bmi.advice} fix />
-        <Targets type='体型' />
+        <Targets type='体型' data={this.props} />
         <Rank obj={{身高: height, 体重: weight}} user={user} />
       </div>
     )

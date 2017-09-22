@@ -1,5 +1,9 @@
-const {Card, Button, Modal, Form, InputNumber, Input, Radio} = ANTD
 import API from '../API/report'
+import reportUtil from '../report/util'
+
+let {getValue} = reportUtil
+
+const {Card, Button, Modal, Form, InputNumber, Input, Radio} = ANTD
 let FormItem = Form.Item
 
 const formItemLayout = {
@@ -7,16 +11,16 @@ const formItemLayout = {
   wrapperCol: {span: 18}
 }
 
-function HWForm ({form: {getFieldDecorator}, value}) {
+function HWForm ({form: {getFieldDecorator}, value, defaultValue}) {
   return <Form>
     <FormItem label='身高(cm)' {...formItemLayout}>
-      {getFieldDecorator('height', {initialValue: value.height})(<InputNumber min={0} max={200} step={0.1} />)}
+      {getFieldDecorator('height', {initialValue: value.height || defaultValue.height})(<InputNumber min={0} max={200} step={0.1} />)}
     </FormItem>
     <FormItem label='体重(kg)' {...formItemLayout}>
-      {getFieldDecorator('weight', {initialValue: value.weight})(<InputNumber min={0} max={300} step={0.1} />)}
+      {getFieldDecorator('weight', {initialValue: value.weight || defaultValue.weight})(<InputNumber min={0} max={300} step={0.1} />)}
     </FormItem>
     <FormItem label='体脂(%)' {...formItemLayout}>
-      {getFieldDecorator('bodyFat', {initialValue: value.bodyFat})(<InputNumber min={0} max={100} step={0.1} />)}
+      {getFieldDecorator('bodyFat', {initialValue: value.bodyFat || defaultValue.bodyFat})(<InputNumber min={0} max={100} step={0.1} />)}
     </FormItem>
     <FormItem label='其他描述' {...formItemLayout}>
       {getFieldDecorator('hwText', {initialValue: value.hwText})(<Input />)}
@@ -24,13 +28,13 @@ function HWForm ({form: {getFieldDecorator}, value}) {
   </Form>
 }
 
-function BpForm ({form: {getFieldDecorator}, value}) {
+function BpForm ({form: {getFieldDecorator}, value, defaultValue}) {
   return <Form>
     <FormItem label='舒张压(mmHg)' {...formItemLayout}>
-      {getFieldDecorator('dbp', {initialValue: value.dbp})(<InputNumber min={0} max={300} step={1} />)}
+      {getFieldDecorator('dbp', {initialValue: value.dbp || defaultValue.dbp})(<InputNumber min={0} max={300} step={1} />)}
     </FormItem>
     <FormItem label='收缩压(mmHg)' {...formItemLayout}>
-      {getFieldDecorator('sbp', {initialValue: value.sbp})(<InputNumber min={0} max={300} step={1} />)}
+      {getFieldDecorator('sbp', {initialValue: value.sbp || defaultValue.sbp})(<InputNumber min={0} max={300} step={1} />)}
     </FormItem>
     <FormItem label='其他描述' {...formItemLayout}>
       {getFieldDecorator('bpText', {initialValue: value.bpText})(<Input />)}
@@ -38,10 +42,10 @@ function BpForm ({form: {getFieldDecorator}, value}) {
   </Form>
 }
 
-function GluForm ({form: {getFieldDecorator}, value}) {
+function GluForm ({form: {getFieldDecorator}, value, defaultValue}) {
   return <Form>
     <FormItem label='血糖(mmol/L)' {...formItemLayout}>
-      {getFieldDecorator('glu', {initialValue: value.glu})(<InputNumber min={0} step={0.1} />)}
+      {getFieldDecorator('glu', {initialValue: value.glu || defaultValue.glu})(<InputNumber min={0} step={0.1} />)}
     </FormItem>
     <FormItem label='其他描述' {...formItemLayout}>
       {getFieldDecorator('gluText', {initialValue: value.gluText})(<Input />)}
@@ -49,10 +53,10 @@ function GluForm ({form: {getFieldDecorator}, value}) {
   </Form>
 }
 
-function UaForm ({form: {getFieldDecorator}, value}) {
+function UaForm ({form: {getFieldDecorator}, value, defaultValue}) {
   return <Form>
     <FormItem label='尿酸(μmol/L)' {...formItemLayout}>
-      {getFieldDecorator('ua', {initialValue: value.ua})(<InputNumber min={0} step={1} />)}
+      {getFieldDecorator('ua', {initialValue: value.ua || defaultValue.ua})(<InputNumber min={0} step={1} />)}
     </FormItem>
     <FormItem label='其他描述' {...formItemLayout}>
       {getFieldDecorator('uaText', {initialValue: value.uaText})(<Input />)}
@@ -60,20 +64,20 @@ function UaForm ({form: {getFieldDecorator}, value}) {
   </Form>
 }
 
-function CholForm ({form: {getFieldDecorator}, value}) {
+function CholForm ({form: {getFieldDecorator}, value, defaultValue}) {
   return <Form>
     <FormItem label='胆固醇(mmol/L)' {...formItemLayout}>
-      {getFieldDecorator('chol', {initialValue: value.chol})(<InputNumber min={0} step={0.1} />)}
+      {getFieldDecorator('chol', {initialValue: value.chol || defaultValue.chol})(<InputNumber min={0} step={0.1} />)}
     </FormItem>
     <FormItem label='其他描述' {...formItemLayout}>
       {getFieldDecorator('cholText', {initialValue: value.cholText})(<Input />)}
     </FormItem>
   </Form>
 }
-function HbForm ({form: {getFieldDecorator}, value}) {
+function HbForm ({form: {getFieldDecorator}, value, defaultValue}) {
   return <Form>
     <FormItem label='血红蛋白(mmol/L)' {...formItemLayout}>
-      {getFieldDecorator('hb', {initialValue: value.hb})(<InputNumber min={0} step={0.1} />)}
+      {getFieldDecorator('hb', {initialValue: value.hb || defaultValue.hb})(<InputNumber min={0} step={0.1} />)}
     </FormItem>
     <FormItem label='其他描述' {...formItemLayout}>
       {getFieldDecorator('hbText', {initialValue: value.hbText})(<Input />)}
@@ -176,6 +180,7 @@ export default class Targets extends React.Component {
   onSubmit () {
     this.refs.curForm.validateFields((err, values) => {
       if (!err) {
+        for (let k in values) values[k] = values[k] || ''
         console.log(values)
         let data = _.assign(this.state.data, values)
         this.setState({submitting: true})
@@ -192,11 +197,12 @@ export default class Targets extends React.Component {
   }
 
   getModal (FormComponent) {
+    console.log(_.mapValues(this.props.data, getValue))
     const WrapperForm = Form.create()(FormComponent)
     return <Modal title='修改目标' visible={this.state.showModal} onOk={::this.onSubmit}
       confirmLoading={this.state.submitting}
       onCancel={::this.hideModal}>
-      <WrapperForm ref='curForm' value={this.state.data} />
+      <WrapperForm ref='curForm' value={this.state.data} defaultValue={_.mapValues(this.props.data, getValue)} />
     </Modal>
   }
 
